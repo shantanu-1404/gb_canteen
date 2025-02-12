@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from './layout';
 
 
+
 const Metrics = () => {
   return (
     <Layout>
@@ -228,6 +229,7 @@ const Metrics = () => {
                 <img className="profile-pic" alt="profile" />
                 <div className="profile-count">27</div>
               </div>
+              
             </div>
           </div>
         </div>

@@ -44,3 +44,10 @@ const WordLimit = ({
 };
 
 export default WordLimit;
+
+
+
+ // How to use word-limit-container 
+ //<WordLimit wordLimit={100} placeholder="Write a short bio..." label="User Bio" /> 
+
+

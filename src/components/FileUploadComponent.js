@@ -17,7 +17,7 @@ const allowedTypes = {
     ],
 };
 
-const FileUploadComponent = ({ label, name, allowedClasses, onChange }) => {
+const FileUploadComponent = ({ label, name, allowedClasses, onChange, info }) => {
     const inputRef = useRef(null);
     const [file, setFile] = useState(null);
     const [isValid, setIsValid] = useState(true);
@@ -77,6 +77,7 @@ const FileUploadComponent = ({ label, name, allowedClasses, onChange }) => {
                 />
                 <small>{label}</small>
             </div>
+            <br/><small>{info}</small>
 
             <div className="file-preview-container">
                 {file && (

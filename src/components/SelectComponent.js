@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const SelectComponent = ({ label, name, options, isMulti = false, onChange }) => {
+const SelectComponent = ({ label, name, options, info, isMulti = false, onChange }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedValues, setSelectedValues] = useState(isMulti ? [] : "");
     const [selectedLabel, setSelectedLabel] = useState(""); // For single select display
@@ -62,6 +62,7 @@ const SelectComponent = ({ label, name, options, isMulti = false, onChange }) =>
                 ) : null}
 
                 <div className="ae-search-container">
+                    {isMulti ? (<i class="bi bi-search"></i>) : null}
                     <input
                         type="text"
                         className="ae-search-input"
@@ -99,6 +100,7 @@ const SelectComponent = ({ label, name, options, isMulti = false, onChange }) =>
                     </div>
                 )}
             </div>
+            <br/><small>{info}</small>
         </div>
     );
 };

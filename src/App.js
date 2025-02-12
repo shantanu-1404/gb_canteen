@@ -4,13 +4,14 @@ import Layout from './container/layout';
 import LeftView from './container/leftview';
 import Header from './container/header';
 import Homepage from './container/homepage';
+import Index from './container/Index';
 import WordLimit from './components/word_limit_textarea';
-import SelectComponent from "./components/SelectComponent";
 import './App.css';
 const App = () => {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<Index />} />    
       <Route path="/container/layout" element={<Layout />} />    
       <Route path="/container/leftview" element={<LeftView />} />   
       <Route path="/container/header" element={<Header />} />

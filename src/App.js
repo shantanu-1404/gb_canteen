@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import React, { useState } from "react";
 import FileUploadComponent from "./components/FileUploadComponent";
+import SelectComponent from "./components/SelectComponent";
 import './App.css';
 
 function App() {
@@ -11,6 +12,17 @@ function App() {
     console.log("Is valid:", isValid);
     setFileData(file);
   };
+
+  const [selectedSingle, setSelectedSingle] = useState("");
+  const [selectedMulti, setSelectedMulti] = useState([]);
+
+  const options = [
+    { value: "1", label: "Option 1" },
+    { value: "2", label: "Option 2" },
+    { value: "3", label: "Option 3" },
+    { value: "4", label: "Option 4" },
+  ];
+
 
   return (
     <div>
@@ -41,6 +53,26 @@ function App() {
             onChange={handleFileChange}
           />
 
+        </div>
+        <div className="form_section">
+          <h2>Custom Select Dropdown</h2>
+            {/* Single Select */}
+            <SelectComponent
+                label="Single Select"
+                name="singleSelect"
+                options={options}
+                isMulti={false}
+                onChange={setSelectedSingle}
+            />
+
+            {/* Multi-Select */}
+            <SelectComponent
+                label="Multi Select"
+                name="multiSelect"
+                options={options}
+                isMulti={true}
+                onChange={setSelectedMulti}
+            />
         </div>
 
       </div>

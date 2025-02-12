@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Header from './header';
 import LeftView from './leftview';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 // Array of colors for the pins
@@ -78,7 +81,7 @@ const Layout = ({ children }) => {
           <Header toggleSidebar={toggleSidebar} />
 
           {/* Page Content */}
-          <div className="content container">{children}</div>
+          <Container className="content">{children}</Container>
         </div>
       </div>
     </div>

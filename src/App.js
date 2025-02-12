@@ -4,6 +4,7 @@ import Layout from './container/layout';
 import LeftView from './container/leftview';
 import Header from './container/header';
 import Homepage from './container/homepage';
+import Index from './container/Index';
 import WordLimit from './components/word_limit_textarea';
 import Table from './components/table';
 import Calender from './components/date_picker';
@@ -11,11 +12,11 @@ import Metrics from './components/Metrics';
 import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
 
-
 const App = () => {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<Index />} />    
       <Route path="/container/layout" element={<Layout />} />    
       <Route path="/container/leftview" element={<LeftView />} />   
       <Route path="/container/header" element={<Header />} />

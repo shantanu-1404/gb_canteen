@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
+import Modal from "./Modal";
+import TextInput from "./TextInput";
 
-const TagInput = ({ availableTags = [], onTagsChange, info}) => {
+const TagInput = ({ availableTags = [], onTagsChange, info }) => {
   const [selectedTags, setSelectedTags] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const inputRef = useRef(null);
   const suggestionsRef = useRef(null);
-
+  const [isModalOpen, setModalOpen] = useState(false);
   // Filter suggestions based on input
   useEffect(() => {
     if (inputValue.trim() !== "") {
@@ -91,15 +93,49 @@ const TagInput = ({ availableTags = [], onTagsChange, info}) => {
         </div>
 
         {/* Input Field */}
-        <input
-          ref={inputRef}
-          type="text"
-          className="tag-input col"
-          placeholder="Add a tag"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-        />
+        <div className="input-group">
+          <input
+            ref={inputRef}
+            type="text"
+            className="tag-input col"
+            placeholder="Add a tag"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+          />
+          <a href="#"
+            type="button"
+            className="btn a-btn-primary"
+            onClick={() => setModalOpen(true)}
+          >
+            Add
+          </a>
+          <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} title="Add Tags">
+            <form cl>
+              <TextInput
+                label="Title"
+                info=""
+                placeholder="Enter Title"
+                required={true}
+              />
+              <TextInput
+                label="Description"
+                info=""
+                placeholder="Enter Description"
+                required={true}
+              />
+              <br />
+              <div className="btn-sack">
+                <button type="submit" className="a-btn-primary">
+                  Save
+                </button>
+                <button type="button" className="a-btn-primary" onClick={() => setModalOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </form>
+          </Modal>
+        </div>
         <br /><small>{info}</small>
 
         {/* Suggestions List */}

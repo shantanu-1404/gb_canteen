@@ -11,6 +11,7 @@ import Calender from './components/date_picker';
 import Metrics from './components/Metrics';
 import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
+import ToggleView from './components/Gridview';
 
 const App = () => {
   return (
@@ -26,7 +27,8 @@ const App = () => {
       <Route path="/components/date_picker" element={<Calender />} /> 
       <Route path="/components/Metrics" element={<Metrics />} /> 
       <Route path="/components/Searchbar" element={<SearchBar />} />  
-      <Route path="/components/Filter" element={<Filter />} />      
+      <Route path="/components/Filter" element={<Filter />} /> 
+      <Route path="/components/Gridview" element={<ToggleView />} />      
       </Routes>
     </Router>
   );

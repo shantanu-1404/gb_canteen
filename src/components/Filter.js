@@ -1,74 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-// Filter Component
-const Filter = ({ tableId, columns, data, onFilter }) => {
+const Filter = ({ columns, data, onFilter }) => {
   const [filterText, setFilterText] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
-  // Handle filter text change
-  const handleInputChange = (e) => {
-    setFilterText(e.target.value);
-  };
-
-  // Handle applying the filter
-  const handleApplyFilter = () => {
-    const filtered = data.filter((row) =>
-      columns.some(
-        (col) =>
-          row[col] &&
-          row[col].toString().toLowerCase().includes(filterText.toLowerCase())
-      )
-    );
-    onFilter(filtered, tableId);
-  };
+  const [selectedColumn, setSelectedColumn] = useState(columns[0]);
 
   // Toggle dropdown visibility
   const toggleDropdown = () => {
-    setDropdownVisible((prev) => !prev);
+    setDropdownVisible(!dropdownVisible);
   };
 
-  useEffect(() => {
-    // Close dropdown when clicking outside
-    const handleClickOutside = (event) => {
-      if (event.target.closest(".filter-dropdown") === null) {
-        setDropdownVisible(false);
-      }
-    };
+  // Handle the change in filter input
+  const handleFilterChange = (e) => {
+    const text = e.target.value;
+    setFilterText(text);
+    applyFilter(text, selectedColumn);
+  };
 
-    document.addEventListener("click", handleClickOutside);
+  // Apply the filter based on selected column
+  const applyFilter = (filterText, column) => {
+    const filtered = data.filter((item) => {
+      const value = item[column];
+      return value && String(value).toLowerCase().includes(filterText.toLowerCase());
+    });
+    onFilter(filtered); // Pass filtered data back to parent
+  };
 
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  // Handle column selection from dropdown
+  const handleColumnChange = (column) => {
+    setSelectedColumn(column);
+    applyFilter(filterText, column); // Apply filter immediately when column changes
+  };
 
   return (
     <div className="filter-container">
-      <button
-        className="btn btn-outline-secondary"
-        onClick={toggleDropdown}
-        aria-expanded={dropdownVisible}
-      >
-        <i className="bi bi-filter"></i> {/* Filter icon */}
-      </button>
+      <div className="filter-icon">
+        {/* Filter Icon - Toggle Dropdown on Click */}
+        <i className="bi bi-filter" onClick={toggleDropdown}></i>
+      </div>
 
+      {/* Dropdown menu for selecting the column to filter */}
       {dropdownVisible && (
-        <div className="filter-dropdown dropdown-menu show">
-          <div className="filter-input">
+        <div className="dropdown-menu">
+          <div className="dropdown-item">
+            <label htmlFor="columnFilter">Select Column</label>
+            <select
+              id="columnFilter"
+              className="form-select"
+              value={selectedColumn}
+              onChange={(e) => handleColumnChange(e.target.value)}
+            >
+              {columns.map((column, index) => (
+                <option key={index} value={column}>
+                  {column.charAt(0).toUpperCase() + column.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Input field for filtering */}
+          <div className="dropdown-item">
             <input
               type="text"
               className="form-control"
+              placeholder={`Filter by ${selectedColumn}`}
               value={filterText}
-              onChange={handleInputChange}
-              placeholder="Filter..."
+              onChange={handleFilterChange}
             />
           </div>
-          <button
-            className="btn btn-primary mt-2"
-            onClick={handleApplyFilter}
-          >
-            Apply Filter
-          </button>
         </div>
       )}
     </div>

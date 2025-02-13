@@ -3,6 +3,7 @@ import MetricCard from "../components/Metrics";
 import SearchBar from '../components/Searchbar';
 import Filter from "../components/Filter";
 import '../App.css'; // Custom CSS file if needed for additional styling
+import ToggleView from '../components/Gridview';
 
 const App = () => {
   // Create a reference for the table
@@ -42,7 +43,6 @@ const App = () => {
   return (
     <div>
       <h1>Metrics Dashboard</h1>
-      
 
       <div className="metrics-container">
         <MetricCard
@@ -82,6 +82,8 @@ const App = () => {
         tableRef={tableRef}
       />
       </div>
+
+      {/* Reusable SearchBar Component */}
       <SearchBar tableId="table1" placeholder="Search " />
        {/* Filter Component */}
        <Filter
@@ -91,12 +93,10 @@ const App = () => {
         onFilter={setFilteredData} // Handle filtered data
       />
       
+      <ToggleView tableId="table1" columns={columns} data={sampleData} />
 
-      {/* Table where metrics will be calculated */}
       <table ref={tableRef} id="table1">
-        {/* Reusable SearchBar Component */}
-
-     
+ 
         <thead>
           <tr>
             <th>Col-1 (Integer)</th>

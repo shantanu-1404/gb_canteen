@@ -15,8 +15,9 @@ const LeftSidebar = ({ isVisible }) => {
   
 
   return (
-    
-    <div id="left" className={`left ${isVisible ? 'show' : ''}`} style={{ width: '287px' }}>
+    <>
+    <div id="left" className={`left  ${isVisible ? 'show' : ''}`}></div>
+    <div id="left" className={`left-container ${isVisible ? 'show' : ''}`} style={{ width: '287px' }}>
       {/* Home Rectangle with Icon and Text */}
       <Link to="/home" className="home-text">
         <div className="home-rectangle">
@@ -84,6 +85,8 @@ const LeftSidebar = ({ isVisible }) => {
         </ul>
       </div>
     </div>
+    </>
+    
     
   );
 };

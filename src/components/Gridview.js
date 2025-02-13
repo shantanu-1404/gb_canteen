@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// Card component for grid view
+// This GridCard component renders individual row data as cards
 const GridCard = ({ rowData }) => {
   return (
     <div className="grid-card">
@@ -13,15 +13,15 @@ const GridCard = ({ rowData }) => {
   );
 };
 
-const GridListView = ({ data }) => {
+const GridView = ({ data }) => {
   const [view, setView] = useState("list"); // 'list' or 'grid' view
 
-  // Handle the toggle between list and grid views
+  // Toggle between list and grid view
   const handleViewToggle = () => {
     setView((prevView) => (prevView === "list" ? "grid" : "list"));
   };
 
-  // Render the list view
+  // Render List view (table)
   const renderListView = () => (
     <table className="table">
       <thead>
@@ -43,7 +43,7 @@ const GridListView = ({ data }) => {
     </table>
   );
 
-  // Render the grid view
+  // Render Grid view (cards)
   const renderGridView = () => (
     <div className="grid-container">
       {data.map((row, index) => (
@@ -55,14 +55,13 @@ const GridListView = ({ data }) => {
   return (
     <div className="grid-list-container">
       <button className="btn btn-primary" onClick={handleViewToggle}>
-        <i className={`bi ${view === "list" ? "bi-grid" : "bi-table"}`}></i>
-        Toggle View
+        {view === "list" ? "Switch to Grid View" : "Switch to Table View"}
       </button>
 
-      {/* Conditionally render grid or list view */}
+      {/* Conditionally render either grid or list view */}
       {view === "list" ? renderListView() : renderGridView()}
     </div>
   );
 };
 
-export default GridListView;
+export default GridView;

@@ -81,7 +81,7 @@ const Layout = ({ children }) => {
           <Header toggleSidebar={toggleSidebar} />
 
           {/* Page Content */}
-          <Container className="content">{children}</Container>
+          <Container style={{ marginTop: "110px" }} className="content">{children}</Container>
         </div>
       </div>
     </div>

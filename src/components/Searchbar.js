@@ -25,9 +25,7 @@ const SearchBar = ({ tableId, placeholder = "Search Table..." }) => {
   }, [query, tableId]);
 
   return (
-    <div className="form_section">
-      <div className="form-group">
-        <h6 className="card-title">Search</h6>
+    <div className="form_section">       
         <i className="fa-solid fa-magnifying-glass "></i>
         <input
           type="text"
@@ -37,7 +35,7 @@ const SearchBar = ({ tableId, placeholder = "Search Table..." }) => {
           onChange={(e) => setQuery(e.target.value)}
        
         />
-      </div>
+     
     </div>
   );
 };

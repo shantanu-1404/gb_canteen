@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Layout from './layout';
+
+
 import FileUploadComponent from "../components/FileUploadComponent";
 import SelectComponent from "../components/SelectComponent";
 import Aetextarea from "../components/Aetextarea";
 import PhoneInput from "../components/PhoneInput";
-import EmailInput from "../components/EmailInput";
 import DateInput from "../components/DateInput";
 import CheckboxInput from "../components/CheckboxInput";
 import RadioInput from "../components/RadioInput";
@@ -15,8 +16,12 @@ import CampaignCard from "../components/CampaignCard";
 import TagInput from "../components/TagInput";
 import Modal from "../components/Modal";
 import NotificationCard from "../components/NotificationCard";
+
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
+
 import postData from "../assets/json/posts.json";
 import campaignData from "../assets/json/campaigns.json";
 import notificationData from "../assets/json/notifications.json";
@@ -101,9 +106,9 @@ const Index = () => {
             </div>
             <h2>Upload Files</h2>
 
-            <div class="form_section">
-                <div class="d-flex justify-content-between">
-                    <h6 class="card-title">Recent Posts</h6>
+            <div className="form_section">
+                <div className="d-flex justify-content-between">
+                    <h6 className="card-title">Recent Posts</h6>
                     <a>see all</a>
                 </div>
                 <Row>
@@ -113,9 +118,9 @@ const Index = () => {
                 </Row>
             </div>
 
-            <div class="form_section">
-                <div class="d-flex justify-content-between">
-                    <h6 class="card-title">Recent Campaigns</h6>
+            <div className="form_section">
+                <div className="d-flex justify-content-between">
+                    <h6 className="card-title">Recent Campaigns</h6>
                     <a>see all</a>
                 </div>
                 <Row>
@@ -235,7 +240,7 @@ const Index = () => {
 
                     <div className="form_section">
                         <PhoneInput label="Mobile Number" placeholder="Enter your mobile number" />
-                        <EmailInput label="Email" placeholder="yourname@company.com" />
+                        <TextInput label="Email" type="email" placeholder="yourname@company.com" />
 
                         <br /><br />
                         <div className="btn-sack">

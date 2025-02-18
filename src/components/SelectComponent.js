@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const SelectComponent = ({ label, name, options, info, isMulti = false, onChange }) => {
+const SelectComponent = ({ label, name, options, info, isMulti = false, onChange, listStyle }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedValues, setSelectedValues] = useState(isMulti ? [] : "");
     const [selectedLabel, setSelectedLabel] = useState(""); // For single select display
@@ -82,7 +82,7 @@ const SelectComponent = ({ label, name, options, info, isMulti = false, onChange
                 </select>
 
                 {isDropdownOpen && (
-                    <div className="ae-options-list">
+                    <div className={`ae-options-list ${listStyle}`}>
                         {filteredOptions.length > 0 ? (
                             filteredOptions.map((option) => (
                                 <div

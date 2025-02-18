@@ -9,7 +9,15 @@ const formatCount = (count) => {
   return Math.floor(count / 1000) * 1000 + "+"; // For counts 1000 and above
 };
 
-const MetricCard = ({ title, operation, column, tableRef, tooltipText, icon }) => {
+const MetricCard = ({
+  title,
+  operation,
+  column,
+  tableRef,
+  tooltipText,
+  icon,
+  columns, // Accept columns as props
+}) => {
   const [metricValue, setMetricValue] = useState(0);
 
   const calculateMetric = () => {
@@ -29,40 +37,40 @@ const MetricCard = ({ title, operation, column, tableRef, tooltipText, icon }) =
     let ratioDenominator = 0;
 
     rows.forEach((row) => {
-      const columns = column.split(","); // Handle multiple columns like ratio or average
+      const columnsArray = column.split(","); // Handle multiple columns like ratio or average
       let validRow = true;
 
       switch (operation) {
         case "total":
-          columns.forEach((col) => {
+          columnsArray.forEach((col) => {
             const cellValue = row.querySelector(`[data-col="${col}"]`)?.textContent?.trim();
             if (cellValue && !isNaN(cellValue)) result += parseFloat(cellValue);
           });
           break;
 
         case "count":
-          columns.forEach((col) => {
+          columnsArray.forEach((col) => {
             const cellValue = row.querySelector(`[data-col="${col}"]`)?.textContent?.trim();
             if (cellValue) count += 1;
           });
           break;
 
         case "positiveCount":
-          columns.forEach((col) => {
+          columnsArray.forEach((col) => {
             const cellValue = row.querySelector(`[data-col="${col}"]`)?.textContent?.trim();
             if (cellValue === "true") positiveCount += 1;
           });
           break;
 
         case "negativeCount":
-          columns.forEach((col) => {
+          columnsArray.forEach((col) => {
             const cellValue = row.querySelector(`[data-col="${col}"]`)?.textContent?.trim();
             if (cellValue === "false") negativeCount += 1;
           });
           break;
 
         case "mean":
-          columns.forEach((col) => {
+          columnsArray.forEach((col) => {
             const cellValue = row.querySelector(`[data-col="${col}"]`)?.textContent?.trim();
             if (!isNaN(cellValue)) {
               sum += parseFloat(cellValue);
@@ -72,9 +80,9 @@ const MetricCard = ({ title, operation, column, tableRef, tooltipText, icon }) =
           break;
 
         case "average":
-          if (columns.length === 2) {
-            const startDateText = row.querySelector(`[data-col="${columns[0]}"]`)?.textContent?.trim();
-            const endDateText = row.querySelector(`[data-col="${columns[1]}"]`)?.textContent?.trim();
+          if (columnsArray.length === 2) {
+            const startDateText = row.querySelector(`[data-col="${columnsArray[0]}"]`)?.textContent?.trim();
+            const endDateText = row.querySelector(`[data-col="${columnsArray[1]}"]`)?.textContent?.trim();
             const startDate = new Date(startDateText);
             const endDate = new Date(endDateText);
 
@@ -89,14 +97,14 @@ const MetricCard = ({ title, operation, column, tableRef, tooltipText, icon }) =
           break;
 
         case "percentage":
-          columns.forEach((col) => {
+          columnsArray.forEach((col) => {
             const cellValue = row.querySelector(`[data-col="${col}"]`)?.textContent?.trim();
             if (!isNaN(cellValue)) result += parseFloat(cellValue);
           });
           break;
 
         case "1000+":
-          columns.forEach((col) => {
+          columnsArray.forEach((col) => {
             const cellValue = row.querySelector(`[data-col="${col}"]`)?.textContent?.trim();
             if (!isNaN(cellValue) && parseFloat(cellValue) >= 1000) {
               result += 1;
@@ -105,9 +113,9 @@ const MetricCard = ({ title, operation, column, tableRef, tooltipText, icon }) =
           break;
 
         case "ratio":
-          if (columns.length === 2) {
-            const numerator = parseFloat(row.querySelector(`[data-col="${columns[0]}"]`)?.textContent);
-            const denominator = parseFloat(row.querySelector(`[data-col="${columns[1]}"]`)?.textContent);
+          if (columnsArray.length === 2) {
+            const numerator = parseFloat(row.querySelector(`[data-col="${columnsArray[0]}"]`)?.textContent);
+            const denominator = parseFloat(row.querySelector(`[data-col="${columnsArray[1]}"]`)?.textContent);
 
             if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
               ratioNumerator += numerator;
@@ -162,45 +170,42 @@ const MetricCard = ({ title, operation, column, tableRef, tooltipText, icon }) =
 
   return (
     <div className="metrix">
-    <div className="d-flex flex-column ">
-      {/* First Line: Tooltip and Title */}
-      <div className="d-flex gap-5 mt-2 justify-content-between">
-        {/* Title */}
-        <h6 style={{ margin: 0 }}>{title}</h6>
-        {/* Tooltip only for the exclamation circle icon */}
-        <OverlayTrigger
-          placement="top"
-          overlay={<Tooltip id="tooltip">{tooltipText}</Tooltip>}
-        >
-          <div className="icon-container" style={{ marginRight: '10px' }}>
-            {/* Exclamation Circle Icon with Tooltip */}
-            <i
-              className="bi bi-exclamation-circle"
-              style={{ fontSize: '15px', cursor: 'pointer' }}
-            ></i>
-          </div>
-        </OverlayTrigger>
-      </div>
-  
-      {/* Second Line: Image and Metric Value */}
-      <div className="d-flex gap-5  mt-2 justify-content-between">
-        {/* Optional: Custom Icon (e.g., image or SVG) */}
-        {icon && (
-          <img
-            src={icon}
-            alt=""
-            style={{ width: '35px', height: '35px', marginRight: '8px' }}
-          />
-        )}
-  
-        {/* Metric Value */}
-        <h3 style={{ margin: 0 }}>{metricValue}</h3>
+      <div className="d-flex flex-column ">
+        {/* First Line: Tooltip and Title */}
+        <div className="d-flex gap-5 mt-2 justify-content-between">
+          {/* Title */}
+          <h6 style={{ margin: 0 }}>{title}</h6>
+          {/* Tooltip only for the exclamation circle icon */}
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip id="tooltip">{tooltipText}</Tooltip>}
+          >
+            <div className="icon-container" style={{ marginRight: "10px" }}>
+              {/* Exclamation Circle Icon with Tooltip */}
+              <i
+                className="bi bi-exclamation-circle"
+                style={{ fontSize: "15px", cursor: "pointer" }}
+              ></i>
+            </div>
+          </OverlayTrigger>
+        </div>
+
+        {/* Second Line: Image and Metric Value */}
+        <div className="d-flex gap-5 mt-2 justify-content-between">
+          {/* Optional: Custom Icon (e.g., image or SVG) */}
+          {icon && (
+            <img
+              src={icon}
+              alt=""
+              style={{ width: "35px", height: "35px", marginRight: "8px" }}
+            />
+          )}
+
+          {/* Metric Value */}
+          <h3 style={{ margin: 0 }}>{metricValue}</h3>
+        </div>
       </div>
     </div>
-  </div>
-  
-  
-  
   );
 };
 

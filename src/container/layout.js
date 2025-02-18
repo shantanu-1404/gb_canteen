@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
+
 // Array of colors for the pins
 const pinColors = [
   "#007aff",

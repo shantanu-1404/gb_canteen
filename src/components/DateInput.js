@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 const DateInput = ({
     label = "Date",
     name = "date",
     info = "",
     type = "all", // "all" (default), "past", or "future"
+    includeTime = false, // Enable time selection
 }) => {
     const [selectedDate, setSelectedDate] = useState("");
+    const [selectedTime, setSelectedTime] = useState("");
     const [minDate, setMinDate] = useState("");
     const [maxDate, setMaxDate] = useState("");
 
@@ -26,21 +31,45 @@ const DateInput = ({
         setSelectedDate(e.target.value);
     };
 
+    // Handle time change
+    const handleTimeChange = (e) => {
+        setSelectedTime(e.target.value);
+    };
+
     return (
         <div className="form-group">
-            <label htmlFor={name} className="form-label">
-                {label}
-            </label>
-            <input
-                className="form-control"
-                type="date"
-                name={name}
-                value={selectedDate}
-                onChange={handleDateChange}
-                min={minDate}
-                max={maxDate}
-            />
-            <br/><small>{info}</small>
+            <Row>
+                <Col>
+                    <label htmlFor={name} className="form-label">
+                        {label}
+                    </label>
+                    <input
+                        className="form-control"
+                        type="date"
+                        name={name}
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        min={minDate}
+                        max={maxDate}
+                    />
+                </Col>
+                {includeTime && (
+                    <Col>
+                        <label className="form-label">
+                            Time
+                        </label>
+                        <input
+                            className="form-control"
+                            type="time"
+                            name={`${name}_time`}
+                            value={selectedTime}
+                            onChange={handleTimeChange}
+                        />
+                    </Col>
+                )}
+            </Row>
+            <br />
+            <small>{info}</small>
         </div>
     );
 };

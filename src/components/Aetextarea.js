@@ -7,6 +7,7 @@ const Aetextarea = ({
     placeholder = "Enter text...",
     isWordCount = false,
     wordLimit = 300,
+    onChange
 }) => {
     const [text, setText] = useState("");
     const [wordCount, setWordCount] = useState(0);
@@ -24,10 +25,12 @@ const Aetextarea = ({
             if (words.length <= wordLimit) {
                 setText(inputText);
                 setWordCount(words.length);
+                if (onChange) onChange(inputText); // Pass value to parent
             }
         } else {
             // Normal textarea
             setText(inputText);
+            if (onChange) onChange(inputText);
         }
     };
 
@@ -50,7 +53,7 @@ const Aetextarea = ({
             {isWordCount && (
                 <div className="d-flex justify-content-end">                    
                     <small className="word-count">
-                        {wordCount}/{wordLimit} words
+                        {wordCount}/{wordLimit}
                     </small>
                 </div>
             )}

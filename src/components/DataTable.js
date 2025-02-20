@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import Table from "../components/table"; // Import the Table component
-import SearchBar from "../components/Searchbar";
-import GridView from "../components/Gridview";
-import Filter from "../components/Filter";
-import SortTable from "../components/SortTable";
+import Table from "./table"; // Import the Table component
+import SearchBar from "./Searchbar";
+import GridView from "./Gridview";
+import Filter from "./Filter";
+import SortTable from "./SortTable";
 import { Row, Col, Button } from "react-bootstrap";
-import MetricCard from "../components/Metrics";
+import MetricCard from "./Metrics";
 import Layout from "../container/layout";
+
+
 
 const DataTable = () => {
   // Create a reference for the table
@@ -14,6 +16,102 @@ const DataTable = () => {
 
   // Sample data and columns
   const sampleData = [
+    {
+      col1: 1150,
+      col2: 60,
+      col3: "Shipped",
+      col4: "true",
+      col5: "2023-01-01",
+      col6: "2024-08-02",
+    },
+    {
+      col1: 2000,
+      col2: 40,
+      col3: "Pending",
+      col4: "false",
+      col5: "2023-02-01",
+      col6: "2024-03-16",
+    },
+    {
+      col1: 3060,
+      col2: 90,
+      col3: "Shipped",
+      col4: "true",
+      col5: "2023-12-01",
+      col6: "2024-03-07",
+    },
+    {
+      col1: 1150,
+      col2: 60,
+      col3: "Shipped",
+      col4: "true",
+      col5: "2023-01-01",
+      col6: "2024-08-02",
+    },
+    {
+      col1: 2000,
+      col2: 40,
+      col3: "Pending",
+      col4: "false",
+      col5: "2023-02-01",
+      col6: "2024-03-16",
+    },
+    {
+      col1: 3060,
+      col2: 90,
+      col3: "Shipped",
+      col4: "true",
+      col5: "2023-12-01",
+      col6: "2024-03-07",
+    },
+    {
+      col1: 1150,
+      col2: 60,
+      col3: "Shipped",
+      col4: "true",
+      col5: "2023-01-01",
+      col6: "2024-08-02",
+    },
+    {
+      col1: 2000,
+      col2: 40,
+      col3: "Pending",
+      col4: "false",
+      col5: "2023-02-01",
+      col6: "2024-03-16",
+    },
+    {
+      col1: 3060,
+      col2: 90,
+      col3: "Shipped",
+      col4: "true",
+      col5: "2023-12-01",
+      col6: "2024-03-07",
+    },
+    {
+      col1: 1150,
+      col2: 60,
+      col3: "Shipped",
+      col4: "true",
+      col5: "2023-01-01",
+      col6: "2024-08-02",
+    },
+    {
+      col1: 2000,
+      col2: 40,
+      col3: "Pending",
+      col4: "false",
+      col5: "2023-02-01",
+      col6: "2024-03-16",
+    },
+    {
+      col1: 3060,
+      col2: 90,
+      col3: "Shipped",
+      col4: "true",
+      col5: "2023-12-01",
+      col6: "2024-03-07",
+    },
     {
       col1: 1150,
       col2: 60,
@@ -48,13 +146,19 @@ const DataTable = () => {
     { headname: "DDDD", dbcol: "col4" },
     { headname: "EEEE", dbcol: "col5" },
     { headname: "FFFF", dbcol: "col6" },
+   
+    
   ];
+
+
 
   // State management
   const [filteredData, setFilteredData] = useState(sampleData); // Store filtered data
   const [view, setView] = useState("table"); // Default view is table
   const [sortColumn, setSortColumn] = useState(null); // Column to be sorted
   const [sortOrder, setSortOrder] = useState("asc"); // Sorting order (asc, desc)
+  
+
 
   // Toggle between grid and table view
   const handleViewToggle = () => {
@@ -138,8 +242,10 @@ const DataTable = () => {
     <Layout>
       <div>
         <h1>Metrics Dashboard</h1>
+      
 
         <div className="card-container d-flex gap-4 flex-wrap">
+          
           <Row>
             <Col xs={4} md={3}>
               <MetricCard
@@ -223,7 +329,7 @@ const DataTable = () => {
             </Col>
             <Col xs={4} md={3}>
               <MetricCard
-                title="Count of Values Greater Than 1000 (Col-1)"
+                title="Count of Values()"
                 operation="1000+"
                 column="col1"
                 tableRef={tableRef}
@@ -244,46 +350,55 @@ const DataTable = () => {
           </Row>
         </div>
 
+        <Row className="align-items-center ">
+          <Col>
+            {/* Search Bar */}
+            <SearchBar tableId="table1" placeholder="Search Table..." />
+          </Col>
+          <Col md="auto">
+            <div className="d-flex gap-2">
+              {/* Filter Component */}
+              <Filter
+                columns={columns}
+                data={sampleData}
+                onFilter={setFilteredData}
+              />
+              <div>
+                {/* View Toggle Button */}
+                <button
+                  className="btn aeicon-btn-primary"
+                  onClick={handleViewToggle}
+                >
+                  {view === "table" ? (
+                    <i
+                      className="bi bi-grid"
+                      style={{ fontSize: "1.5rem" }}
+                    ></i>
+                  ) : (
+                    <i
+                      className="bi bi-grid"
+                      style={{ fontSize: "1.5rem" }}
+                    ></i>
+                  )}
+                </button>
+              </div>
+              {/* SortTable Component */}
+              <SortTable
+                data={filteredData} // Data to sort
+                setSortedData={setFilteredData} // Function to update sorted data
+                columns={columns} // Columns used for sorting
+                sortColumn={sortColumn} // Current column being sorted
+                setSortColumn={setSortColumn} // Function to update sorted column
+                sortOrder={sortOrder} // Current sort order
+                setSortOrder={setSortOrder} // Function to update sort order
+              />
+            </div>
+          </Col>
+        </Row>
 
-
- <Row className="align-items-center gx-1">
-  <Col xs={12} sm={2} md={3} lg={9}>
-    {/* Search Bar */}
-    <SearchBar tableId="table1" placeholder="Search Table..." />
-  </Col>
-  <Col xs={12} sm={4} md={3} lg={1} style={{ paddingRight: '0.5rem' }}>
-    {/* Filter Component */}
-    <Filter columns={columns} data={sampleData} onFilter={setFilteredData} />
-  </Col>
-  <Col xs={12} sm={2} md={1} lg={1} style={{ paddingRight: '0.5rem' }}>
-    {/* View Toggle Button */}
-    <button className="btn aeicon-btn-primary" onClick={handleViewToggle}>
-      {view === 'table' ? (
-        <i className="bi bi-grid" style={{ fontSize: '1.5rem' }}></i>
-      ) : (
-        <i className="bi bi-grid" style={{ fontSize: '1.5rem' }}></i>
-      )}
-    </button>
-  </Col>
-  <Col xs={12} sm={4} md={3} lg={1}>
-    {/* SortTable Component */}
-    <SortTable
-      data={filteredData}
-      setSortedData={setFilteredData}
-      columns={columns}
-      sortColumn={sortColumn}
-      setSortColumn={setSortColumn}
-      sortOrder={sortOrder}
-      setSortOrder={setSortOrder}
-      handleSorting={handleSorting}
-    />
-  </Col>
-</Row>
-
-
-
-        {/* Conditionally render Table or GridView */}
+        {/* Conditionally render Table or GridView */}  
         {view === "table" ? (
+          
           <Table
             id="table1"
             data={sampleData}

@@ -47,12 +47,14 @@ const SortTable = ({
   setSortOrder,
 }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [selectedColumn, setSelectedColumn] = useState(null); 
+  const [selectedColumn, setSelectedColumn] = useState(null);
+  const [subDropdownVisible, setSubDropdownVisible] = useState(false);
 
   // Function to handle column selection to display sorting options
   const handleColumnSelect = (column) => {
-    setSelectedColumn(column);
-    setDropdownVisible(!dropdownVisible);
+    // Toggle sub-dropdown visibility for the selected column
+    setSelectedColumn(selectedColumn === column ? null : column);
+    setSubDropdownVisible(!subDropdownVisible); // Toggle the sub-dropdown for sorting options
   };
 
   // Function to handle sorting option selection
@@ -60,15 +62,15 @@ const SortTable = ({
     setSortOrder(option);
     const sortedData = sortData(data, selectedColumn, option);
     setSortedData(sortedData);
-    setDropdownVisible(false); // Close the dropdown after selecting an option
+    setSubDropdownVisible(false); // Close the sub-dropdown after selecting an option
   };
 
   // Function to get sorting options based on the column data type
   const getSortingOptions = (column) => {
     const value = data[0][column]; // Get the first value in the column to determine type
-    if (typeof value === "number") return ["asc", "desc"];
-    if (typeof value === "string") return ["alphabetical", "reverseAlphabetical"];
-    if (Date.parse(value)) return ["newToOld", "oldToNew"];
+    if (typeof value === "number") return ["asc", "desc"]; // For numbers: Ascending, Descending
+    if (typeof value === "string") return ["alphabetical", "reverseAlphabetical"]; // For strings: A-Z, Z-A
+    if (Date.parse(value)) return ["newToOld", "oldToNew"]; // For dates: New to Old, Old to New
     return [];
   };
 
@@ -83,38 +85,39 @@ const SortTable = ({
         />
       </div>
 
-      {/* Sorting Options Dropdown */}
+      {/* Main Sorting Options Dropdown */}
       {dropdownVisible && (
-        <div className="aetabledropdown-menu ">
-          {/* Loop through columns and show them in the dropdown */}
+        <div className="aetabledropdown-menu">
           {columns.map((column, index) => (
-            <div key={index} className="dropdown-item" onClick={() => handleColumnSelect(column.dbcol)}>
-              {column.headname}
-            </div>
-          ))}
-        </div>
-      )}
+            <div key={index} className="dropdown-item">
+              <div onClick={() => handleColumnSelect(column.dbcol)}>
+                {column.headname} {/* Display column name */}
+              </div>
 
-      {/* Sorting options for the selected column */}
-      {selectedColumn && (
-        <div className="sorting-options-container">
-          {getSortingOptions(selectedColumn).map((option, index) => (
-            <div
-              key={index}
-              className="dropdown-item"
-              onClick={() => handleSortingOption(option)}
-            >
-              {option === "asc"
-                ? "Ascending"
-                : option === "desc"
-                ? "Descending"
-                : option === "alphabetical"
-                ? "Alphabetical (A-Z)"
-                : option === "reverseAlphabetical"
-                ? "Reverse Alphabetical (Z-A)"
-                : option === "oldToNew"
-                ? "Oldest to Newest"
-                : "Newest to Oldest"}
+              {/* Sub-Dropdown for Sorting Options of Selected Column */}
+              {selectedColumn === column.dbcol && subDropdownVisible && (
+                <div className="sorting-options-container">
+                  {getSortingOptions(column.dbcol).map((option, index) => (
+                    <div
+                      key={index}
+                      className="dropdown-item"
+                      onClick={() => handleSortingOption(option)}
+                    >
+                      {option === "asc"
+                        ? "Ascending"
+                        : option === "desc"
+                        ? "Descending"
+                        : option === "alphabetical"
+                        ? "Alphabetical (A-Z)"
+                        : option === "reverseAlphabetical"
+                        ? "Reverse Alphabetical (Z-A)"
+                        : option === "oldToNew"
+                        ? "Oldest to Newest"
+                        : "Newest to Oldest"}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

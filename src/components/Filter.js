@@ -92,32 +92,25 @@ const Filter = ({ columns, data, onFilter }) => {
           {getSubCategories(selectedColumn).length > 0 && (
             <div className="aetabledropdown-item">
               <label htmlFor="subCategoryFilter">Select Subcategory</label>
-              <select
-                id="subCategoryFilter"
-                className="form-select"
-                value={selectedSubCategory}
-                onChange={(e) => handleSubCategoryChange(e.target.value)}
-              >
-                <option value="">Select Subcategory</option>
-                {getSubCategories(selectedColumn).map((subCategory, index) => (
-                  <option key={index} value={subCategory}>
-                    {subCategory}
-                  </option>
-                ))}
-              </select>
+              <div className="dropdown-item subcategory-container">
+                <select
+                  id="subCategoryFilter"
+                  className="form-select"
+                  value={selectedSubCategory}
+                  onChange={(e) => handleSubCategoryChange(e.target.value)}
+                >
+                  <option value="">Select Subcategory</option>
+                  {getSubCategories(selectedColumn).map((subCategory, index) => (
+                    <option key={index} value={subCategory}>
+                      {subCategory}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           )}
 
-          {/* Filter Input */}
-          <div className="dropdown-item">
-            <input
-              type="text"
-              className="form-control"
-              placeholder={`Filter by ${columns.find((col) => col.dbcol === selectedColumn)?.headname}`}
-              value={filterText}
-              onChange={handleFilterChange}
-            />
-          </div>
+     
         </div>
       )}
     </div>

@@ -15,7 +15,7 @@ import MetricCard from './components/Metrics';
 import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
 import GridView from './components/Gridview';
-import Abc from "./components/abc";
+import DataTable from "./components/DataTable";
 
 
 
@@ -40,7 +40,7 @@ const App = () => {
       <Route path="/components/Searchbar" element={<SearchBar />} />  
       <Route path="/components/Filter" element={<Filter />} /> 
       <Route path="/components/Gridview" element={<GridView />} /> 
-      <Route path="/components/abc" element={<Abc />} />
+      <Route path="/components/DataTable" element={<DataTable />} />
    
        
       </Routes>

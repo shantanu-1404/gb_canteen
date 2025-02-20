@@ -1,71 +1,58 @@
-import React, { useState, useEffect, useRef } from "react";
+// DateRangePicker.js
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
 
-const MetricCard = ({ title, operation, column, tableRef }) => {
-  const [metricValue, setMetricValue] = useState(0);
 
-  const calculateMetric = () => {
-    const table = tableRef.current;
-    if (!table) return;
+// Reusable DateRangePicker component
+const DateRangePicker = ({ onDateRangeChange }) => {
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-    const rows = table.querySelectorAll("tbody tr");
-
-    let result = 0;
-
-    rows.forEach((row) => {
-      const cell = row.querySelector(`[data-col="${column}"]`);
-      if (!cell) return;
-
-      const cellValue = cell.textContent.trim();
-
-      if (operation === "total" && !isNaN(cellValue)) {
-        result += parseFloat(cellValue);
-      }
-      if (operation === "count" && cellValue) {
-        result += 1;
-      }
-      if (operation === "positiveCount" && cellValue === "true") {
-        result += 1;
-      }
-    });
-
-    setMetricValue(result);
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+    if (endDate) {
+      onDateRangeChange(date, endDate); // Notify parent when both dates are selected
+    }
   };
 
-  useEffect(() => {
-    calculateMetric();
-  }, [operation, column, tableRef]);
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+    if (startDate) {
+      onDateRangeChange(startDate, date); // Notify parent when both dates are selected
+    }
+  };
 
   return (
-    <div className="metric-card">
-      <h6>{title}</h6>
-      <h3>{metricValue}</h3>
+    <div className="date-range-picker">
+      <div className="d-flex justify-content-between">
+        <div>
+          <label htmlFor="startDate">Start Date:</label>
+          <DatePicker
+            id="startDate"
+            selected={startDate}
+            onChange={handleStartDateChange}
+            dateFormat="yyyy-MM-dd"
+            placeholderText="Select Start Date"
+            isClearable
+            className="form-control"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="endDate">End Date:</label>
+          <DatePicker
+            id="endDate"
+            selected={endDate}
+            onChange={handleEndDateChange}
+            dateFormat="yyyy-MM-dd"
+            placeholderText="Select End Date"
+            isClearable
+            className="form-control"
+          />
+        </div>
+      </div>
     </div>
   );
 };
 
-const Metrics = ({ tableRef }) => {
-  return (
-    <div className="metrics-container">
-      <MetricCard
-        title="Total of Col-1"
-        operation="total"
-        column="Col-1"
-        tableRef={tableRef}
-      />
-      <MetricCard
-        title="Count for Col-2"
-        operation="count"
-        column="Col-2"
-        tableRef={tableRef}
-      />
-      <MetricCard
-        title="Positive Count"
-        operation="positiveCount"
-        column="Col-3"
-        tableRef={tableRef}
-      />
-    </div>
-  );
-};
-
-export default Metrics;
+export default DateRangePicker;

@@ -3,10 +3,10 @@ import { Tooltip, OverlayTrigger } from 'react-bootstrap'; // For Tooltip functi
 
 // Utility function for formatting count with 1000+ logic
 const formatCount = (count) => {
-  if (count < 10) return count; // For counts between 1 and 9 (No +)
-  if (count < 100) return Math.floor(count / 10) * 10 + "+"; // For counts between 10 and 99
-  if (count < 1000) return Math.floor(count / 100) * 100 + "+"; // For counts between 100 and 999
-  return Math.floor(count / 1000) * 1000 + "+"; // For counts 1000 and above
+  if (count < 10) return "1+"; // For counts between 1 and 9, show 1+
+  if (count < 100) return Math.floor(count / 10) * 10 + "+"; // For counts between 10 and 99, round to nearest 10
+  if (count < 1000) return Math.floor(count / 100) * 100 + "+"; // For counts between 100 and 999, round to nearest 100
+  return Math.floor(count / 1000) * 1000 + "+"; // For counts 1000 and above, round to nearest 1000
 };
 
 const MetricCard = ({

@@ -1,30 +1,34 @@
 import React from "react";
-import { Button } from 'react-bootstrap'; // Assuming you're using React-Bootstrap
+import { Button, Row } from "react-bootstrap"; // Assuming you're using React-Bootstrap
 
 // Grid Card component to display each row as a card
 const GridCard = ({ rowData, columns }) => {
   return (
-    <div className="grid-card">
-      {/* Map through the columns to display the column's headname and respective data */}
-      {columns.map((column, index) => (
-        <p key={index}>
-          <strong>{column.headname}:</strong> {rowData[column.dbcol]}
-        </p>
-      ))}
+    <div className="col-md-6 col-lg-4">
+      <div className="section_card flex-column">
+        <br />
+        <br />
+        {columns.map((column, index) => (
+          <div key={index} className="row">
+            <strong className="col-md">{column.headname} - </strong>
+            <p className={`col-md `}>{rowData[column.dbcol]}</p>
+          </div>
+        ))}
+        <div className="btn-sack-top">
+          <span></span>
+        </div>
+      </div>
     </div>
   );
 };
 
 const GridView = ({ data, columns }) => {
   return (
-    <div className="grid-list-container  ">
-      {/* Grid view: Render cards */}
-      <div className="grid-container">
-        {data.map((row, index) => (
-          <GridCard key={index} rowData={row} columns={columns} />
-        ))}
-      </div>
-    </div>
+    <Row>
+      {data.map((row, index) => (
+        <GridCard key={index} rowData={row} columns={columns} />
+      ))}
+    </Row>
   );
 };
 

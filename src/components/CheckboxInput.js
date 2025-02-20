@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 const CheckboxInput = ({
-    label = "I have read and agree to the",
-    linkText = "Terms and Conditions",
+    label,
+    linkText,
     linkUrl = "#",
-    info = "",
-    name = "checkbox",
+    info,
+    name,
     onChange
 }) => {
     const [isChecked, setIsChecked] = useState(false);
@@ -19,7 +19,7 @@ const CheckboxInput = ({
     };
 
     return (
-        <div className="form-group form-check mt-3">
+        <div className="form-group form-check m-0">
             <input
                 className="form-check-input"
                 type="checkbox"

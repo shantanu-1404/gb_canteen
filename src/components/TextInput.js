@@ -1,29 +1,48 @@
 import React, { useState } from "react";
 
 const TextInput = ({
-    label = "Input",
+    label,
+    type = "text", // Can be "text", "email", or "url"
+    placeholder = "Enter value...",
     info = "",
-    name = "textInput",
-    placeholder = "Enter text...",
+    name = "customInput",
     required = false,
     onChange
 }) => {
     const [value, setValue] = useState("");
     const [error, setError] = useState("");
 
+    // Email validation function
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     // Handle input change
     const handleChange = (e) => {
-        setValue(e.target.value);
-        if (onChange) {
-            onChange(e.target.value);
+        let inputValue = e.target.value;
+
+        if (type === "url") {
+            inputValue = inputValue.replace(/\s+/g, "-"); // Convert spaces to "-"
         }
-        setError(""); // Remove error on change
+
+        setValue(inputValue);
+        setError(""); // Reset error on change
+
+        if (onChange) {
+            onChange(inputValue);
+        }
     };
 
     // Validate input on blur
     const handleBlur = () => {
         if (required && !value.trim()) {
             setError("This field is required.");
+            return;
+        }
+
+        if (type === "email" && value && !validateEmail(value)) {
+            setError("Invalid email format.");
         }
     };
 
@@ -33,7 +52,7 @@ const TextInput = ({
                 {label}
             </label>
             <input
-                type="text"
+                type={type}
                 name={name}
                 className={`form-control ${error ? "input-error" : ""}`}
                 placeholder={placeholder}
@@ -42,7 +61,7 @@ const TextInput = ({
                 onBlur={handleBlur}
             />
             {error && <small className="error-text">{error}</small>}
-            <br/><small>{info}</small>
+            <br /><small>{info}</small>
         </div>
     );
 };

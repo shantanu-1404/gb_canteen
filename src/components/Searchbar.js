@@ -25,20 +25,22 @@ const SearchBar = ({ tableId, placeholder = "Search Table..." }) => {
   }, [query, tableId]);
 
   return (
-    <div className="form_section">
-      <div className="form-group">
-        <h6 className="card-title">Search</h6>
-        <i className="fa-solid fa-magnifying-glass "></i>
-        <input
-          type="text"
-          className="form-control tag-input  "
-          placeholder={placeholder}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-       
-        />
-      </div>
-    </div>
+    <div className="table-searchbar">
+  <i className="bi bi-search aetablesearch-icon"></i>
+  <input
+    type="text"
+    className="aetabletag-input"
+    placeholder={placeholder}
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+  />
+</div>
+
+
+
+
+
+   
   );
 };
 

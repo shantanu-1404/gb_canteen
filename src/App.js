@@ -11,11 +11,17 @@ import AddNewCampaign from './container/AddNewCampaign';
 import WordLimit from './components/word_limit_textarea';
 import Table from './components/table';
 import Calender from './components/date_picker';
-import Metrics from './components/Metrics';
+import MetricCard from './components/Metrics';
 import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
+import GridView from './components/Gridview';
+import DataTable from "./components/DataTable";
+
+
+
 
 const App = () => {
+  
   return (
     <Router>
       <Routes>
@@ -30,11 +36,17 @@ const App = () => {
       <Route path="/components/word_limit_textarea" element={<WordLimit />} />  
       <Route path="/components/table" element={<Table />} /> 
       <Route path="/components/date_picker" element={<Calender />} /> 
-      <Route path="/components/Metrics" element={<Metrics />} /> 
+      <Route path="/components/Metrics" element={<MetricCard />} /> 
       <Route path="/components/Searchbar" element={<SearchBar />} />  
-      <Route path="/components/Filter" element={<Filter />} />      
+      <Route path="/components/Filter" element={<Filter />} /> 
+      <Route path="/components/Gridview" element={<GridView />} /> 
+      <Route path="/components/DataTable" element={<DataTable />} />
+   
+       
       </Routes>
     </Router>
+
+    
   );
 };
 

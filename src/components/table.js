@@ -1,125 +1,188 @@
-import React, { useRef ,useState } from "react";
-import MetricCard from "../components/Metrics";
-import SearchBar from '../components/Searchbar';
-import Filter from "../components/Filter";
-import '../App.css'; // Custom CSS file if needed for additional styling
+// Table.js
+import React, { useState, useEffect, useRef } from "react";
+import RowsPerPageSelector from "../components/RowsPerPageSelector"; // Import RowsPerPageSelector
 
-const App = () => {
-  // Create a reference for the table
-  const tableRef = useRef();
+const Table = ({
+  id,
+  tableRef,
+  data,
+  columns,
+  filteredData,
+  setFilteredData,
+}) => {
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortedData, setSortedData] = useState(data);
+  const [rowsPerPage, setRowsPerPage] = useState(10); // Default to 10 rows per page
+  const [currentPage, setCurrentPage] = useState(1); // Default to page 1
+   const [selectedRows, setSelectedRows] = useState([]);
 
-  // Sample data for table
-  const sampleData = [
-    {
-      col1: 100,
-      col2: "Shipped",
-      col3: true,
-      col4: "2023-01-01",
-      col5: "2024-08-02",
-    },
-    {
-      col1: 20,
-      col2: "Pending",
-      col3: false,
-      col4: "2023-02-01",
-      col5: "2024-03-16",
-    },
-    {
-      col1: 30,
-      col2: "Shipped",
-      col3: true,
-      col4: "2023-12-01",
-      col5: "2024-03-07",
-    },
-    // Add more sample data as needed
-  ];
-    // Columns you want to allow filtering on
-    const columns = ["name", "status", "amount"];
+  // Calculate the indices for slicing the data
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentData = filteredData.slice(startIndex, endIndex);
 
-    // The filtered data (default to sampleData)
-    const [filteredData, setFilteredData] = useState(sampleData);
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+  // Update sorted data whenever the sort changes
+  useEffect(() => {
+    setSortedData(filteredData); // Set the filtered data whenever it changes
+  }, [filteredData]);
+
+  // Function to handle column sorting
+  const handleSort = (column) => {
+    if (sortColumn === column) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc"); // Toggle sort order
+    } else {
+      setSortColumn(column);
+      setSortOrder("asc"); // Default to ascending order
+    }
+  };
+
+  // Function to sort data based on column and order
+  const sortData = (data, column, order) => {
+    return data.sort((a, b) => {
+      let valueA = a[column];
+      let valueB = b[column];
+
+      if (valueA === undefined || valueA === null) valueA = "";
+      if (valueB === undefined || valueB === null) valueB = "";
+
+      if (typeof valueA === "string" && typeof valueB === "string") {
+        valueA = valueA.trim().toLowerCase();
+        valueB = valueB.trim().toLowerCase();
+        return order === "asc"
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA);
+      }
+
+      if (typeof valueA === "number" && typeof valueB === "number") {
+        return order === "asc" ? valueA - valueB : valueB - valueA;
+      }
+
+      if (Date.parse(valueA) && Date.parse(valueB)) {
+        const dateA = new Date(valueA);
+        const dateB = new Date(valueB);
+        return order === "asc" ? dateA - dateB : dateB - dateA;
+      }
+
+      return 0;
+    });
+  };
+
+  useEffect(() => {
+    if (sortColumn) {
+      const sortedData = sortData([...filteredData], sortColumn, sortOrder);
+      setFilteredData(sortedData);
+    }
+  }, [sortColumn, sortOrder, filteredData, setFilteredData]);
+
+  // Handle page change
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  // Handle rows per page change
+  const handleRowsPerPageChange = (newRowsPerPage) => {
+    setRowsPerPage(newRowsPerPage);
+    setCurrentPage(1); // Reset to first page when rows per page is changed
+  };
+    // Function to toggle the checkbox
+    const handleCheckboxChange = (rowIndex) => {
+      setSelectedRows((prevSelectedRows) => {
+        if (prevSelectedRows.includes(rowIndex)) {
+          return prevSelectedRows.filter((index) => index !== rowIndex); // Remove from selected rows
+        } else {
+          return [...prevSelectedRows, rowIndex]; // Add to selected rows
+        }
+      });
+    };
 
   return (
-    <div>
-      <h1>Metrics Dashboard</h1>
-      
-
-      <div className="metrics-container">
-        <MetricCard
-          title="Total of Col-1"
-          operation="total"
-          column="Col-1"
-          tableRef={tableRef}
-        />
-        <MetricCard
-          title="Count for Col-2"
-          operation="count"
-          column="Col-2"
-          tableRef={tableRef}
-        />
-        <MetricCard
-          title="Positive Count"
-          operation="positiveCount"
-          column="Col-3"
-          tableRef={tableRef}
-        />
-        <MetricCard
-          title="Negative Count"
-          operation="negativeCount"
-          column="Col-3"
-          tableRef={tableRef}
-        />
-        <MetricCard
-          title="Mean of Col-1"
-          operation="mean"
-          column="Col-1"
-          tableRef={tableRef}
-        />
-        <MetricCard
-        title="Average of Col-4 & Col-5"
-        operation="average"
-        column="Col-4,Col-5"
-        tableRef={tableRef}
-      />
-      </div>
-      <SearchBar tableId="table1" placeholder="Search " />
-       {/* Filter Component */}
-       <Filter
-        tableId="table1"
-        columns={columns} // Columns you want to filter
-        data={sampleData} // Pass the data to be filtered
-        onFilter={setFilteredData} // Handle filtered data
-      />
-      
-
-      {/* Table where metrics will be calculated */}
-      <table ref={tableRef} id="table1">
-        {/* Reusable SearchBar Component */}
-
-     
+    <div className="table-container list-view section_card">
+      <table className="table ae-table" ref={tableRef} id={id}>
         <thead>
           <tr>
-            <th>Col-1 (Integer)</th>
-            <th>Col-2 (Enum)</th>
-            <th>Col-3 (Boolean)</th>
-            <th>Start Date (Col-4)</th>
-            <th>End Date (Col-5)</th>
+          <th>
+              <input
+                type="checkbox"
+                checked={selectedRows.length === filteredData.length}
+                onChange={() => {
+                  if (selectedRows.length === filteredData.length) {
+                    setSelectedRows([]); // Deselect all if already selected
+                  } else {
+                    setSelectedRows(filteredData.map((_, index) => index)); // Select all
+                  }
+                }}
+              />
+            </th>
+            {columns.map((column) => (
+              <th
+                key={column.dbcol}
+                onClick={() => handleSort(column.dbcol)} // Add sorting functionality
+              >
+                {column.headname}
+                {sortColumn === column.dbcol && (
+                  <span>{sortOrder === "asc" ? "▲" : "▼"}</span>
+                )}
+              </th>
+            ))}
           </tr>
         </thead>
-        <tbody>
-          {sampleData.map((data, index) => (
-            <tr key={index}>
-              <td data-col="Col-1">{data.col1}</td>
-              <td data-col="Col-2">{data.col2}</td>
-              <td data-col="Col-3">{data.col3 ? "true" : "false"}</td>
-              <td data-col="Col-4">{data.col4}</td>
-              <td data-col="Col-5">{data.col5}</td>
+        <tbody id="tableBody">
+          {currentData.length > 0 ? (
+            currentData.map((row, index) => (
+              <tr key={index}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(startIndex + index)}
+                    onChange={() => handleCheckboxChange(startIndex + index)}
+                  />
+                </td>
+                {columns.map((column) => (
+                  <td data-col={column.dbcol} key={column.dbcol}>
+                    {row[column.dbcol]}
+                  </td>
+                ))}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={columns.length}>No data available</td>
             </tr>
-          ))}
+          )}
         </tbody>
-      </table>    
+      </table>
+
+      {/* Rows Per Page Selector */}
+
+      {/* Pagination Controls */}
+      <br/><br/>
+      <div className="pagination-controls ">
+        <RowsPerPageSelector
+          rowsPerPage={rowsPerPage}
+          setRowsPerPage={handleRowsPerPageChange}
+        />
+        <div style={{padding: "10px"}} className="btn-sack position-relative">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            <i className="bi bi-chevron-left"></i> {/* Previous icon */}
+          </button>
+
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            <i className="bi bi-chevron-right"></i> {/* Next icon */}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default App;
+export default Table;

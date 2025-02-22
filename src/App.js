@@ -12,6 +12,8 @@ import Reports from "./container/Reports";
 import AddReport from "./container/AddReport";
 import SM_Project from "./container/SM_Project";
 import SM_Clients from "./container/SM_Clients";
+import NewProject from "./container/AddNewProject"
+import NewClient from "./container/AddNewClient"
 
 
 
@@ -22,8 +24,9 @@ import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
 import GridView from './components/Gridview';
 import DataTable from "./components/DataTable";
-import UTMTrackingChart from "./components/Graphs";
+import Analytics from "./components/Analytics";
 import ProjectCard from "./components/ProjectDashboard"
+
 
 
 const App = () => {
@@ -50,10 +53,12 @@ const App = () => {
       <Route path="/components/Filter" element={<Filter />} /> 
       <Route path="/components/Gridview" element={<GridView />} /> 
       <Route path="/components/DataTable" element={<DataTable />} />
-      <Route path="/components/Graphs" element={<UTMTrackingChart />} />
+      <Route path="/components/Analytics" element={<Analytics />} />
       <Route path="/components/ProjectDashboard" element={<ProjectCard />} />
+      <Route path="/container/AddNewProject" element={<NewProject />} />
+      <Route path="/container/AddNewClient" element={<NewClient />} />
    
-       
+
       </Routes>
     </Router>
 

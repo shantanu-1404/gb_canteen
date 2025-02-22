@@ -294,7 +294,6 @@ form {
 
 .sec li {
   list-style: none;
-  color: white;
   padding: 10px 0;
   font-size: 14px;
 }
@@ -352,14 +351,12 @@ form {
 
 .sec li {
   list-style: none;
-  color: white;
   padding: 10px 0;
   font-size: 14px;
 }
 
 .sec li i {
   margin-right: 15px;
-  color: white;
 }
 
 .brightness-icon {
@@ -521,6 +518,10 @@ form {
 
 .matrix {
   height: 100%;
+}
+
+.metrix li{
+  font-size: 10px;  
 }
 
 
@@ -708,12 +709,20 @@ h3 {
   box-shadow: none;
 }
 
+
 .form_section h6,
 .section_card h6 {
   font-size: 22px;
   font-weight: 500;
   margin-bottom: 25px;
 }
+
+.card-title.h6{
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 25px;
+}
+
 
 .section_card h4 {
   font-weight: 500;
@@ -842,7 +851,6 @@ table td {
   padding: 5px;
   border-radius: 10px;
   height: 30px;
-  margin-top: 20px;
 }
 
 .card-title span {
@@ -1213,6 +1221,7 @@ a.search-input-wrapper .ae-search-container {
   width: auto;
   margin-top: 12px;
   height: auto;
+  margin-bottom: 20px;
 }
 
 .input-group {
@@ -1993,6 +2002,7 @@ select.form-control {
   margin: 0;
   display: flex;
   gap: 15px;
+  background-image: linear-gradient(204deg, #f4f4f4 0%, #f6f6f6 50%, #e8e8e8 100%);
   padding: 10px 0px 0px 10px;
   border-top: 1px solid #ecf0f1;
   border-left: 1px solid #ecf0f1;
@@ -2375,7 +2385,7 @@ html {
 }
 
 
-.dropdown .submenu {
+.nav-item .submenu {
   position: relative !important;
   inset: 0px auto auto 0px;
   margin: 0px;
@@ -2386,9 +2396,37 @@ html {
 
 }
 
-.dropdown .submenu li a {
-  color: white;
+.nav-item .nav-link {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.nav-link .bi-chevron-right,
+.nav-link .bi-chevron-down{
+  font-size: 12px;
+  margin-left: 15px;
+}
+
+.nav-item .submenu li a {
+  color: #9D9D9D;
+  background-color: #00000000;
+  padding: 0px 0px 0px 25px;
+}
+
+.nav-link,
+li a{
+  color: #9D9D9D ;
+}
+
+
+li.active a{
+  color: white !important ;
+}
+
+.nav-link.active{
+  color: white;
 }
 
 .search-container {
@@ -2410,9 +2448,18 @@ html {
 .form_section .ae-select select {
 
   border: 1px solid #9E9E9E;
-  height: 40px;
+  /* height: 40px; */
 }
 
+
+.modal-content .table-container {
+  padding: 0;
+  margin-top: 25px;
+  box-shadow: none;
+}
+.modal-content .grid-btn{
+  display: none;
+}
 
 .create-btn {
   color: #fff;
@@ -3405,6 +3452,42 @@ margin-bottom: 15px;
   font-size: 18px;
   font-weight: normal; /* Remove bold */
 }
+
+
+
+
+
+
+.date-picker-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.DatePicker-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  color: #0e032f;
+  margin-bottom: 10px;
+}
+
+.Flatpickr-icon {
+  position: absolute;
+  left: 10px;
+  font-size: 16px;
+  color: #0e032f;
+}
+
+.flatpickr-input {
+  border: none;
+  color: #253154 !important;
+  border-radius: 15px;
+  padding: 16px;
+  box-shadow: 5px 9px 10px 0px rgba(0, 0, 0, .08);
+}
+
+
 
 
 

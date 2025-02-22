@@ -26,21 +26,21 @@ const SearchBar = ({ tableId, placeholder = "Search Table..." }) => {
 
   return (
     <div className="table-searchbar">
-  <i className="bi bi-search aetablesearch-icon"></i>
-  <input
-    type="text"
-    className="aetabletag-input"
-    placeholder={placeholder}
-    value={query}
-    onChange={(e) => setQuery(e.target.value)}
-  />
-</div>
+      <i className="bi bi-search aetablesearch-icon"></i>
+      <input
+        type="text"
+        className="aetabletag-input"
+        placeholder={placeholder}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+    </div>
 
 
 
 
 
-   
+
   );
 };
 

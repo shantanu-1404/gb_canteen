@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 export const sortData = (data, sortColumn, sortOrder) => {
   if (!sortColumn) return data;
 
-  return data.sort((a, b) => {
+  return [...data].sort((a, b) => {
     let valueA = a[sortColumn];
     let valueB = b[sortColumn];
 
@@ -26,7 +26,7 @@ export const sortData = (data, sortColumn, sortOrder) => {
       return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
     }
 
-    // Date-wise Sorting (for date)
+    // Date-wise Sorting (for dates)
     if (Date.parse(valueA) && Date.parse(valueB)) {
       const dateA = new Date(valueA);
       const dateB = new Date(valueB);
@@ -50,27 +50,31 @@ const SortTable = ({
   const [selectedColumn, setSelectedColumn] = useState(null);
   const [subDropdownVisible, setSubDropdownVisible] = useState(false);
 
-  // Function to handle column selection to display sorting options
+  // Handle column selection to display sorting options
   const handleColumnSelect = (column) => {
-    // Toggle sub-dropdown visibility for the selected column
-    setSelectedColumn(selectedColumn === column ? null : column);
-    setSubDropdownVisible(!subDropdownVisible); // Toggle the sub-dropdown for sorting options
+    if (selectedColumn === column) {
+      setSubDropdownVisible(!subDropdownVisible); // Toggle sub-dropdown
+    } else {
+      setSelectedColumn(column);
+      setSubDropdownVisible(true); // Open the sub-dropdown for sorting options
+    }
   };
 
-  // Function to handle sorting option selection
+  // Handle sorting option selection
   const handleSortingOption = (option) => {
     setSortOrder(option);
+    setSortColumn(selectedColumn);
     const sortedData = sortData(data, selectedColumn, option);
     setSortedData(sortedData);
-    setSubDropdownVisible(false); // Close the sub-dropdown after selecting an option
+    setSubDropdownVisible(false); // Close sub-dropdown after selecting an option
   };
 
-  // Function to get sorting options based on the column data type
+  // Get sorting options based on the column data type
   const getSortingOptions = (column) => {
-    const value = data[0][column]; // Get the first value in the column to determine type
-    if (typeof value === "number") return ["asc", "desc"]; // For numbers: Ascending, Descending
-    if (typeof value === "string") return ["alphabetical", "reverseAlphabetical"]; // For strings: A-Z, Z-A
-    if (Date.parse(value)) return ["newToOld", "oldToNew"]; // For dates: New to Old, Old to New
+    const value = data[0]?.[column];
+    if (typeof value === "number") return ["asc", "desc"]; // For numbers
+    if (typeof value === "string") return ["alphabetical", "reverseAlphabetical"]; // For strings
+    if (Date.parse(value)) return ["newToOld", "oldToNew"]; // For dates
     return [];
   };
 
@@ -79,6 +83,7 @@ const SortTable = ({
       {/* Sorting Icon */}
       <div className="sort-icon-container">
         <button
+          type="button"
           className="btn aeicon-btn-primary bi bi-arrow-down-up"
           style={{ fontSize: "1.5rem", cursor: "pointer" }}
           onClick={() => setDropdownVisible(!dropdownVisible)} // Toggle dropdown visibility
@@ -97,12 +102,13 @@ const SortTable = ({
               {/* Sub-Dropdown for Sorting Options of Selected Column */}
               {selectedColumn === column.dbcol && subDropdownVisible && (
                 <div className="sorting-options-container">
-                  {getSortingOptions(column.dbcol).map((option, index) => (
+                  {getSortingOptions(column.dbcol).map((option, idx) => (
                     <div
-                      key={index}
+                      key={idx}
                       className="dropdown-item"
                       onClick={() => handleSortingOption(option)}
                     >
+                      {/* Sorting option labels */}
                       {option === "asc"
                         ? "Ascending"
                         : option === "desc"

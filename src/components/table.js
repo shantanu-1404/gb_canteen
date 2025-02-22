@@ -1,7 +1,6 @@
-// Table.js
 import React, { useState, useEffect, useRef } from "react";
-import RowsPerPageSelector from "../components/RowsPerPageSelector"; // Import RowsPerPageSelector
-
+import RowsPerPageSelector from "./RowsPerPageSelector";
+import SortTable from "./SortTable";
 const Table = ({
   id,
   tableRef,
@@ -9,38 +8,36 @@ const Table = ({
   columns,
   filteredData,
   setFilteredData,
+  paginated = true,
 }) => {
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortedData, setSortedData] = useState(data);
-  const [rowsPerPage, setRowsPerPage] = useState(10); // Default to 10 rows per page
-  const [currentPage, setCurrentPage] = useState(1); // Default to page 1
-   const [selectedRows, setSelectedRows] = useState([]);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedRows, setSelectedRows] = useState([]);
 
-  // Calculate the indices for slicing the data
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
+  const startIndex = paginated ? (currentPage - 1) * rowsPerPage : 0;
+  const endIndex = paginated ? startIndex + rowsPerPage : filteredData.length;
   const currentData = filteredData.slice(startIndex, endIndex);
-
-  // Calculate total pages
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
-  // Update sorted data whenever the sort changes
+
+
+
   useEffect(() => {
-    setSortedData(filteredData); // Set the filtered data whenever it changes
+    setSortedData(filteredData);
   }, [filteredData]);
 
-  // Function to handle column sorting
   const handleSort = (column) => {
     if (sortColumn === column) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc"); // Toggle sort order
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
       setSortColumn(column);
-      setSortOrder("asc"); // Default to ascending order
+      setSortOrder("asc");
     }
   };
 
-  // Function to sort data based on column and order
   const sortData = (data, column, order) => {
     return data.sort((a, b) => {
       let valueA = a[column];
@@ -50,8 +47,6 @@ const Table = ({
       if (valueB === undefined || valueB === null) valueB = "";
 
       if (typeof valueA === "string" && typeof valueB === "string") {
-        valueA = valueA.trim().toLowerCase();
-        valueB = valueB.trim().toLowerCase();
         return order === "asc"
           ? valueA.localeCompare(valueB)
           : valueB.localeCompare(valueA);
@@ -62,9 +57,9 @@ const Table = ({
       }
 
       if (Date.parse(valueA) && Date.parse(valueB)) {
-        const dateA = new Date(valueA);
-        const dateB = new Date(valueB);
-        return order === "asc" ? dateA - dateB : dateB - dateA;
+        return order === "asc"
+          ? new Date(valueA) - new Date(valueB)
+          : new Date(valueB) - new Date(valueA);
       }
 
       return 0;
@@ -72,59 +67,78 @@ const Table = ({
   };
 
   useEffect(() => {
-    if (sortColumn) {
-      const sortedData = sortData([...filteredData], sortColumn, sortOrder);
-      setFilteredData(sortedData);
+    if (sortColumn && sortOrder) {
+      const sorted = sortData(data, sortColumn, sortOrder); // Use the local function directly
+      setSortedData(sorted);
+    } else {
+      setSortedData(data); // Reset to default if no sorting applied
     }
-  }, [sortColumn, sortOrder, filteredData, setFilteredData]);
+  }, [data, sortColumn, sortOrder]);
 
-  // Handle page change
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
 
-  // Handle rows per page change
   const handleRowsPerPageChange = (newRowsPerPage) => {
     setRowsPerPage(newRowsPerPage);
-    setCurrentPage(1); // Reset to first page when rows per page is changed
+    setCurrentPage(1);
   };
-    // Function to toggle the checkbox
-    const handleCheckboxChange = (rowIndex) => {
-      setSelectedRows((prevSelectedRows) => {
-        if (prevSelectedRows.includes(rowIndex)) {
-          return prevSelectedRows.filter((index) => index !== rowIndex); // Remove from selected rows
-        } else {
-          return [...prevSelectedRows, rowIndex]; // Add to selected rows
-        }
-      });
-    };
+
+  const handleCheckboxChange = (rowIndex) => {
+    setSelectedRows((prevSelectedRows) =>
+      prevSelectedRows.includes(rowIndex)
+        ? prevSelectedRows.filter((index) => index !== rowIndex)
+        : [...prevSelectedRows, rowIndex]
+    );
+  };
+
+  // Function to render cell content (Handles nested objects)
+  const renderCellContent = (value) => {
+    if (typeof value === "object" && value !== null) {
+      return (
+        <div className="nested-object">
+          {Object.entries(value).map(([key, val], idx) => (
+            <div key={idx}>
+              {key.toUpperCase()}: {val}
+            </div>
+          ))}
+        </div>
+      );
+    }
+    return value;
+  };
 
   return (
-    <div className="table-container list-view section_card">
+    <div
+      className={`table-container list-view section_card ${!paginated ? "scrollable-table" : ""
+        }`}
+    >
       <table className="table ae-table" ref={tableRef} id={id}>
         <thead>
           <tr>
-          <th>
+            <th>
               <input
                 type="checkbox"
                 checked={selectedRows.length === filteredData.length}
                 onChange={() => {
-                  if (selectedRows.length === filteredData.length) {
-                    setSelectedRows([]); // Deselect all if already selected
-                  } else {
-                    setSelectedRows(filteredData.map((_, index) => index)); // Select all
-                  }
+                  setSelectedRows(
+                    selectedRows.length === filteredData.length
+                      ? []
+                      : filteredData.map((_, index) => index)
+                  );
                 }}
               />
             </th>
             {columns.map((column) => (
               <th
                 key={column.dbcol}
-                onClick={() => handleSort(column.dbcol)} // Add sorting functionality
+                onClick={() => handleSort(column.dbcol)}
+                style={{ cursor: "pointer" }}
               >
-                {column.headname}
+                {column.headname.toUpperCase()}
                 {sortColumn === column.dbcol && (
-                  <span>{sortOrder === "asc" ? "▲" : "▼"}</span>
+                  <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>
                 )}
               </th>
             ))}
@@ -143,44 +157,47 @@ const Table = ({
                 </td>
                 {columns.map((column) => (
                   <td data-col={column.dbcol} key={column.dbcol}>
-                    {row[column.dbcol]}
+                    {renderCellContent(row[column.dbcol])}
                   </td>
                 ))}
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={columns.length}>No data available</td>
+              <td colSpan={columns.length + 1}>No data available</td>
             </tr>
           )}
         </tbody>
       </table>
 
-      {/* Rows Per Page Selector */}
-
-      {/* Pagination Controls */}
-      <br/><br/>
-      <div className="pagination-controls ">
-        <RowsPerPageSelector
-          rowsPerPage={rowsPerPage}
-          setRowsPerPage={handleRowsPerPageChange}
-        />
-        <div style={{padding: "10px"}} className="btn-sack position-relative">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            <i className="bi bi-chevron-left"></i> {/* Previous icon */}
-          </button>
-
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            <i className="bi bi-chevron-right"></i> {/* Next icon */}
-          </button>
-        </div>
-      </div>
+      {paginated ? (
+        <>
+          <br />
+          <br />
+          <div className="pagination-controls">
+            <RowsPerPageSelector
+              rowsPerPage={rowsPerPage}
+              setRowsPerPage={handleRowsPerPageChange}
+            />
+            <div className="btn-sack position-relative" style={{ padding: "10px" }}>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                <i className="bi bi-chevron-left"></i>
+              </button>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                <i className="bi bi-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="scroll-indicator"></div>
+      )}
     </div>
   );
 };

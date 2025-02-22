@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
+import Flatpickr from "react-flatpickr"; // ✅ Correct way to use Flatpickr
+import "flatpickr/dist/themes/dark.css"; // ✅ Flatpickr theme
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const DateInput = ({
     label = "Date",
     name = "date",
     info = "",
-    type = "all", // "all" (default), "past", or "future"
+    type = "all", // "all" (default), "past", "future", or "range"
     includeTime = false, // Enable time selection
 }) => {
-    const [selectedDate, setSelectedDate] = useState("");
-    const [selectedTime, setSelectedTime] = useState("");
-    const [minDate, setMinDate] = useState("");
-    const [maxDate, setMaxDate] = useState("");
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedTime, setSelectedTime] = useState(null);
+    const [dateRange, setDateRange] = useState([]); // ✅ Added for range selection
+    const [minDate, setMinDate] = useState(null);
+    const [maxDate, setMaxDate] = useState(null);
 
-    // Set min and max date based on type
+    // ✅ Set min and max date based on type
     useEffect(() => {
-        const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
-
+        const today = new Date();
         if (type === "past") {
             setMaxDate(today); // Only allow past dates
         } else if (type === "future") {
@@ -26,48 +30,82 @@ const DateInput = ({
         }
     }, [type]);
 
-    // Handle date change
-    const handleDateChange = (e) => {
-        setSelectedDate(e.target.value);
+    // ✅ Handle date change for single selection
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
     };
 
-    // Handle time change
-    const handleTimeChange = (e) => {
-        setSelectedTime(e.target.value);
+    // ✅ Handle time change
+    const handleTimeChange = (date) => {
+        setSelectedTime(date);
     };
 
     return (
-        <div className="form-group">
+        <div className="form-group m-0">
             <Row>
                 <Col>
                     <label htmlFor={name} className="form-label">
                         {label}
                     </label>
-                    <input
-                        className="form-control"
-                        type="date"
-                        name={name}
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        min={minDate}
-                        max={maxDate}
-                    />
+
+                    {/* ✅ Date Range Picker */}
+                    {type === "range" ? (
+                        <div className="date-picker-container">
+                            <i className="bi bi-calendar Flatpickr-icon"></i>
+                            <Flatpickr
+                                className="form-control pr-5"
+                                placeholder="Select Date Range"
+                                style={{ paddingLeft: "40px" }}
+                                value={dateRange}
+                                options={{
+                                    mode: "range",
+                                    dateFormat: includeTime ? "Y-m-d H:i" : "Y-m-d",
+                                    enableTime: includeTime,
+                                    minDate: minDate || null,
+                                    maxDate: maxDate || null,
+                                }}
+                                onChange={(selectedDates) => setDateRange(selectedDates)}
+                            />
+                        </div>
+                    ) : (
+                        // ✅ Single Date Picker
+                        <div className="date-picker-container">
+                            <DatePicker
+                                style={{ paddingRight: "40px" }}
+                                className="form-control pl-5"
+                                selected={selectedDate}
+                                onChange={handleDateChange}
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                //showTimeSelect={includeTime}
+                                dateFormat={includeTime ? "yyyy-MM-dd" : "yyyy-MM-dd"}
+                            />
+                            <i className="bi bi-calendar DatePicker-icon"></i>
+                        </div>
+                    )}
                 </Col>
-                {includeTime && (
+
+                {/* ✅ Time Picker (Optional) */}
+                {includeTime && type !== "range" && (
                     <Col>
-                        <label className="form-label">
-                            Time
-                        </label>
-                        <input
-                            className="form-control"
-                            type="time"
-                            name={`${name}_time`}
-                            value={selectedTime}
-                            onChange={handleTimeChange}
-                        />
+                        <label className="form-label">Time</label>
+                        <div className="date-picker-container">
+                            <DatePicker
+                                className="form-control"
+                                selected={selectedTime}
+                                onChange={handleTimeChange}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                timeIntervals={15}
+                                timeCaption="Time"
+                                dateFormat="HH:mm"
+                            />
+                            <i className="bi bi-clock DatePicker-icon"></i>
+                        </div>
                     </Col>
                 )}
             </Row>
+
             <br />
             <small>{info}</small>
         </div>

@@ -63,7 +63,7 @@ const Filter = ({ columns, data, onFilter }) => {
     <div className="filter-container">
       {/* Filter Icon */}
       <div className="filter-icon" onClick={toggleDropdown}>
-        <button className="btn aeicon-btn-primary">
+        <button type="button" className="btn aeicon-btn-primary">
           <i className="bi bi-filter" style={{ fontSize: "1.5rem", cursor: "pointer" }}></i>
         </button>
       </div>

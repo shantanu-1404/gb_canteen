@@ -8,10 +8,16 @@ import SocialMedia from './container/SocialMedia';
 import AddNewPost from './container/AddNewPost';
 import Index from './container/Index';
 import AddNewCampaign from './container/AddNewCampaign';
+import Reports from "./container/Reports";
+import AddReport from "./container/AddReport";
+import SM_Project from "./container/SM_Project";
+
+
+
 import WordLimit from './components/word_limit_textarea';
-import Table from './components/table';
+import Table from './components/Table';
 import Calender from './components/date_picker';
-import MetricCard from './components/Metrics';
+import MetricCard from './components/MetricCard';
 import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
 import GridView from './components/Gridview';
@@ -27,8 +33,11 @@ const App = () => {
       <Routes>
       <Route path="/" element={<Index />} />    
       <Route path="/social-media" element={<SocialMedia />} />    
+      <Route path="/social-media/reports" element={<Reports />} />    
+      <Route path="/social-media/projects" element={<SM_Project />} />    
       <Route path="/add-post" element={<AddNewPost />} />    
       <Route path="/add-campaign" element={<AddNewCampaign />} />    
+      <Route path="/add-report" element={<AddReport />} />    
       <Route path="/container/layout" element={<Layout />} />    
       <Route path="/container/leftview" element={<LeftView />} />   
       <Route path="/container/header" element={<Header />} />

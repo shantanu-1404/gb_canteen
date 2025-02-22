@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Layout from './layout';
+import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 
 import FileUploadComponent from "../components/FileUploadComponent";
@@ -7,6 +8,7 @@ import SelectComponent from "../components/SelectComponent";
 import Aetextarea from "../components/Aetextarea";
 import PhoneInput from "../components/PhoneInput";
 import DateInput from "../components/DateInput";
+import MetricCard from "../components/MetricCard";
 import CheckboxInput from "../components/CheckboxInput";
 import RadioInput from "../components/RadioInput";
 import TextInput from "../components/TextInput";
@@ -15,7 +17,9 @@ import PostCard from "../components/PostCard";
 import CampaignCard from "../components/CampaignCard";
 import TagInput from "../components/TagInput";
 import Modal from "../components/Modal";
+import DataTable from "../components/DataTable";
 import NotificationCard from "../components/NotificationCard";
+import Metrix from "../components/Metrix";
 
 
 import Row from 'react-bootstrap/Row';
@@ -25,6 +29,7 @@ import Col from 'react-bootstrap/Col';
 import postData from "../assets/json/posts.json";
 import campaignData from "../assets/json/campaigns.json";
 import notificationData from "../assets/json/notifications.json";
+import tabledata from "../assets/json/tabledata.json";
 
 const Index = () => {
     const [fileData, setFileData] = useState(null);
@@ -35,6 +40,18 @@ const Index = () => {
         console.log("Is valid:", isValid);
         setFileData(file);
     };
+
+    const tableRef = useRef();
+
+    const columns = [
+        { headname: "AAAA", dbcol: "col1" },
+        { headname: "BBBB", dbcol: "col2" },
+        { headname: "CCCC", dbcol: "col3" },
+        { headname: "DDDD", dbcol: "col4" },
+        { headname: "EEEE", dbcol: "col5" },
+        { headname: "FFFF", dbcol: "col6" },
+    ];
+
 
     const [selectedSingle, setSelectedSingle] = useState("");
     const [selectedMulti, setSelectedMulti] = useState([]);
@@ -100,11 +117,150 @@ const Index = () => {
 
     return (
         <Layout>
+
+
+
             <div style={{ textAlign: "center", marginTop: "50px" }}>
                 <h1>🚀 Welcome to React!</h1>
                 <p>This is your first React App.</p>
             </div>
-            <h2>Upload Files</h2>
+            <h1>Metrics Dashboard</h1>
+
+
+            <div className="card-container d-flex gap-4 flex-wrap">
+                <Row>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Total of Col-1"
+                            operation="total"
+                            column="col1"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Count for Col-2"
+                            operation="count"
+                            column="col2"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Positive Count"
+                            operation="positiveCount"
+                            column="col4"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Negative Count"
+                            operation="negativeCount"
+                            column="col4"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Mean of Col-1"
+                            operation="mean"
+                            column="col1"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Average of Col-5 & Col-6"
+                            operation="average"
+                            column="col5,col6"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Ratio (Col-1 / Col-2)"
+                            operation="ratio"
+                            column="col1,col2"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/return.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Percentage of Positive (Col-2)"
+                            operation="percentage"
+                            column="col2"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Count of Values()"
+                            operation="1000+"
+                            column="col1"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/return.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard
+                            title="Total of Col-1"
+                            operation="total"
+                            column="col1"
+                            tableRef={tableRef}
+                            icon="http://localhost/gb_canteen/svg/wallet.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+                        />
+                    </Col>
+                    <Col xs={4} md={3}>
+                        <MetricCard title="Engagement Metrics" tooltipText="Overall engagement statistics">
+                            <div className="col-md-6">
+                                <Metrix title="Likes" operation="1000+" column="col1" tableRef={tableRef} />
+                                <Metrix title="Shares" operation="ratio" column="col1" tableRef={tableRef} />
+                            </div>
+                            <div className="col-md-6">
+                                <Metrix title="Comments" operation="ratio" column="col3,col2" tableRef={tableRef} />
+                                <Metrix title="Reach" operation="total" column="col1" tableRef={tableRef} />
+                            </div>
+                        </MetricCard>
+
+                    </Col>
+                </Row>
+            </div>
+
+
+
+
+
+            <DataTable
+                id="table1"
+                tableRef={tableRef}
+                columns={columns}
+                data={tabledata}
+                defaultView="table"
+                searchable={true}
+                filterable={true}
+                sortable={true}
+                paginated={false}
+            />
+
 
             <div className="form_section">
                 <div className="d-flex justify-content-between">

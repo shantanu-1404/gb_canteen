@@ -1,0 +1,140 @@
+[
+    {
+        "project_id": 1,
+        "project_name": "Project Alpha",
+        "status": "Completed",
+        "client_name": "Client One",
+        "budget": 25482,
+        "progress": 100,
+        "start_date": "12th Dec, 2024",
+        "end_date": "22nd Feb, 2025",
+        "team_members": [
+            {
+                "user_id": 101,
+                "name": "Alice",
+                "image": "https://randomuser.me/api/portraits/women/1.jpg"
+            },
+            {
+                "user_id": 102,
+                "name": "Bob",
+                "image": "https://randomuser.me/api/portraits/men/2.jpg"
+            },
+            {
+                "user_id": 103,
+                "name": "Charlie",
+                "image": "https://randomuser.me/api/portraits/men/3.jpg"
+            },
+            {
+                "user_id": 104,
+                "name": "Diana",
+                "image": "https://randomuser.me/api/portraits/women/4.jpg"
+            },
+            {
+                "user_id": 105,
+                "name": "Evan",
+                "image": "https://randomuser.me/api/portraits/men/5.jpg"
+            },
+            {
+                "user_id": 106,
+                "name": "Fiona",
+                "image": "https://randomuser.me/api/portraits/women/6.jpg"
+            },
+            {
+                "user_id": 107,
+                "name": "George",
+                "image": "https://randomuser.me/api/portraits/men/7.jpg"
+            },
+            {
+                "user_id": 108,
+                "name": "Hannah",
+                "image": "https://randomuser.me/api/portraits/women/8.jpg"
+            },
+            {
+                "user_id": 109,
+                "name": "Ian",
+                "image": "https://randomuser.me/api/portraits/men/9.jpg"
+            },
+            {
+                "user_id": 110,
+                "name": "Jane",
+                "image": "https://randomuser.me/api/portraits/women/10.jpg"
+            }
+        ],
+        "total_team_members": 10,
+        "total_tasks": 182
+    },
+    {
+        "project_id": 2,
+        "project_name": "Project Beta",
+        "status": "In Progress",
+        "client_name": "Client Two",
+        "budget": 45820,
+        "progress": 75,
+        "start_date": "5th Jan, 2025",
+        "end_date": "10th Mar, 2025",
+        "team_members": [
+            {
+                "user_id": 201,
+                "name": "Kevin",
+                "image": "https://randomuser.me/api/portraits/men/11.jpg"
+            },
+            {
+                "user_id": 202,
+                "name": "Laura",
+                "image": "https://randomuser.me/api/portraits/women/12.jpg"
+            },
+            {
+                "user_id": 203,
+                "name": "Mark",
+                "image": "https://randomuser.me/api/portraits/men/13.jpg"
+            },
+            {
+                "user_id": 204,
+                "name": "Nina",
+                "image": "https://randomuser.me/api/portraits/women/14.jpg"
+            },
+            {
+                "user_id": 205,
+                "name": "Oscar",
+                "image": "https://randomuser.me/api/portraits/men/15.jpg"
+            },
+            {
+                "user_id": 206,
+                "name": "Paula",
+                "image": "https://randomuser.me/api/portraits/women/16.jpg"
+            },
+            {
+                "user_id": 207,
+                "name": "Quinn",
+                "image": "https://randomuser.me/api/portraits/men/17.jpg"
+            },
+            {
+                "user_id": 208,
+                "name": "Rachel",
+                "image": "https://randomuser.me/api/portraits/women/18.jpg"
+            },
+            {
+                "user_id": 209,
+                "name": "Steve",
+                "image": "https://randomuser.me/api/portraits/men/19.jpg"
+            },
+            {
+                "user_id": 210,
+                "name": "Tina",
+                "image": "https://randomuser.me/api/portraits/women/20.jpg"
+            },
+            {
+                "user_id": 211,
+                "name": "Umar",
+                "image": "https://randomuser.me/api/portraits/men/21.jpg"
+            },
+            {
+                "user_id": 212,
+                "name": "Vera",
+                "image": "https://randomuser.me/api/portraits/women/22.jpg"
+            }
+        ],
+        "total_team_members": 12,
+        "total_tasks": 245
+    }
+]

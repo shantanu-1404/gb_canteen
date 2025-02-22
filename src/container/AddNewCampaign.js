@@ -9,21 +9,28 @@ import FileUploadComponent from "../components/FileUploadComponent";
 import SelectComponent from "../components/SelectComponent";
 import Aetextarea from "../components/Aetextarea";
 import RangeInput from "../components/RangeInput";
-import PhoneInput from "../components/PhoneInput";
 import DateInput from "../components/DateInput";
 import CheckboxInput from "../components/CheckboxInput";
 import RadioInput from "../components/RadioInput";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
-import PostCard from "../components/PostCard";
-import CampaignCard from "../components/CampaignCard";
-import TagInput from "../components/TagInput";
+import SelectTable from "../components/SelectTable";
 import Modal from "../components/Modal";
-import NotificationCard from "../components/NotificationCard";
+
 
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
+import campaignData from "../assets/json/campaigns.json";
+
+const columns = [
+    { headname: "status", dbcol: "status" },
+    { headname: "budget", dbcol: "budget" },
+    { headname: "spend", dbcol: "spend" },
+    { headname: "ctr", dbcol: "ctr" }
+];
+
 
 const AddNewCampaign = () => {
     const [selectedAudience, setSelectedAudience] = useState(""); // Initially no selection
@@ -88,6 +95,17 @@ const AddNewCampaign = () => {
             setFileData(file);
         }
     };
+
+    const [selectedImage, setSelectedImage] = useState(addCampaignImg);
+
+    const handleSelectionChange = (selectedCampaigns) => {
+      if (selectedCampaigns.length > 0) {
+        setSelectedImage(selectedCampaigns[0].image);
+      } else {
+        setSelectedImage(addCampaignImg);
+      }
+    };
+    
 
 
     return (
@@ -400,11 +418,32 @@ const AddNewCampaign = () => {
                                 Recent Campaign
                             </label>
                             <a onClick={() => addCampaign(true)} >
-                                <img src={addCampaignImg} className="object-cover post-preview" alt="Campaign" />
+                                <img src={selectedImage} className="object-cover post-preview" alt="Campaign" />
+                                <small>click here to edit</small>
                             </a>
                             <Modal isOpen={isModalOpen} onClose={() => addCampaign(false)} title="Add Campaign">
                                 <form>
-                                    <br/><br/>
+                                    {/*<DataTable
+                                        id="table1"
+                                        columns={columns}
+                                        data={campaignData}
+                                        defaultView="table"
+                                        searchable={true}
+                                        filterable={true}
+                                        sortable={true}
+                                        paginated={false}
+                                    />*/}
+
+                                    <SelectTable
+                                        id="campaignTable"
+                                        columns={columns}
+                                        data={campaignData}
+                                        multiSelect={false} // Set false for single selection
+                                        onSelectionChange={handleSelectionChange}
+                                    />
+
+
+                                    <br /><br />
                                     <div className="btn-sack">
                                         <Button
                                             label="Cancel"
@@ -413,7 +452,8 @@ const AddNewCampaign = () => {
                                         />
                                         <Button
                                             label="Save"
-                                            type="submit"
+                                            type="button"
+                                            onClick={() => addCampaign(false)}
                                         />
                                     </div>
                                 </form>
@@ -422,13 +462,6 @@ const AddNewCampaign = () => {
 
                         </div>
                     </Col>
-                    <div className="form-group row p-3 gap-2 justify-content-end">
-                        <Button
-                            label="Remove"
-                            btnStyle="red"
-                            type="button"
-                        />
-                    </div>
                 </Row>
                 <Row >
                     <Col md={6} className="mt-5" >
@@ -483,7 +516,7 @@ const AddNewCampaign = () => {
                         />
                     </Col>
                 </Row>
-                <h6 className="card-title">A/B Testing</h6>
+                <h6 className="card-title">Result</h6>
                 <table className="table">
                     <thead>
                         <tr>
@@ -543,7 +576,7 @@ const AddNewCampaign = () => {
                                 2%
                             </td>
                         </tr>
-                        <tr style={{ border: "transparent"}}>
+                        <tr style={{ border: "transparent" }}>
                             <td>
 
                             </td>

@@ -146,8 +146,7 @@ const DataTable = () => {
     { headname: "DDDD", dbcol: "col4" },
     { headname: "EEEE", dbcol: "col5" },
     { headname: "FFFF", dbcol: "col6" },
-   
-    
+
   ];
 
 

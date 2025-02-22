@@ -172,7 +172,6 @@ const UTMTrackingChart = () => {
   return (
     <div
       className=" section_card"
-      style={{ width: "50%", height: "50%", margin: "0 auto" }}
     >
       <div className="chart-header">
         <h3>UTM Tracking</h3>

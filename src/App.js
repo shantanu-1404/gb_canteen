@@ -11,6 +11,8 @@ import AddNewCampaign from './container/AddNewCampaign';
 import Reports from "./container/Reports";
 import AddReport from "./container/AddReport";
 import SM_Project from "./container/SM_Project";
+import NewProject from "./container/AddNewProject"
+import NewClient from "./container/AddNewClient"
 
 
 
@@ -23,7 +25,7 @@ import GridView from './components/Gridview';
 import DataTable from "./components/DataTable";
 import UTMTrackingChart from "./components/Graphs";
 import ProjectCard from "./components/ProjectDashboard"
-import NewProject from "./container/AddNewProject"
+
 
 
 const App = () => {
@@ -52,6 +54,8 @@ const App = () => {
       <Route path="/components/Graphs" element={<UTMTrackingChart />} />
       <Route path="/components/ProjectDashboard" element={<ProjectCard />} />
       <Route path="/container/AddNewProject" element={<NewProject />} />
+      <Route path="/container/AddNewClient" element={<NewClient />} />
+   
 
       </Routes>
     </Router>

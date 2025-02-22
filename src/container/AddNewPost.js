@@ -14,7 +14,6 @@ import TextInput from "../components/TextInput";
 import PostPreview from "../components/PostPreview";
 import Button from "../components/Button";
 import SocialMediaSelect from "../components/SocialMediaSelect";
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 

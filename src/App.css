@@ -3163,7 +3163,7 @@ li.active a{
 .chart-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .chart-body {
@@ -3454,14 +3454,11 @@ margin-bottom: 15px;
 }
 
 
-
-
-
-
 .date-picker-container {
   position: relative;
   display: flex;
   align-items: center;
+  width: fit-content;
 }
 
 .DatePicker-icon {

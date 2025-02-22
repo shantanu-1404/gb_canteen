@@ -102,7 +102,7 @@ const LoadTimeChart = () => {
   };
 
   return (
-    <div className="section_card" style={{ width: "40%", margin: "0 auto" }}>
+    <div className="section_card">
       <div className="chart-header">
         <h3>Load Time</h3>
         {/* Buttons for selecting time period */}

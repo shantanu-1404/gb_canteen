@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import UTMTrackingChart from "../components/UTMTrackingChart";
-import AudienceDemographics from "../components/AudienceDemographics";
-import LoadTimeChart from "../components/LoadTimeChart";
-import PostCard from "../components/PostCard";
+import UTMTrackingChart from "./UTMTrackingChart";
+import AudienceDemographics from "./AudienceDemographics";
+import LoadTimeChart from "./LoadTimeChart";
+import PostCard from "./PostCard";
 import Layout from "../container/layout";
-import Button from "../components/Button";
-import MetricCard from "../components/MetricCard";
-import DateInput from "../components/DateInput";
+import Button from "./Button";
+import MetricCard from "./MetricCard";
+import DateInput from "./DateInput";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

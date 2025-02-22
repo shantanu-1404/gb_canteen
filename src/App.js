@@ -23,7 +23,7 @@ import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
 import GridView from './components/Gridview';
 import DataTable from "./components/DataTable";
-import UTMTrackingChart from "./components/Graphs";
+import Analytics from "./components/Analytics";
 import ProjectCard from "./components/ProjectDashboard"
 
 
@@ -51,7 +51,7 @@ const App = () => {
       <Route path="/components/Filter" element={<Filter />} /> 
       <Route path="/components/Gridview" element={<GridView />} /> 
       <Route path="/components/DataTable" element={<DataTable />} />
-      <Route path="/components/Graphs" element={<UTMTrackingChart />} />
+      <Route path="/components/Analytics" element={<Analytics />} />
       <Route path="/components/ProjectDashboard" element={<ProjectCard />} />
       <Route path="/container/AddNewProject" element={<NewProject />} />
       <Route path="/container/AddNewClient" element={<NewClient />} />

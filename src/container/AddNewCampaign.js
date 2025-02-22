@@ -423,16 +423,6 @@ const AddNewCampaign = () => {
                             </a>
                             <Modal isOpen={isModalOpen} onClose={() => addCampaign(false)} title="Add Campaign">
                                 <form>
-                                    {/*<DataTable
-                                        id="table1"
-                                        columns={columns}
-                                        data={campaignData}
-                                        defaultView="table"
-                                        searchable={true}
-                                        filterable={true}
-                                        sortable={true}
-                                        paginated={false}
-                                    />*/}
 
                                     <SelectTable
                                         id="campaignTable"

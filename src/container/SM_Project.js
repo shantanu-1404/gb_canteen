@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import MetricCard from "../components/MetricCard";
 import DateInput from "../components/DateInput";
 import DataTable from "../components/DataTable";
+import SM_ProjectCard from "../components/SM_ProjectCard";
 
 
 import Row from 'react-bootstrap/Row';
@@ -41,21 +42,25 @@ const SM_Project = () => {
 
                 </div>
                 <div className="text-right gap-3 d-flex">
-                    <Button buttonType="import" label="Import" />
-                    <Button buttonType="export" label="Export" />
-                    <Button buttonType="add" onClick={() => navigate("/add-report")} label="Add New" />
+                    <Button buttonType="add" onClick={() => navigate("/add-project")} label="Add New" />
                 </div>
             </div>
             <DataTable
                 id="table"
                 columns={smprojectcolumns}
                 data={smprojectsData}
-                defaultView="table"
+                defaultView="grid"
                 searchable={true}
                 filterable={true}
                 sortable={true}
                 paginated={true}
-            />
+            >
+                <Row>
+                    {smprojectsData.map((smproject, index) => (
+                        <SM_ProjectCard key={index} project={smproject} />
+                    ))}
+                </Row>
+            </DataTable>
         </Layout>
     );
 }

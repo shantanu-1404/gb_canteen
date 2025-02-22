@@ -16,6 +16,9 @@ import Col from 'react-bootstrap/Col';
 
 import reportsData from "../assets/json/report.json";
 
+import wallet from "../assets/svg/wallet-blue.svg";
+import credit from "../assets/svg/credit-card.svg";
+import like from "../assets/svg/like.svg";
 
 const Reports = () => {
     const navigate = useNavigate();
@@ -118,7 +121,7 @@ const Reports = () => {
                         operation="total"
                         column="col1"
                         jsonData={reportsData}
-                        icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={like} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
@@ -128,7 +131,7 @@ const Reports = () => {
                         operation="count"
                         column="col2"
                         jsonData={reportsData}
-                        icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={credit} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
@@ -138,7 +141,7 @@ const Reports = () => {
                         operation="positiveCount"
                         column="col4"
                         jsonData={reportsData}
-                        icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={wallet} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>

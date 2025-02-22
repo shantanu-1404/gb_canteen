@@ -11,6 +11,7 @@ import AddNewCampaign from './container/AddNewCampaign';
 import Reports from "./container/Reports";
 import AddReport from "./container/AddReport";
 import SM_Project from "./container/SM_Project";
+import SM_Clients from "./container/SM_Clients";
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
       <Route path="/social-media" element={<SocialMedia />} />    
       <Route path="/social-media/reports" element={<Reports />} />    
       <Route path="/social-media/projects" element={<SM_Project />} />    
+      <Route path="/social-media/clients" element={<SM_Clients />} />    
       <Route path="/add-post" element={<AddNewPost />} />    
       <Route path="/add-campaign" element={<AddNewCampaign />} />    
       <Route path="/add-report" element={<AddReport />} />    

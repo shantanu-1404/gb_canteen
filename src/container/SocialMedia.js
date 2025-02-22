@@ -8,6 +8,7 @@ import MetricCard from "../components/MetricCard";
 import NotificationCard from "../components/NotificationCard";
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
+import DateInput from "../components/DateInput";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -15,6 +16,18 @@ import postData from "../assets/json/posts.json";
 import campaignData from "../assets/json/campaigns.json";
 import notificationData from "../assets/json/notifications.json";
 import tabledata from "../assets/json/tabledata.json";
+
+import layout from "../assets/svg/layout.svg";
+import calender from "../assets/svg/calender.svg";
+import time from "../assets/svg/time-yellow.svg";
+import tick from "../assets/svg/tick-pink.svg";
+import wallet from "../assets/svg/wallet-blue.svg";
+import percent from "../assets/svg/percent.svg";
+import channel from "../assets/svg/channel.svg";
+import growth from "../assets/svg/growth.svg";
+import pc from "../assets/svg/pc.svg";
+
+
 
 const SocialMedia = () => {
 
@@ -42,7 +55,12 @@ const SocialMedia = () => {
     return (
         <Layout>
             <div className="d-flex justify-content-between">
-                <div>
+                <div className="mt-3 col-md-3">
+                    <DateInput
+                        label=""
+                        type="range"
+                        includeTime={false}
+                    />
 
                 </div>
                 <div className="text-right gap-3 d-flex">
@@ -63,101 +81,91 @@ const SocialMedia = () => {
             <Row>
                 <Col xs={6} lg={3}  md={4}>
                     <MetricCard
-                        title="Total of Col-1"
+                        title="Total Posts"
                         operation="total"
                         column="col1"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={layout} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
                 <Col xs={6} lg={3}  md={4}>
                     <MetricCard
-                        title="Count for Col-2"
+                        title="Scheduled Posts"
                         operation="count"
                         column="col2"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={calender} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
                 <Col xs={6} lg={3}  md={4}>
                     <MetricCard
-                        title="Positive Count"
+                        title="Pending Approvals"
                         operation="positiveCount"
                         column="col4"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={time} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
                 <Col xs={6} lg={3}  md={4}>
                     <MetricCard
-                        title="Negative Count"
+                        title="Active Campaigns"
                         operation="negativeCount"
                         column="col4"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={tick} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
                 <Col xs={6} lg={3} md={4}>
                     <MetricCard
-                        title="Mean of Col-1"
+                        title="Total Ad Spend"
                         operation="mean"
                         column="col1"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={wallet} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
                 <Col xs={6} lg={3}  md={4}>
                     <MetricCard
-                        title="Average of Col-5 & Col-6"
+                        title="Engagement Rate"
                         operation="average"
                         column="col5,col6"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={percent} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
                 <Col xs={6} lg={3}  md={4}>
                     <MetricCard
-                        title="Ratio (Col-1 / Col-2)"
+                        title="Top Channel"
                         operation="ratio"
                         column="col1,col2"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/return.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={channel} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
                 <Col xs={6} lg={3}  md={4}>
                     <MetricCard
-                        title="Percentage of Positive (Col-2)"
+                        title="Follower Growth"
                         operation="percentage"
                         column="col2"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={growth} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
                 <Col xs={6} lg={3}  md={4}>
                     <MetricCard
-                        title="Count of Values()"
+                        title="ROI on Ads"
                         operation="1000+"
                         column="col1"
                         jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/return.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="Total of Col-1"
-                        operation="total"
-                        column="col1"
-                        jsonData={tabledata}
-                        icon="http://localhost/gb_canteen/svg/wallet.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={pc} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>

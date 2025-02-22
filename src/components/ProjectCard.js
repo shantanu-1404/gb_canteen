@@ -52,15 +52,14 @@ const ProjectCard = ({ project }) => {
             <img
               src="http://localhost/gb_canteen/svg/order_pending.svg"
               alt="Wallet Icon"
-              style={{ width: "20px", marginRight: "10px" }}
+              style={{ width: "30px", marginRight: "10px" }}
               className={`${statusClass === "cancelled" ? "grey" : ""}`} // Apply the grey image class for cancelled status
             />
             Client -
           </strong>
           <d
-            className={`col-md client-name ${
-              statusClass === "cancelled" ? "grey" : "pink"
-            }`}
+            className={`col-md client-name ${statusClass === "cancelled" ? "grey" : "pink"
+              }`}
           >
             {client}
           </d>
@@ -73,7 +72,7 @@ const ProjectCard = ({ project }) => {
             <img
               src="http://localhost/gb_canteen/svg/wallet.svg"
               alt="Return Icon"
-              style={{ width: "20px", marginRight: "10px" }}
+              style={{ width: "30px", marginRight: "10px" }}
               className={`${statusClass === "cancelled" ? "grey" : ""}`} // Apply the grey image class for cancelled status
             />
             Budget -

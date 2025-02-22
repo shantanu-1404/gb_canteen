@@ -236,6 +236,7 @@ form {
   transform: translateX(1%);
   scrollbar-width: none;
   display: block;
+  z-index: 100;
   position: fixed;
 }
 
@@ -1627,6 +1628,7 @@ select.form-control {
   color: white;
   border-radius: 50%;
   display: flex;
+  aspect-ratio:1;
   justify-content: center;
   align-items: center;
   font-size: 20px;
@@ -2900,7 +2902,6 @@ li.active a{
 
 .aetabletag-input::placeholder {
   color: #253154;
-  padding-left: 50px;
 }
 
 .custom-select-wrapper .search-container,
@@ -2985,7 +2986,7 @@ li.active a{
 
 .aetabletag-input {
   width: 100%;
-  padding-left: 60px;
+  padding-left: 50px;
   border: 1px solid #9E9E9E;
   border-radius: 12px;
   color: #553450 !important;

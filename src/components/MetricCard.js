@@ -42,12 +42,12 @@ const MetricCard = ({ title, operation, column, tableRef, jsonData, tooltipText,
           break;
         case "positiveCount":
           columnsArray.forEach((col) => {
-            if (row[col] === "true") positiveCount += 1;
+            if (row[col] === "true" || row[col] === "Active") positiveCount += 1;
           });
           break;
         case "negativeCount":
           columnsArray.forEach((col) => {
-            if (row[col] === "false") negativeCount += 1;
+            if (row[col] === "false" || row[col] === "Inactive") negativeCount += 1;
           });
           break;
         case "mean":
@@ -95,7 +95,7 @@ const MetricCard = ({ title, operation, column, tableRef, jsonData, tooltipText,
 
     const mean = operation === "mean" && totalEntries > 0 ? (sum / totalEntries).toFixed(2) : 0;
     const average = operation === "average" && totalEntries > 0 ? (totalDays / totalEntries).toFixed(2) : 0;
-    const percentage = operation === "percentage" && data.length > 0 ? ((result / data.length) * 100).toFixed(2) : "0.00%";
+    const percentage = operation === "percentage" && data.length > 0 ? ((result / (data.length  * 100)) * 100).toFixed(2) : "0.00%";
     const ratio = operation === "ratio" && ratioDenominator > 0 ? (ratioNumerator / ratioDenominator).toFixed(2) : "0.00";
 
     if (operation === "total") setMetricValue(result);

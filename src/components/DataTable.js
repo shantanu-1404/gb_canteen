@@ -17,6 +17,7 @@ const DataTable = ({
   filterable = true,
   sortable = true,
   paginated = true,
+  children
 }) => {
   // State management
   const [filteredData, setFilteredData] = useState(data);
@@ -113,7 +114,9 @@ const DataTable = ({
           paginated={paginated}
         />
       ) : (
-        <GridView data={data} columns={columns} />
+        <>
+          {children ? <Row>{children}</Row> : <GridView data={data} columns={columns} />}
+        </>
       )}
     </div>
   );

@@ -17,6 +17,7 @@ import GridView from './components/Gridview';
 import DataTable from "./components/DataTable";
 import UTMTrackingChart from "./components/Graphs";
 import ProjectCard from "./components/ProjectDashboard"
+import NewProject from "./container/AddNewProject"
 
 
 const App = () => {
@@ -41,8 +42,8 @@ const App = () => {
       <Route path="/components/DataTable" element={<DataTable />} />
       <Route path="/components/Graphs" element={<UTMTrackingChart />} />
       <Route path="/components/ProjectDashboard" element={<ProjectCard />} />
-   
-       
+      <Route path="/container/AddNewProject" element={<NewProject />} />
+
       </Routes>
     </Router>
 

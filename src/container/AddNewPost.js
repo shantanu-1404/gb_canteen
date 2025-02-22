@@ -99,8 +99,6 @@ const AddNewPost = () => {
     };
 
 
-
-
     // Handle caption change
     const handleCaptionChange = (text) => {
         setMessage(text);

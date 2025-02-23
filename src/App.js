@@ -40,9 +40,6 @@ const App = () => {
       <Route path="/social-media/analytics" element={<Analytics />} />    
       <Route path="/social-media/projects" element={<SM_Project />} />    
       <Route path="/social-media/clients" element={<SM_Clients />} />    
-      <Route path="/social-media/Analytics" element={<Analytics />} /> 
-      <Route path="/social-media/AddNewProject" element={<NewProject />} /> 
-      <Route path="/social-media/AddNewClient" element={<NewClient />} /> 
       <Route path="/add-post" element={<AddNewPost />} />    
       <Route path="/add-campaign" element={<AddNewCampaign />} />    
       <Route path="/add-report" element={<AddReport />} />    

@@ -1,15 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 const Filter = ({ columns, data, onFilter }) => {
   const [filterText, setFilterText] = useState(""); // Filter input text
-  const [dropdownVisible, setDropdownVisible] = useState(false); // Control dropdown visibility
-  const [selectedColumn, setSelectedColumn] = useState(columns[0].dbcol); // Default to the first column dbcol
+  const [selectedColumn, setSelectedColumn] = useState(columns[0].dbcol); // Default to first column dbcol
   const [selectedSubCategory, setSelectedSubCategory] = useState(""); // Store selected subcategory
+  const [dropdownOpen, setDropdownOpen] = useState(false); // Control dropdown visibility
+  const dropdownRef = useRef(null);
 
-  // Toggle dropdown visibility
+  // Toggle dropdown manually
   const toggleDropdown = () => {
-    setDropdownVisible((prevState) => !prevState);
+    setDropdownOpen(!dropdownOpen);
   };
+
+  // Close dropdown when clicking outside
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  // Attach event listener when dropdown is open
+  React.useEffect(() => {
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
 
   // Apply the filter based on selected column and filter text
   const applyFilter = (filterText, column, subCategory) => {
@@ -20,7 +41,6 @@ const Filter = ({ columns, data, onFilter }) => {
 
     const filtered = data.filter((item) => {
       const value = item[column];
-      // Filter based on subcategory and text
       const isSubcategoryMatch = subCategory ? String(value) === subCategory : true;
       const isTextMatch = value && String(value).toLowerCase().includes(filterText.toLowerCase());
       return isSubcategoryMatch && isTextMatch;
@@ -29,17 +49,10 @@ const Filter = ({ columns, data, onFilter }) => {
     onFilter(filtered); // Pass the filtered data back to parent (Table.js)
   };
 
-  // Handle filter text change
-  const handleFilterChange = (e) => {
-    const text = e.target.value;
-    setFilterText(text);
-    applyFilter(text, selectedColumn, selectedSubCategory); // Apply filter when text is changed
-  };
-
   // Handle column selection from dropdown
-  const handleColumnChange = (dbcol) => {
-    setSelectedColumn(dbcol);
-    applyFilter(filterText, dbcol, selectedSubCategory); // Apply filter when column changes
+  const handleColumnChange = (e) => {
+    setSelectedColumn(e.target.value);
+    applyFilter(filterText, e.target.value, selectedSubCategory);
   };
 
   // Get unique subcategories (values) for the selected column
@@ -53,66 +66,60 @@ const Filter = ({ columns, data, onFilter }) => {
     return Array.from(subcategories); // Return as an array
   };
 
-  // Handle subcategory (if applicable) selection
-  const handleSubCategoryChange = (subCategory) => {
-    setSelectedSubCategory(subCategory);
-    applyFilter(filterText, selectedColumn, subCategory); // Apply filter when subcategory changes
+  // Handle subcategory selection
+  const handleSubCategoryChange = (e) => {
+    setSelectedSubCategory(e.target.value);
+    applyFilter(filterText, selectedColumn, e.target.value);
   };
 
   return (
-    <div className="filter-container">
+    <div className="filter-container" ref={dropdownRef}>
       {/* Filter Icon */}
-      <div className="filter-icon" onClick={toggleDropdown}>
-        <button type="button" className="btn aeicon-btn-primary">
-          <i className="bi bi-filter" style={{ fontSize: "1.5rem", cursor: "pointer" }}></i>
-        </button>
-      </div>
+      <DropdownButton
+        id="filter-dropdown"
+        title={<i className="bi bi-filter"></i>}
+        className="table-btn"
+        variant="primary"
+        show={dropdownOpen} // ✅ Keep dropdown open until clicking outside
+        onToggle={toggleDropdown}
+      >
+        {/* Column Selection */}
+        <Dropdown.Item as="div" onClick={(e) => e.stopPropagation()}>
+          <label htmlFor="columnFilter">Select Column</label>
+          <select
+            id="columnFilter"
+            className="form-select"
+            value={selectedColumn}
+            onChange={handleColumnChange}
+          >
+            {columns.map((column, index) => (
+              <option key={index} value={column.dbcol}>
+                {column.headname}
+              </option>
+            ))}
+          </select>
+        </Dropdown.Item>
 
-      {/* Dropdown Menu */}
-      {dropdownVisible && (
-        <div className="aetabledropdown-menu">
-          {/* Column Selection */}
-          <div className="aetabledropdown-item">
-            <label htmlFor="columnFilter">Select Column</label>
+        {/* Subcategory Selection */}
+        {getSubCategories(selectedColumn).length > 0 && (
+          <Dropdown.Item as="div" onClick={(e) => e.stopPropagation()}>
+            <label htmlFor="subCategoryFilter">Select Subcategory</label>
             <select
-              id="columnFilter"
+              id="subCategoryFilter"
               className="form-select"
-              value={selectedColumn}
-              onChange={(e) => handleColumnChange(e.target.value)}
+              value={selectedSubCategory}
+              onChange={handleSubCategoryChange}
             >
-              {columns.map((column, index) => (
-                <option key={index} value={column.dbcol}>
-                  {column.headname} {/* Display headname */}
+              <option value="">Select Subcategory</option>
+              {getSubCategories(selectedColumn).map((subCategory, index) => (
+                <option key={index} value={subCategory}>
+                  {subCategory}
                 </option>
               ))}
             </select>
-          </div>
-
-          {/* Subcategory Selection (If applicable) */}
-          {getSubCategories(selectedColumn).length > 0 && (
-            <div className="aetabledropdown-item">
-              <label htmlFor="subCategoryFilter">Select Subcategory</label>
-              <div className="dropdown-item subcategory-container">
-                <select
-                  id="subCategoryFilter"
-                  className="form-select"
-                  value={selectedSubCategory}
-                  onChange={(e) => handleSubCategoryChange(e.target.value)}
-                >
-                  <option value="">Select Subcategory</option>
-                  {getSubCategories(selectedColumn).map((subCategory, index) => (
-                    <option key={index} value={subCategory}>
-                      {subCategory}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          )}
-
-     
-        </div>
-      )}
+          </Dropdown.Item>
+        )}
+      </DropdownButton>
     </div>
   );
 };

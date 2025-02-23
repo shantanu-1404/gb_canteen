@@ -521,8 +521,8 @@ form {
   height: 100%;
 }
 
-.metrix li{
-  font-size: 10px;  
+.metrix li {
+  font-size: 10px;
 }
 
 
@@ -718,7 +718,7 @@ h3 {
   margin-bottom: 25px;
 }
 
-.card-title.h6{
+.card-title.h6 {
   font-size: 22px;
   font-weight: 500;
   margin-top: 25px;
@@ -807,6 +807,7 @@ h3 {
   box-shadow: none;
   background-color: #0E032F;
 }
+
 .a-btn-primary.red:active,
 .a-btn-primary.red:hover,
 .a-btn-primary.red:focus {
@@ -876,8 +877,9 @@ table td d {
   color: #868686;
   font-weight: 500;
 }
-.green-text{
-color: #73AF00;
+
+.green-text {
+  color: #73AF00;
 }
 
 .onboarding p {
@@ -1628,7 +1630,7 @@ select.form-control {
   color: white;
   border-radius: 50%;
   display: flex;
-  aspect-ratio:1;
+  aspect-ratio: 1;
   justify-content: center;
   align-items: center;
   font-size: 20px;
@@ -2153,7 +2155,7 @@ select.form-control {
   border-top-right-radius: 12px;
 }
 
-.form_section .btn-sack-top{
+.form_section .btn-sack-top {
   background-color: #ffffff;
 }
 
@@ -2406,7 +2408,7 @@ html {
 }
 
 .nav-link .bi-chevron-right,
-.nav-link .bi-chevron-down{
+.nav-link .bi-chevron-down {
   font-size: 12px;
   margin-left: 15px;
 }
@@ -2418,16 +2420,16 @@ html {
 }
 
 .nav-link,
-li a{
-  color: #9D9D9D ;
+li a {
+  color: #9D9D9D;
 }
 
 
-li.active a{
-  color: white !important ;
+li.active a {
+  color: white !important;
 }
 
-.nav-link.active{
+.nav-link.active {
   color: white;
 }
 
@@ -2459,7 +2461,8 @@ li.active a{
   margin-top: 25px;
   box-shadow: none;
 }
-.modal-content .grid-btn{
+
+.modal-content .grid-btn {
   display: none;
 }
 
@@ -2825,7 +2828,7 @@ li.active a{
 .table th,
 .table td {
   padding: 10px;
-  
+
 }
 
 .btn {
@@ -2851,53 +2854,108 @@ li.active a{
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
   width: 200px;
-  z-index: 1000; /* Ensures dropdown appears above other elements */
-  visibility: visible; /* Ensure dropdown is visible when state is true */
-  display: block; /* Ensures dropdown is rendered */
+  z-index: 1000;
+  /* Ensures dropdown appears above other elements */
+  visibility: visible;
+  /* Ensure dropdown is visible when state is true */
+  display: block;
+  /* Ensures dropdown is rendered */
 }
 
 .aetabledropdown-item {
   margin-bottom: 10px;
   padding: 5px;
-  cursor: pointer; /* Optional: makes it clear the item is clickable */
+  cursor: pointer;
+  /* Optional: makes it clear the item is clickable */
 }
 
 .option:hover {
-  background-color: #f0f0f0; /* Light grey background on hover */
-  color: #a24dad; /* Blue text color on hover */
+  background-color: #f0f0f0;
+  /* Light grey background on hover */
+  color: #a24dad;
+  /* Blue text color on hover */
 }
 
-.aeicon-btn-primary {
-  --bs-btn-color: #253154;
-  --bs-btn-bg: #ffffff;
-  --bs-btn-border-color: #9E9E9E;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #737880;
-  --bs-btn-hover-border-color: #6a7079;
+
+.table-btn button:active,
+.table-btn button:hover,
+.table-btn button:focus,
+.table-btn button.show,
+.table-btn select:active,
+.table-btn select:hover,
+.table-btn select:focus{
+  color: #0E032F;
+  border: 1px solid #9e9e9e;
+  background-color: #fff;
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: #9e9e9e;
+  --bs-btn-hover-color: #0E032F;
+  --bs-btn-hover-bg: #fff;
+  --bs-btn-hover-border-color: #9e9e9e;
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
-  --bs-btn-active-color: #504d4d;
+  --bs-btn-active-color: #0E032F;
+  --bs-btn-active-bg: #fff;
+  --bs-btn-active-border-color: #9e9e9e;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #030303;
-  margin-bottom: 3px;
+  --bs-btn-disabled-color: #0E032F;
+  --bs-btn-disabled-bg: #fff;
+  --bs-btn-disabled-border-color: #9e9e9e;
 }
 
+.table-btn .dropdown-item .dropdown-menu{
+  position: relative !important;
+  border: none;
+  inset: 0px 0px 0px 0px !important;
+  transform: none !important;
+  padding: 5px 5px 5px 5px;
+  margin:7px 0px 7px 15px;
+  border-left: 1px solid #9e9e9e ;
+  border-radius: 0;
+}
+
+
+.table-btn .dropdown-item:active,
+.table-btn .dropdown-item:focus,
+.table-btn .dropdown-item:hover {
+  background-color: #ffffff;
+  color: #3800df;
+}
+
+.table-btn .dropdown-item .dropdown-item:hover {
+  background-color: #b6aed1;
+  color: #0E032F;
+}
+
+.table-btn button {
+  background-color: white;
+  border: 1px solid #9e9e9e;
+  margin: 0px;
+  aspect-ratio: 1;
+  color: black;
+}
+
+.table-btn .dropdown-toggle::after{
+  display: none;
+}
 
 
 .aetablesearch-icon {
   border-radius: 50%;
   position: absolute;
   padding: 12px 25px;
-  color: #253154;
+  color: #0E032F;
 }
 
 
 .table-searchbar-input {
-  padding-left: 70px; /* Adjust padding to make space for the icon */
+  padding-left: 70px;
+  /* Adjust padding to make space for the icon */
   border: none;
   outline: none;
   flex-grow: 1;
   font-size: 18px;
-  
+
 }
 
 .aetabletag-input::placeholder {
@@ -2992,6 +3050,7 @@ li.active a{
   color: #553450 !important;
   height: 45px;
 }
+
 .aetabledropdown-menu.card-view {
   background-color: white;
   border-radius: 8px;
@@ -3001,8 +3060,8 @@ li.active a{
 }
 
 
-.table th{
-  color:#253154;
+.table th {
+  color: #253154;
 }
 
 .pagination-controls {
@@ -3012,7 +3071,7 @@ li.active a{
   right: 0;
 }
 
-.pagination-controls button  {
+.pagination-controls button {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
@@ -3021,7 +3080,7 @@ li.active a{
   height: 40px;
   border-radius: 8px;
   color: #747474;
-  border-color:#CBCBCB ;
+  border-color: #CBCBCB;
 }
 
 .rows-per-page-selector {
@@ -3032,7 +3091,7 @@ li.active a{
   align-items: center;
 }
 
-.rowsPerPage select{
+.rowsPerPage select {
   margin: 0px 10px;
   padding: 8px 15px;
   border-radius: 12px;
@@ -3047,16 +3106,17 @@ li.active a{
   right: 15px;
   transform: translateY(-50%);
   font-size: 12px;
-  pointer-events: none; /* Prevent the icon from interfering with the select dropdown */
+  pointer-events: none;
+  /* Prevent the icon from interfering with the select dropdown */
 }
 
 .range-wrapper input,
-.range-wrapper input:focus{
+.range-wrapper input:focus {
   box-shadow: none;
   border: 1px solid #f4a93f !important;
 }
 
-.range-wrapper{
+.range-wrapper {
   position: relative;
 }
 
@@ -3064,11 +3124,12 @@ li.active a{
   font-size: 12px;
   position: absolute;
   color: #2e3b5c;
-  top:20px;
+  top: 20px;
   flex: 1;
   text-align: center;
 }
-.right{
+
+.right {
   right: 0;
 }
 
@@ -3078,7 +3139,7 @@ li.active a{
   width: 100%;
   height: 5px !important;
   background: #f4a93f;
-  border-radius: 4px ;
+  border-radius: 4px;
   outline: none;
   transition: 0.2s;
 }
@@ -3119,7 +3180,7 @@ li.active a{
   transition: background-color 0.3s ease;
   background-color: #f1f1f1;
   border-radius: 5px;
-  
+
 }
 
 .platform-buttons button:hover {
@@ -3153,7 +3214,7 @@ li.active a{
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  
+
 }
 
 .chart-legend .label {
@@ -3173,27 +3234,30 @@ li.active a{
   border-radius: 5px;
 }
 
-.demographic{
+.demographic {
   rotate: 270deg;
 }
 
-.adline{
-
-}
+.adline {}
 
 .chart-legend .like {
-  background-color: #52279B; /* Purple color for Like */
+  background-color: #52279B;
+  /* Purple color for Like */
 }
 
 .chart-legend .comments {
-  background-color: #CB89B9; /* Pink color for Comments */
+  background-color: #CB89B9;
+  /* Pink color for Comments */
 }
 
 .chart-legend .share {
-  background-color: #728CC7; /* Blue color for Share */
+  background-color: #728CC7;
+  /* Blue color for Share */
 }
+
 .chart-legend .age {
-  background-color: #AC4290; /* Blue color for Share */
+  background-color: #AC4290;
+  /* Blue color for Share */
 }
 
 canvas {
@@ -3203,27 +3267,37 @@ canvas {
 
 .platform-card {
   height: 57px;
-  background-color: #F3F4F6; /* Set background color to #F3F4F6 */
+  background-color: #F3F4F6;
+  /* Set background color to #F3F4F6 */
   padding: 20px;
-  border-radius: 8px; /* Add rounded corners */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Add shadow to the card */
+  border-radius: 8px;
+  /* Add rounded corners */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Add shadow to the card */
 }
 
 .horizontal-line {
   position: absolute;
-  top: 50%; /* Center the line vertically */
+  top: 50%;
+  /* Center the line vertically */
   left: 0;
   width: 100%;
-  border-top: 2px dashed #000; /* Horizontal dashed line */
+  border-top: 2px dashed #000;
+  /* Horizontal dashed line */
 }
 
 .tilted-line {
   position: absolute;
-  top: 50%; /* Align the tilted line in the center vertically */
-  left: 50%; /* Start the line from the center horizontally */
-  width: 100%; /* You can adjust this width as needed */
-  border-top: 2px dashed #000; /* Dashed line */
-  transform-origin: left center; /* Rotate around the left edge */
+  top: 50%;
+  /* Align the tilted line in the center vertically */
+  left: 50%;
+  /* Start the line from the center horizontally */
+  width: 100%;
+  /* You can adjust this width as needed */
+  border-top: 2px dashed #000;
+  /* Dashed line */
+  transform-origin: left center;
+  /* Rotate around the left edge */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3231,7 +3305,8 @@ canvas {
 
 .percentage-label {
   position: absolute;
-  top: -25px; /* Adjust this value to move the label up/down */
+  top: -25px;
+  /* Adjust this value to move the label up/down */
   background-color: pink;
   color: #CB89B9;
   font-weight: bold;
@@ -3307,7 +3382,7 @@ canvas {
 
 .project-card.completed {
   background-color: #e6f7e6;
-  width:30px;
+  width: 30px;
 }
 
 .project-card.ongoing {
@@ -3328,24 +3403,33 @@ canvas {
   flex-wrap: wrap;
   justify-content: space-around;
 }
- .status-badge {
+
+.status-badge {
   padding: 5px 10px;
-  border-radius: 20px; /* Adds rounded corners to the badge */
+  border-radius: 20px;
+  /* Adds rounded corners to the badge */
   font-weight: bold;
   margin-top: 5px;
-  width:30px;
+  width: 30px;
 }
-.progress, .progress-stacked {
-height: 5px;
-margin-top: 16px;
-margin-bottom: 15px;
+
+.progress,
+.progress-stacked {
+  height: 5px;
+  margin-top: 16px;
+  margin-bottom: 15px;
 }
+
 .project-card .client-name {
-  color: #FF5BB5; /* Set client name color */
+  color: #FF5BB5;
+  /* Set client name color */
 }
+
 .project-card .task-icon {
-  color: #292D32; /* Set color of the icon */
-  margin-right: 5px; /* Space between the icon and text */
+  color: #292D32;
+  /* Set color of the icon */
+  margin-right: 5px;
+  /* Space between the icon and text */
   font-size: 20px;
 }
 
@@ -3375,11 +3459,12 @@ margin-bottom: 15px;
   border-radius: 5px;
 }
 
-.grey{
+.grey {
   filter: grayscale(1);
   color: #253154;
 }
-.pink{
+
+.pink {
   color: #FF5BB5;
 }
 
@@ -3411,9 +3496,11 @@ margin-bottom: 15px;
   border-width: 1px;
   border-style: solid;
 }
+
 /* Apply grey color to icons for "Cancelled" status */
 .grey-image {
-  filter: grayscale(100%); /* Apply greyscale to images */
+  filter: grayscale(100%);
+  /* Apply greyscale to images */
 }
 
 /* Apply grayscale filter for cancelled status images */
@@ -3445,13 +3532,16 @@ margin-bottom: 15px;
 
 /* Add custom class for font size adjustment */
 .custom-font-size {
-  font-size: 18px;  /* Change the size as per your requirement */
-  font-weight:600; /* Remove bold */
+  font-size: 18px;
+  /* Change the size as per your requirement */
+  font-weight: 600;
+  /* Remove bold */
 }
 
 .no-bold {
   font-size: 18px;
-  font-weight: normal; /* Remove bold */
+  font-weight: normal;
+  /* Remove bold */
 }
 
 
@@ -3546,10 +3636,12 @@ margin-bottom: 15px;
     z-index: 150;
   }
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -3559,6 +3651,7 @@ margin-bottom: 15px;
   from {
     transform: translateX(-10px);
   }
+
   to {
     transform: translateX(0);
   }

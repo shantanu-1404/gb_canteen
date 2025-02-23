@@ -1,18 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
-import UTMTrackingChart from "./UTMTrackingChart";
-import AudienceDemographics from "./AudienceDemographics";
-import LoadTimeChart from "./LoadTimeChart";
-import PostCard from "./PostCard";
-import Layout from "../container/layout";
-import Button from "./Button";
-import MetricCard from "./MetricCard";
-import DateInput from "./DateInput";
+import UTMTrackingChart from "../components/UTMTrackingChart";
+import AudienceDemographics from "../components/AudienceDemographics";
+import LoadTimeChart from "../components/LoadTimeChart";
+import PostCard from "../components/PostCard";
+import Layout from "./layout";
+import Button from "../components/Button";
+import MetricCard from "../components/MetricCard";
+import DateInput from "../components/DateInput";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import postData from "../assets/json/posts.json";
 
-const App = () => {
+import wallet from "../assets/svg/wallet-blue.svg";
+import percent from "../assets/svg/percent.svg";
+import credit from "../assets/svg/credit-card.svg";
+
+
+
+
+
+const Analytics = () => {
   const [posts, setPosts] = useState([]);
   const tableRef = useRef();
 
@@ -23,14 +31,14 @@ const App = () => {
   return (
     <Layout>
       <div className="d-flex justify-content-between">
-      <div className="mt-3 col-md-3">
-                    <DateInput
-                        label=""
-                        type="range"
-                        includeTime={false}
-                    />
+        <div className="mt-3 col-md-3">
+          <DateInput
+            label=""
+            type="range"
+            includeTime={false}
+          />
 
-                </div>
+        </div>
         <div className="text-right gap-3 d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
@@ -45,7 +53,7 @@ const App = () => {
               operation="total"
               column="col1"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={wallet} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
             />
           </Col>
@@ -56,7 +64,7 @@ const App = () => {
               operation="negativeCount"
               column="col4"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={percent} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
             />
           </Col>
@@ -67,7 +75,7 @@ const App = () => {
               operation="ratio"
               column="col1,col2"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/return.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={credit} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
             />
           </Col>
@@ -99,4 +107,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Analytics;

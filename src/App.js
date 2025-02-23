@@ -12,8 +12,9 @@ import Reports from "./container/Reports";
 import AddReport from "./container/AddReport";
 import SM_Project from "./container/SM_Project";
 import SM_Clients from "./container/SM_Clients";
-import NewProject from "./container/AddNewProject"
-import NewClient from "./container/AddNewClient"
+import AddNewProject from "./container/AddNewProject"
+import AddNewClient from "./container/AddNewClient"
+import Analytics from "./container/Analytics"
 
 
 
@@ -24,7 +25,6 @@ import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
 import GridView from './components/Gridview';
 import DataTable from "./components/DataTable";
-import Analytics from "./components/Analytics";
 import ProjectCard from "./components/ProjectDashboard"
 
 
@@ -37,11 +37,16 @@ const App = () => {
       <Route path="/" element={<Index />} />    
       <Route path="/social-media" element={<SocialMedia />} />    
       <Route path="/social-media/reports" element={<Reports />} />    
+      <Route path="/social-media/analytics" element={<Analytics />} />    
       <Route path="/social-media/projects" element={<SM_Project />} />    
       <Route path="/social-media/clients" element={<SM_Clients />} />    
       <Route path="/add-post" element={<AddNewPost />} />    
       <Route path="/add-campaign" element={<AddNewCampaign />} />    
       <Route path="/add-report" element={<AddReport />} />    
+      <Route path="/add-project" element={<AddNewProject />} />    
+      <Route path="/add-client" element={<AddNewClient />} />    
+
+
       <Route path="/container/layout" element={<Layout />} />    
       <Route path="/container/leftview" element={<LeftView />} />   
       <Route path="/container/header" element={<Header />} />
@@ -53,10 +58,7 @@ const App = () => {
       <Route path="/components/Filter" element={<Filter />} /> 
       <Route path="/components/Gridview" element={<GridView />} /> 
       <Route path="/components/DataTable" element={<DataTable />} />
-      <Route path="/components/Analytics" element={<Analytics />} />
       <Route path="/components/ProjectDashboard" element={<ProjectCard />} />
-      <Route path="/container/AddNewProject" element={<NewProject />} />
-      <Route path="/container/AddNewClient" element={<NewClient />} />
    
 
       </Routes>

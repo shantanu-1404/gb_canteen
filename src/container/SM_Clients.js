@@ -14,7 +14,21 @@ import Col from 'react-bootstrap/Col';
 
 import clientData from "../assets/json/smclients.json";
 
+
+import time from "../assets/svg/time-blue.svg";
+import pc from "../assets/svg/pc-pink.svg";
+import like from "../assets/svg/chat-like.svg";
+import img from "../assets/svg/img-green.svg";
+import group from "../assets/svg/group.svg";
+import pic from "../assets/svg/chat-pic.svg";
+
+
+
+
 const SM_Clients = () => {
+
+    const navigate = useNavigate();
+
     const clientColumns = [
         { headname: "Client Name", dbcol: "client_name" },
         { headname: "Status", dbcol: "status" },
@@ -31,7 +45,7 @@ const SM_Clients = () => {
                     <DateInput label="" type="range" includeTime={false} />
                 </div>
                 <div className="text-right gap-3 d-flex">
-                    <Button buttonType="add" onClick={() => { }} label="Add New Client" />
+                    <Button buttonType="add" onClick={() => navigate("/add-client")}  label="Add New Client" />
                 </div>
             </div>
 
@@ -42,7 +56,7 @@ const SM_Clients = () => {
                         operation="count"
                         column="client_id"
                         jsonData={clientData}
-                        icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={group} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
@@ -52,7 +66,7 @@ const SM_Clients = () => {
                         operation="positiveCount"
                         column="status"
                         jsonData={clientData}
-                        icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={pic} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
@@ -62,7 +76,7 @@ const SM_Clients = () => {
                         operation="total"
                         column="profiles_managed"
                         jsonData={clientData}
-                        icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={img} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
@@ -72,7 +86,7 @@ const SM_Clients = () => {
                         operation="count"
                         column="profiles_managed"
                         jsonData={clientData}
-                        icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={time} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
@@ -82,7 +96,7 @@ const SM_Clients = () => {
                         operation="total"
                         column="profiles_managed"
                         jsonData={clientData}
-                        icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={pc} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>
@@ -92,7 +106,7 @@ const SM_Clients = () => {
                         operation="percentage"
                         column="engagement_rate"
                         jsonData={clientData}
-                        icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                        icon={like} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                         tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                     />
                 </Col>

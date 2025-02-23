@@ -3577,13 +3577,11 @@ canvas {
 
 
 
-
-
-
-
-
-
-
+/* Increase size of the icon */
+.icon-refresh {
+  font-size: 30px; 
+  cursor: pointer; 
+}
 
 
 

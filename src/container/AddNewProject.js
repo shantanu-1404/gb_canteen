@@ -97,14 +97,14 @@ const Index = () => {
                 />
               </div>
             </div>
-            <Row>              
+            <Row>
               <Col md={6}>
                 <Row>
                   <Col>
                     <DateInput label="Start Date" type="past" />
                   </Col>
                   <Col>
-                    <DateInput label="End Date"  />
+                    <DateInput label="End Date" />
                   </Col>
                 </Row>
               </Col>

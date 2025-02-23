@@ -3487,13 +3487,11 @@ margin-bottom: 15px;
 
 
 
-
-
-
-
-
-
-
+/* Increase size of the icon */
+.icon-refresh {
+  font-size: 30px; 
+  cursor: pointer; 
+}
 
 
 

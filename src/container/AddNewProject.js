@@ -48,7 +48,7 @@ const Index = () => {
       <Row>
         <FormHeader
           title="Add New Project"
-          backUrl="/components/ProjectDashboard"
+          backUrl="/social-media/projects"
           closeUrl="/"
         />
         <Col md={12}>
@@ -94,14 +94,14 @@ const Index = () => {
                 />
               </div>
             </div>
-            <Row>              
+            <Row>
               <Col md={6}>
                 <Row>
                   <Col>
                     <DateInput label="Start Date" type="past" />
                   </Col>
                   <Col>
-                    <DateInput label="End Date"  />
+                    <DateInput label="End Date" />
                   </Col>
                 </Row>
               </Col>

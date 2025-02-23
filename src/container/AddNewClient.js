@@ -26,7 +26,7 @@ const Index = () => {
       <Row>
         <FormHeader
           title="Add New Client"
-          backUrl="/components/ProjectDashboard"
+          backUrl="/social-media/clients"
           closeUrl="/"
         />
         <Col md={12}>

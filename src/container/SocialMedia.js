@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from './layout';
+import Layout from "./layout";
 
 import PostCard from "../components/PostCard";
 import CampaignCard from "../components/CampaignCard";
@@ -9,8 +9,8 @@ import NotificationCard from "../components/NotificationCard";
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
 import DateInput from "../components/DateInput";
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 import postData from "../assets/json/posts.json";
 import campaignData from "../assets/json/campaigns.json";
@@ -27,188 +27,196 @@ import channel from "../assets/svg/channel.svg";
 import growth from "../assets/svg/growth.svg";
 import pc from "../assets/svg/pc.svg";
 
-
-
 const SocialMedia = () => {
+  const [posts, setPosts] = useState([]);
 
-    const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    setPosts(postData);
+  }, []);
 
-    useEffect(() => {
-        setPosts(postData);
-    }, []);
+  const [campaigns, setCampaigns] = useState([]);
 
+  useEffect(() => {
+    setCampaigns(campaignData);
+  }, []);
 
-    const [campaigns, setCampaigns] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+  useEffect(() => {
+    setNotifications(notificationData);
+  }, []);
 
-    useEffect(() => {
-        setCampaigns(campaignData);
-    }, []);
+  const navigate = useNavigate();
+  // ✅ Refresh page
+  const handleRefresh = () => {
+    window.location.reload(); // This will refresh the page
+  };
 
+  return (
+    <Layout>
+      <div className="d-flex justify-content-between">
 
-    const [notifications, setNotifications] = useState([]);
-    useEffect(() => {
-        setNotifications(notificationData);
-    }, []);
+        <div className="mt-3 d-flex align-items-center">
+          <div className="d-flex gap-5 ">
+            <DateInput label="" type="range" includeTime={false} />
+          </div>
 
-    const navigate = useNavigate();
+          {/* Refresh Button */}
+          <div className=" mb-2 ps-3 ">
+            <i
+              className="bi bi-arrow-repeat icon-refresh"
+              onClick={handleRefresh}
+            ></i>
+          </div>
+        </div>
 
-    return (
-        <Layout>
-            <div className="d-flex justify-content-between">
-                <div className="mt-3 col-md-3">
-                    <DateInput
-                        label=""
-                        type="range"
-                        includeTime={false}
-                    />
+        <div className="text-right gap-3 d-flex">
+          <Button buttonType="import" label="Import" />
+          <Button buttonType="export" label="Export" />
+          <Dropdown
+            label="Add New"
+            buttonType="add"
+            menuItems={[
+              { label: "Add New Post", onClick: () => navigate("/add-post") },
+              {
+                label: "Add New Campaign",
+                onClick: () => navigate("/add-campaign"),
+              },
+            ]}
+          />
+        </div>
+      </div>
 
-                </div>
-                <div className="text-right gap-3 d-flex">
-                    <Button buttonType="import" label="Import" />
-                    <Button buttonType="export" label="Export" />
-                    <Dropdown
-                        label="Add New"
-                        buttonType="add"
-                        menuItems={[
-                            { label: "Add New Post", onClick: () => navigate("/add-post") },
-                            { label: "Add New Campaign", onClick: () => navigate("/add-campaign") }
-                        ]}
-                    />
+      <Row>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="Total Posts"
+            operation="total"
+            column="col1"
+            jsonData={tabledata}
+            icon={layout} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="Scheduled Posts"
+            operation="count"
+            column="col2"
+            jsonData={tabledata}
+            icon={calender} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="Pending Approvals"
+            operation="positiveCount"
+            column="col4"
+            jsonData={tabledata}
+            icon={time} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="Active Campaigns"
+            operation="negativeCount"
+            column="col4"
+            jsonData={tabledata}
+            icon={tick} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="Total Ad Spend"
+            operation="mean"
+            column="col1"
+            jsonData={tabledata}
+            icon={wallet} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="Engagement Rate"
+            operation="average"
+            column="col5,col6"
+            jsonData={tabledata}
+            icon={percent} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="Top Channel"
+            operation="ratio"
+            column="col1,col2"
+            jsonData={tabledata}
+            icon={channel} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="Follower Growth"
+            operation="percentage"
+            column="col2"
+            jsonData={tabledata}
+            icon={growth} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+        <Col xs={6} lg={3} md={4}>
+          <MetricCard
+            title="ROI on Ads"
+            operation="1000+"
+            column="col1"
+            jsonData={tabledata}
+            icon={pc} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+          />
+        </Col>
+      </Row>
+      <div className="form_section">
+        <div className="d-flex justify-content-between">
+          <h6 className="card-title">Recent Posts</h6>
+          <a>see all</a>
+        </div>
+        <Row>
+          {posts.map((post, index) => (
+            <PostCard key={index} post={post} />
+          ))}
+        </Row>
+      </div>
 
-                </div>
-            </div>
+      <div className="form_section">
+        <div className="d-flex justify-content-between">
+          <h6 className="card-title">Recent Campaigns</h6>
+          <a>see all</a>
+        </div>
+        <Row>
+          {campaigns.map((campaign, index) => (
+            <CampaignCard key={index} campaign={campaign} />
+          ))}
+        </Row>
+      </div>
 
-            <Row>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="Total Posts"
-                        operation="total"
-                        column="col1"
-                        jsonData={tabledata}
-                        icon={layout} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="Scheduled Posts"
-                        operation="count"
-                        column="col2"
-                        jsonData={tabledata}
-                        icon={calender} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="Pending Approvals"
-                        operation="positiveCount"
-                        column="col4"
-                        jsonData={tabledata}
-                        icon={time} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="Active Campaigns"
-                        operation="negativeCount"
-                        column="col4"
-                        jsonData={tabledata}
-                        icon={tick} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3} md={4}>
-                    <MetricCard
-                        title="Total Ad Spend"
-                        operation="mean"
-                        column="col1"
-                        jsonData={tabledata}
-                        icon={wallet} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="Engagement Rate"
-                        operation="average"
-                        column="col5,col6"
-                        jsonData={tabledata}
-                        icon={percent} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="Top Channel"
-                        operation="ratio"
-                        column="col1,col2"
-                        jsonData={tabledata}
-                        icon={channel} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="Follower Growth"
-                        operation="percentage"
-                        column="col2"
-                        jsonData={tabledata}
-                        icon={growth} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-                <Col xs={6} lg={3}  md={4}>
-                    <MetricCard
-                        title="ROI on Ads"
-                        operation="1000+"
-                        column="col1"
-                        jsonData={tabledata}
-                        icon={pc} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                        tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                    />
-                </Col>
-            </Row>
-            <div className="form_section">
-                <div className="d-flex justify-content-between">
-                    <h6 className="card-title">Recent Posts</h6>
-                    <a>see all</a>
-                </div>
-                <Row>
-                    {posts.map((post, index) => (
-                        <PostCard key={index} post={post} />
-                    ))}
-                </Row>
-            </div>
+      <div className="form_section">
+        <div className="d-flex justify-content-between">
+          <h6 className="p-2">Notifications</h6>
+          <a>See all</a>
+        </div>
+        <div className="home_table">
+          {notifications.map((notification, index) => (
+            <NotificationCard key={index} notification={notification} />
+          ))}
+        </div>
+      </div>
 
-            <div className="form_section">
-                <div className="d-flex justify-content-between">
-                    <h6 className="card-title">Recent Campaigns</h6>
-                    <a>see all</a>
-                </div>
-                <Row>
-                    {campaigns.map((campaign, index) => (
-                        <CampaignCard key={index} campaign={campaign} />
-                    ))}
-                </Row>
-            </div>
-
-            <div className="form_section">
-                <div className="d-flex justify-content-between">
-                    <h6 className="p-2">Notifications</h6>
-                    <a>See all</a>
-                </div>
-                <div className="home_table">
-                    {notifications.map((notification, index) => (
-                        <NotificationCard key={index} notification={notification} />
-                    ))}
-                </div>
-            </div>
-
-            <br />
-        </Layout>
-    );
-}
+      <br />
+    </Layout>
+  );
+};
 
 export default SocialMedia;

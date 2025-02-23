@@ -1,6 +1,7 @@
 {
   "name": "gb_canteen",
   "version": "0.1.0",
+  "homepage": "https://shantanu-1404.github.io/gb_canteen/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",

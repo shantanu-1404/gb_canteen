@@ -30,41 +30,27 @@ import ProjectCard from "./components/ProjectDashboard"
 
 
 const App = () => {
-  
+
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<Index />} />    
-      <Route path="/social-media" element={<SocialMedia />} />    
-      <Route path="/social-media/reports" element={<Reports />} />    
-      <Route path="/social-media/analytics" element={<Analytics />} />    
-      <Route path="/social-media/projects" element={<SM_Project />} />    
-      <Route path="/social-media/clients" element={<SM_Clients />} />    
-      <Route path="/add-post" element={<AddNewPost />} />    
-      <Route path="/add-campaign" element={<AddNewCampaign />} />    
-      <Route path="/add-report" element={<AddReport />} />    
-      <Route path="/add-project" element={<AddNewProject />} />    
-      <Route path="/add-client" element={<AddNewClient />} />    
+        <Route path="/" element={<Index />} />
+        <Route path="/social-media" element={<SocialMedia />} />
+        <Route path="/social-media/reports" element={<Reports />} />
+        <Route path="/social-media/analytics" element={<Analytics />} />
+        <Route path="/social-media/projects" element={<SM_Project />} />
+        <Route path="/social-media/clients" element={<SM_Clients />} />
+        <Route path="/add-post" element={<AddNewPost />} />
+        <Route path="/add-campaign" element={<AddNewCampaign />} />
+        <Route path="/add-report" element={<AddReport />} />
+        <Route path="/add-project" element={<AddNewProject />} />
+        <Route path="/add-client" element={<AddNewClient />} />
 
-
-      <Route path="/container/layout" element={<Layout />} />    
-      <Route path="/container/leftview" element={<LeftView />} />   
-      <Route path="/container/header" element={<Header />} />
-      <Route path="/container/homepage" element={<Homepage />} /> 
-      <Route path="/components/word_limit_textarea" element={<WordLimit />} />  
-      <Route path="/components/table" element={<Table />} /> 
-      <Route path="/components/Metrics" element={<MetricCard />} /> 
-      <Route path="/components/Searchbar" element={<SearchBar />} />  
-      <Route path="/components/Filter" element={<Filter />} /> 
-      <Route path="/components/Gridview" element={<GridView />} /> 
-      <Route path="/components/DataTable" element={<DataTable />} />
-      <Route path="/components/ProjectDashboard" element={<ProjectCard />} />
-   
 
       </Routes>
     </Router>
 
-    
+
   );
 };
 

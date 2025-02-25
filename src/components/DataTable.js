@@ -102,9 +102,12 @@ const DataTable = ({
               />
             )}
 
-            <button className="btn grid-btn aeicon-btn-primary" onClick={handleViewToggle}>
-              <i className="bi bi-grid" style={{ fontSize: "1.5rem" }}></i>
+            {/* View Toggle Button */}
+            <div className="table-btn">
+              <button className="btn grid-btn " onClick={handleViewToggle}>
+                <i className="bi bi-grid"></i>
             </button>
+            </div>
 
             {sortable && (
               <SortTable

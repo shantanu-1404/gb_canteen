@@ -765,6 +765,7 @@ h3 {
   margin-top: 12px;
   min-width: 125px;
   width: auto;
+  margin-bottom: 30px;
   display: flex;
   gap: 5px;
   background-color: #0E032F;

@@ -23,7 +23,7 @@ import Table from './components/Table';
 import MetricCard from './components/MetricCard';
 import SearchBar from './components/Searchbar';
 import Filter from './components/Filter';
-
+import GridView from './components/Gridview';
 import DataTable from "./components/DataTable";
 import ProjectCard from "./components/ProjectDashboard"
 
@@ -34,33 +34,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-<<<<<<< HEAD
-      <Route path="/" element={<Index />} />    
-      <Route path="/social-media" element={<SocialMedia />} />    
-      <Route path="/social-media/reports" element={<Reports />} />    
-      <Route path="/social-media/projects" element={<SM_Project />} />    
-      <Route path="/social-media/clients" element={<SM_Clients />} />  
-      <Route path="/social-media/Analytics" element={<Analytics />} /> 
-      <Route path="/social-media/AddNewProject" element={<NewProject />} /> 
-      <Route path="/social-media/AddNewClient" element={<NewClient />} /> 
-      <Route path="/add-post" element={<AddNewPost />} />    
-      <Route path="/add-campaign" element={<AddNewCampaign />} />    
-      <Route path="/add-report" element={<AddReport />} />    
-      <Route path="/container/layout" element={<Layout />} />    
-      <Route path="/container/leftview" element={<LeftView />} />   
-      <Route path="/container/header" element={<Header />} />
-      <Route path="/container/homepage" element={<Homepage />} /> 
-      <Route path="/components/word_limit_textarea" element={<WordLimit />} />  
-      <Route path="/components/table" element={<Table />} /> 
-      <Route path="/components/Metrics" element={<MetricCard />} /> 
-      <Route path="/components/Searchbar" element={<SearchBar />} />  
-      <Route path="/components/Filter" element={<Filter />} /> 
-
-      <Route path="/components/DataTable" element={<DataTable />} />
-      <Route path="/components/ProjectDashboard" element={<ProjectCard />} />
-    
-=======
-        <Route path="/" element={<Index />} />
+        <Route path="/gb_canteen" element={<Index />} />
         <Route path="/social-media" element={<SocialMedia />} />
         <Route path="/social-media/reports" element={<Reports />} />
         <Route path="/social-media/analytics" element={<Analytics />} />
@@ -73,7 +47,6 @@ const App = () => {
         <Route path="/add-client" element={<AddNewClient />} />
 
 
->>>>>>> d6ee864747f0a1e36806c29450b170d70d70d403
       </Routes>
     </Router>
 

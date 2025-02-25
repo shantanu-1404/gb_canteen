@@ -26,7 +26,7 @@ const Index = () => {
       <Row>
         <FormHeader
           title="Add New Client"
-          backUrl="/social-media/clients"
+          backUrl="/social-media/projects"
           closeUrl="/"
         />
         <Col md={12}>
@@ -45,6 +45,7 @@ const Index = () => {
                 <SelectComponent
                   label="Industry"
                   name="post_frequency"
+                  listStyle="col-md-6"
                   options={post_frequency}
                   isMulti={false}
                   onChange={setPostFrequency}
@@ -64,6 +65,7 @@ const Index = () => {
                 <TextInput
                   label="Number Of Employees"
                   placeholder="Number"
+                  type="number"
                   required={true}
                   onChange={handleTextInputChange}
                 />
@@ -73,6 +75,7 @@ const Index = () => {
               <div className="col-md-6">
                 <SelectComponent
                   label="Status"
+                  listStyle="col-md-6"
                   name="post_frequency"
                   options={post_frequency}
                   isMulti={false}
@@ -82,6 +85,7 @@ const Index = () => {
               <div className="col-md-6">
                 <SelectComponent
                   label="Assigned Team Members"
+                  listStyle="col-md-6"
                   name="post_frequency"
                   options={post_frequency}
                   isMulti={false}

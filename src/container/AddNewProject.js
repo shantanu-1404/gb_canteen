@@ -66,6 +66,7 @@ const Index = () => {
               <div className="col-md-6">
                 <SelectComponent
                   label="Default Task View"
+                  listStyle="col-md-6"
                   name="post_frequency"
                   options={post_frequency}
                   isMulti={false}
@@ -79,6 +80,7 @@ const Index = () => {
                 <SelectComponent
                   label="Project Privacy"
                   name="post_frequency"
+                  listStyle="col-md-6"
                   options={post_frequency}
                   isMulti={false}
                   onChange={setPostFrequency}
@@ -88,6 +90,7 @@ const Index = () => {
                 <SelectComponent
                   label="Number of People"
                   name="post_frequency"
+                  listStyle="col-md-6"
                   options={post_frequency}
                   isMulti={false}
                   onChange={setPostFrequency}
@@ -109,6 +112,7 @@ const Index = () => {
               <Col md={6}>
                 <SelectComponent
                   label="Project Lead"
+                  listStyle="col-md-6"
                   name="post_frequency"
                   options={post_frequency}
                   isMulti={false}
@@ -127,6 +131,7 @@ const Index = () => {
                 <SelectComponent
                   label="Client"
                   name="post_frequency"
+                  listStyle="col-md-6"
                   options={post_frequency}
                   isMulti={false}
                   onChange={setPostFrequency}

@@ -25,7 +25,7 @@ import wallet from "../assets/svg/wallet-blue.svg";
 import percent from "../assets/svg/percent.svg";
 import channel from "../assets/svg/channel.svg";
 import growth from "../assets/svg/growth.svg";
-import pc from "../assets/svg/pc.svg";
+import pc from "../assets/svg/pc-yellow.svg";
 
 const SocialMedia = () => {
   const [posts, setPosts] = useState([]);

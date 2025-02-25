@@ -12,10 +12,9 @@ import Reports from "./container/Reports";
 import AddReport from "./container/AddReport";
 import SM_Project from "./container/SM_Project";
 import SM_Clients from "./container/SM_Clients";
-import NewProject from "./container/AddNewProject"
-import NewClient from "./container/AddNewClient"
-import Analytics from "./container/Analytics";
-
+import AddNewProject from "./container/AddNewProject"
+import AddNewClient from "./container/AddNewClient"
+import Analytics from "./container/Analytics"
 
 
 
@@ -31,10 +30,11 @@ import ProjectCard from "./components/ProjectDashboard"
 
 
 const App = () => {
-  
+
   return (
     <Router>
       <Routes>
+<<<<<<< HEAD
       <Route path="/" element={<Index />} />    
       <Route path="/social-media" element={<SocialMedia />} />    
       <Route path="/social-media/reports" element={<Reports />} />    
@@ -59,10 +59,25 @@ const App = () => {
       <Route path="/components/DataTable" element={<DataTable />} />
       <Route path="/components/ProjectDashboard" element={<ProjectCard />} />
     
+=======
+        <Route path="/" element={<Index />} />
+        <Route path="/social-media" element={<SocialMedia />} />
+        <Route path="/social-media/reports" element={<Reports />} />
+        <Route path="/social-media/analytics" element={<Analytics />} />
+        <Route path="/social-media/projects" element={<SM_Project />} />
+        <Route path="/social-media/clients" element={<SM_Clients />} />
+        <Route path="/add-post" element={<AddNewPost />} />
+        <Route path="/add-campaign" element={<AddNewCampaign />} />
+        <Route path="/add-report" element={<AddReport />} />
+        <Route path="/add-project" element={<AddNewProject />} />
+        <Route path="/add-client" element={<AddNewClient />} />
+
+
+>>>>>>> d6ee864747f0a1e36806c29450b170d70d70d403
       </Routes>
     </Router>
 
-    
+
   );
 };
 

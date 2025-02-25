@@ -100,7 +100,7 @@ const LeftSidebar = ({ isVisible }) => {
                   </div>
                   <ul className={`submenu collapse ${openDropdowns['reports'] ? 'show' : ''}`}>
                     <li className={`${openDropdowns['reports'] ? 'active' : ''}`}><Link className="dropdown-item" to="/social-media/reports"><i className="bi bi-dash"></i> Report</Link></li>
-                    <li className={`${openDropdowns['analysis'] ? 'active' : ''}`}><Link className="dropdown-item" to="/social-media/Analytics"><i className="bi bi-dash"></i> Ad Spend Analysis</Link></li>
+                    <li className={`${openDropdowns['reports'] ? 'active' : ''}`}><Link className="dropdown-item" to="/social-media/analytics"><i className="bi bi-dash"></i> Ad Spend Analysis</Link></li>
                   </ul>
                 </li>
                 <li className={`${openDropdowns['projects'] ? 'active' : ''}`}><Link className="dropdown-item" to="/social-media/projects"><i className="bi bi-dash"></i> Project Management</Link></li>

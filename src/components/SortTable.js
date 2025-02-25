@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from "react";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 // Sorting function that handles ascending, descending, alphabetical, and date-wise
 export const sortData = (data, sortColumn, sortOrder) => {
@@ -46,18 +47,37 @@ const SortTable = ({
   sortOrder,
   setSortOrder,
 }) => {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedColumn, setSelectedColumn] = useState(null);
-  const [subDropdownVisible, setSubDropdownVisible] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Toggle dropdown manually
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  // Close dropdown when clicking outside
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  // Attach event listener when dropdown is open
+  React.useEffect(() => {
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
 
   // Handle column selection to display sorting options
   const handleColumnSelect = (column) => {
-    if (selectedColumn === column) {
-      setSubDropdownVisible(!subDropdownVisible); // Toggle sub-dropdown
-    } else {
-      setSelectedColumn(column);
-      setSubDropdownVisible(true); // Open the sub-dropdown for sorting options
-    }
+    setSelectedColumn(column);
   };
 
   // Handle sorting option selection
@@ -66,7 +86,6 @@ const SortTable = ({
     setSortColumn(selectedColumn);
     const sortedData = sortData(data, selectedColumn, option);
     setSortedData(sortedData);
-    setSubDropdownVisible(false); // Close sub-dropdown after selecting an option
   };
 
   // Get sorting options based on the column data type
@@ -79,17 +98,22 @@ const SortTable = ({
   };
 
   return (
-    <div>
+    <div ref={dropdownRef}>
       {/* Sorting Icon */}
-      <div className="sort-icon-container">
-        <button
-          type="button"
-          className="btn aeicon-btn-primary bi bi-arrow-down-up"
-          style={{ fontSize: "1.5rem", cursor: "pointer" }}
-          onClick={() => setDropdownVisible(!dropdownVisible)} // Toggle dropdown visibility
-        />
-      </div>
+      <DropdownButton
+        id="sort-dropdown"
+        title={<i className="bi bi-arrow-down-up"></i>}
+        className="table-btn"
+        variant="primary"
+        show={dropdownOpen} // ✅ Keep dropdown open until clicking outside
+        onToggle={toggleDropdown}
+      >
+        {/* Column Selection */}
+        {columns.map((column, index) => (
+          <Dropdown.Item as="div" key={index} onClick={(e) => e.stopPropagation()}>
+            <div onClick={() => handleColumnSelect(column.dbcol)}>{column.headname}</div>
 
+<<<<<<< HEAD
       {/* Main Sorting Options Dropdown */}
       {dropdownVisible && (
         <div className="aetabledropdown-menu">
@@ -124,6 +148,31 @@ const SortTable = ({
           ))}
         </div>
       )}
+=======
+            {/* Sorting Options (Only show if column is selected) */}
+            {selectedColumn === column.dbcol && (
+              <Dropdown.Menu show>
+                {getSortingOptions(column.dbcol).map((option, idx) => (
+                  <Dropdown.Item key={idx} onClick={() => handleSortingOption(option)}>
+                    {option === "asc"
+                      ? "Ascending"
+                      : option === "desc"
+                      ? "Descending"
+                      : option === "alphabetical"
+                      ? "Alphabetical (A-Z)"
+                      : option === "reverseAlphabetical"
+                      ? "Reverse Alphabetical (Z-A)"
+                      : option === "oldToNew"
+                      ? "Oldest to Newest"
+                      : "Newest to Oldest"}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            )}
+          </Dropdown.Item>
+        ))}
+      </DropdownButton>
+>>>>>>> d6ee864747f0a1e36806c29450b170d70d70d403
     </div>
   );
 };

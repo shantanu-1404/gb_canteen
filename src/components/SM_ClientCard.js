@@ -1,5 +1,7 @@
 import React from "react";
 
+import clientimg from "../assets/svg/client.svg";
+
 const SM_ClientCard = ({ client }) => {
     const {
         client_name,
@@ -24,7 +26,7 @@ const SM_ClientCard = ({ client }) => {
                 <div className="row mb-3 align-items-center">
                     <strong className="col-md ">
                         <img
-                            src="http://localhost/gb_canteen/svg/order_pending.svg"
+                            src={clientimg}
                             alt="Wallet Icon"
                             style={{ width: "30px", marginRight: "10px" }}
                             className={`${statusClass === "cancelled" ? "grey" : ""}`} // Apply the grey image class for cancelled status

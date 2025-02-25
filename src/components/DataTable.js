@@ -33,8 +33,9 @@ const DataTable = ({
     setSortColumn(column);
     setSortOrder(order);
   };
-  // Handle search query
-  const handleSearch = (query) => {
+
+   // Handle search query
+   const handleSearch = (query) => {
     // Apply search filter on existing data (combined with any existing filter)
     const searchedData = data.filter((item) => {
       return Object.values(item).some((value) =>
@@ -43,6 +44,7 @@ const DataTable = ({
     });
     setFilteredData(searchedData);
   };
+
 
   // Apply sorting whenever sort state changes
   useEffect(() => {
@@ -100,18 +102,9 @@ const DataTable = ({
               />
             )}
 
-<<<<<<< HEAD
             <button className="btn grid-btn aeicon-btn-primary" onClick={handleViewToggle}>
               <i className="bi bi-grid" style={{ fontSize: "1.5rem" }}></i>
             </button>
-=======
-            {/* View Toggle Button */}
-            <div className="table-btn">
-              <button className="btn grid-btn " onClick={handleViewToggle}>
-                <i className="bi bi-grid"></i>
-              </button>
-            </div>
->>>>>>> d6ee864747f0a1e36806c29450b170d70d70d403
 
             {sortable && (
               <SortTable
@@ -153,4 +146,3 @@ const DataTable = ({
 };
 
 export default DataTable;
-

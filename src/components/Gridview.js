@@ -14,9 +14,6 @@ const GridCard = ({ rowData, columns }) => {
             <p className={`col-md`}>{rowData[column.dbcol]}</p>
           </div>
         ))}
-        <div className="btn-sack-top">
-          <span></span>
-        </div>
       </div>
     </div>
   );

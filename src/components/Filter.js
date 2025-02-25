@@ -9,6 +9,7 @@ const Filter = ({ columns, data, onFilter }) => {
   const dropdownRef = useRef(null);
 
   // Toggle dropdown manually
+>>>>>>> d6ee864747f0a1e36806c29450b170d70d70d403
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -33,6 +34,7 @@ const Filter = ({ columns, data, onFilter }) => {
   }, [dropdownOpen]);
 
   // Apply the filter based on selected column and filter text
+>>>>>>> d6ee864747f0a1e36806c29450b170d70d70d403
   const applyFilter = (filterText, column, subCategory) => {
     if (!filterText && !subCategory) {
       onFilter(data); // If no filter text or subcategory, return the original data
@@ -53,6 +55,7 @@ const Filter = ({ columns, data, onFilter }) => {
   const handleColumnChange = (e) => {
     setSelectedColumn(e.target.value);
     applyFilter(filterText, e.target.value, selectedSubCategory);
+>>>>>>> d6ee864747f0a1e36806c29450b170d70d70d403
   };
 
   // Get unique subcategories (values) for the selected column

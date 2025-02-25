@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-const SearchBar = ({ tableId, placeholder = "Search Table..." }) => {
+const SearchBar = ({ tableId, gridviewId, placeholder = "Search Table...", onSearch }) => {
   const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    const table = document.getElementById(tableId);
-    if (!table) return; // Exit early if the table is not available
-
-    const rows = table.querySelectorAll("tbody tr");
-
-    rows.forEach((row) => {
-      const cells = row.querySelectorAll("td");
-      let match = false;
-
-      cells.forEach((cell) => {
-        const cellText = cell.textContent.toLowerCase();
-        if (cellText.includes(query.toLowerCase())) {
-          match = true;
-        }
-      });
-
-      row.style.display = match ? "" : "none";
-    });
-  }, [query, tableId]);
+  // Whenever search query changes, update the filtered data
+  const handleInputChange = (e) => {
+    const searchQuery = e.target.value;
+    setQuery(searchQuery);
+    onSearch(searchQuery); // Pass search query to onSearch function
+  };
 
   return (
     <div className="table-searchbar">
@@ -32,15 +18,9 @@ const SearchBar = ({ tableId, placeholder = "Search Table..." }) => {
         className="aetabletag-input"
         placeholder={placeholder}
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={handleInputChange}
       />
     </div>
-
-
-
-
-
-
   );
 };
 

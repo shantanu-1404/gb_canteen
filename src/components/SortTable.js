@@ -73,7 +73,7 @@ const SortTable = ({
   const getSortingOptions = (column) => {
     const value = data[0]?.[column];
     if (typeof value === "number") return ["asc", "desc"]; // For numbers
-    if (typeof value === "string") return ["alphabetical", "reverseAlphabetical"]; // For strings
+    if (typeof value === "string") return ["asc", "desc"]; // For strings
     if (Date.parse(value)) return ["newToOld", "oldToNew"]; // For dates
     return [];
   };
@@ -113,10 +113,6 @@ const SortTable = ({
                         ? "Ascending"
                         : option === "desc"
                         ? "Descending"
-                        : option === "alphabetical"
-                        ? "Alphabetical (A-Z)"
-                        : option === "reverseAlphabetical"
-                        ? "Reverse Alphabetical (Z-A)"
                         : option === "oldToNew"
                         ? "Oldest to Newest"
                         : "Newest to Oldest"}

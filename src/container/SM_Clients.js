@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./layout";
 import { useNavigate } from "react-router-dom";
-
 import Button from "../components/Button";
 import MetricCard from "../components/MetricCard";
 import DateInput from "../components/DateInput";
@@ -126,6 +125,8 @@ const SM_Clients = () => {
         sortable={true}
         paginated={true}
       >
+  
+        
         <Row>
           {clientData.map((client, index) => (
             <SM_ClientCard key={index} client={client} />

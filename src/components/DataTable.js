@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "./Table"; // Import Table component
 import SearchBar from "./Searchbar";
 import GridView from "./Gridview";
 import Filter from "./Filter";
-import SortTable from "./SortTable";
+import SortTable from "./SortTable"; // Import SortTable
 import { Row, Col } from "react-bootstrap";
-import Layout from "../container/layout";
 
 const DataTable = ({
   id = "datatable",
@@ -19,9 +18,8 @@ const DataTable = ({
   paginated = true,
   children
 }) => {
-  // State management
-  const [filteredData, setFilteredData] = useState(data);
-  const [view, setView] = useState(defaultView);
+  const [filteredData, setFilteredData] = useState(data); // Store filtered data
+  const [view, setView] = useState(defaultView); // Toggle between table/grid views
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
 
@@ -34,6 +32,16 @@ const DataTable = ({
   const handleSorting = (column, order) => {
     setSortColumn(column);
     setSortOrder(order);
+  };
+  // Handle search query
+  const handleSearch = (query) => {
+    // Apply search filter on existing data (combined with any existing filter)
+    const searchedData = data.filter((item) => {
+      return Object.values(item).some((value) =>
+        String(value).toLowerCase().includes(query.toLowerCase())
+      );
+    });
+    setFilteredData(searchedData);
   };
 
   // Apply sorting whenever sort state changes
@@ -64,29 +72,38 @@ const DataTable = ({
     });
 
     setFilteredData(sortedData);
-  }, [sortColumn, sortOrder, sortable]);
+  }, [sortColumn, sortOrder, sortable, filteredData]);
 
   return (
     <div>
       <Row className="align-items-center mt-4">
         <Col>
-          {/* Search Bar (if enabled) */}
-          {searchable && <SearchBar tableId={id} placeholder="Search..." />}
+          {searchable && (
+            <SearchBar
+              tableId={id}
+              gridviewId={id}
+              placeholder="Search for data..."
+              onSearch={(query) => handleSearch(query)}
+            />
+          )}
         </Col>
 
         <Col md="auto">
           <div className="d-flex gap-2">
-            {/* Filter Component (if enabled) */}
             {filterable && (
-              <Filter columns={columns} data={data} onFilter={setFilteredData} />
+              <Filter
+                columns={columns}
+                data={data}
+                onFilter={setFilteredData} // Update filtered data
+                tableId={id}
+                gridviewId={id}
+              />
             )}
 
-            {/* View Toggle Button */}
             <button className="btn grid-btn aeicon-btn-primary" onClick={handleViewToggle}>
               <i className="bi bi-grid" style={{ fontSize: "1.5rem" }}></i>
             </button>
 
-            {/* Sorting Component (if enabled) */}
             {sortable && (
               <SortTable
                 data={filteredData}
@@ -102,7 +119,6 @@ const DataTable = ({
         </Col>
       </Row>
 
-      {/* Render Table or GridView based on state */}
       {view === "table" ? (
         <Table
           id={id}
@@ -114,12 +130,18 @@ const DataTable = ({
           paginated={paginated}
         />
       ) : (
-        <>
-          {children ? <Row>{children}</Row> : <GridView data={data} columns={columns} />}
-        </>
+        <GridView
+          gridviewId={id}
+          data={filteredData} // Pass filteredData to GridView
+          columns={columns}
+          sortColumn={sortColumn} // Pass sortColumn to GridView
+          sortOrder={sortOrder} // Pass sortOrder to GridView
+          viewType={view}
+        />
       )}
     </div>
   );
 };
 
 export default DataTable;
+

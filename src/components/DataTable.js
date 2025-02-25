@@ -106,7 +106,7 @@ const DataTable = ({
             <div className="table-btn">
               <button className="btn grid-btn " onClick={handleViewToggle}>
                 <i className="bi bi-grid"></i>
-            </button>
+              </button>
             </div>
 
             {sortable && (

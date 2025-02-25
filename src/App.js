@@ -34,7 +34,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="/gb_canteen" element={<Index />} />
         <Route path="/social-media" element={<SocialMedia />} />
         <Route path="/social-media/reports" element={<Reports />} />
         <Route path="/social-media/analytics" element={<Analytics />} />

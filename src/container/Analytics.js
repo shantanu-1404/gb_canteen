@@ -12,6 +12,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import postData from "../assets/json/posts.json";
 
+
+
 const Analytics = () => {
   const [posts, setPosts] = useState([]);
   const tableRef = useRef();
@@ -103,6 +105,7 @@ const Analytics = () => {
           <AudienceDemographics />
         </Col>
       </Row>
+
     </Layout>
   );
 };

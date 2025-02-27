@@ -9,7 +9,7 @@ import DateInput from "../components/DateInput";
 import TagInput from "../components/TagInput";
 import FormHeader from "../components/FormHeader";
 
-const Index = () => {
+const AddNewProject = () => {
   const handleTextInputChange = (value) => {
     console.log("TextInput:", value);
   };
@@ -167,4 +167,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default AddNewProject;

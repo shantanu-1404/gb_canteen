@@ -15,6 +15,8 @@ import SM_Clients from "./container/SM_Clients";
 import AddNewProject from "./container/AddNewProject"
 import AddNewClient from "./container/AddNewClient"
 import Analytics from "./container/Analytics"
+import AddSubsection from "./container/test";
+import AddNewBlogs from './container/AddNewBlogs';
 
 
 
@@ -45,6 +47,8 @@ const App = () => {
         <Route path="/add-report" element={<AddReport />} />
         <Route path="/add-project" element={<AddNewProject />} />
         <Route path="/add-client" element={<AddNewClient />} />
+        <Route path="/add-blogs" element={<AddNewBlogs />} />
+        <Route path="/container/test" element={<AddSubsection />} />
 
 
       </Routes>

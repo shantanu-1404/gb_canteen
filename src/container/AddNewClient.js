@@ -8,7 +8,7 @@ import SelectComponent from "../components/SelectComponent";
 import FormHeader from "../components/FormHeader";
 import PhoneInput from "../components/PhoneInput";
 
-const Index = () => {
+const AddNewClient = () => {
   const handleTextInputChange = (value) => {
     console.log("TextInput:", value);
   };
@@ -180,4 +180,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default AddNewClient;

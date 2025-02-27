@@ -3605,6 +3605,83 @@ canvas {
   cursor: pointer; 
 }
 
+/* Tab container styles */
+.tab-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+}
+
+/* Tabs container (left vertical tabs) */
+.tabs {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+/* Style for tab links */
+.nav-pills .nav-link {
+  border-radius: 0;
+  padding: 10px 15px;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: normal;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Active tab link style */
+.nav-pills .nav-link.active {
+  background-color: #ffffff; /* Active tab background */
+  color: #253154; /* Active tab text color */
+  font-weight: bold;
+
+}
+
+/* Hover effect for tab links */
+.nav-pills .nav-link:hover {
+  color: #253154;
+}
+
+/* Vertical line between tabs and content */
+.vertical-line {
+  width: 1px;
+  background-color: #ddd;
+  height: 100%;
+  margin: 0 20px;
+}
+
+/* Tab content area (right side content) */
+.tab-content {
+  padding-left: 20px;
+  flex-grow: 1;
+}
+
+/* Tab content area active style */
+.tab-pane.show.active {
+  display: block;
+}
+
+/* Content placeholder styles */
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.show.active {
+  display: block;
+}
+
+/* Optional: Style for disabled tabs */
+.nav-pills .nav-link[disabled] {
+ 
+  color: #6c757d;
+  pointer-events: none;
+}
+
+/* For active tab content styling */
+.tab-pane h4 {
+  color: #253154;
+  font-weight: bold;
+}
 
 
 /* Extra Small Devices (Portrait Phones) */

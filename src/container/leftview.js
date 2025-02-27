@@ -116,7 +116,7 @@ const LeftSidebar = ({ isVisible }) => {
             <li><Link to="#"><i className="bi bi-list-task"></i> Task Management</Link></li>
             <li><Link to="#"><i className="bi bi-bar-chart"></i> Data Management</Link></li>
             <li><Link to="#"><i className="bi bi-journal-text"></i> Policies Management</Link></li>
-            <li><Link to="#"><i className="bi bi-card-text"></i> Blogs</Link></li>
+            <li className={`${openDropdowns['blogs'] ? 'active' : ''}`}><Link to="/blogs"><i className="bi bi-card-text"></i> Blogs</Link></li>
             <li><Link to="#"><i className="bi bi-mortarboard"></i> Careers</Link></li>
             <li className={`${activePage === 'online_store' ? 'active' : ''}`}>
               <Link to="/onlinestore"><i className="bi bi-shop shop-icon"></i> Online Store</Link>

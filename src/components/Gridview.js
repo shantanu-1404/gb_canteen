@@ -84,7 +84,7 @@ const GridCard = ({ rowData, columns, countryFlags }) => {
     }
 
     if (type === "currency") {
-      return <span>💲{parseFloat(value).toFixed(2)}</span>;
+      return <span>${parseFloat(value).toFixed(2)}</span>;
     }
 
     if (type === "country") {

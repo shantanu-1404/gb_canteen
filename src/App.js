@@ -17,6 +17,7 @@ import AddNewClient from "./container/AddNewClient"
 import Analytics from "./container/Analytics"
 import AddSubsection from "./container/test";
 import AddNewBlogs from './container/AddNewBlogs';
+import Blogs from './container/Blogs';
 
 
 
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/add-client" element={<AddNewClient />} />
         <Route path="/add-blogs" element={<AddNewBlogs />} />
         <Route path="/container/test" element={<AddSubsection />} />
+        <Route path="/blogs" element={<Blogs />} />
 
 
       </Routes>

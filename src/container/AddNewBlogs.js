@@ -59,7 +59,7 @@ const AddNewBlogs = () => {
 
   return (
     <Layout>
-      <FormHeader title="Add New Blog" backUrl="/social-media" closeUrl="/" />
+      <FormHeader title="Add New Blog" backUrl="/blogs" closeUrl="/" />
       <Row>
         <Col md={7}>
           <div className="form_section">

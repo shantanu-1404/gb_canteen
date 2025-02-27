@@ -127,6 +127,7 @@ const AddNewBlogs = () => {
             />
             <TextInput
               label="Meta URL"
+              type="url"
               required={true}
               onChange={handleTextInputChange}
             />

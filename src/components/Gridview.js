@@ -52,12 +52,12 @@ const GridCard = ({ rowData, columns, countryFlags }) => {
         <div className="tags-container">
           {Array.isArray(value)
             ? value.map((tag, i) => (
-              <span key={i} className={`badge ${getBadgeClass(value)} mx-1`}>
+              <span key={i} className={`badge blue mx-1`}>
                 {tag}
               </span>
             ))
             : <span
-              className={`badge ${getBadgeClass(value)} mx-1`}
+              className={`badge blue mx-1`}
             >
               {value}
             </span>
@@ -80,7 +80,7 @@ const GridCard = ({ rowData, columns, countryFlags }) => {
 
     if (type === "rating") {
       const rating = Math.min(Math.max(Number(value), 0), 5);
-      return <span>{"★".repeat(rating)}{"☆".repeat(5 - rating)}</span>;
+      return <span className="rating">{"★".repeat(rating)}{"☆".repeat(5 - rating)}</span>;
     }
 
     if (type === "currency") {

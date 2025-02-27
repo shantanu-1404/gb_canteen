@@ -1977,6 +1977,10 @@ select.form-control {
   margin: 0;
 }
 
+.rating{
+  color: #FFC721 !important;
+}
+
 .blue{
   color: #089CFF;
   background-color: #F4FBFF;
@@ -2767,6 +2771,7 @@ li.active a {
 }
 
 
+
 .country-dropdown {
   width: 100%;
   padding: 8px;
@@ -3084,6 +3089,10 @@ li.active a {
 
 .table th {
   color: #253154;
+}
+
+.selected-row td{
+  background-color: #ddd1ff;
 }
 
 .pagination-controls {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchBar from "./Searchbar";
 import Filter from "./Filter";
 import SortTable from "./SortTable";
+import { Row, Col } from "react-bootstrap";
 
 const SelectTable = ({
     id = "selectTable",
@@ -19,6 +20,16 @@ const SelectTable = ({
     const handleSorting = (column, order) => {
         setSortColumn(column);
         setSortOrder(order);
+    };
+
+    // Handle search query
+    const handleSearch = (query) => {
+        const searchedData = data.filter((item) =>
+            Object.values(item).some((value) =>
+                String(value).toLowerCase().includes(query.toLowerCase())
+            )
+        );
+        setFilteredData(searchedData);
     };
 
     // Apply sorting whenever sort state changes
@@ -51,7 +62,7 @@ const SelectTable = ({
         setFilteredData(sortedData);
     }, [sortColumn, sortOrder]);
 
-    // Handle row selection
+    // ✅ Handle row selection when clicking the row
     const handleRowSelect = (row) => {
         let newSelectedRows;
 
@@ -61,8 +72,8 @@ const SelectTable = ({
                 ? selectedRows.filter((selected) => selected.id !== row.id)
                 : [...selectedRows, row];
         } else {
-            // Single selection mode
-            newSelectedRows = [row];
+            // Single selection mode - select row when clicked, remove previous selection
+            newSelectedRows = selectedRows[0]?.id === row.id ? [] : [row];
         }
 
         setSelectedRows(newSelectedRows);
@@ -71,31 +82,43 @@ const SelectTable = ({
 
     return (
         <div>
-            <div className="d-flex gap-2 align-items-center mb-3">
-                {/* Search Bar */}
-                <SearchBar tableId={id} placeholder="Search..." />
+            <Row className="gap-2 align-items-center mb-3">
+                <Col>
+                    <SearchBar
+                        tableId={id}
+                        gridviewId={id}
+                        placeholder="Search for data..."
+                        onSearch={(query) => handleSearch(query)}
+                    />
+                </Col>
 
-                {/* Filter Component */}
-                <Filter columns={columns} data={data} onFilter={setFilteredData} />
-
-                {/* Sorting Component */}
-                <SortTable
-                    data={filteredData}
-                    setSortedData={setFilteredData}
-                    columns={columns}
-                    sortColumn={sortColumn}
-                    setSortColumn={setSortColumn}
-                    sortOrder={sortOrder}
-                    setSortOrder={setSortOrder}
-                />
-            </div>
+                <Col md="auto">
+                    <div className="d-flex gap-2">
+                        <Filter
+                            columns={columns}
+                            data={data}
+                            onFilter={setFilteredData}
+                            tableId={id}
+                        />
+                        <SortTable
+                            data={filteredData}
+                            setSortedData={setFilteredData}
+                            columns={columns}
+                            sortColumn={sortColumn}
+                            setSortColumn={setSortColumn}
+                            sortOrder={sortOrder}
+                            setSortOrder={setSortOrder}
+                        />
+                    </div>
+                </Col>
+            </Row>
 
             {/* Table Component */}
             <div className="table-container">
                 <table className="table ae-table" id={id}>
                     <thead>
                         <tr>
-                            <th>Select</th>
+                            {multiSelect && <th>Select</th>}
                             {columns.map((column) => (
                                 <th key={column.dbcol} onClick={() => handleSorting(column.dbcol, sortOrder)}>
                                     {column.headname} {sortColumn === column.dbcol && (sortOrder === "asc" ? "▲" : "▼")}
@@ -106,15 +129,23 @@ const SelectTable = ({
                     <tbody>
                         {filteredData.length > 0 ? (
                             filteredData.map((row) => (
-                                <tr key={row.id}>
-                                    <td>
-                                        <input
-                                            type={multiSelect ? "checkbox" : "radio"}
-                                            name="selection"
-                                            checked={selectedRows.some((selected) => selected.id === row.id)}
-                                            onChange={() => handleRowSelect(row)}
-                                        />
-                                    </td>
+                                <tr
+                                    key={row.id}
+                                    onClick={() => handleRowSelect(row)}
+                                    className={selectedRows.some((selected) => selected.id === row.id) ? "selected-row" : ""}
+                                    style={{
+                                        cursor: "pointer"
+                                    }}
+                                >
+                                    {multiSelect && (
+                                        <td>
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedRows.some((selected) => selected.id === row.id)}
+                                                onChange={() => handleRowSelect(row)}
+                                            />
+                                        </td>
+                                    )}
                                     {columns.map((column) => (
                                         <td key={column.dbcol}>{row[column.dbcol]}</td>
                                     ))}
@@ -122,7 +153,7 @@ const SelectTable = ({
                             ))
                         ) : (
                             <tr>
-                                <td colSpan={columns.length + 1}>No data available</td>
+                                <td colSpan={columns.length + (multiSelect ? 1 : 0)}>No data available</td>
                             </tr>
                         )}
                     </tbody>

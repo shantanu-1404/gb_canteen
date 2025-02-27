@@ -31,7 +31,7 @@ const LeftSidebar = ({ isVisible }) => {
       <div id="left" className={`left ${isVisible ? 'show' : ''}`}></div>
       <div id="left" className={`left-container ${isVisible ? 'show' : ''}`} style={{ width: '287px' }}>
         {/* Home Link */}
-        <Link to="/home" className="home-text">
+        <Link to="/gb_canteen" className="home-text">
           <div className="home-rectangle">
             <i className="bi bi-columns-gap home-icon"></i> Home
           </div>

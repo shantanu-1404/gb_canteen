@@ -1971,7 +1971,25 @@ select.form-control {
 .badge {
   padding: 0.5em 1em;
   border-radius: 4px;
+  width: auto;
+  border-width: 1px;
+  border-style: solid;
+  margin: 0;
 }
+
+.blue{
+  color: #089CFF;
+  background-color: #F4FBFF;
+}
+.purpul{
+  color: #7021A4;
+  background-color: #EADBFE;
+}
+.voilet{
+  color: #6A62FF;
+  background-color: #E7E7FC;
+}
+
 
 .badge-shipped {
   background-color: #28a745;
@@ -2915,6 +2933,9 @@ li.active a {
   border-radius: 0;
 }
 
+.table-btn .dropdown-menu{
+  inset: 0px  0px auto auto !important;
+}
 
 .table-btn .dropdown-item:active,
 .table-btn .dropdown-item:focus,

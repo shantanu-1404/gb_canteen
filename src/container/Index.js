@@ -44,12 +44,14 @@ const Index = () => {
     const tableRef = useRef();
 
     const columns = [
-        { headname: "AAAA", dbcol: "col1" },
-        { headname: "BBBB", dbcol: "col2" },
-        { headname: "CCCC", dbcol: "col3" },
-        { headname: "DDDD", dbcol: "col4" },
-        { headname: "EEEE", dbcol: "col5" },
-        { headname: "FFFF", dbcol: "col6" },
+        { headname: "text", type: "", dbcol: "col1" },
+        { headname: "img", type: "img", dbcol: "col2" },
+        { headname: "badge", type: "badge", dbcol: "col3" },
+        { headname: "tags", type: "tags", dbcol: "col4" },
+        { headname: "time", type: "time", dbcol: "col5" },
+        { headname: "rating", type: "rating", dbcol: "col6" },
+        { headname: "currency", type: "currency", dbcol: "col7" },
+        { headname: "country", type: "country", dbcol: "col8" }
     ];
 
 

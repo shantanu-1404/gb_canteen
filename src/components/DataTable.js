@@ -34,8 +34,8 @@ const DataTable = ({
     setSortOrder(order);
   };
 
-   // Handle search query
-   const handleSearch = (query) => {
+  // Handle search query
+  const handleSearch = (query) => {
     // Apply search filter on existing data (combined with any existing filter)
     const searchedData = data.filter((item) => {
       return Object.values(item).some((value) =>
@@ -135,14 +135,19 @@ const DataTable = ({
           paginated={paginated}
         />
       ) : (
-        <GridView
-          gridviewId={id}
-          data={filteredData} // Pass filteredData to GridView
-          columns={columns}
-          sortColumn={sortColumn} // Pass sortColumn to GridView
-          sortOrder={sortOrder} // Pass sortOrder to GridView
-          viewType={view}
-        />
+        <>
+          {
+            children ? <Row>{children}</Row> :
+              <GridView
+                gridviewId={id}
+                data={filteredData} // Pass filteredData to GridView
+                columns={columns}
+                sortColumn={sortColumn} // Pass sortColumn to GridView
+                sortOrder={sortOrder} // Pass sortOrder to GridView
+                viewType={view}
+              />
+          }
+        </>
       )}
     </div>
   );

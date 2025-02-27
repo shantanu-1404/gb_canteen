@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import RowsPerPageSelector from "./RowsPerPageSelector";
+import moment from "moment"; // ✅ For formatting time
+import { useState as useAsyncState } from "react";
 import SortTable from "./SortTable";
 const Table = ({
   id,
@@ -16,6 +18,7 @@ const Table = ({
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState([]);
+  const [countryFlags, setCountryFlags] = useAsyncState({});
 
   const startIndex = paginated ? (currentPage - 1) * rowsPerPage : 0;
   const endIndex = paginated ? startIndex + rowsPerPage : filteredData.length;
@@ -29,14 +32,27 @@ const Table = ({
     setSortedData(filteredData);
   }, [filteredData]);
 
-  const handleSort = (column) => {
-    if (sortColumn === column) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((response) => response.json())
+      .then((data) => {
+        const flags = {};
+        data.forEach((country) => {
+          flags[country.name.common] = country.flags.svg;
+        });
+        setCountryFlags(flags);
+      })
+      .catch((error) => console.error("Error fetching country flags:", error));
+  }, []);
+
+  useEffect(() => {
+    if (sortColumn && sortOrder) {
+      const sorted = sortData(data, sortColumn, sortOrder);
+      setSortedData(sorted);
     } else {
-      setSortColumn(column);
-      setSortOrder("asc");
+      setSortedData(data);
     }
-  };
+  }, [data, sortColumn, sortOrder]);
 
   const sortData = (data, column, order) => {
     return data.sort((a, b) => {
@@ -66,15 +82,14 @@ const Table = ({
     });
   };
 
-  useEffect(() => {
-    if (sortColumn && sortOrder) {
-      const sorted = sortData(data, sortColumn, sortOrder); // Use the local function directly
-      setSortedData(sorted);
+  const handleSort = (column) => {
+    if (sortColumn === column) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
-      setSortedData(data); // Reset to default if no sorting applied
+      setSortColumn(column);
+      setSortOrder("asc");
     }
-  }, [data, sortColumn, sortOrder]);
-
+  };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -93,8 +108,102 @@ const Table = ({
     );
   };
 
-  // Function to render cell content (Handles nested objects)
-  const renderCellContent = (value) => {
+  const badgeColors = {
+    positive: "positive_garph",
+    negative: "critical",
+    pending: "pending",
+    default: ["blue", "purpul", "voilet"],
+  };
+
+  // ✅ Stores assigned colors to ensure consistency
+  const badgeColorMap = new Map();
+
+  const getBadgeClass = (value) => {
+    const lowerValue = String(value).toLowerCase().trim();
+
+    // ✅ Predefined categories
+    if (["completed", "published", "true", "active", "confirmed", "positive"].includes(lowerValue))
+      return badgeColors.positive;
+
+    if (["negative", "inactive", "false", "critical"].includes(lowerValue))
+      return badgeColors.negative;
+
+    if (["pending"].includes(lowerValue)) return badgeColors.pending;
+
+    // ✅ If value already has a color assigned, return it
+    if (badgeColorMap.has(lowerValue)) return badgeColorMap.get(lowerValue);
+
+    // ✅ Assign a new color from `default` and store it
+    const newColor = badgeColors.default[badgeColorMap.size % badgeColors.default.length];
+    badgeColorMap.set(lowerValue, newColor);
+
+    return newColor;
+  };
+
+
+  // ✅ Function to handle all cell types including nested objects
+  const renderCellContent = (column, value) => {
+    const type = column.type || "text";
+
+
+
+    if (type === "img") return <img src={value} alt="img" style={{ width: "100%", height: "40px", borderRadius: "5px" }} />;
+
+    if (type === "badge") return <span className={`badge ${getBadgeClass(value)}`}>{value}</span>;
+
+    if (type === "tags")
+      return (
+        <div className="tags-container">
+          {Array.isArray(value)
+            ? value.map((tag, i) => (
+              <span key={i} className={`badge ${getBadgeClass(value)} mx-1`}>
+                {tag}
+              </span>
+            ))
+            :
+
+            <span
+              className={`badge ${getBadgeClass(value)} mx-1`}
+            >
+              {value}
+            </span>
+          }
+        </div>
+      );
+
+    if (type === "time") {
+      const now = moment();
+      const inputTime = moment(value);
+      const diffHours = now.diff(inputTime, "hours");
+      const diffDays = now.diff(inputTime, "days");
+
+      if (diffHours < 1) return <span>{inputTime.fromNow()}</span>; // ✅ "Just now", "2 min ago"
+      if (diffDays < 1) return <span>{inputTime.fromNow()}</span>; // ✅ "3 hours ago"
+      if (diffDays === 1) return <span>Yesterday</span>; // ✅ "Yesterday"
+
+      return <span>{inputTime.format("Do MMM YYYY")}</span>;
+    }
+
+    if (type === "rating") {
+      const rating = Math.min(Math.max(Number(value), 0), 5);
+      return <span>{"★".repeat(rating)}{"☆".repeat(5 - rating)}</span>;
+    }
+
+    if (type === "currency") {
+      return <span>${parseFloat(value).toFixed(2)}</span>;
+    }
+
+    if (type === "country") {
+      return countryFlags[value] ? (
+        <>
+          <img src={countryFlags[value]} alt={value} title={value} style={{ width: "30px", height: "20px" }} /> {value}
+        </>
+      ) : (
+        value
+      );
+    }
+
+
     if (typeof value === "object" && value !== null) {
       return (
         <div className="nested-object">
@@ -106,8 +215,11 @@ const Table = ({
         </div>
       );
     }
+
     return value;
   };
+
+
 
   return (
     <div
@@ -131,15 +243,9 @@ const Table = ({
               />
             </th>
             {columns.map((column) => (
-              <th
-                key={column.dbcol}
-                onClick={() => handleSort(column.dbcol)}
-                style={{ cursor: "pointer" }}
-              >
+              <th key={column.dbcol} onClick={() => handleSort(column.dbcol)} style={{ cursor: "pointer" }}>
                 {column.headname.toUpperCase()}
-                {sortColumn === column.dbcol && (
-                  <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>
-                )}
+                {sortColumn === column.dbcol && <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>}
               </th>
             ))}
           </tr>
@@ -149,16 +255,10 @@ const Table = ({
             currentData.map((row, index) => (
               <tr key={index}>
                 <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.includes(startIndex + index)}
-                    onChange={() => handleCheckboxChange(startIndex + index)}
-                  />
+                  <input type="checkbox" checked={selectedRows.includes(startIndex + index)} onChange={() => handleCheckboxChange(startIndex + index)} />
                 </td>
                 {columns.map((column) => (
-                  <td data-col={column.dbcol} key={column.dbcol}>
-                    {renderCellContent(row[column.dbcol])}
-                  </td>
+                  <td key={column.dbcol}>{renderCellContent(column, row[column.dbcol])}</td>
                 ))}
               </tr>
             ))
@@ -169,7 +269,6 @@ const Table = ({
           )}
         </tbody>
       </table>
-
       {paginated ? (
         <>
           <br />

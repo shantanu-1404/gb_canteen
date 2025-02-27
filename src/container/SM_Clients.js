@@ -121,8 +121,6 @@ const SM_Clients = () => {
         sortable={true}
         paginated={true}
       >
-  
-        
         <Row>
           {clientData.map((client, index) => (
             <SM_ClientCard key={index} client={client} />

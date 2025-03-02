@@ -42,7 +42,7 @@ const SM_Project = () => {
 
                 </div>
                 <div className="text-right gap-3 d-flex">
-                    <Button buttonType="add" onClick={() => navigate("/social-media/AddNewProject")} label="Add New" />
+                    <Button buttonType="add" onClick={() => navigate("/add-project")} label="Add New" />
                 </div>
             </div>
             <DataTable

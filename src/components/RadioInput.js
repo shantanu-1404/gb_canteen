@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const RadioInput = ({
-    label = "Select an Option",
+    label = "",
     name = "radioOptions",
     options = [],
     required = false,

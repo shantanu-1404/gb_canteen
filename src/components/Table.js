@@ -3,6 +3,7 @@ import RowsPerPageSelector from "./RowsPerPageSelector";
 import moment from "moment"; // ✅ For formatting time
 import { useState as useAsyncState } from "react";
 import SortTable from "./SortTable";
+import Button from "../components/Button";
 const Table = ({
   id,
   tableRef,
@@ -11,6 +12,7 @@ const Table = ({
   filteredData,
   setFilteredData,
   paginated = true,
+  handleButtonClick,
 }) => {
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
@@ -25,8 +27,10 @@ const Table = ({
   const currentData = filteredData.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
-
-
+  const handleEditClick = (rowData) => {
+    console.log("Editing row:", rowData);
+    // You can implement the logic to edit the row or open a modal to edit the content
+  };
 
   useEffect(() => {
     setSortedData(filteredData);
@@ -122,7 +126,16 @@ const Table = ({
     const lowerValue = String(value).toLowerCase().trim();
 
     // ✅ Predefined categories
-    if (["completed", "published", "true", "active", "confirmed", "positive"].includes(lowerValue))
+    if (
+      [
+        "completed",
+        "published",
+        "true",
+        "active",
+        "confirmed",
+        "positive",
+      ].includes(lowerValue)
+    )
       return badgeColors.positive;
 
     if (["negative", "inactive", "false", "critical"].includes(lowerValue))
@@ -134,40 +147,41 @@ const Table = ({
     if (badgeColorMap.has(lowerValue)) return badgeColorMap.get(lowerValue);
 
     // ✅ Assign a new color from `default` and store it
-    const newColor = badgeColors.default[badgeColorMap.size % badgeColors.default.length];
+    const newColor =
+      badgeColors.default[badgeColorMap.size % badgeColors.default.length];
     badgeColorMap.set(lowerValue, newColor);
 
     return newColor;
   };
 
-
   // ✅ Function to handle all cell types including nested objects
-  const renderCellContent = (column, value) => {
+  const renderCellContent = (column, value, rowData) => {
     const type = column.type || "text";
 
+    if (type === "img")
+      return (
+        <img
+          src={value}
+          alt="img"
+          style={{ width: "100%", height: "40px", borderRadius: "5px" }}
+        />
+      );
 
-
-    if (type === "img") return <img src={value} alt="img" style={{ width: "100%", height: "40px", borderRadius: "5px" }} />;
-
-    if (type === "badge") return <span className={`badge ${getBadgeClass(value)}`}>{value}</span>;
+    if (type === "badge")
+      return <span className={`badge ${getBadgeClass(value)}`}>{value}</span>;
 
     if (type === "tags")
       return (
         <div className="tags-container">
-          {Array.isArray(value)
-            ? value.map((tag, i) => (
+          {Array.isArray(value) ? (
+            value.map((tag, i) => (
               <span key={i} className={`badge blue mx-1`}>
                 {tag}
               </span>
             ))
-            :
-
-            <span
-              className={`badge blue mx-1`}
-            >
-              {value}
-            </span>
-          }
+          ) : (
+            <span className={`badge blue mx-1`}>{value}</span>
+          )}
         </div>
       );
 
@@ -186,7 +200,12 @@ const Table = ({
 
     if (type === "rating") {
       const rating = Math.min(Math.max(Number(value), 0), 5);
-      return <span className="rating">{"★".repeat(rating)}{"☆".repeat(5 - rating)}</span>;
+      return (
+        <span className="rating">
+          {"★".repeat(rating)}
+          {"☆".repeat(5 - rating)}
+        </span>
+      );
     }
 
     if (type === "currency") {
@@ -196,13 +215,68 @@ const Table = ({
     if (type === "country") {
       return countryFlags[value] ? (
         <>
-          <img src={countryFlags[value]} alt={value} title={value} style={{ width: "30px", height: "20px" }} /> {value}
+          <img
+            src={countryFlags[value]}
+            alt={value}
+            title={value}
+            style={{ width: "30px", height: "20px" }}
+          />{" "}
+          {value}
         </>
       ) : (
         value
       );
     }
+    if (type === "button") {
+      return (
+        <Button
+          buttonType="edit"
+          label="Edit"
+          onClick={() => handleEditClick(rowData)}
+          className="edit-button"
+          style={{ fontSize: "13px", width: "10px" }} // Additional inline styling
+        />
+      );
+    }
+    // If the column type is "progress" and the value represents progress (e.g., "Ordered", "Completed", etc.)
+    if (type === "progress") {
+      const progressValue = value; // This should represent the current progress as a fraction (e.g., "2/10", "5/10")
+      const [completed, total] = progressValue.split("/").map(Number);
 
+      let progressBarColor = "#D9D9D9"; // Default color for Pending
+      let progressText = `${completed}/${total}`;
+
+      // Logic for Ordered/Completed and Pending
+      if (completed === total) {
+        progressBarColor = "#BDE275"; // Green for Ordered/Completed
+      } else if (completed === 0) {
+        progressBarColor = "#D9D9D9"; // Grey for Pending
+      } else if (completed > 0 && completed < total) {
+        // Mixed colors for half completed and half pending
+        progressBarColor = `linear-gradient(to right, #BDE275 ${
+          (completed / total) * 100
+        }%, #FFB3B3 ${(completed / total) * 100}%)`;
+      }
+
+      return (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="progress" >
+            <div
+              className="progressbar"
+              style={{
+                width: `${(completed / total) * 100}%`,
+                backgroundColor: progressBarColor,
+              }}
+              role="progressbar"
+              aria-valuenow={completed}
+              aria-valuemin="0"
+              aria-valuemax={total}
+            ></div>
+          </div>
+          <span style={{ marginLeft: "10px" }}>{progressText}</span>
+        </div>
+      );
+    }
 
     if (typeof value === "object" && value !== null) {
       return (
@@ -219,12 +293,11 @@ const Table = ({
     return value;
   };
 
-
-
   return (
     <div
-      className={`table-container list-view section_card ${!paginated ? "scrollable-table" : ""
-        }`}
+      className={`table-container list-view section_card ${
+        !paginated ? "scrollable-table" : ""
+      }`}
     >
       <table className="table ae-table" ref={tableRef} id={id}>
         <thead>
@@ -243,9 +316,15 @@ const Table = ({
               />
             </th>
             {columns.map((column) => (
-              <th key={column.dbcol} onClick={() => handleSort(column.dbcol)} style={{ cursor: "pointer" }}>
+              <th
+                key={column.dbcol}
+                onClick={() => handleSort(column.dbcol)}
+                style={{ cursor: "pointer" }}
+              >
                 {column.headname.toUpperCase()}
-                {sortColumn === column.dbcol && <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>}
+                {sortColumn === column.dbcol && (
+                  <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>
+                )}
               </th>
             ))}
           </tr>
@@ -255,10 +334,16 @@ const Table = ({
             currentData.map((row, index) => (
               <tr key={index}>
                 <td>
-                  <input type="checkbox" checked={selectedRows.includes(startIndex + index)} onChange={() => handleCheckboxChange(startIndex + index)} />
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(startIndex + index)}
+                    onChange={() => handleCheckboxChange(startIndex + index)}
+                  />
                 </td>
                 {columns.map((column) => (
-                  <td key={column.dbcol}>{renderCellContent(column, row[column.dbcol])}</td>
+                  <td key={column.dbcol}>
+                    {renderCellContent(column, row[column.dbcol])}
+                  </td>
                 ))}
               </tr>
             ))
@@ -278,7 +363,10 @@ const Table = ({
               rowsPerPage={rowsPerPage}
               setRowsPerPage={handleRowsPerPageChange}
             />
-            <div className="btn-sack position-relative" style={{ padding: "10px" }}>
+            <div
+              className="btn-sack position-relative"
+              style={{ padding: "10px" }}
+            >
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}

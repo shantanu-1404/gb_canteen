@@ -8,11 +8,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const DateInput = ({
-    label = "Date",
+    label = "Date" ,
     name = "date",
     info = "",
     type = "all", // "all" (default), "past", "future", or "range"
     includeTime = false, // Enable time selection
+    
 }) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);

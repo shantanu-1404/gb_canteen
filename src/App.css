@@ -1471,7 +1471,7 @@ select.form-control {
 
 .file-preview.success .preview-content {
   border: 1px solid #11AF22;
-  width:auto;
+  width: auto;
 }
 
 .file-preview.error .preview-content {
@@ -1838,7 +1838,7 @@ select.form-control {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 5px;
-  
+
 }
 
 .view-buttons a {
@@ -3704,21 +3704,22 @@ canvas {
   color: #253154;
   font-weight: bold;
 }
+
 /* Styling for the delete button */
 .delete-btn {
-  background-color: #880d09; 
-  border: none; 
+  background-color: #880d09;
+  border: none;
   color: white;
-  padding: 8px 12px; 
-  border-radius: 5px; 
+  padding: 8px 12px;
+  border-radius: 5px;
   cursor: pointer;
-  display: inline-flex; 
-  justify-content: center; 
-  align-items: center; 
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .delete-btn:hover {
-  background-color: #b8402f; 
+  background-color: #b8402f;
 }
 
 .delete-btn i {
@@ -3732,7 +3733,7 @@ canvas {
 
 
 .nav-link-tabs {
-  color:  #253154;
+  color: #253154;
   border-radius: 12px;
   padding: 12px 20px;
   margin-top: 12px;
@@ -3745,14 +3746,19 @@ canvas {
   justify-content: center;
   align-items: center;
 }
-.nav-link-tabs:hover{
+
+.nav-link-tabs:hover {
   background-color: #19052c;
 }
+
 /* Active tab style */
 .nav-link-tabs.active {
-  color: #ffffff; /* Active color (for text) */
-  background-color: #19052c; /* Background color for active tab */
-  border-bottom: 2px solid #0E032F; /* Optional border at the bottom of the active tab */
+  color: #ffffff;
+  /* Active color (for text) */
+  background-color: #19052c;
+  /* Background color for active tab */
+  border-bottom: 2px solid #0E032F;
+  /* Optional border at the bottom of the active tab */
 }
 
 
@@ -3776,7 +3782,7 @@ canvas {
   background-color: #D9D9D9;
   transition: var(--bs-progress-bar-transition);
   width: 100px;
-  height:8px;
+  height: 8px;
 }
 
 .tab-progressbar {
@@ -3787,7 +3793,7 @@ canvas {
   color: var(--bs-progress-bar-color);
   text-align: center;
   white-space: nowrap;
-  background-color:#BDE275;
+  background-color: #BDE275;
   transition: var(--bs-progress-bar-transition);
 
 }
@@ -4080,6 +4086,14 @@ canvas {
     z-index: 7;
   }
 
+  .post-preview-container .btn {
+    margin-bottom: 2px;
+  }
+
+  .post-preview-container .btn .rounded-pill {
+    font-size: 10px;
+  }
+
   .ie-btn .dropdown .a-btn-primary i,
   .ie-btn .dropdown.btn i {
     padding: 5px;
@@ -4226,10 +4240,11 @@ canvas {
     font-size: 10px;
   }
 
-  .table-searchbar i{
+  .table-searchbar i {
     padding: 12px 10px;
   }
-  .table-searchbar .aetabletag-input{
+
+  .table-searchbar .aetabletag-input {
     padding-left: 30px;
   }
 }

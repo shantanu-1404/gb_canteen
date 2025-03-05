@@ -4055,7 +4055,9 @@ canvas {
   .home_table label {
     font-size: 12px;
   }
-  .home_table p, .home_bottom p{
+
+  .home_table p,
+  .home_bottom p {
     font-size: 10px;
   }
 
@@ -4064,11 +4066,11 @@ canvas {
     top: 0px;
   }
 
-  .positive_garph{
+  .positive_garph {
     margin: 0;
   }
 
-  .profile-pic{
+  .profile-pic {
     height: 54px;
   }
 
@@ -4086,6 +4088,13 @@ canvas {
     padding: 10px;
   }
 
+  .section_card p {
+    font-size: 12px;
+  }
+
+  .section_card strong {
+    font-size: 12px;
+  }
 
   .ie-btn {
     flex-wrap: wrap;
@@ -4097,7 +4106,7 @@ canvas {
     margin: 3px;
     font-size: 12px;
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px 5px;
     min-width: 60px;
   }
 
@@ -4272,7 +4281,25 @@ canvas {
 
   .table-searchbar .aetabletag-input {
     padding-left: 30px;
+    font-size: 12px;
+
   }
+
+  .table td {
+    font-size: 10px;
+  }
+
+  .table th {
+    font-size: 12px;
+  }
+
+
+
+
+
+
+
+
 }
 
 

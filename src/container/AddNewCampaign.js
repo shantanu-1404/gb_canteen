@@ -163,7 +163,7 @@ const AddNewCampaign = () => {
 
                         {selectedAudience === "3" && (
                             <Row>
-                                <Col>
+                                <Col md>
                                     <SelectComponent
                                         label="Select Type"
                                         listStyle="col-md-6"
@@ -173,7 +173,7 @@ const AddNewCampaign = () => {
                                         onChange={setLooklikeAudience}
                                     />
                                 </Col>
-                                <Col>
+                                <Col md>
                                     {/* Conditional Inputs for Lookalike Audiences */}
                                     {looklikeAudience === "1" && (
                                         <TextInput label="Top Spend" type="number" placeholder="Amount" />
@@ -271,14 +271,14 @@ const AddNewCampaign = () => {
                             </label>
                         </div>
                         <Row>
-                            <Col>
+                            <Col md>
                                 <TextInput
                                     label="Daily Budget"
                                     type="number"
                                     placeholder="Daily Budget"
                                 />
                             </Col>
-                            <Col>
+                            <Col md>
                                 <TextInput
                                     label="Lifetime Budget"
                                     type="number"

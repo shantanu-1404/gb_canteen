@@ -9,68 +9,60 @@ import Col from "react-bootstrap/Col";
 import DataTable from "../components/DataTable";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
-import blogsdata from "../assets/json/blogsdata.json";
-import logsdata from "../assets/json/logsdata.json";
+import vendordata from "../assets/json/vendordata.json";
+import DateInput from "../components/DateInput";
 
-const Blogs = () => {
+const VendorOnboarding = () => {
   const tableRef = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const columns = [
-    { headname: "Image", type: "img", dbcol: "col1" },
-    { headname: "Title", type: "", dbcol: "col2" },
-    { headname: "Posted by", type: "", dbcol: "col3" },
-    { headname: "Visibility", type: "", dbcol: "col4" },
-    { headname: "tags", type: "tags", dbcol: "col5" },
-    { headname: "Category", type: "", dbcol: "col6" },
-    { headname: "Date and time", type: "time", dbcol: "col7" },  
-    { headname: "", type: "progress", dbcol: "col8" },
+    { headname: "Restaurant name", type: "", dbcol: "col1" },
+    { headname: "Owner", type: "", dbcol: "col2" },
+    { headname: "STATUS", type: "badge", dbcol: "col3" },
+    { headname: "Cuisines", type: "", dbcol: "col4" },
+    { headname: "Location", type: "", dbcol: "col5" },
+    { headname: "Total Orders", type: "", dbcol: "col6" },
+    { headname: "Commission", type: "", dbcol: "col7" },
+    { headname: "Revenue", type: "", dbcol: "col8" },
   ];
-  const columns1 = [ 
-    { headname: "id", type: "id", dbcol: "col1" },
-    { headname: "Title", type: "", dbcol: "col2" },
-    { headname: "Deleted at", type: "time", dbcol: "col3" },
-    { headname: "Action by", type: "", dbcol: "col4" },
-    { headname: "Action Taken", type: "", dbcol: "col5" },
-  ];
+  // ✅ Refresh page
+  const handleRefresh = () => {
+    window.location.reload(); // This will refresh the page
+  };
 
   return (
     <Layout>
-      <div className=" gap-2 d-flex justify-content-end">
-        <Button buttonType="import" label="Import" />
-        <Button buttonType="export" label="Export" />
-        <Button
-          type="submit"
-          label="Logs"
-          className="a-btn-primary"
-          onClick={() => setModalOpen(true)}
-        />
-
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setModalOpen(false)}
-          title="Logs"
-        >
-          <DataTable
-            id="table1"
-            tableRef={tableRef}
-            columns={columns1}
-            data={logsdata}
-            defaultView="table"
-            searchable={true}
-            filterable={true}
-            sortable={true}
-            paginated={false}
+      <div className="d-flex justify-content-between">
+        <div className="mt-3 d-flex align-items-center">
+          <div className="d-flex gap-5 ">
+            <DateInput label="" type="range" includeTime={false} />
+          </div>
+          {/* Refresh Button */}
+          <div className=" mb-2 ps-3 ">
+            <i
+              className="bi bi-arrow-repeat icon-refresh"
+              onClick={handleRefresh}
+            ></i>
+          </div>
+        </div>
+        <div className="text-right gap-3 d-flex">
+          <Button buttonType="import" label="Import" />
+          <Button buttonType="export" label="Export" />
+          <Button
+            buttonType="add"
+            onClick={() => navigate("")}
+            label="Add New"
           />
-        </Modal>
-        <Button buttonType="add" label="Add New"  onClick={() => navigate("/add-blogs")} />
+        </div>
       </div>
+
       <div className="card-container gap-4 flex-wrap">
         <Row>
           <Col xs={4} md={3}>
             <MetricCard
-              title="Blogs Live"
+              title="Total Active Restaurants"
               operation="count"
               column="col1"
               tableRef={tableRef}
@@ -80,7 +72,7 @@ const Blogs = () => {
           </Col>
           <Col xs={4} md={3}>
             <MetricCard
-              title="Draft Blog"
+              title="Pending Approvals"
               operation="count"
               column="col2"
               tableRef={tableRef}
@@ -90,7 +82,7 @@ const Blogs = () => {
           </Col>
           <Col xs={4} md={3}>
             <MetricCard
-              title="Total Views"
+              title="Average Approval Time"
               operation="total"
               column="col4"
               tableRef={tableRef}
@@ -100,22 +92,12 @@ const Blogs = () => {
           </Col>
           <Col xs={4} md={3}>
             <MetricCard
-              title="Total Users"
+              title="Average Revenue Share"
               operation="count"
               column="col2"
               tableRef={tableRef}
               icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Users" // Tooltip for additional context
-            />
-          </Col>
-          <Col xs={4} md={3}>
-            <MetricCard
-              title="New Comments"
-              operation="count"
-              column="col1"
-              tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-              tooltipText="This shows the New Comments" // Tooltip for additional context
             />
           </Col>
         </Row>
@@ -125,7 +107,7 @@ const Blogs = () => {
         id="table1"
         tableRef={tableRef}
         columns={columns}
-        data={blogsdata}
+        data={vendordata}
         defaultView="table"
         searchable={true}
         filterable={true}
@@ -136,4 +118,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default VendorOnboarding;

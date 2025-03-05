@@ -17,7 +17,19 @@ import AddNewClient from "./container/AddNewClient"
 import Analytics from "./container/Analytics"
 import AddSubsection from "./container/test";
 import AddNewBlogs from './container/AddNewBlogs';
+import AddNewProduct from './container/AddNewProduct';
 import Blogs from './container/Blogs';
+import Products from './container/Products';
+import Collections from './container/Collections';
+import AddNewCollection from './container/AddNewCollection';
+import OnlineStore from './container/OnlineStore';
+import Preferences from "./container/OS-Preferences";
+import VendorOnboarding from "./container/VendorOnboarding";
+import AddNewVendor from './container/AddNewVendor';
+import InventoryManagement from './container/InventoryManagement';
+import GiftCrads from './container/GiftCards';
+import AddNewGiftCard from './container/AddNewGiftCard';
+
 
 
 
@@ -50,6 +62,19 @@ const App = () => {
         <Route path="/add-client" element={<AddNewClient />} />
         <Route path="/add-blogs" element={<AddNewBlogs />} />
         <Route path="/container/test" element={<AddSubsection />} />
+        <Route path="/blogs" element={<Blogs />} />       
+        <Route path="/onlinestore" element={<OnlineStore/>} />
+        <Route path="/os-preferences" element={<Preferences/>} />
+        <Route path="/vendoronboarding" element={<VendorOnboarding/>} />
+        <Route path="/add-vendor" element={<AddNewVendor/>} />
+        <Route path="/add-product" element={<AddNewProduct />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/collections" element={<Collections />} />
+        <Route path="/add-collections" element={<AddNewCollection/>} />
+        <Route path="/products/inventory-management" element={<InventoryManagement/>} />
+        <Route path="/products/giftcards" element={<GiftCrads/>} />
+        <Route path="/add-giftcards" element={<AddNewGiftCard/>} />
+
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/search" element={<Index />} />
         <Route path="/notification" element={<Index />} />

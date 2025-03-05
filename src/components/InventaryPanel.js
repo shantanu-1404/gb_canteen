@@ -6,6 +6,7 @@ import TextInput from "../components/TextInput";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CheckboxInput from "../components/CheckboxInput";
+import DatePicker from "react-flatpickr";
 
 const TabComponent = () => {
   // Set the default active tab
@@ -23,30 +24,80 @@ const TabComponent = () => {
   const [selectedSingle, setSelectedSingle] = useState("");
   const [selectedMulti, setSelectedMulti] = useState([]);
 
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const radioOptions = [
+    { label: "Worldwide delivery", value: "option3" },
+    { label: "Selected Areas", value: "option4" },
+    { label: "Local delivery", value: "option5" },
+  ];
+
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null); // State to hold selected date
+  const [minDate, setMinDate] = useState(new Date()); // Minimum date (can be set to any specific date)
+  const [maxDate, setMaxDate] = useState(
+    new Date().setFullYear(new Date().getFullYear() + 1)
+  ); // Maximum date (1 year from today)
+
+  // Handle checkbox change
+  const handleCheckboxChange = (checked) => {
+    setIsChecked(checked);
+  };
+
+  // Handle date change from DatePicker
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  // Options for the SelectComponent (Areas)
+  const areaOptions = [
+    { label: "Area 1", value: "area1" },
+    { label: "Area 2", value: "area2" },
+    { label: "Area 3", value: "area3" },
+  ];
   const options = [
     { value: "1", label: "Option 1" },
     { value: "2", label: "Option 2" },
     { value: "3", label: "Option 3" },
     { value: "4", label: "Option 4" },
   ];
-  const [selectedOption, setSelectedOption] = useState("");
 
-  const handleRadioChange = (value) => {
-    setSelectedOption(value); // Update the selected option
-    console.log("Selected option:", value); // You can do anything here with the value
+  // Handle the change of the selected area
+  const handleAreaChange = (selectedOption) => {
+    setSelectedArea(selectedOption); // Update the selected area
   };
-  const radioOptions = [
-    { label: "Worldwide delivery", value: "option3" },
-    { label: "Selected Areas", value: "option4" },
-    { label: "Local delivery", value: "option5" }
+
+  // Initialize with no value
+  const [selectedShipping, setSelectedShipping] = useState("");
+  // State to track the selected area from SelectComponent
+  const [selectedArea, setSelectedArea] = useState(null);
+
+  // Shipping options
+  const shipping = [
+    {
+      label: "Fulfilled by Seller",
+      value: "option1",
+      info: "You’ll be responsible for product delivery.Any damage or delay during shipping may cost you a Damage fee.",
+    },
+    {
+      label: "Fulfilled by Us",
+      value: "option2",
+      info: "Your product, Our responsibility.For a measly fee, we will handle the delivery process for you.",
+    },
   ];
 
-  const shipping = [
-    { label: "Fulfilled by Seller", value: "option1" },
-    { label: "Fulfilled by Us", value: "option2" }
-  ];
+  // Handle the change of the radio button
+  const handleRadioChange = (value) => {
+    setSelectedShipping(value); // Update selected shipping type
+  };
+
+  // Get additional info based on the selected shipping option
+  const selectedShippingInfo = shipping.find(
+    (option) => option.value === selectedShipping
+  )?.info;
+
   return (
-    <div className="form_section">
+    <div className="inventarypanel">
       <h6 className="card-title">Inventory</h6>
       <div className="d-flex align-items-start">
         {/* Tab Links (Vertical tabs) */}
@@ -116,18 +167,6 @@ const TabComponent = () => {
           >
             Attributes
           </a>
-
-          {/* Link for Advanced Tab */}
-          <a
-            className={`nav-link ${activeTab === "advanced" ? "active" : ""}`}
-            onClick={() => handleTabChange("advanced")}
-            id="v-pills-advanced-tab"
-            role="tab"
-            aria-controls="v-pills-advanced"
-            aria-selected={activeTab === "advanced"}
-          >
-            Advanced
-          </a>
         </div>
 
         {/* Tab Content */}
@@ -185,9 +224,11 @@ const TabComponent = () => {
                 isMulti={false}
                 onChange={setSelectedSingle}
               />
-              <button type="submit" className="a-btn-primary">
-                Add
-              </button>
+              <div className="form-group row p-3 gap-2 text-center">
+                <a type="submit" className="btn col-6 a-btn-primary">
+                  Add
+                </a>
+              </div>
             </Row>
             <div className="row">
               <strong className="col-md">Product in stock now -</strong>
@@ -195,11 +236,11 @@ const TabComponent = () => {
             </div>
             <div className="row">
               <strong className="col-md">Product in transit -</strong>
-              <span className="col-md">434</span>
+              <p className="col-md">434</p>
             </div>
             <div className="row">
               <strong className="col-md">Last time restocked -</strong>
-              <span className="col-md">1 Jan, 2025</span>
+              <p className="col-md">1 Jan, 2025</p>
             </div>
           </div>
 
@@ -214,13 +255,20 @@ const TabComponent = () => {
             tabIndex="0"
           >
             <h2>Shipping Type</h2>
+
+            {/* RadioInput for shipping options */}
             <RadioInput
-              name="optionsGroup"
+              name="shippingType"
               options={shipping}
-              required={true} // Make selection mandatory
-              info="You’ll be responsible for product delivery.Any damage or delay during shipping may cost you a Damage fee.."
               onChange={handleRadioChange}
             />
+
+            {/* Conditionally render additional info for selected shipping option */}
+            {selectedShippingInfo && (
+              <div>
+                <p>{selectedShippingInfo}</p>
+              </div>
+            )}
           </div>
 
           {/* Content for Delivery Tab */}
@@ -234,19 +282,30 @@ const TabComponent = () => {
             tabIndex="0"
           >
             <h2>Shipping Type</h2>
+
+            {/* RadioInput for shipping options */}
             <RadioInput
-              name="optionsGroup"
+              label="Select Shipping Type"
+              name="shippingType"
               options={radioOptions}
-              required={true} // Make selection mandatory
               onChange={handleRadioChange}
             />
-            <SelectComponent
-              label=""
-              name="singleSelect"
-              options={options}
-              isMulti={false}
-              onChange={setSelectedSingle}
-            />
+
+            {/* Conditionally render SelectComponent when "Selected Areas" is selected */}
+            {selectedShipping === "option4" && (
+              <SelectComponent
+                name="areaSelect"
+                options={areaOptions}
+                onChange={handleAreaChange}
+              />
+            )}
+
+            {/* Display the selected area */}
+            {selectedArea && (
+              <div>
+                <h4> {selectedArea.label}</h4>
+              </div>
+            )}
           </div>
 
           {/* Content for Attributes Tab */}
@@ -265,22 +324,30 @@ const TabComponent = () => {
                 <CheckboxInput label="Fragile Product" name="r1" />
                 <CheckboxInput label="Biodegradable" name="r2" />
                 <CheckboxInput label="Frozen Product" name="r3" />
-                <CheckboxInput label="Expiry Date of Product" name="r4" />
+                {/* CheckboxInput Component */}
+                <CheckboxInput
+                  label="Expiry Date of Product"
+                  name="expiry-checkbox"
+                  onChange={handleCheckboxChange}
+                />
+
+                {/* Conditionally render DatePicker if checkbox is checked */}
+                {isChecked && (
+                  <div>
+                    <label>Choose Expiry Date</label>
+                    <DatePicker
+                      style={{ paddingRight: "40px" }}
+                      className="form-control pl-5"
+                      selected={selectedDate}
+                      onChange={handleDateChange}
+                      minDate={minDate}
+                      maxDate={maxDate}
+                      dateFormat="yyyy-MM-dd" // Modify date format as needed
+                    />
+                  </div>
+                )}
               </Col>
             </Row>
-          </div>
-
-          {/* Content for Advanced Tab */}
-          <div
-            className={`tab-pane fade ${
-              activeTab === "advanced" ? "show active" : ""
-            }`}
-            id="v-pills-advanced"
-            role="tabpanel"
-            aria-labelledby="v-pills-advanced-tab"
-            tabIndex="0"
-          >
-            Advanced content goes here
           </div>
         </div>
       </div>

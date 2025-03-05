@@ -3,7 +3,7 @@ import Layout from './layout';
 
 
 
-const Metrics = () => {
+const Homepage = () => {
   return (
     <Layout>
     <div className="container">
@@ -239,4 +239,4 @@ const Metrics = () => {
   );
 };
 
-export default Metrics;
+export default Homepage;

@@ -5,6 +5,9 @@ const Button = ({
   buttonType = "", // 'import', 'export', 'add' ,'edit'
   label = "Button",
   onClick,
+  href = "#",
+  asLink = false,
+  btnStyle = "", // Default button style
   style = {}, // Pass the inline style here
   type = "button", // 'button' or 'submit'
 }) => {
@@ -30,16 +33,19 @@ const Button = ({
     }
   };
 
-  return (
-    <button
-      type={type}
-      className={`btn a-btn-primary ${buttonType}`}
-      onClick={onClick}
-      style={style} // Apply the passed inline style
-    >
+  return asLink ? (
+    // Render as <a> tag if asLink is true
+    <a href={href} className={`btn a-btn-primary ${btnStyle}`} onClick={onClick}>
       {buttonType === "add" && <i className={getIconClass()}></i>} {/* Icon on left for add */}
       {label}
-      {buttonType !== "add" && <i className={getIconClass()}></i>} {/* Icon on right for other types */}
+      {buttonType !== "add" && <i className={getIconClass()}></i>} {/* Icon on right for import/export */}
+    </a>
+  ) : (
+    // Render as <button> tag otherwise
+    <button type={type} style={style} className={`btn a-btn-primary ${btnStyle}`} onClick={onClick}>
+      {buttonType === "add" && <i className={getIconClass()}></i>} {/* Icon on left for add */}
+      {label}
+      {buttonType !== "add" && <i className={getIconClass()}></i>} {/* Icon on right for import/export */}
     </button>
   );
 };

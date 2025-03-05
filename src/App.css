@@ -1585,6 +1585,7 @@ select.form-control {
   padding: 5px 15px;
   background-color: #d0ffd869;
   margin: 0 15px;
+  text-wrap-mode: nowrap;
 }
 
 .positive_garph i {
@@ -4017,7 +4018,7 @@ canvas {
   }
 
   .container {
-    margin-inline: 5px;
+    margin-inline: 0px;
   }
 
   .section-pin {
@@ -4025,6 +4026,17 @@ canvas {
   }
 
   .md-refresh {
+    display: none;
+  }
+
+  .metrix p {
+    color: #253154;
+    font-weight: 500;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  .metrix span {
     display: none;
   }
 
@@ -4040,9 +4052,24 @@ canvas {
     font-size: 16px;
   }
 
+  .home_table label {
+    font-size: 12px;
+  }
+  .home_table p, .home_bottom p{
+    font-size: 10px;
+  }
+
   .headview-md .d-flex {
     padding: 1rem 1rem;
     top: 0px;
+  }
+
+  .positive_garph{
+    margin: 0;
+  }
+
+  .profile-pic{
+    height: 54px;
   }
 
   .left-container {

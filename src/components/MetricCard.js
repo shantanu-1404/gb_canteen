@@ -204,10 +204,12 @@ const MetricCard = ({ title, operation, column, tableRef, jsonData, tooltipText,
           </div>
         }
         <div className="d-flex  mt-2 justify-content-between">
-          <h6 style={{ margin: 0 }}>{title}</h6>
-          <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip">{tooltipText}</Tooltip>}>
-            <i className="bi bi-exclamation-circle" style={{ fontSize: "15px", cursor: "pointer" }}></i>
-          </OverlayTrigger>
+          {title && <h6 style={{ margin: 0 }}>{title}</h6>}
+          {tooltipText &&
+            <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip">{tooltipText}</Tooltip>}>
+              <i className="bi bi-exclamation-circle" style={{ fontSize: "15px", cursor: "pointer" }}></i>
+            </OverlayTrigger>
+          }
         </div>
         <div className="d-flex  mt-2 justify-content-between">
           {icon &&

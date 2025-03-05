@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './container/layout';
 import LeftView from './container/leftview';
 import Header from './container/header';
-import Homepage from './container/homepage';
+import Homepage from './container/Homepage';
 import SocialMedia from './container/SocialMedia';
 import AddNewPost from './container/AddNewPost';
 import Index from './container/Index';

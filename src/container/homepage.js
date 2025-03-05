@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from 'react';
 import Layout from './layout';
 
 import positive from "../assets/svg/positive_metrix.svg";
@@ -9,19 +9,6 @@ import campaignData from "../assets/json/campaigns.json";
 
 
 const Homepage = () => {
-
-  const [notifications, setNotifications] = useState([]);
-  useEffect(() => {
-    setNotifications(notificationData);
-  }, []);
-
-  const [campaigns, setCampaigns] = useState([]);
-  useEffect(() => {
-    setCampaigns(campaignData);
-  }, []);
-
-
-
   return (
     <Layout>
       <div className="container">
@@ -33,7 +20,7 @@ const Homepage = () => {
               <h3>₹7,825</h3>
               <div className="d-flex align-items-end justify-content-between">
                 <span className="positive_metrix">22%</span>
-                <span><img src={positive} alt="positive metrix" /></span>
+                <span><img src="svg/positive_metrix.svg" alt="positive metrix" /></span>
               </div>
             </div>
           </div>
@@ -45,7 +32,7 @@ const Homepage = () => {
               <h3>172</h3>
               <div className="d-flex align-items-end justify-content-between">
                 <span className="positive_metrix">22%</span>
-                <span><img src={positive} alt="positive metrix" /></span>
+                <span><img src="svg/positive_metrix.svg" alt="positive metrix" /></span>
               </div>
             </div>
           </div>
@@ -57,7 +44,7 @@ const Homepage = () => {
               <h3>76</h3>
               <div className="d-flex align-items-end justify-content-between">
                 <span className="positive_metrix">22%</span>
-                <span><img src={positive} alt="positive metrix" /></span>
+                <span><img src="svg/positive_metrix.svg" alt="positive metrix" /></span>
               </div>
             </div>
           </div>
@@ -69,7 +56,7 @@ const Homepage = () => {
               <h3>182</h3>
               <div className="d-flex align-items-end justify-content-between">
                 <span className="negative_metrix">22%</span>
-                <span><img src={negative} alt="negative metrix" /></span>
+                <span><img src="svg/negative_metrix.svg" alt="negative metrix" /></span>
               </div>
             </div>
           </div>
@@ -81,7 +68,7 @@ const Homepage = () => {
               <h3>₹27,825</h3>
               <div className="d-flex align-items-end justify-content-between">
                 <span className="positive_metrix">22%</span>
-                <span><img src={positive} alt="positive metrix" /></span>
+                <span><img src="svg/positive_metrix.svg" alt="positive metrix" /></span>
               </div>
             </div>
           </div>
@@ -90,55 +77,135 @@ const Homepage = () => {
         {/* Announcements Section */}
         <div className="row">
           <div className="col-md">
-            <div className="section_card">
+            <div className="form_section">
               <div className="d-flex justify-content-between">
                 <h6 className="p-2">Announcements</h6>
                 <a>see all</a>
               </div>
               <div className="home_table">
-                {notifications.map((notification, index) => (
-                  <div key={index} className="row">
-                    <div className="col-2">
-                      <img src={notification.user} className="profile-pic" alt="profile" />
-                    </div>
-                    <div className="col">
-                      <label>{notification.title}</label>
-                      <p>{notification.detail}</p>
-                    </div>
-                    <div className="col-3 home_act">
-                      <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
-                      <p>1 hour ago</p>
-                    </div>
+                <div className="row">
+                  <div className="col-2">
+                    <img className="profile-pic" alt="profile" />
                   </div>
-                ))}
+                  <div className="col">
+                    <label>Announcements 1</label>
+                    <p>Details</p>
+                  </div>
+                  <div className="col-3 home_act">
+                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
+                    <p>1 hour ago</p>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-2">
+                    <img className="profile-pic" alt="profile" />
+                  </div>
+                  <div className="col">
+                    <label>Announcements 2</label>
+                    <p>Details</p>
+                  </div>
+                  <div className="col-3 home_act">
+                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
+                    <p>1 hour ago</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-2">
+                    <img className="profile-pic" alt="profile" />
+                  </div>
+                  <div className="col">
+                    <label>Announcements 2</label>
+                    <p>Details</p>
+                  </div>
+                  <div className="col-3 home_act">
+                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
+                    <p>1 hour ago</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-2">
+                    <img className="profile-pic" alt="profile" />
+                  </div>
+                  <div className="col">
+                    <label>Announcements 2</label>
+                    <p>Details</p>
+                  </div>
+                  <div className="col-3 home_act">
+                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
+                    <p>1 hour ago</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Store Optimisation Section */}
           <div className="col-md">
-            <div className="section_card">
+            <div className="form_section">
               <div className="d-flex justify-content-between">
                 <h6 className="p-2">Store Optimisation</h6>
                 <a href="#">see all</a>
               </div>
               <div className="home_table">
-
-                {campaigns.map((campaign, index) => (
+                <div className="row">
+                  <div className="col-2">
+                    <img className="profile-pic" alt="profile" />
+                  </div>
+                  <div className="col">
+                    <label>Heading</label>
+                    <p>Details</p>
+                  </div>
+                  <div className="col-3 home_act">
+                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
+                    <p>1 hour ago</p>
+                  </div>
+                </div>
+                <div className="home_table">
                   <div className="row">
                     <div className="col-2">
-                      <img src={campaign.image} className="profile-pic" alt="profile" />
+                      <img className="profile-pic" alt="profile" />
                     </div>
                     <div className="col">
-                      <label>{campaign.name}</label>
-                      <p>{campaign.status}</p>
+                      <label>Heading</label>
+                      <p>Details</p>
                     </div>
                     <div className="col-3 home_act">
                       <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
                       <p>1 hour ago</p>
                     </div>
                   </div>
-                ))}
+                </div>
+                <div className="home_table">
+                  <div className="row">
+                    <div className="col-2">
+                      <img className="profile-pic" alt="profile" />
+                    </div>
+                    <div className="col">
+                      <label>Heading</label>
+                      <p>Details</p>
+                    </div>
+                    <div className="col-3 home_act">
+                      <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
+                      <p>1 hour ago</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="home_table">
+                  <div className="row">
+                    <div className="col-2">
+                      <img className="profile-pic" alt="profile" />
+                    </div>
+                    <div className="col">
+                      <label>Heading</label>
+                      <p>Details</p>
+                    </div>
+                    <div className="col-3 home_act">
+                      <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
+                      <p>1 hour ago</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -147,7 +214,7 @@ const Homepage = () => {
         {/* New Customers Section */}
         <div className="row">
           <div className="col">
-            <div className="section_card home_bottom">
+            <div className="form_section home_bottom">
               <div className="d-flex justify-content-between align-items-end">
                 <h6 className="p-2">
                   New Customers This Month{' '}
@@ -158,13 +225,16 @@ const Homepage = () => {
                 <p>Join Today</p>
               </div>
               <div className="d-flex justify-content-between">
-                <h2>{notifications.length}</h2>
+                <h2>7893</h2>
                 <div className="customer_profiles">
-                  {notifications.slice(0, 3).map((member, index) => (
-                    <img key={index} src={member.user} alt="profile" className="profile-pic" />
-                  ))}
-                  <div className="profile-count">{notifications.length}</div>
+                  <img className="profile-pic" alt="profile" />
+                  <img className="profile-pic" alt="profile" />
+                  <img className="profile-pic" alt="profile" />
+                  <img className="profile-pic" alt="profile" />
+                  <img className="profile-pic" alt="profile" />
+                  <div className="profile-count">27</div>
                 </div>
+
               </div>
             </div>
           </div>

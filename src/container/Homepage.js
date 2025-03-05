@@ -1,206 +1,152 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Layout from './layout';
+import MetricCard from "../components/MetricCard";
 
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+import positive from "../assets/svg/positive_metrix.svg";
+import negative from "../assets/svg/negative_metrix.svg";
+
+import notificationData from "../assets/json/notifications.json";
+import campaignData from "../assets/json/campaigns.json";
 
 
 const Homepage = () => {
+
+  const [notifications, setNotifications] = useState([]);
+  useEffect(() => {
+    setNotifications(notificationData);
+  }, []);
+
+  const [campaigns, setCampaigns] = useState([]);
+  useEffect(() => {
+    setCampaigns(campaignData);
+  }, []);
+
+
+
   return (
     <Layout>
       <div className="container">
         <div className="row">
           {/* Total Revenue */}
-          <div className="col">
-            <div className="metrix">
-              <p>Total Revenue</p>
+
+          <Col xs={4} md>
+            <MetricCard>
+              <p className="w-100">Total Revenue</p>
               <h3>₹7,825</h3>
-              <div className="d-flex align-items-end justify-content-between">
+              <div className="d-flex w-100 align-items-end justify-content-between">
                 <span className="positive_metrix">22%</span>
-                <span><img src="svg/positive_metrix.svg" alt="positive metrix" /></span>
+                <span><img src={positive} alt="positive metrix" /></span>
               </div>
-            </div>
-          </div>
+            </MetricCard>
+          </Col>
 
-          {/* Total Orders */}
-          <div className="col">
-            <div className="metrix">
-              <p>Total Orders</p>
+          <Col xs={4} md>
+            <MetricCard>
+              <p className="w-100">Total Orders</p>
               <h3>172</h3>
-              <div className="d-flex align-items-end justify-content-between">
+              <div className="d-flex w-100 align-items-end justify-content-between">
                 <span className="positive_metrix">22%</span>
-                <span><img src="svg/positive_metrix.svg" alt="positive metrix" /></span>
+                <span><img src={positive} alt="positive metrix" /></span>
               </div>
-            </div>
-          </div>
+            </MetricCard>
+          </Col>
 
-          {/* New Restaurant Application */}
-          <div className="col">
-            <div className="metrix">
-              <p>New Restaurant Application</p>
+          <Col xs={4} md>
+            <MetricCard>
+              <p className="w-100">New Restaurant Application</p>
               <h3>76</h3>
-              <div className="d-flex align-items-end justify-content-between">
+              <div className="d-flex  w-100 align-items-end justify-content-between">
                 <span className="positive_metrix">22%</span>
-                <span><img src="svg/positive_metrix.svg" alt="positive metrix" /></span>
+                <span><img src={positive} alt="positive metrix" /></span>
               </div>
-            </div>
-          </div>
+            </MetricCard>
+          </Col>
 
-          {/* Cancellation */}
-          <div className="col">
-            <div className="metrix">
-              <p>Cancellation</p>
+          <Col xs={4} md>
+            <MetricCard>
+              <p className="w-100">Cancellation</p>
               <h3>182</h3>
-              <div className="d-flex align-items-end justify-content-between">
+              <div className="d-flex  w-100 align-items-end justify-content-between">
                 <span className="negative_metrix">22%</span>
-                <span><img src="svg/negative_metrix.svg" alt="negative metrix" /></span>
+                <span><img src={negative} alt="negative metrix" /></span>
               </div>
-            </div>
-          </div>
+            </MetricCard>
+          </Col>
 
-          {/* Refund */}
-          <div className="col">
-            <div className="metrix">
-              <p>Refund</p>
+          <Col xs={4} md>
+            <MetricCard>
+              <p className="w-100">Refund</p>
               <h3>₹27,825</h3>
-              <div className="d-flex align-items-end justify-content-between">
+              <div className="d-flex  w-100 align-items-end justify-content-between">
                 <span className="positive_metrix">22%</span>
-                <span><img src="svg/positive_metrix.svg" alt="positive metrix" /></span>
+                <span><img src={positive} alt="positive metrix" /></span>
               </div>
-            </div>
-          </div>
+            </MetricCard>
+          </Col>
         </div>
 
         {/* Announcements Section */}
         <div className="row">
           <div className="col-md">
-            <div className="form_section">
+            <div className="section_card">
               <div className="d-flex justify-content-between">
                 <h6 className="p-2">Announcements</h6>
                 <a>see all</a>
               </div>
               <div className="home_table">
-                <div className="row">
-                  <div className="col-2">
-                    <img className="profile-pic" alt="profile" />
-                  </div>
-                  <div className="col">
-                    <label>Announcements 1</label>
-                    <p>Details</p>
-                  </div>
-                  <div className="col-3 home_act">
-                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
-                    <p>1 hour ago</p>
-                  </div>
-                </div>
+                {notifications.map((notification, index) => (
+                  <div className="d-flex p-2 gap-1">
 
-                <div className="row">
-                  <div className="col-2">
-                    <img className="profile-pic" alt="profile" />
+                    <img src={notification.user} className="profile-pic" alt="profile" />
+
+                    <div className="col">
+                      <div className="d-flex justify-content-between">
+                        <div>
+                          <label>{notification.title}</label>
+                          <p>{notification.detail}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-2 home_act">
+                      <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
+                      <p>1 hour ago</p>
+                    </div>
                   </div>
-                  <div className="col">
-                    <label>Announcements 2</label>
-                    <p>Details</p>
-                  </div>
-                  <div className="col-3 home_act">
-                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
-                    <p>1 hour ago</p>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-2">
-                    <img className="profile-pic" alt="profile" />
-                  </div>
-                  <div className="col">
-                    <label>Announcements 2</label>
-                    <p>Details</p>
-                  </div>
-                  <div className="col-3 home_act">
-                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
-                    <p>1 hour ago</p>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-2">
-                    <img className="profile-pic" alt="profile" />
-                  </div>
-                  <div className="col">
-                    <label>Announcements 2</label>
-                    <p>Details</p>
-                  </div>
-                  <div className="col-3 home_act">
-                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
-                    <p>1 hour ago</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Store Optimisation Section */}
           <div className="col-md">
-            <div className="form_section">
+            <div className="section_card">
               <div className="d-flex justify-content-between">
                 <h6 className="p-2">Store Optimisation</h6>
                 <a href="#">see all</a>
               </div>
               <div className="home_table">
-                <div className="row">
-                  <div className="col-2">
-                    <img className="profile-pic" alt="profile" />
-                  </div>
-                  <div className="col">
-                    <label>Heading</label>
-                    <p>Details</p>
-                  </div>
-                  <div className="col-3 home_act">
-                    <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
-                    <p>1 hour ago</p>
-                  </div>
-                </div>
-                <div className="home_table">
-                  <div className="row">
-                    <div className="col-2">
-                      <img className="profile-pic" alt="profile" />
-                    </div>
+
+                {campaigns.map((campaign, index) => (
+                  <div className="d-flex p-2 gap-1">
+                    <img src={campaign.image} className="profile-pic" alt="profile" />
+
                     <div className="col">
-                      <label>Heading</label>
-                      <p>Details</p>
+                      <div className="d-flex justify-content-between">
+                        <div>
+                          <label>{campaign.name}</label>
+                          <p>{campaign.status}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="col-3 home_act">
+                    <div className="col-2 home_act">
                       <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
                       <p>1 hour ago</p>
                     </div>
                   </div>
-                </div>
-                <div className="home_table">
-                  <div className="row">
-                    <div className="col-2">
-                      <img className="profile-pic" alt="profile" />
-                    </div>
-                    <div className="col">
-                      <label>Heading</label>
-                      <p>Details</p>
-                    </div>
-                    <div className="col-3 home_act">
-                      <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
-                      <p>1 hour ago</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="home_table">
-                  <div className="row">
-                    <div className="col-2">
-                      <img className="profile-pic" alt="profile" />
-                    </div>
-                    <div className="col">
-                      <label>Heading</label>
-                      <p>Details</p>
-                    </div>
-                    <div className="col-3 home_act">
-                      <a href="#"><i className="bi p-1 bi-three-dots"></i></a>
-                      <p>1 hour ago</p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -209,7 +155,7 @@ const Homepage = () => {
         {/* New Customers Section */}
         <div className="row">
           <div className="col">
-            <div className="form_section home_bottom">
+            <div className="section_card home_bottom">
               <div className="d-flex justify-content-between align-items-end">
                 <h6 className="p-2">
                   New Customers This Month{' '}
@@ -220,16 +166,13 @@ const Homepage = () => {
                 <p>Join Today</p>
               </div>
               <div className="d-flex justify-content-between">
-                <h2>7893</h2>
+                <h2>{notifications.length}</h2>
                 <div className="customer_profiles">
-                  <img className="profile-pic" alt="profile" />
-                  <img className="profile-pic" alt="profile" />
-                  <img className="profile-pic" alt="profile" />
-                  <img className="profile-pic" alt="profile" />
-                  <img className="profile-pic" alt="profile" />
-                  <div className="profile-count">27</div>
+                  {notifications.slice(0, 3).map((member, index) => (
+                    <img key={index} src={member.user} alt="profile" className="profile-pic" />
+                  ))}
+                  <div className="profile-count">{notifications.length}</div>
                 </div>
-
               </div>
             </div>
           </div>

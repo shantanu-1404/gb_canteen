@@ -222,53 +222,55 @@ const Table = ({
 
 
   return (
-    <div
-      className={`table-container list-view section_card ${!paginated ? "scrollable-table" : ""
-        }`}
-    >
-      <table className="table ae-table" ref={tableRef} id={id}>
-        <thead>
-          <tr>
-            <th>
-              <input
-                type="checkbox"
-                checked={selectedRows.length === filteredData.length}
-                onChange={() => {
-                  setSelectedRows(
-                    selectedRows.length === filteredData.length
-                      ? []
-                      : filteredData.map((_, index) => index)
-                  );
-                }}
-              />
-            </th>
-            {columns.map((column) => (
-              <th key={column.dbcol} onClick={() => handleSort(column.dbcol)} style={{ cursor: "pointer" }}>
-                {column.headname.toUpperCase()}
-                {sortColumn === column.dbcol && <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          {currentData.length > 0 ? (
-            currentData.map((row, index) => (
-              <tr key={index}>
-                <td>
-                  <input type="checkbox" checked={selectedRows.includes(startIndex + index)} onChange={() => handleCheckboxChange(startIndex + index)} />
-                </td>
-                {columns.map((column) => (
-                  <td key={column.dbcol}>{renderCellContent(column, row[column.dbcol])}</td>
-                ))}
-              </tr>
-            ))
-          ) : (
+    <div className="section_card">
+      <div
+        className={`table-container list-view  ${!paginated ? "scrollable-table" : ""
+          }`}
+      >
+        <table className="table ae-table" ref={tableRef} id={id}>
+          <thead>
             <tr>
-              <td colSpan={columns.length + 1}>No data available</td>
+              <th>
+                <input
+                  type="checkbox"
+                  checked={selectedRows.length === filteredData.length}
+                  onChange={() => {
+                    setSelectedRows(
+                      selectedRows.length === filteredData.length
+                        ? []
+                        : filteredData.map((_, index) => index)
+                    );
+                  }}
+                />
+              </th>
+              {columns.map((column) => (
+                <th key={column.dbcol} onClick={() => handleSort(column.dbcol)} style={{ cursor: "pointer" }}>
+                  {column.headname.toUpperCase()}
+                  {sortColumn === column.dbcol && <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>}
+                </th>
+              ))}
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody id="tableBody">
+            {currentData.length > 0 ? (
+              currentData.map((row, index) => (
+                <tr key={index}>
+                  <td>
+                    <input type="checkbox" checked={selectedRows.includes(startIndex + index)} onChange={() => handleCheckboxChange(startIndex + index)} />
+                  </td>
+                  {columns.map((column) => (
+                    <td key={column.dbcol}>{renderCellContent(column, row[column.dbcol])}</td>
+                  ))}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={columns.length + 1}>No data available</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
       {paginated ? (
         <>
           <br />

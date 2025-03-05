@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Header from './header';
 import LeftView from './leftview';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 
 
@@ -61,8 +59,9 @@ const Layout = ({ children }) => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
   // Toggle sidebar visibility
-  const toggleSidebar = () => {
+  const toggleSidebar = (state) => {
     setIsSidebarVisible((prevState) => !prevState);
+    //setIsSidebarVisible(state !== undefined ? state : !isSidebarVisible);
   };
 
   // Step 1: Use useEffect to run the pin logic after component mounts
@@ -74,7 +73,7 @@ const Layout = ({ children }) => {
     <div className="container-fluid">
       <div className="row">
         {/* Left Sidebar */}
-        <LeftView isVisible={isSidebarVisible} />
+        <LeftView isVisible={isSidebarVisible} toggleSidebar={toggleSidebar}  />
 
         {/* Right Main Container */}
         <div className="right-container col">
@@ -83,6 +82,10 @@ const Layout = ({ children }) => {
 
           {/* Page Content */}
           <Container style={{ marginTop: "110px" }} className="content">{children}</Container>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
         </div>
       </div>
     </div>

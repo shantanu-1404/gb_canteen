@@ -51,6 +51,9 @@ const App = () => {
         <Route path="/add-blogs" element={<AddNewBlogs />} />
         <Route path="/container/test" element={<AddSubsection />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/search" element={<Index />} />
+        <Route path="/notification" element={<Index />} />
+        <Route path="/profile" element={<Index />} />
 
 
       </Routes>

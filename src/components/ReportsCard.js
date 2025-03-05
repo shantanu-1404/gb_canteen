@@ -17,19 +17,19 @@ const ReportsCard = ({ report }) => {
 
                 {/* Report Details */}
                 <div className="row">
-                    <strong className="col-md">Report Generated On:</strong><p className="col-md"> {new Date(date).toLocaleDateString()}</p>
+                    <strong className="col">Report Generated On:</strong><p className="col"> {new Date(date).toLocaleDateString()}</p>
                 </div>
                 <div className="row">
-                    <strong className="col-md">Report Type:</strong> <p className="col-md"> {type}</p>
+                    <strong className="col">Report Type:</strong> <p className="col"> {type}</p>
                 </div>
                 <div className="row">
-                    <strong className="col-md">Last Update:</strong><p className="col-md"> {new Date(latestUpdate).toLocaleDateString()}</p>
+                    <strong className="col">Last Update:</strong><p className="col"> {new Date(latestUpdate).toLocaleDateString()}</p>
                 </div>
                 <div className="row">
-                    <strong className="col-md">Created By:</strong><p className="col-md"> {createdBy}</p>
+                    <strong className="col">Created By:</strong><p className="col"> {createdBy}</p>
                 </div>
                 <div className="row">
-                    <strong className="col-md">Tags:</strong><p className="col-md">{tags.join(", ")}</p>
+                    <strong className="col">Tags:</strong><p className="col">{tags.join(", ")}</p>
                 </div>
                 
                 <div className="btn-sack-top">

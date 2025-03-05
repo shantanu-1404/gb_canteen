@@ -78,7 +78,7 @@ const DataTable = ({
 
   return (
     <div>
-      <Row className="align-items-center mt-4">
+      <Row className="align-items-center  mt-4">
         <Col>
           {searchable && (
             <SearchBar
@@ -90,8 +90,8 @@ const DataTable = ({
           )}
         </Col>
 
-        <Col md="auto">
-          <div className="d-flex gap-2">
+        <Col className="mt-2 col-auto">
+          <div className="d-flex justify-content-end gap-2">
             {filterable && (
               <Filter
                 columns={columns}

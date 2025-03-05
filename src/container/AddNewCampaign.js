@@ -99,20 +99,20 @@ const AddNewCampaign = () => {
     const [selectedImage, setSelectedImage] = useState(addCampaignImg);
 
     const handleSelectionChange = (selectedCampaigns) => {
-      if (selectedCampaigns.length > 0) {
-        setSelectedImage(selectedCampaigns[0].image);
-      } else {
-        setSelectedImage(addCampaignImg);
-      }
+        if (selectedCampaigns.length > 0) {
+            setSelectedImage(selectedCampaigns[0].image);
+        } else {
+            setSelectedImage(addCampaignImg);
+        }
     };
-    
+
 
 
     return (
         <Layout>
             <FormHeader title="Add New Campaign" backUrl="/social-media" closeUrl="/" />
             <Row>
-                <Col md={7}>
+                <Col lg={7}>
                     <div className="form_section">
                         <h6 className="card-title">Ad Campaign Details</h6>
                         <TextInput
@@ -301,7 +301,7 @@ const AddNewCampaign = () => {
                         </Row>
                     </div>
                 </Col>
-                <Col md={5}>
+                <Col lg={5}>
                     <div className="form_section">
                         <h6 className="card-title">Ad Creatives</h6>
                         <SelectComponent
@@ -400,7 +400,7 @@ const AddNewCampaign = () => {
             <div className="form_section">
                 <h6 className="card-title">A/B Testing</h6>
                 <Row className="position-relative">
-                    <Col md={6} className="p-3">
+                    <Col lg={6} className="p-3">
                         <div className="form-group">
                             <label className="form-label">
                                 Current Campaign
@@ -412,7 +412,7 @@ const AddNewCampaign = () => {
                     {/* Vertical line */}
                     <div className="vertical-line d-none d-md-block"></div>
 
-                    <Col md={6} className="p-3">
+                    <Col lg={6} className="p-3">
                         <div className="form-group">
                             <label className="form-label">
                                 Recent Campaign
@@ -454,7 +454,7 @@ const AddNewCampaign = () => {
                     </Col>
                 </Row>
                 <Row >
-                    <Col md={6} className="mt-5" >
+                    <Col lg={6} className="mt-5" >
                         <SelectComponent
                             label="Select Audience"
                             listStyle="col-md-6 "
@@ -473,7 +473,7 @@ const AddNewCampaign = () => {
                         />
 
                     </Col>
-                    <Col md={6} >
+                    <Col lg={6} >
                         <div className="form-group">
                             <label className="form-label">
                                 Duration
@@ -507,80 +507,82 @@ const AddNewCampaign = () => {
                     </Col>
                 </Row>
                 <h6 className="card-title">Result</h6>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                GOALS
-                            </th>
-                            <th>
-                                CAMPAIGN 1
-                            </th>
-                            <th>
-                                CAMPAIGN 2
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                Impression
-                            </td>
-                            <td>
-                                50%
-                            </td>
-                            <td>
-                                50%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Clicks
-                            </td>
-                            <td>
-                                857
-                            </td>
-                            <td>
-                                935
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                CTR
-                            </td>
-                            <td>
-                                17%
-                            </td>
-                            <td>
-                                14.9%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Conversion  Rate
-                            </td>
-                            <td>
-                                6%
-                            </td>
-                            <td>
-                                2%
-                            </td>
-                        </tr>
-                        <tr style={{ border: "transparent" }}>
-                            <td>
+                <div className="table-container">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    GOALS
+                                </th>
+                                <th>
+                                    CAMPAIGN 1
+                                </th>
+                                <th>
+                                    CAMPAIGN 2
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Impression
+                                </td>
+                                <td>
+                                    50%
+                                </td>
+                                <td>
+                                    50%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Clicks
+                                </td>
+                                <td>
+                                    857
+                                </td>
+                                <td>
+                                    935
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    CTR
+                                </td>
+                                <td>
+                                    17%
+                                </td>
+                                <td>
+                                    14.9%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Conversion  Rate
+                                </td>
+                                <td>
+                                    6%
+                                </td>
+                                <td>
+                                    2%
+                                </td>
+                            </tr>
+                            <tr style={{ border: "transparent" }}>
+                                <td>
 
-                            </td>
-                            <td>
-                                <d className="green-text">
-                                    High Impact
-                                </d>
-                            </td>
-                            <td>
+                                </td>
+                                <td>
+                                    <d className="green-text">
+                                        High Impact
+                                    </d>
+                                </td>
+                                <td>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
 
             </div>
@@ -588,19 +590,19 @@ const AddNewCampaign = () => {
 
                 <Button
                     label="Start Testing"
-                    btnStyle="col-3"
+                    btnStyle="col col-md-3"
                     type="button"
                 />
 
                 <Button
                     label="Save and continue later"
-                    btnStyle="col-3"
+                    btnStyle="col col-md-3"
                     type="submit"
                 />
 
                 <Button
                     label="Publish Optimal Version"
-                    btnStyle="col-3"
+                    btnStyle="col col-md-3"
                     type="button"
                 />
             </div>

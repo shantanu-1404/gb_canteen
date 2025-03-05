@@ -50,7 +50,7 @@ const SM_ProjectCard = ({ project }) => {
                 <span className={`mb-3 badge ${statusClass}`}>{status}</span>
 
                 <div className="row mb-1 align-items-center">
-                    <strong className="col-md ">
+                    <strong className="col ">
                         <img
                             src={wallet}
                             alt="Wallet Icon"
@@ -58,11 +58,11 @@ const SM_ProjectCard = ({ project }) => {
                             className={`${statusClass === "cancelled" ? "grey" : ""}`} // Apply the grey image class for cancelled status
                         />Client -
                     </strong>
-                    <d className={`col-md ${statusClass === "cancelled" ? "grey" : "pink"}`}>{client_name}</d>
+                    <d className={`col ${statusClass === "cancelled" ? "grey" : "pink"}`}>{client_name}</d>
                 </div>
 
                 <div className="row">
-                    <strong className="col-md">
+                    <strong className="col">
                         <img
                             src={client}
                             alt="Return Icon"
@@ -70,15 +70,15 @@ const SM_ProjectCard = ({ project }) => {
                             className={`${statusClass === "cancelled" ? "grey" : ""}`} // Apply the grey image class for cancelled status
                         />Budget -
                     </strong>
-                    <p className="col-md" style={{ color: "#253154" }}>₹{budget.toLocaleString()}</p>
+                    <p className="col" style={{ color: "#253154" }}>₹{budget.toLocaleString()}</p>
                 </div>
 
                 <div className="row">
-                    <strong className="col-md-9">Progress - </strong>
-                    <p className="col-md text-end m-0">{progress}%</p>
+                    <strong className="col-9">Progress - </strong>
+                    <p className="col text-end m-0">{progress}%</p>
                 </div>
 
-                <div className="progress m-0 mb-3 col-md">
+                <div className="progress m-0 mb-3 col">
                     <div
                         className="progress-bar"
                         style={{ width: `${progress}%`, backgroundColor: progressColor }}
@@ -86,12 +86,12 @@ const SM_ProjectCard = ({ project }) => {
                 </div>
 
                 <div className="row">
-                    <strong className="col-md">Start Date - </strong>
-                    <p className="col-md">{start_date}</p>
+                    <strong className="col">Start Date - </strong>
+                    <p className="col">{start_date}</p>
                 </div>
                 <div className="row">
-                    <strong className="col-md">End Date - </strong>
-                    <p className="col-md">{end_date}</p>
+                    <strong className="col">End Date - </strong>
+                    <p className="col">{end_date}</p>
                 </div>
 
                 <div className="row align-items-center">

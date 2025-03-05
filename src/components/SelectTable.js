@@ -92,7 +92,7 @@ const SelectTable = ({
                     />
                 </Col>
 
-                <Col md="auto">
+                <Col className="col-auto">
                     <div className="d-flex gap-2">
                         <Filter
                             columns={columns}

@@ -9,20 +9,20 @@ const CampaignCard = ({ campaign }) => {
                 <h6 className="card-title col-8">Campaign Details</h6>
 
                 <div className="row">
-                    <strong className="col-md">Current Status - </strong>
-                    <p className={`col-md ${status.toLowerCase()}`}>{status}</p>
+                    <strong className="col">Current Status - </strong>
+                    <p className={`col ${status.toLowerCase()}`}>{status}</p>
                 </div>
                 <div className="row">
-                    <strong className="col-md">Budget - </strong>
-                    <p className="col-md">{budget.toLocaleString()}</p>
+                    <strong className="col">Budget - </strong>
+                    <p className="col">{budget.toLocaleString()}</p>
                 </div>
                 <div className="row">
-                    <strong className="col-md">Spend - </strong>
-                    <p className="col-md">{spend.toLocaleString()}</p>
+                    <strong className="col">Spend - </strong>
+                    <p className="col">{spend.toLocaleString()}</p>
                 </div>
                 <div className="row">
-                    <strong className="col-md">CTR - </strong>
-                    <p className="col-md">{ctr}%</p>
+                    <strong className="col">CTR - </strong>
+                    <p className="col">{ctr}%</p>
                 </div>
 
                 <div className="btn-sack-top">

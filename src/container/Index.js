@@ -136,8 +136,7 @@ const Index = () => {
                             title="Total of Col-1"
                             operation="total"
                             column="col1"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -146,8 +145,7 @@ const Index = () => {
                             title="Count for Col-2"
                             operation="count"
                             column="col2"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -156,8 +154,7 @@ const Index = () => {
                             title="Positive Count"
                             operation="positiveCount"
                             column="col4"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -166,8 +163,7 @@ const Index = () => {
                             title="Negative Count"
                             operation="negativeCount"
                             column="col4"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -176,8 +172,7 @@ const Index = () => {
                             title="Mean of Col-1"
                             operation="mean"
                             column="col1"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -186,8 +181,7 @@ const Index = () => {
                             title="Average of Col-5 & Col-6"
                             operation="average"
                             column="col5,col6"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -196,8 +190,7 @@ const Index = () => {
                             title="Ratio (Col-1 / Col-2)"
                             operation="ratio"
                             column="col1,col2"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/return.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -206,8 +199,7 @@ const Index = () => {
                             title="Percentage of Positive (Col-2)"
                             operation="percentage"
                             column="col2"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -216,8 +208,7 @@ const Index = () => {
                             title="Count of Values()"
                             operation="1000+"
                             column="col1"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/return.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -226,8 +217,7 @@ const Index = () => {
                             title="Total of Col-1"
                             operation="total"
                             column="col1"
-                            tableRef={tableRef}
-                            icon="http://localhost/gb_canteen/svg/wallet.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+                            tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
                             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
                         />
                     </Col>
@@ -407,7 +397,7 @@ const Index = () => {
                         <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} title="Modal">
                             <form>
                                 <Row>
-                                    <Col>
+                                    <Col md >
                                         <TextInput
                                             label="TextInput"
                                             placeholder="Enter Input"
@@ -416,7 +406,7 @@ const Index = () => {
                                         />
                                         <PhoneInput label="Mobile Number" placeholder="Enter your mobile number" />
                                     </Col>
-                                    <Col>
+                                    <Col md >
                                         <Aetextarea
                                             label="TextArea (limited)"
                                             name="description"
@@ -427,6 +417,8 @@ const Index = () => {
                                         />
                                     </Col>
                                 </Row>
+                                <br />
+                                <br />
                                 <div className="btn-sack">
                                     <Button
                                         label="Save"

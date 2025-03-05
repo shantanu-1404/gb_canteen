@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { Link, useLocation, useNavigate  } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
 import 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-const LeftSidebar = ({ isVisible }) => {
+const LeftSidebar = ({ isVisible, toggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate(); // Initialize navigate
   const activePage = location.pathname.split('/')[1];
+  const sidebarRef = useRef(null); // ✅ Ref for detecting outside clicks
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   // Manage multiple dropdowns with an object
   const [openDropdowns, setOpenDropdowns] = useState({});
-
+  const isMobile = windowWidth <= 1137;
   // Toggle dropdown state dynamically
   const handleDropdown = (dropdownName, path = null) => {
     setOpenDropdowns((prev) => ({
@@ -25,11 +27,51 @@ const LeftSidebar = ({ isVisible }) => {
     }
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // ✅ Handle click outside sidebar to close in mobile view
+  useEffect(() => {
+    if (!isMobile) return; 
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        toggleSidebar(false); // Close sidebar when clicking outside
+      }
+    };
+
+    if (isVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isVisible, isMobile]);
+
 
   return (
     <>
-      <div id="left" className={`left ${isVisible ? 'show' : ''}`}></div>
-      <div id="left" className={`left-container ${isVisible ? 'show' : ''}`} style={{ width: '287px' }}>
+      {isMobile && isVisible && (
+        <div className="sidebar-overlay" onClick={() => toggleSidebar(false)}></div>
+      )}
+      <div
+        id="left"
+        className={`left ${isVisible ? 'show' : ''}`}
+      >
+
+      </div>
+      <div
+        id="left"
+        ref={sidebarRef}
+        className={`left-container ${isVisible ? 'show' : ''}`}
+        style={{ width: '287px' }}
+      >
         {/* Home Link */}
         <Link to="/gb_canteen" className="home-text">
           <div className="home-rectangle">
@@ -71,7 +113,7 @@ const LeftSidebar = ({ isVisible }) => {
               </ul>
             </li>
 
-            
+
             <li><Link to="#"><i className="bi bi-people customer-icon"></i> Customer Management</Link></li>
             <li><Link to="#"><i className="bi bi-bar-chart-line analytics-and-reporting-icon"></i> Analytics & Reporting</Link></li>
             <li><Link to="#"><i className="bi bi-receipt"></i> Invoice</Link></li>
@@ -83,7 +125,7 @@ const LeftSidebar = ({ isVisible }) => {
             <li className="nav-item">
               <div
                 className={`nav-link ${openDropdowns['social-media'] ? 'active' : ''}`}
-                
+
               >
                 <span onClick={() => handleDropdown('social-media', '/social-media')} ><i className="bi bi-camera-video-fill"></i> Social Media</span>
                 <i onClick={() => handleDropdown('social-media')} className={`bi ${openDropdowns['social-media'] ? 'bi-chevron-down' : 'bi-chevron-right'}`}></i>
@@ -124,7 +166,7 @@ const LeftSidebar = ({ isVisible }) => {
             <li><Link to="#"><i className="bi bi-gear"></i> Settings</Link></li>
 
 
-            
+
           </ul>
         </div>
       </div>

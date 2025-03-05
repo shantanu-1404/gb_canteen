@@ -10,6 +10,73 @@ const formatCount = (count) => {
 
 const MetricCard = ({ title, operation, column, tableRef, jsonData, tooltipText, icon, children }) => {
   const [metricValue, setMetricValue] = useState(null);
+  const [borderColor, setBorderColor] = useState("#ccc"); // Default color
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1137);
+
+  // ✅ Function to check if an image URL is valid
+  const isValidImage = (url) => {
+    return url && (url.endsWith(".png") || url.endsWith(".jpg") || url.endsWith(".svg"));
+  };
+
+  // ✅ Function to extract dominant color from an image
+  const getDominantColor = (imageUrl) => {
+    return new Promise((resolve) => {
+      if (!isValidImage(imageUrl)) {
+        resolve(getRandomColor()); // Use random color if the image is invalid
+        return;
+      }
+
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
+      img.src = imageUrl;
+
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+
+        // Get pixel data from the center of the image
+        const data = ctx.getImageData(img.width / 2, img.height / 2, 1, 1).data;
+        const color = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
+        resolve(color);
+      };
+
+      img.onerror = () => {
+        resolve(getRandomColor()); // If error, assign a random color
+      };
+    });
+  };
+
+  // ✅ Function to get a random color if no image is available
+  const getRandomColor = () => {
+    const colors = ["#007aff", "#11AF22", "#ED231C", "#1e293b", "#6366f1", "#FF870F"];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
+  // ✅ Detect mobile view on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1137);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // ✅ Set border color based on image or random color
+  useEffect(() => {
+    if (icon) {
+      getDominantColor(icon).then((color) => setBorderColor(color));
+    } else {
+      setBorderColor(getRandomColor());
+    }
+  }, [icon]);
+
+
+
+
 
   const extractTableData = () => {
     const table = tableRef?.current;
@@ -95,7 +162,7 @@ const MetricCard = ({ title, operation, column, tableRef, jsonData, tooltipText,
 
     const mean = operation === "mean" && totalEntries > 0 ? (sum / totalEntries).toFixed(2) : 0;
     const average = operation === "average" && totalEntries > 0 ? (totalDays / totalEntries).toFixed(2) : 0;
-    const percentage = operation === "percentage" && data.length > 0 ? ((result / (data.length  * 100)) * 100).toFixed(2) : "0.00%";
+    const percentage = operation === "percentage" && data.length > 0 ? ((result / (data.length * 100)) * 100).toFixed(2) : "0.00%";
     const ratio = operation === "ratio" && ratioDenominator > 0 ? (ratioNumerator / ratioDenominator).toFixed(2) : "0.00";
 
     if (operation === "total") setMetricValue(result);
@@ -117,16 +184,44 @@ const MetricCard = ({ title, operation, column, tableRef, jsonData, tooltipText,
   }, [operation, column, tableRef, jsonData]);
 
   return (
-    <div className="metrix">
+    <div
+      className="metrix"
+      style={isMobile ? { border: `2px solid ${borderColor}` } : {}}
+    >
       <div className="d-flex flex-column">
-        <div className="d-flex mt-2 justify-content-between">
+        {icon &&
+          <div className="d-flex mt-2 justify-content-center">
+            <img src={icon}
+              alt=""
+              className="icon-md"
+              style={{
+                width: "35px",
+                backgroundColor: borderColor,
+                borderRadius: "8px",
+                height: "35px"
+              }}
+            />
+          </div>
+        }
+        <div className="d-flex  mt-2 justify-content-between">
           <h6 style={{ margin: 0 }}>{title}</h6>
           <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip">{tooltipText}</Tooltip>}>
             <i className="bi bi-exclamation-circle" style={{ fontSize: "15px", cursor: "pointer" }}></i>
           </OverlayTrigger>
         </div>
-        <div className="d-flex mt-2 justify-content-between">
-          {icon && <img src={icon} alt="" style={{ width: "35px", height: "35px" }} />}
+        <div className="d-flex  mt-2 justify-content-between">
+          {icon &&
+            <img src={icon}
+              alt=""
+              className="icon"
+              style={{
+                width: "35px",
+                backgroundColor: borderColor,
+                borderRadius: "8px",
+                height: "35px"
+              }}
+            />
+          }
           {operation && <h3 style={{ margin: 0 }}>{metricValue}</h3>}
         </div>
         {children && <div className="d-flex flex-wrap">{children}</div>}

@@ -44,23 +44,24 @@ const Reports = () => {
     <Layout>
       <div className="d-flex justify-content-between">
         <div className="mt-3 d-flex align-items-center">
-          <div className="d-flex gap-5 ">
+          <div className="d-flex gap-5 md-date">
             <DateInput label="" type="range" includeTime={false} />
           </div>
 
           {/* Refresh Button */}
-          <div className=" mb-2 ps-3 ">
+          <div className=" mb-2 ps-3 md-refresh ">
             <i
               className="bi bi-arrow-repeat icon-refresh"
               onClick={handleRefresh}
             ></i>
           </div>
         </div>
-        <div className="text-right gap-3 d-flex">
+        <div className="text-right ie-btn mt-4 mb-4 gap-3 d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
           <Button
             buttonType="add"
+            btnStyle="dropdown"
             onClick={() => navigate("/add-report")}
             label="Add New"
           />
@@ -236,7 +237,7 @@ const Reports = () => {
             </div>
           </MetricCard>
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={3}>
           <MetricCard
             title="Impressions"
             operation="total"
@@ -246,7 +247,7 @@ const Reports = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={3}>
           <MetricCard
             title="Cost Per Click (CPC)"
             operation="count"
@@ -256,7 +257,7 @@ const Reports = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={3}>
           <MetricCard
             title="Cost Per Mille (CPM)"
             operation="positiveCount"
@@ -296,44 +297,48 @@ const Reports = () => {
           onClose={() => setModalOpen(false)}
           title="A/B Testing"
         >
-          <table className="table">
-            <thead>
-              <tr>
-                <th>GOALS</th>
-                <th>CAMPAIGN 1</th>
-                <th>CAMPAIGN 2</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Impression</td>
-                <td>50%</td>
-                <td>50%</td>
-              </tr>
-              <tr>
-                <td>Clicks</td>
-                <td>857</td>
-                <td>935</td>
-              </tr>
-              <tr>
-                <td>CTR</td>
-                <td>17%</td>
-                <td>14.9%</td>
-              </tr>
-              <tr>
-                <td>Conversion Rate</td>
-                <td>6%</td>
-                <td>2%</td>
-              </tr>
-              <tr style={{ border: "transparent" }}>
-                <td></td>
-                <td>
-                  <d className="green-text">High Impact</d>
-                </td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="table-container">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>GOALS</th>
+                  <th>CAMPAIGN 1</th>
+                  <th>CAMPAIGN 2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Impression</td>
+                  <td>50%</td>
+                  <td>50%</td>
+                </tr>
+                <tr>
+                  <td>Clicks</td>
+                  <td>857</td>
+                  <td>935</td>
+                </tr>
+                <tr>
+                  <td>CTR</td>
+                  <td>17%</td>
+                  <td>14.9%</td>
+                </tr>
+                <tr>
+                  <td>Conversion Rate</td>
+                  <td>6%</td>
+                  <td>2%</td>
+                </tr>
+                <tr style={{ border: "transparent" }}>
+                  <td></td>
+                  <td>
+                    <d className="green-text">High Impact</d>
+                  </td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br/>
+          <br/>
           <div className="btn-sack">
             <Button
               label="Cancel"

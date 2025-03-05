@@ -80,16 +80,16 @@ const AddReport = () => {
                 </Row>
             </div>
             <div className="form-group row p-3 gap-2 text-center">
-                <span className="col"></span>
+                <span className="col-lg"></span>
                 <Button
                     label="Save and continue later"
-                    btnStyle="col-5"
+                    btnStyle="col col-md-5"
                     type="submit"
                 />
 
                 <Button
                     label="Add"
-                    btnStyle="col-4"
+                    btnStyle="col col-md-4"
                     type="button"
                 />
             </div>

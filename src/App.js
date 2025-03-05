@@ -49,6 +49,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Homepage />} />
         <Route path="/gb_canteen" element={<Index />} />
         <Route path="/social-media" element={<SocialMedia />} />
         <Route path="/social-media/reports" element={<Reports />} />

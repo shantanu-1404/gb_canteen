@@ -3835,7 +3835,14 @@ canvas {
   border: none;
 }
 
+.left-container .profile-pic,
+.left-container h6 {
+  display: none;
+}
 
+.left-container .logout {
+  display: none;
+}
 
 
 
@@ -3910,7 +3917,9 @@ canvas {
   .left-container {
     display: block;
     position: fixed;
+    padding: 60px 26px;
     margin: 0;
+    border-radius: 0px 50px 50px 0px;
   }
 
   .left-container.show {
@@ -3924,9 +3933,9 @@ canvas {
 
   .left-container {
     position: fixed;
+    margin-left: -5px;
     top: 0;
     left: -100%;
-    /* ✅ Hide sidebar initially */
     height: 100%;
     transition: left 0.3s ease-in-out;
     z-index: 100;
@@ -3955,6 +3964,7 @@ canvas {
     width: 100%;
     z-index: 5;
     padding: 0rem 3rem;
+    box-shadow: 0px -8px 10px 2px rgba(0, 0, 0, .08);
     left: 0;
   }
 
@@ -3963,6 +3973,7 @@ canvas {
     background: #ffffff;
     width: 100%;
     z-index: 5;
+    box-shadow: 0px -8px 10px 2px rgba(0, 0, 0, .08);
     font-size: 26px;
     padding: 0rem 3rem;
     margin: 0;
@@ -4098,6 +4109,31 @@ canvas {
     left: -90%;
   }
 
+  .left-container .profile-pic {
+    padding: 1px;
+    display: block;
+  }
+
+  .left-container h6 {
+    margin: 0;
+    display: block;
+    margin-left: 20px;
+    color: white;
+  }
+
+  .left-container .logout {
+    position: absolute;
+    display: block;
+    z-index: 24;
+    bottom: 0;
+    text-align: center;
+    width: 85%;
+    left: 0;
+    color: #9d9d9d;
+    background: #0e042f;
+    padding: 25px 5px;
+    margin: 0;
+  }
 
 }
 
@@ -4125,6 +4161,7 @@ canvas {
     top: 0px;
   }
 
+
   .positive_garph {
     margin: 0;
   }
@@ -4135,7 +4172,6 @@ canvas {
 
   .left-container {
     padding: 44px 26px;
-    border-radius: 16px;
   }
 
   .md-date .col {
@@ -4172,13 +4208,13 @@ canvas {
     height: auto;
   }
 
-  .customer_profiles .profile-count{
+  .customer_profiles .profile-count {
     width: 50px;
     height: 50px;
     border: 4px solid #fff;
   }
 
-  .customer_profiles .profile-pic{
+  .customer_profiles .profile-pic {
     width: 50px;
     height: 50px;
     padding: 2px;
@@ -4349,6 +4385,7 @@ canvas {
   }
 
   .table th {
+    padding: 4px 8px !important;
     font-size: 14px;
   }
 

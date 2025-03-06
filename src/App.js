@@ -76,7 +76,6 @@ const App = () => {
         <Route path="/products/giftcards" element={<GiftCrads/>} />
         <Route path="/add-giftcards" element={<AddNewGiftCard/>} />
 
-        <Route path="/blogs" element={<Blogs />} />
         <Route path="/search" element={<Index />} />
         <Route path="/notification" element={<Index />} />
         <Route path="/profile" element={<Index />} />

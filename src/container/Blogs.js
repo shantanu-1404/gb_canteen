@@ -36,37 +36,38 @@ const Blogs = () => {
 
   return (
     <Layout>
-      <div className=" gap-2 d-flex justify-content-end">
-        <Button buttonType="import" label="Import" />
-        <Button buttonType="export" label="Export" />
+      <div className=" gap-2 d-flex ie-btn  justify-content-end">
+        <Button buttonType="import" btnStyle="col col-md-3" label="Import" />
+        <Button buttonType="export" btnStyle="col col-md-3" label="Export" />
         <Button
           type="submit"
           label="Logs"
+          btnStyle="col col-md-3"
           className="a-btn-primary"
           onClick={() => setModalOpen(true)}
         />
 
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setModalOpen(false)}
-          title="Logs"
-        >
-          <DataTable
-            id="table1"
-            tableRef={tableRef}
-            columns={columns1}
-            data={logsdata}
-            defaultView="table"
-            searchable={true}
-            filterable={true}
-            sortable={true}
-            paginated={false}
-          />
-        </Modal>
         <div className="dropdown">
           <Button buttonType="add" label="Add New" onClick={() => navigate("/add-blogs")} />
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Logs"
+      >
+        <DataTable
+          id="table1"
+          tableRef={tableRef}
+          columns={columns1}
+          data={logsdata}
+          defaultView="table"
+          searchable={true}
+          filterable={true}
+          sortable={true}
+          paginated={false}
+        />
+      </Modal>
       <div className="card-container gap-4 flex-wrap">
         <Row>
           <Col xs={4} md={3}>

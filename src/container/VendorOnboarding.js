@@ -12,6 +12,15 @@ import Modal from "../components/Modal";
 import vendordata from "../assets/json/vendordata.json";
 import DateInput from "../components/DateInput";
 
+
+import active from "../assets/svg/pc-yellow.svg";
+import pending from "../assets/svg/calender.svg";
+import avg from "../assets/svg/chat-like.svg";
+import share from "../assets/svg/growth.svg";
+
+
+
+
 const VendorOnboarding = () => {
   const tableRef = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
@@ -68,7 +77,7 @@ const VendorOnboarding = () => {
               operation="count"
               column="col1"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={active} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the count of live blogs" // Tooltip for additional context
             />
           </Col>
@@ -78,7 +87,7 @@ const VendorOnboarding = () => {
               operation="count"
               column="col2"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={pending} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the count of Draft Blog" // Tooltip for additional context
             />
           </Col>
@@ -88,7 +97,7 @@ const VendorOnboarding = () => {
               operation="total"
               column="col4"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={avg} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Views" // Tooltip for additional context
             />
           </Col>
@@ -98,7 +107,7 @@ const VendorOnboarding = () => {
               operation="count"
               column="col2"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={share} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Users" // Tooltip for additional context
             />
           </Col>

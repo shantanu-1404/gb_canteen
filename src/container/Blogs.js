@@ -12,6 +12,12 @@ import Modal from "../components/Modal";
 import blogsdata from "../assets/json/blogsdata.json";
 import logsdata from "../assets/json/logsdata.json";
 
+import live from "../assets/svg/chat-like.svg";
+import draft from "../assets/svg/channel.svg";
+import view from "../assets/svg/chat-pic.svg";
+import user from "../assets/svg/growth.svg";
+import comments from "../assets/svg/pc-yellow.svg";
+
 const Blogs = () => {
   const tableRef = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
@@ -76,7 +82,7 @@ const Blogs = () => {
               operation="count"
               column="col1"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={live} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the count of live blogs" // Tooltip for additional context
             />
           </Col>
@@ -86,7 +92,7 @@ const Blogs = () => {
               operation="count"
               column="col2"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={draft} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the count of Draft Blog" // Tooltip for additional context
             />
           </Col>
@@ -96,7 +102,7 @@ const Blogs = () => {
               operation="total"
               column="col4"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={view} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Views" // Tooltip for additional context
             />
           </Col>
@@ -106,7 +112,7 @@ const Blogs = () => {
               operation="count"
               column="col2"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={user} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Users" // Tooltip for additional context
             />
           </Col>
@@ -116,7 +122,7 @@ const Blogs = () => {
               operation="count"
               column="col1"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={comments} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the New Comments" // Tooltip for additional context
             />
           </Col>

@@ -27,7 +27,7 @@ const PostCard = ({ post }) => {
           </div>
 
           {/* Social Media Icons */}
-          <div className="col-2 d-flex gap-1">
+          <div className="col-2 justify-content-end d-flex gap-1">
             {platform.includes("facebook") && (
               <i className="bi bi-facebook" />
             )}

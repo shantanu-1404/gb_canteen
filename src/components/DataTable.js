@@ -137,7 +137,7 @@ const DataTable = ({
       ) : (
         <>
           {
-            children ? <Row>{children}</Row> :
+            children ? <>{children}</> :
               <GridView
                 gridviewId={id}
                 data={filteredData} // Pass filteredData to GridView

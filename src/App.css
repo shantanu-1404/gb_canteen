@@ -633,7 +633,8 @@ form {
 
 .post_card p {
   color: #8E95A9;
-  font-size: 8px;
+  margin: 0;
+  font-size: 10px;
 }
 
 .post_card .profile-pic {
@@ -644,10 +645,12 @@ form {
 
 .post_card label {
   font-size: 18px;
+  margin: 0;
 }
 
 .post_img {
   aspect-ratio: 1;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -4358,6 +4361,8 @@ canvas {
   .chart-legend {
     gap: 3px;
     margin-top: 5px;
+    height: 44px;
+    width: 100%;
   }
 
   .platform-card {
@@ -4389,6 +4394,10 @@ canvas {
     font-size: 14px;
   }
 
+  .platform-card {
+    height: 32px;
+    min-width: fit-content;
+  }
 
 
 

@@ -59,12 +59,13 @@ const Reports = () => {
         <div className="text-right ie-btn mt-4 mb-4 gap-3 d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
-          <Button
-            buttonType="add"
-            btnStyle="dropdown"
-            onClick={() => navigate("/add-report")}
-            label="Add New"
-          />
+          <div className="dropdown">
+            <Button
+              buttonType="add"
+              onClick={() => navigate("/add-report")}
+              label="Add New"
+            />
+          </div>
         </div>
       </div>
       <Row>
@@ -337,8 +338,8 @@ const Reports = () => {
               </tbody>
             </table>
           </div>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <div className="btn-sack">
             <Button
               label="Cancel"

@@ -880,7 +880,10 @@ table td d {
   padding: 20px 10px !important;
   font-size: 16px;
   color: #868686;
+  display: table-cell;
   font-weight: 500;
+  align-items: center;
+  align-content: center;
 }
 
 .green-text {
@@ -3951,7 +3954,7 @@ canvas {
     background: #ffffff;
     width: 100%;
     z-index: 5;
-    padding: 1rem 3rem;
+    padding: 0rem 3rem;
     left: 0;
   }
 
@@ -3960,8 +3963,9 @@ canvas {
     background: #ffffff;
     width: 100%;
     z-index: 5;
-    font-size: 30px;
+    font-size: 26px;
     padding: 0rem 3rem;
+    margin: 0;
     left: 0;
     bottom: 0;
   }
@@ -3974,7 +3978,7 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 10px;
+    padding: 5px 10px;
     color: #9D9D9D;
   }
 
@@ -4019,6 +4023,7 @@ canvas {
 
   .container {
     margin-inline: 0px;
+    margin-top: 60px !important;
   }
 
   .section-pin {
@@ -4033,12 +4038,66 @@ canvas {
     color: #253154;
     font-weight: 500;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .metrix span {
     display: none;
   }
+
+
+  .ie-btn {
+    flex-wrap: wrap;
+    gap: 0px !important;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .ie-btn button {
+    margin: 3px;
+    font-size: 12px;
+    border-radius: 10px;
+    width: 40%;
+    padding: 10px 5px;
+    min-width: 60px;
+  }
+
+  .ie-btn .a-btn-primary i {
+    padding: 1px;
+  }
+
+  .ie-btn .dropdown {
+    position: fixed;
+    bottom: 25px;
+    right: 0;
+    width: 100%;
+    display: flex;
+    z-index: 7;
+    justify-content: center;
+  }
+
+
+  .ie-btn .dropdown .a-btn-primary i,
+  .ie-btn .dropdown.btn i {
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  .ie-btn .dropdown button,
+  .ie-btn .dropdown.btn {
+    font-size: 0;
+    aspect-ratio: 1;
+    width: auto;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .ie-btn .dropdown .ae-dropdown {
+    top: -138%;
+    left: -90%;
+  }
+
 
 }
 
@@ -4058,11 +4117,11 @@ canvas {
 
   .home_table p,
   .home_bottom p {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .headview-md .d-flex {
-    padding: 1rem 1rem;
+    padding: 0rem 1rem;
     top: 0px;
   }
 
@@ -4096,64 +4155,47 @@ canvas {
     font-size: 12px;
   }
 
-  .ie-btn {
-    flex-wrap: wrap;
-    gap: 0px !important;
-    justify-content: flex-end;
-  }
-
-  .ie-btn button {
-    margin: 3px;
-    font-size: 12px;
-    border-radius: 10px;
-    padding: 10px 5px;
-    min-width: 60px;
-  }
-
-  .ie-btn .a-btn-primary i {
-    padding: 1px;
-  }
-
-  .ie-btn .dropdown {
-    position: fixed;
-    bottom: 55px;
-    right: 43%;
-    z-index: 7;
-  }
-
   .post-preview-container .btn {
     margin-bottom: 2px;
   }
 
   .post-preview-container .btn .rounded-pill {
-    font-size: 10px;
-  }
-
-  .ie-btn .dropdown .a-btn-primary i,
-  .ie-btn .dropdown.btn i {
-    padding: 5px;
     font-size: 12px;
   }
 
-  .ie-btn .dropdown button,
-  .ie-btn .dropdown.btn {
-    font-size: 0;
-    min-width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: block;
+  .badge {
+    padding: 5px 10px;
+    font-size: 12px;
   }
 
-  .ie-btn .dropdown .ae-dropdown {
-    top: -138%;
-    left: -90%;
+  .pending {
+    height: auto;
   }
+
+  .customer_profiles .profile-count{
+    width: 50px;
+    height: 50px;
+    border: 4px solid #fff;
+  }
+
+  .customer_profiles .profile-pic{
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+  }
+
+
 
   .form_section,
   .section_card,
   .post_card,
   .metrix {
     padding: 15px;
+    margin-top: 10px;
+  }
+
+  .form_section .form-group {
+    margin-bottom: 0px;
   }
 
   .headview-md .sections {
@@ -4161,12 +4203,16 @@ canvas {
   }
 
   .headview-md .sections a {
-    padding: 20px 7px;
+    padding: 2px 7px;
   }
 
-  .metrix .d-flex h6,
+  .metrix .d-flex h6 {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+
   .metrix .d-flex h3 {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .metrix .bi-exclamation-circle {
@@ -4180,7 +4226,7 @@ canvas {
 
   .post-preview-container .post_card {
     min-width: 230px;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .check-item {
@@ -4223,7 +4269,18 @@ canvas {
   .form_section .form-control,
   .section_card .form-control {
     font-size: 12px;
+    margin-bottom: 0px;
   }
+
+  .DatePicker-icon {
+    margin-bottom: 0px;
+  }
+
+  .form-check .form-check-input {
+    height: 17px;
+    width: 17px;
+  }
+
 
   .modal-container {
     width: 96%;
@@ -4240,11 +4297,12 @@ canvas {
 
   .metrix {
     padding: 5px;
+    margin-inline: -8px;
   }
 
   .metrix li {
     gap: 2px !important;
-    font-size: 8px;
+    font-size: 10px;
   }
 
   .metrix li span {
@@ -4272,7 +4330,7 @@ canvas {
 
   .platform-buttons button {
     padding: 3px 5px;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .table-searchbar i {
@@ -4286,11 +4344,12 @@ canvas {
   }
 
   .table td {
-    font-size: 10px;
+    font-size: 12px;
+    padding: 4px 8px !important;
   }
 
   .table th {
-    font-size: 12px;
+    font-size: 14px;
   }
 
 

@@ -95,14 +95,14 @@ const SM_ProjectCard = ({ project }) => {
                 </div>
 
                 <div className="row align-items-center">
-                    <div className="customer_profiles col-md-7 d-flex align-items-center">
+                    <div className="customer_profiles col-7 d-flex align-items-center">
                         {team_members.slice(0, 3).map((member, user_id) => (
                             <img key={user_id} src={member.image} alt="profile" className="profile-pic" />
                         ))}
                         <div className="profile-count">{team_members.length}</div>
                     </div>
 
-                    <div className="col-md d-flex align-items-center justify-content-end">
+                    <div className="col d-flex align-items-center justify-content-end">
                         <i className="bi bi-list-check task-icon" style={{ fontSize: "25px" }}></i>
                         <p style={{ marginTop: "12px" }}>{total_tasks} Tasks</p>
                     </div>

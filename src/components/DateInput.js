@@ -8,12 +8,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const DateInput = ({
-    label = "Date" ,
+    label = "Date",
     name = "date",
     info = "",
     type = "all", // "all" (default), "past", "future", or "range"
     includeTime = false, // Enable time selection
-    
+    datePlaceholder = "Date", // ✅ Default placeholder for date
+    timePlaceholder = "Time", // ✅ Default placeholder for time
 }) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
@@ -55,7 +56,7 @@ const DateInput = ({
                             <i className="bi bi-calendar Flatpickr-icon"></i>
                             <Flatpickr
                                 className="form-control pr-5"
-                                placeholder="Select Date Range"
+                                placeholder={datePlaceholder} // ✅ Dynamic placeholder
                                 style={{ paddingLeft: "40px" }}
                                 value={dateRange}
                                 options={{
@@ -72,14 +73,13 @@ const DateInput = ({
                         // ✅ Single Date Picker
                         <div className="date-picker-container">
                             <DatePicker
-                                style={{ paddingRight: "40px" }}
                                 className="form-control pl-5"
                                 selected={selectedDate}
                                 onChange={handleDateChange}
                                 minDate={minDate}
                                 maxDate={maxDate}
-                                //showTimeSelect={includeTime}
-                                dateFormat={includeTime ? "yyyy-MM-dd" : "yyyy-MM-dd"}
+                                dateFormat={includeTime ? "yyyy-MM-dd HH:mm" : "yyyy-MM-dd"}
+                                placeholderText={datePlaceholder} // ✅ Dynamic placeholder
                             />
                             <i className="bi bi-calendar DatePicker-icon"></i>
                         </div>
@@ -100,6 +100,7 @@ const DateInput = ({
                                 timeIntervals={15}
                                 timeCaption="Time"
                                 dateFormat="HH:mm"
+                                placeholderText={timePlaceholder} // ✅ Dynamic placeholder
                             />
                             <i className="bi bi-clock DatePicker-icon"></i>
                         </div>

@@ -43,7 +43,9 @@ const SM_Clients = () => {
           <DateInput label="" type="range" includeTime={false} />
         </div>
         <div className="text-right ie-btn mt-4 mb-4 gap-3 d-flex">
-          <Button buttonType="add" btnStyle="dropdown" onClick={() => navigate("/add-client")} label="Add New Client" />
+          <div className="dropdown">
+            <Button buttonType="add" onClick={() => navigate("/add-client")} label="Add New Client" />
+          </div>
         </div>
       </div>
 

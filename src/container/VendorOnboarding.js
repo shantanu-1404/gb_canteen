@@ -50,11 +50,13 @@ const VendorOnboarding = () => {
         <div className="text-right gap-3 d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
-          <Button
-            buttonType="add"
-            onClick={() => navigate("")}
-            label="Add New"
-          />
+          <div className="dropdown">
+            <Button
+              buttonType="add"
+              onClick={() => navigate("")}
+              label="Add New"
+            />
+          </div>
         </div>
       </div>
 

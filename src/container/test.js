@@ -15,7 +15,7 @@ import logsdata from "../assets/json/logsdata.json";
 const Blogs = () => {
   const tableRef = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const columns = [
     { headname: "Image", type: "img", dbcol: "col1" },
@@ -24,10 +24,10 @@ const Blogs = () => {
     { headname: "Visibility", type: "", dbcol: "col4" },
     { headname: "tags", type: "tags", dbcol: "col5" },
     { headname: "Category", type: "", dbcol: "col6" },
-    { headname: "Date and time", type: "time", dbcol: "col7" },  
+    { headname: "Date and time", type: "time", dbcol: "col7" },
     { headname: "", type: "progress", dbcol: "col8" },
   ];
-  const columns1 = [ 
+  const columns1 = [
     { headname: "id", type: "id", dbcol: "col1" },
     { headname: "Title", type: "", dbcol: "col2" },
     { headname: "Deleted at", type: "time", dbcol: "col3" },
@@ -64,7 +64,9 @@ const Blogs = () => {
             paginated={false}
           />
         </Modal>
-        <Button buttonType="add" label="Add New"  onClick={() => navigate("/add-blogs")} />
+        <div className="dropdown">
+          <Button buttonType="add" label="Add New" onClick={() => navigate("/add-blogs")} />
+        </div>
       </div>
       <div className="card-container gap-4 flex-wrap">
         <Row>

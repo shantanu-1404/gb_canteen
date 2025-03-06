@@ -42,7 +42,9 @@ const SM_Project = () => {
 
                 </div>
                 <div className="text-right gap-3 ie-btn mt-4 mb-4 d-flex">
-                    <Button buttonType="add" btnStyle="dropdown" onClick={() => navigate("/add-project")} label="Add New" />
+                    <div className="dropdown">
+                        <Button buttonType="add" onClick={() => navigate("/add-project")} label="Add New" />
+                    </div>
                 </div>
             </div>
             <DataTable

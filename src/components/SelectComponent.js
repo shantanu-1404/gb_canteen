@@ -1,12 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const SelectComponent = ({ label, name, options, info, isMulti = false, onChange, listStyle }) => {
+const SelectComponent = ({ 
+    label, 
+    name, 
+    options, 
+    info, 
+    isMulti = false, 
+    onChange, 
+    listStyle 
+}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedValues, setSelectedValues] = useState(isMulti ? [] : "");
-    const [selectedLabel, setSelectedLabel] = useState(""); // For single select display
+    const [selectedLabel, setSelectedLabel] = useState(""); 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const selectRef = useRef(null);
 
+    // ✅ Handle click outside dropdown to close it
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (selectRef.current && !selectRef.current.contains(event.target)) {
@@ -17,62 +26,80 @@ const SelectComponent = ({ label, name, options, info, isMulti = false, onChange
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+    // ✅ Filter options based on search input
     const filteredOptions = options.filter((option) =>
         option.label.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    // ✅ Handle selecting an option
     const handleSelect = (value, label) => {
         if (isMulti) {
-            if (selectedValues.includes(value)) {
-                setSelectedValues(selectedValues.filter((v) => v !== value));
-            } else {
-                setSelectedValues([...selectedValues, value]);
-            }
+            setSelectedValues((prevValues) => {
+                const newValues = prevValues.includes(value)
+                    ? prevValues.filter((v) => v !== value)
+                    : [...prevValues, value];
+
+                if (onChange) onChange(newValues);
+                return newValues;
+            });
         } else {
+            // ✅ Single-Select: Update state and close dropdown
             setSelectedValues(value);
-            setSelectedLabel(label); // Show selected option in search container
-            setIsDropdownOpen(false);
+            setSelectedLabel(label);
+            
+            setTimeout(() => {
+                setIsDropdownOpen(false);
+            }, 100);
+
+            if (onChange) onChange(value);
         }
+
         setSearchTerm(""); // Reset search term after selection
-        if (onChange) onChange(isMulti ? selectedValues : value);
     };
 
+    // ✅ Remove tag in multi-select mode
     const removeTag = (value) => {
-        setSelectedValues(selectedValues.filter((v) => v !== value));
+        setSelectedValues((prevValues) => prevValues.filter((v) => v !== value));
     };
 
     return (
-        <div className={`form-group`} ref={selectRef}>
+        <div className="form-group" ref={selectRef}>
             <label className="form-label">{label}</label>
-            <div
+            <div 
                 className={`ae-select-wrapper ${isMulti ? "ae-multiple-select" : ""}`}
-                onClick={() => setIsDropdownOpen(true)} // Open dropdown when clicking on container
+                onClick={() => setIsDropdownOpen(true)} 
             >
-                {isMulti ? (
+                {isMulti && (
                     <div className="ae-selected-options">
                         {selectedValues.map((value) => {
                             const label = options.find((option) => option.value === value)?.label;
                             return (
                                 <div className="ae-tag" key={value}>
-                                    {label} <span className="ae-remove-tag" onClick={() => removeTag(value)}>&times;</span>
+                                    {label} 
+                                    <span className="ae-remove-tag" onClick={() => removeTag(value)}>
+                                        &times;
+                                    </span>
                                 </div>
                             );
                         })}
                     </div>
-                ) : null}
+                )}
 
                 <div className="ae-search-container">
-                    {isMulti ? (<i class="bi bi-search"></i>) : null}
+                    {isMulti && <i className="bi bi-search"></i>}
                     <input
                         type="text"
                         className="ae-search-input"
                         placeholder={isMulti ? "Search Options..." : "Select..."}
-                        value={isDropdownOpen ? searchTerm : selectedLabel} // Show selected option when dropdown is closed
+                        value={isDropdownOpen ? searchTerm : selectedLabel} 
                         onChange={(e) => setSearchTerm(e.target.value)}
                         onFocus={() => setIsDropdownOpen(true)}
-                        readOnly={!isDropdownOpen} // Prevents typing unless dropdown is open
+                        readOnly={!isDropdownOpen} 
                     />
-                    <i className="bi bi-chevron-down"></i>
+                    <i 
+                        className={`bi ${isDropdownOpen ? "bi-chevron-up" : "bi-chevron-down"}`}
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    ></i>
                 </div>
 
                 <select className="ae-select" name={name} multiple={isMulti} style={{ display: "none" }}>
@@ -88,7 +115,7 @@ const SelectComponent = ({ label, name, options, info, isMulti = false, onChange
                                 <div
                                     key={option.value}
                                     data-value={option.value}
-                                    className={selectedValues.includes(option.value) ? "selected" : ""}
+                                    className={isMulti ? (selectedValues.includes(option.value) ? "selected" : "") : (selectedValues === option.value ? "selected" : "")}
                                     onClick={() => handleSelect(option.value, option.label)}
                                 >
                                     {option.label}

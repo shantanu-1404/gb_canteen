@@ -3810,10 +3810,10 @@ canvas {
 }
 
 .searchable_dropdown {
-  width:auto;
+  width: auto;
   border-width: 1px;
   border-radius: 12px;
-  height:52px;
+  height: 52px;
 }
 
 .searchable_dropdown .bi-chevron-down {
@@ -3829,6 +3829,7 @@ canvas {
   content: "\f282";
   margin-top: -16px;
 }
+
 /* Ensures the horizontal divider is properly positioned */
 .dropdown-divider {
   border: none;
@@ -3836,9 +3837,11 @@ canvas {
   background-color: #ccc;
   margin: 10px 0;
 }
+
 /* Scrollable location list */
 .location-list-container {
-  max-height: 150px; /* Limits scrolling to locations */
+  max-height: 150px;
+  /* Limits scrolling to locations */
   overflow-y: auto;
 }
 
@@ -3918,7 +3921,7 @@ canvas {
   font-weight: bold;
   border-radius: 4px;
   border: 1px solid #ccc;
-  background-color:#253154;
+  background-color: #253154;
   color: white;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -3932,9 +3935,9 @@ canvas {
 .qty-input {
   width: 40px;
   height: 30px;
-  padding: 10px 0px; 
+  padding: 10px 0px;
   margin: 0 5px;
-  text-align: center; 
+  text-align: center;
   font-weight: bold;
   border: none !important;
 }
@@ -4272,6 +4275,13 @@ canvas {
     background: #0e042f;
     padding: 25px 5px;
     margin: 0;
+  }
+
+  .card-container .row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    overflow-x: auto;
   }
 
 }

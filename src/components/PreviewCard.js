@@ -17,15 +17,13 @@ const PreviewCard = ({ src, title }) => {
       <div className="OnlinStorePreMain">
         {/* Desktop View */}
         <div
-          className={`preview ${
+          className={`preview desktop ${
             activeView === "desktop" ? "d-block" : "d-none"
           }`}
         >
           <p className="preview-title">Desktop View</p>
           <PreviewIframe
             src={src}
-            width="100%"
-            height="600px"
             title={title}
             style={{ display: "block" }}
           />
@@ -33,7 +31,7 @@ const PreviewCard = ({ src, title }) => {
 
         {/* Mobile View */}
         <div
-          className={`preview ${
+          className={`preview mobile ${
             activeView === "mobile" ? "d-block" : "d-none"
           }`}
           style={{ textAlign: "center" }}
@@ -42,14 +40,11 @@ const PreviewCard = ({ src, title }) => {
           <div className="mobile-frame">
             <PreviewIframe
               src={src}
-              width="375px"
-              height="700px"
               title={title}
               style={{
                 border: "1px solid #ccc",
                 margin: "auto",
                 display: "block",
-                borderRadius: "10px",
                 boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
               }}
             />

@@ -121,113 +121,113 @@ const Index = () => {
       </div>
       <h1>Metrics Dashboard</h1>
 
-            <div className="card-container d-flex gap-4 flex-wrap">
-                <Row>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Total of Col-1"
-                            operation="total"
-                            column="col1"
-                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Count for Col-2"
-                            operation="count"
-                            column="col2"
-                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Positive Count"
-                            operation="positiveCount"
-                            column="col4"
-                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Negative Count"
-                            operation="negativeCount"
-                            column="col4"
-                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Mean of Col-1"
-                            operation="mean"
-                            column="col1"
-                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Average of Col-5 & Col-6"
-                            operation="average"
-                            column="col5,col6"
-                            tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Ratio (Col-1 / Col-2)"
-                            operation="ratio"
-                            column="col1,col2"
-                            tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Percentage of Positive (Col-2)"
-                            operation="percentage"
-                            column="col2"
-                            tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Count of Values()"
-                            operation="1000+"
-                            column="col1"
-                            tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard
-                            title="Total of Col-1"
-                            operation="total"
-                            column="col1"
-                            tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
-                            tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
-                        />
-                    </Col>
-                    <Col xs={4} md={3}>
-                        <MetricCard title="Engagement Metrics" tooltipText="Overall engagement statistics">
-                            <div className="col-md-6">
-                                <Metrix title="Likes" operation="1000+" column="col1" tableRef={tableRef} />
-                                <Metrix title="Shares" operation="ratio" column="col1" tableRef={tableRef} />
-                            </div>
-                            <div className="col-md-6">
-                                <Metrix title="Comments" operation="ratio" column="col3,col2" tableRef={tableRef} />
-                                <Metrix title="Reach" operation="total" column="col1" tableRef={tableRef} />
-                            </div>
-                        </MetricCard>
+      <div className="card-container d-flex gap-4 flex-wrap">
+        <Row className="metrix-container">
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Total of Col-1"
+              operation="total"
+              column="col1"
+              tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Count for Col-2"
+              operation="count"
+              column="col2"
+              tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Positive Count"
+              operation="positiveCount"
+              column="col4"
+              tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Negative Count"
+              operation="negativeCount"
+              column="col4"
+              tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Mean of Col-1"
+              operation="mean"
+              column="col1"
+              tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Average of Col-5 & Col-6"
+              operation="average"
+              column="col5,col6"
+              tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Ratio (Col-1 / Col-2)"
+              operation="ratio"
+              column="col1,col2"
+              tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Percentage of Positive (Col-2)"
+              operation="percentage"
+              column="col2"
+              tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Count of Values()"
+              operation="1000+"
+              column="col1"
+              tableRef={tableRef} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard
+              title="Total of Col-1"
+              operation="total"
+              column="col1"
+              tableRef={tableRef}// You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
+            />
+          </Col>
+          <Col xs={4} md={3}>
+            <MetricCard title="Engagement Metrics" tooltipText="Overall engagement statistics">
+              <div className="col-md-6">
+                <Metrix title="Likes" operation="1000+" column="col1" tableRef={tableRef} />
+                <Metrix title="Shares" operation="ratio" column="col1" tableRef={tableRef} />
+              </div>
+              <div className="col-md-6">
+                <Metrix title="Comments" operation="ratio" column="col3,col2" tableRef={tableRef} />
+                <Metrix title="Reach" operation="total" column="col1" tableRef={tableRef} />
+              </div>
+            </MetricCard>
 
-                    </Col>
-                </Row>
-            </div>
+          </Col>
+        </Row>
+      </div>
 
 
 
@@ -250,7 +250,7 @@ const Index = () => {
           <h6 className="card-title">Recent Posts</h6>
           <a>see all</a>
         </div>
-        <Row>
+        <Row className="metrix-container">
           {posts.map((post, index) => (
             <PostCard key={index} post={post} />
           ))}
@@ -262,7 +262,7 @@ const Index = () => {
           <h6 className="card-title">Recent Campaigns</h6>
           <a>see all</a>
         </div>
-        <Row>
+        <Row className="metrix-container">
           {campaigns.map((campaign, index) => (
             <CampaignCard key={index} campaign={campaign} />
           ))}
@@ -381,48 +381,48 @@ const Index = () => {
             />
           </div>
 
-                    <div className="form_section">
-                        <PhoneInput label="Mobile Number" placeholder="Enter your mobile number" />
-                        <TextInput label="Email" type="email" placeholder="yourname@company.com" />
+          <div className="form_section">
+            <PhoneInput label="Mobile Number" placeholder="Enter your mobile number" />
+            <TextInput label="Email" type="email" placeholder="yourname@company.com" />
 
-                        <br /><br />
-                        <div className="btn-sack">
-                            <button type="submit" className="a-btn-primary" onClick={() => setModalOpen(true)}>Add</button>
-                        </div>
-                        <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} title="Modal">
-                            <form>
-                                <Row>
-                                    <Col md >
-                                        <TextInput
-                                            label="TextInput"
-                                            placeholder="Enter Input"
-                                            required={true}
-                                            onChange={handleTextInputChange}
-                                        />
-                                        <PhoneInput label="Mobile Number" placeholder="Enter your mobile number" />
-                                    </Col>
-                                    <Col md >
-                                        <Aetextarea
-                                            label="TextArea (limited)"
-                                            name="description"
-                                            info="Allows the user to specify packaging standards to ensure consistency in handling and delivery"
-                                            placeholder="Enter your description..."
-                                            isWordCount={true}
-                                            wordLimit={200}
-                                        />
-                                    </Col>
-                                </Row>
-                                <br />
-                                <br />
-                                <div className="btn-sack">
-                                    <Button
-                                        label="Save"
-                                        type="submit"
-                                    />
-                                </div>
-                            </form>
-                        </Modal>
-                    </div>
+            <br /><br />
+            <div className="btn-sack">
+              <button type="submit" className="a-btn-primary" onClick={() => setModalOpen(true)}>Add</button>
+            </div>
+            <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} title="Modal">
+              <form>
+                <Row>
+                  <Col md >
+                    <TextInput
+                      label="TextInput"
+                      placeholder="Enter Input"
+                      required={true}
+                      onChange={handleTextInputChange}
+                    />
+                    <PhoneInput label="Mobile Number" placeholder="Enter your mobile number" />
+                  </Col>
+                  <Col md >
+                    <Aetextarea
+                      label="TextArea (limited)"
+                      name="description"
+                      info="Allows the user to specify packaging standards to ensure consistency in handling and delivery"
+                      placeholder="Enter your description..."
+                      isWordCount={true}
+                      wordLimit={200}
+                    />
+                  </Col>
+                </Row>
+                <br />
+                <br />
+                <div className="btn-sack">
+                  <Button
+                    label="Save"
+                    type="submit"
+                  />
+                </div>
+              </form>
+            </Modal>
+          </div>
 
           <div className="form-group row p-3 gap-2 text-center">
             <a type="submit" className="btn col a-btn-primary">

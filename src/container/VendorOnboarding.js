@@ -70,7 +70,7 @@ const VendorOnboarding = () => {
       </div>
 
       <div className="card-container gap-4 flex-wrap">
-        <Row>
+        <Row className="metrix-container">
           <Col xs={4} md={3}>
             <MetricCard
               title="Total Active Restaurants"

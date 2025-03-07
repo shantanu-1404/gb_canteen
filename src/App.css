@@ -581,32 +581,32 @@ form {
   width: 125px;
 }
 
-.metrix .lite_text {
+.lite_text {
   font-weight: 400;
   font-size: 18px;
 }
 
-.metrix .progress {
+.progress {
   height: 8px;
 }
 
-.metrix .progress .orange_progress {
+.progress .orange_progress {
   background-color: #FAB446;
 }
 
-.metrix .progress .green_progress {
+.progress .green_progress {
   background-color: #ADD85C;
 }
 
-.metrix .progress .violet_progress {
+.progress .violet_progress {
   background-color: #7B5CD8;
 }
 
-.metrix .progress .blueishgreen_progress {
+.progress .blueishgreen_progress {
   background-color: #5CD8AC;
 }
 
-.metrix .moderate {
+.moderate {
   border: 1px solid #FF870F;
   color: #FFA60D;
   font-size: 10px;
@@ -616,7 +616,7 @@ form {
   background-color: #FFF7EC;
 }
 
-.metrix .good {
+.good {
   border: 1px solid #1A932E;
   color: #1A932E;
   font-size: 10px;
@@ -629,7 +629,6 @@ form {
 .metrix h3 {
   font-weight: 600;
 }
-
 
 .post_card p {
   color: #8E95A9;
@@ -3993,6 +3992,28 @@ canvas {
   display: none;
 }
 
+.desktop .preview-iframe {
+  zoom: 0.5;
+  height: 1200px;
+}
+
+.mobile .preview-iframe {
+  height: 600px;
+}
+
+.mobile.preview {
+  width: 40%;
+}
+
+.notification {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .5rem 0px;
+  gap: .25rem;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #dee2e6;
+}
 
 
 
@@ -4052,6 +4073,9 @@ canvas {
     width: 390px;
   }
 
+  .home_act p {
+    text-wrap-mode: nowrap;
+  }
 
 
 
@@ -4075,6 +4099,8 @@ canvas {
     display: block;
     z-index: 150;
   }
+
+
 
   .sidebar-overlay {
     display: block;
@@ -4115,6 +4141,10 @@ canvas {
     padding: 0rem 3rem;
     box-shadow: 0px -8px 10px 2px rgba(0, 0, 0, .08);
     left: 0;
+  }
+
+  .lite_text {
+    font-size: 12px;
   }
 
   .headview-md .sections {
@@ -4181,9 +4211,17 @@ canvas {
     display: block;
   }
 
+
+
+  .form_section h6,
+  .section_card h6 {
+    font-size: 18px;
+  }
+
   .container {
     margin-inline: 0px;
     margin-top: 60px !important;
+    max-width: 100%;
   }
 
   .section-pin {
@@ -4284,12 +4322,38 @@ canvas {
     margin: 0;
   }
 
-  .card-container .row {
+  .metrix-container {
     display: flex;
     flex-wrap: nowrap;
     align-items: stretch;
     overflow-x: auto;
+    padding-bottom: 15px;
   }
+
+  .theme .mt-5 {
+    margin-top: 1rem !important;
+  }
+
+  .theme .form-group {
+    margin: 0;
+    padding: 5px !important;
+    gap: 0px !important;
+  }
+
+
+  .metrix-container .col-md-6 {
+    width: 50%;
+    margin-inline: -5px;
+  }
+
+  .home_table .a-btn-primary {
+    margin: 0px;
+    padding: 5px 10px;
+    min-width: auto;
+  }
+
+
+
 
 }
 
@@ -4392,6 +4456,63 @@ canvas {
     font-size: 16px;
   }
 
+  .metrix-container .col-md-6 {
+    width: 85%;
+    margin-inline: -5px;
+  }
+
+  .btn-sack-top span {
+    width: 50px;
+    height: 30px;
+  }
+
+  .desktop .preview-iframe {
+    zoom: 0.2;
+    height: 1200px;
+  }
+
+  .mobile .preview-iframe {
+    zoom: 0.8;
+  }
+
+  .theme .form-group {
+    margin: 0;
+    padding: 5px !important;
+  }
+
+  .table .badge {
+    color: #868686;
+    border: none;
+    background: transparent;
+    padding: 0 5px;
+    margin-inline: 0 !important;
+    border-radius: 0px;
+  }
+
+  .table .tags-container {
+    flex-wrap: nowrap;
+    gap: 0px;
+  }
+
+  .table .tags-container .badge {
+    border-right: 1px solid #868686;
+
+  }
+  .table .tags-container .badge:last-child{
+    border-right: none !important;
+  }
+
+
+
+  .theme .form-group button {
+    min-width: auto;
+    padding-inline: 25px;
+  }
+
+  .mobile.preview {
+    width: 100%;
+  }
+
   .home_table label {
     font-size: 12px;
   }
@@ -4405,7 +4526,6 @@ canvas {
     padding: 0rem 1rem;
     top: 0px;
   }
-
 
   .positive_garph {
     margin: 0;
@@ -4483,7 +4603,7 @@ canvas {
   }
 
   .headview-md .sections a {
-    padding: 2px 7px;
+    padding: 5px 7px;
   }
 
   .metrix .d-flex h6 {
@@ -4627,7 +4747,7 @@ canvas {
 
   .table td {
     font-size: 12px;
-    padding: 4px 8px !important;
+    padding: 14px 8px !important;
   }
 
   .table th {

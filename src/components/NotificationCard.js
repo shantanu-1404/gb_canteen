@@ -30,7 +30,7 @@ const NotificationCard = ({ notification }) => {
     };
 
     return (
-        <div className="d-flex p-2 gap-1">
+        <div className="notification ">
             {/* User Profile */}
             <img src={user} className="profile-pic" alt="User" />
             {/* Notification Details */}
@@ -50,6 +50,9 @@ const NotificationCard = ({ notification }) => {
                     <i className="bi p-1 bi-three-dots"></i>
                 </a>
                 <p>{time}</p>
+            </div>
+            <div className="col-12 d-flex justify-content-center">
+                <div className="text-right col-9 mb-2 gap-3 d-md-none justify-content-between d-flex">{renderActionButtons()}</div>
             </div>
         </div>
     );

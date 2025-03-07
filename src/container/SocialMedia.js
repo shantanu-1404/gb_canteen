@@ -86,8 +86,8 @@ const SocialMedia = () => {
         </div>
       </div>
 
-      <Row>
-        <Col xs={6} lg={3} md={4}>
+      <Row className="metrix-container">
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="Total Posts"
             operation="total"
@@ -97,7 +97,7 @@ const SocialMedia = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="Scheduled Posts"
             operation="count"
@@ -107,7 +107,7 @@ const SocialMedia = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="Pending Approvals"
             operation="positiveCount"
@@ -117,7 +117,7 @@ const SocialMedia = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="Active Campaigns"
             operation="negativeCount"
@@ -127,7 +127,7 @@ const SocialMedia = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="Total Ad Spend"
             operation="mean"
@@ -137,7 +137,7 @@ const SocialMedia = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="Engagement Rate"
             operation="average"
@@ -147,7 +147,7 @@ const SocialMedia = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="Top Channel"
             operation="ratio"
@@ -157,7 +157,7 @@ const SocialMedia = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="Follower Growth"
             operation="percentage"
@@ -167,7 +167,7 @@ const SocialMedia = () => {
             tooltipText="This shows the total of Col-1 values" // Tooltip for additional context
           />
         </Col>
-        <Col xs={6} lg={3} md={4}>
+        <Col xs={4} lg={3} md={4}>
           <MetricCard
             title="ROI on Ads"
             operation="1000+"
@@ -183,7 +183,7 @@ const SocialMedia = () => {
           <h6 className="card-title">Recent Posts</h6>
           <a>see all</a>
         </div>
-        <Row>
+        <Row className="metrix-container">
           {posts.map((post, index) => (
             <PostCard key={index} post={post} />
           ))}
@@ -195,7 +195,7 @@ const SocialMedia = () => {
           <h6 className="card-title">Recent Campaigns</h6>
           <a>see all</a>
         </div>
-        <Row>
+        <Row className="metrix-container">
           {campaigns.map((campaign, index) => (
             <CampaignCard key={index} campaign={campaign} />
           ))}

@@ -68,7 +68,7 @@ const Reports = () => {
           </div>
         </div>
       </div>
-      <Row>
+      <Row className="metrix-container">
         <Col xs={4} lg={3} md={3}>
           <MetricCard
             title="Engagement"

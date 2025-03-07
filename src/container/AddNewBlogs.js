@@ -181,6 +181,7 @@ const AddNewBlogs = () => {
                   required={true}
                   onChange={handleTextInputChange}
                 />
+                <br/><br/>
                 <div className="btn-sack">
                   <Button label="Save" type="submit" />
                   <Button

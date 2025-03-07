@@ -59,6 +59,7 @@ const AddNewClient = () => {
                   placeholder="Profile Managed"
                   required={true}
                   onChange={handleTextInputChange}
+                   type="number"
                 />
               </div>
               <div className="col-md-6">

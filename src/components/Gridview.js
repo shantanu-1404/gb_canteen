@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import { sortData } from "./SortTable"; // ✅ Import sorting logic
 import moment from "moment"; // ✅ For time formatting
+import Button from "../components/Button";
 
 const GridCard = ({ rowData, columns, countryFlags }) => {
 
-
+  const handleEditClick = (rowData) => {
+    console.log("Editing row:", rowData);
+    // You can implement the logic to edit the row or open a modal to edit the content
+  };
 
   const badgeColors = {
     positive: "positive_garph",
@@ -92,6 +96,60 @@ const GridCard = ({ rowData, columns, countryFlags }) => {
         <img src={countryFlags[value]} alt={value} title={value} style={{ width: "30px", height: "20px" }} />
       ) : (
         value
+      );
+    }
+
+    
+    if (type === "button") {
+      return (
+        <Button
+          buttonType="edit"
+          label="Edit"
+          onClick={() => handleEditClick(rowData)}
+          className="edit-button"
+          style={{ fontSize: "13px", width: "10px" }} // Additional inline styling
+        />
+      );
+    }
+    // If the column type is "progress" and the value represents progress (e.g., "Ordered", "Completed", etc.)
+    if (type === "progress") {
+      const progressValue = value; // This should represent the current progress as a fraction (e.g., "2/10", "5/10")
+      const [completed, total] = progressValue.split("/").map(Number);
+
+      let progressBarColor = "#D9D9D9"; // Default color for Pending
+      let progressText = `${completed}/${total}`;
+
+      // Logic for Ordered/Completed and Pending
+      if (completed === total) {
+        progressBarColor = "#BDE275"; // Green for Ordered/Completed
+      } else if (completed === 0) {
+        progressBarColor = "#D9D9D9"; // Grey for Pending
+      } else if (completed > 0 && completed < total) {
+        // Mixed colors for half completed and half pending
+        progressBarColor = "#FFB3B3";
+      }
+
+      return (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            className="progress"
+            style={{
+              backgroundColor: progressBarColor,
+            }}
+          >
+            <div
+              className="progress-bar"
+              style={{
+                width: `${(completed / total) * 100}%`
+              }}
+              role="progressbar"
+              aria-valuenow={completed}
+              aria-valuemin="0"
+              aria-valuemax={total}
+            ></div>
+          </div>
+          <span style={{ marginLeft: "10px" }}>{progressText}</span>
+        </div>
       );
     }
 

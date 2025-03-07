@@ -143,6 +143,7 @@ const AddNewProject = () => {
                   placeholder="Budget"
                   required={true}
                   onChange={handleTextInputChange}
+                  type="number"
                 />
               </Col>
             </Row>

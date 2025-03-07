@@ -29,6 +29,9 @@ import AddNewVendor from './container/AddNewVendor';
 import InventoryManagement from './container/InventoryManagement';
 import GiftCrads from './container/GiftCards';
 import AddNewGiftCard from './container/AddNewGiftCard';
+import PurchaseOrder from './container/PurchaseOrder';
+import AddNewPurchaseOrder from "./container/AddNewPurchaseOrder";
+
 
 
 
@@ -74,6 +77,8 @@ const App = () => {
         <Route path="/products/inventory-management" element={<InventoryManagement/>} />
         <Route path="/products/giftcards" element={<GiftCrads/>} />
         <Route path="/add-giftcards" element={<AddNewGiftCard/>} />
+        <Route path="/products/purchase_order" element={<PurchaseOrder/>} />
+        <Route path="/add-purchase_order" element={<AddNewPurchaseOrder/>} />
 
 
 

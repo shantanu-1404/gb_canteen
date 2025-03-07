@@ -5,162 +5,277 @@ import SortTable from "./SortTable";
 import { Row, Col } from "react-bootstrap";
 
 const SelectTable = ({
-    id = "selectTable",
-    columns = [],
-    data = [],
-    multiSelect = true,
-    onSelectionChange,
+  id = "selectTable",
+  columns = [],
+  data = [],
+  multiSelect = true,
+  onSelectionChange,
+  updateitemQuantity, // ✅ Quantity update function
+  setSelectedProducts, // ✅ Function to update JSON data for selected rows
 }) => {
-    const [filteredData, setFilteredData] = useState(data);
-    const [sortColumn, setSortColumn] = useState(null);
-    const [sortOrder, setSortOrder] = useState("asc");
-    const [selectedRows, setSelectedRows] = useState([]);
+  const [filteredData, setFilteredData] = useState(data);
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [quantities, setQuantities] = useState({});
 
-    // Sorting function
-    const handleSorting = (column, order) => {
-        setSortColumn(column);
-        setSortOrder(order);
-    };
+  // ✅ Sorting function
+  const handleSorting = (column, order) => {
+    setSortColumn(column);
+    setSortOrder(order);
+  };
 
-    // Handle search query
-    const handleSearch = (query) => {
-        const searchedData = data.filter((item) =>
-            Object.values(item).some((value) =>
-                String(value).toLowerCase().includes(query.toLowerCase())
-            )
-        );
-        setFilteredData(searchedData);
-    };
-
-    // Apply sorting whenever sort state changes
-    useEffect(() => {
-        if (!sortColumn) return;
-
-        const sortedData = [...filteredData].sort((a, b) => {
-            let valueA = a[sortColumn] ?? "";
-            let valueB = b[sortColumn] ?? "";
-
-            if (typeof valueA === "string" && typeof valueB === "string") {
-                return sortOrder === "asc"
-                    ? valueA.localeCompare(valueB)
-                    : valueB.localeCompare(valueA);
-            }
-
-            if (typeof valueA === "number" && typeof valueB === "number") {
-                return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
-            }
-
-            if (Date.parse(valueA) && Date.parse(valueB)) {
-                return sortOrder === "asc"
-                    ? new Date(valueA) - new Date(valueB)
-                    : new Date(valueB) - new Date(valueA);
-            }
-
-            return 0;
-        });
-
-        setFilteredData(sortedData);
-    }, [sortColumn, sortOrder]);
-
-    // ✅ Handle row selection when clicking the row
-    const handleRowSelect = (row) => {
-        let newSelectedRows;
-
-        if (multiSelect) {
-            // Toggle selection for multiSelect mode
-            newSelectedRows = selectedRows.some((selected) => selected.id === row.id)
-                ? selectedRows.filter((selected) => selected.id !== row.id)
-                : [...selectedRows, row];
-        } else {
-            // Single selection mode - select row when clicked, remove previous selection
-            newSelectedRows = selectedRows[0]?.id === row.id ? [] : [row];
-        }
-
-        setSelectedRows(newSelectedRows);
-        onSelectionChange && onSelectionChange(newSelectedRows);
-    };
-
-    return (
-        <div>
-            <Row className="gap-2 align-items-center mb-3">
-                <Col>
-                    <SearchBar
-                        tableId={id}
-                        gridviewId={id}
-                        placeholder="Search for data..."
-                        onSearch={(query) => handleSearch(query)}
-                    />
-                </Col>
-
-                <Col md="auto">
-                    <div className="d-flex gap-2">
-                        <Filter
-                            columns={columns}
-                            data={data}
-                            onFilter={setFilteredData}
-                            tableId={id}
-                        />
-                        <SortTable
-                            data={filteredData}
-                            setSortedData={setFilteredData}
-                            columns={columns}
-                            sortColumn={sortColumn}
-                            setSortColumn={setSortColumn}
-                            sortOrder={sortOrder}
-                            setSortOrder={setSortOrder}
-                        />
-                    </div>
-                </Col>
-            </Row>
-
-            {/* Table Component */}
-            <div className="table-container">
-                <table className="table ae-table" id={id}>
-                    <thead>
-                        <tr>
-                            {multiSelect && <th>Select</th>}
-                            {columns.map((column) => (
-                                <th key={column.dbcol} onClick={() => handleSorting(column.dbcol, sortOrder)}>
-                                    {column.headname} {sortColumn === column.dbcol && (sortOrder === "asc" ? "▲" : "▼")}
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredData.length > 0 ? (
-                            filteredData.map((row) => (
-                                <tr
-                                    key={row.id}
-                                    onClick={() => handleRowSelect(row)}
-                                    className={selectedRows.some((selected) => selected.id === row.id) ? "selected-row" : ""}
-                                    style={{
-                                        cursor: "pointer"
-                                    }}
-                                >
-                                    {multiSelect && (
-                                        <td>
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedRows.some((selected) => selected.id === row.id)}
-                                                onChange={() => handleRowSelect(row)}
-                                            />
-                                        </td>
-                                    )}
-                                    {columns.map((column) => (
-                                        <td key={column.dbcol}>{row[column.dbcol]}</td>
-                                    ))}
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan={columns.length + (multiSelect ? 1 : 0)}>No data available</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  // ✅ Handle search query
+  const handleSearch = (query) => {
+    const searchedData = data.filter((item) =>
+      Object.values(item).some((value) =>
+        String(value).toLowerCase().includes(query.toLowerCase())
+      )
     );
+    setFilteredData(searchedData);
+  };
+
+  // ✅ Apply sorting whenever sort state changes
+  useEffect(() => {
+    if (!sortColumn) return;
+
+    const sortedData = [...filteredData].sort((a, b) => {
+      let valueA = a[sortColumn] ?? "";
+      let valueB = b[sortColumn] ?? "";
+
+      if (typeof valueA === "string" && typeof valueB === "string") {
+        return sortOrder === "asc"
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA);
+      }
+
+      if (typeof valueA === "number" && typeof valueB === "number") {
+        return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
+      }
+
+      if (Date.parse(valueA) && Date.parse(valueB)) {
+        return sortOrder === "asc"
+          ? new Date(valueA) - new Date(valueB)
+          : new Date(valueB) - new Date(valueA);
+      }
+
+      return 0;
+    });
+
+    setFilteredData(sortedData);
+  }, [sortColumn, sortOrder]);
+
+  // ✅ Handle row selection when clicking outside of quantity buttons
+  const handleRowSelect = (row, event) => {
+    event.stopPropagation(); // ✅ Prevents row selection when clicking inside td
+  
+    let updatedSelection;
+  
+    if (multiSelect) {
+      updatedSelection = selectedRows.some((selected) => selected.id === row.id)
+        ? selectedRows.filter((selected) => selected.id !== row.id)
+        : [...selectedRows, { ...row, quantity: row.quantity || 1 }];
+    } else {
+      updatedSelection =
+        selectedRows[0]?.id === row.id
+          ? []
+          : [{ ...row, quantity: row.quantity || 1 }];
+    }
+  
+    setSelectedRows(updatedSelection);
+  
+    if (typeof setSelectedProducts === "function") {
+      setSelectedProducts(updatedSelection); // ✅ Update JSON data for `Table`
+    } else {
+      console.error("setSelectedProducts is not a function");
+    }
+  
+    onSelectionChange && onSelectionChange(updatedSelection);
+  };
+  
+
+  // ✅ Handle Quantity Updates
+  const updateQuantity = (rowId, newQuantity) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [rowId]: Math.max(1, parseInt(newQuantity) || 1), // Ensure valid number
+    }));
+  };
+
+  const increaseQuantity = (rowId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [rowId]: (prev[rowId] || 1) + 1,
+    }));
+  };
+
+  const decreaseQuantity = (rowId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [rowId]: Math.max((prev[rowId] || 1) - 1, 1),
+    }));
+  };
+
+  // ✅ Render Cell Content Based on Type
+  const renderCellContent = (column, value, rowData) => {
+    const type = column.type || "text";
+
+    switch (type) {
+      case "img":
+        return (
+          <img
+            src={value}
+            alt="img"
+            style={{ width: "50px", borderRadius: "5px" }}
+          />
+        );
+
+      case "checkbox":
+        return (
+          <input
+            type="checkbox"
+            checked={selectedRows.some(
+              (selected) => selected.id === rowData.id
+            )}
+            onChange={(e) => handleRowSelect(rowData, e)} // ✅ Pass `e` explicitly
+          />
+        );
+
+      case "quantity":
+        return (
+          <div
+            className="quantity-control"
+            onClick={(event) => event.stopPropagation()} // ✅ Prevents row selection when clicking quantity buttons
+          >
+            <button
+              className="btn a-btn-primary qty-btn"
+              onClick={() => decreaseQuantity(rowData.id)}
+            >
+              -
+            </button>
+            <input
+              type="text"
+              className="form-control qty-input"
+              value={quantities[rowData.id] ?? 1}
+              onChange={(e) => updateQuantity(rowData.id, e.target.value)}
+            />
+            <button
+              className="btn a-btn-primary qty-btn"
+              onClick={() => increaseQuantity(rowData.id)}
+            >
+              +
+            </button>
+          </div>
+        );
+
+      case "currency":
+        return <span>₹{parseFloat(value).toFixed(2)}</span>;
+
+      case "badge":
+        return (
+          <span className={`badge badge-${value.toLowerCase()}`}>{value}</span>
+        );
+
+      default:
+        return value;
+    }
+  };
+
+  return (
+    <div>
+      <Row className="gap-2 align-items-center mb-3">
+        <Col>
+          <SearchBar
+            tableId={id}
+            gridviewId={id}
+            placeholder="Search for data..."
+            onSearch={(query) => handleSearch(query)}
+          />
+        </Col>
+
+        <Col md="auto">
+          <div className="d-flex gap-2">
+            <Filter
+              columns={columns}
+              data={data}
+              onFilter={setFilteredData}
+              tableId={id}
+            />
+            <SortTable
+              data={filteredData}
+              setSortedData={setFilteredData}
+              columns={columns}
+              sortColumn={sortColumn}
+              setSortColumn={setSortColumn}
+              sortOrder={sortOrder}
+              setSortOrder={setSortOrder}
+            />
+          </div>
+        </Col>
+      </Row>
+
+      {/* Table Component */}
+      <div className="table-container">
+        <table className="table ae-table" id={id}>
+          <thead>
+            <tr>
+              {multiSelect && <th>Select</th>}
+              {columns.map((column) => (
+                <th
+                  key={column.dbcol}
+                  onClick={() => handleSorting(column.dbcol, sortOrder)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {column.headname}{" "}
+                  {sortColumn === column.dbcol &&
+                    (sortOrder === "asc" ? "▲" : "▼")}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.length > 0 ? (
+              filteredData.map((row) => (
+                <tr
+                  key={row.id}
+                  onClick={(event) => handleRowSelect(row, event)}
+                  className={
+                    selectedRows.some((selected) => selected.id === row.id)
+                      ? "selected-row"
+                      : ""
+                  }
+                  style={{ cursor: "pointer" }}
+                >
+                  {multiSelect && (
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedRows.some(
+                          (selected) => selected.id === row.id
+                        )}
+                        onChange={(event) => handleRowSelect(row, event)}
+                      />
+                    </td>
+                  )}
+                  {columns.map((column) => (
+                    <td key={column.dbcol}>
+                      {renderCellContent(column, row[column.dbcol], row)}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={columns.length + (multiSelect ? 1 : 0)}>
+                  No data available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default SelectTable;

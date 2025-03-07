@@ -13,6 +13,7 @@ const Table = ({
   setFilteredData,
   paginated = true,
   handleButtonClick,
+  showCheckbox = true, // ✅ Default is true, can be set to false
 }) => {
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
@@ -21,6 +22,7 @@ const Table = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState([]);
   const [countryFlags, setCountryFlags] = useAsyncState({});
+  const [quantities, setQuantities] = useState({});
 
   const startIndex = paginated ? (currentPage - 1) * rowsPerPage : 0;
   const endIndex = paginated ? startIndex + rowsPerPage : filteredData.length;
@@ -112,6 +114,27 @@ const Table = ({
     );
   };
 
+  // ✅ Handle Quantity Updates
+  const updateQuantity = (rowId, newQuantity) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [rowId]: Math.max(1, parseInt(newQuantity) || 1), // Ensure valid number
+    }));
+  };
+
+  const increaseQuantity = (rowId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [rowId]: (prev[rowId] || 1) + 1,
+    }));
+  };
+
+  const decreaseQuantity = (rowId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [rowId]: Math.max((prev[rowId] || 1) - 1, 1),
+    }));
+  };
   const badgeColors = {
     positive: "positive_garph",
     negative: "critical",
@@ -157,6 +180,30 @@ const Table = ({
   // ✅ Function to handle all cell types including nested objects
   const renderCellContent = (column, value, rowData) => {
     const type = column.type || "text";
+    if (type === "quantity") {
+      return (
+        <div className="quantity-control">
+          <button
+            className="btn a-btn-primary qty-btn"
+            onClick={() => decreaseQuantity(rowData.id)}
+          >
+            -
+          </button>
+          <input
+            type="text"
+            className="form-control qty-input"
+            value={quantities[rowData.id] ?? 1}            
+            onChange={(e) => updateQuantity(rowData.id, e.target.value)}
+          />
+          <button
+            className="btn a-btn-primary qty-btn"
+            onClick={() => increaseQuantity(rowData.id)}
+          >
+            +
+          </button>
+        </div>
+      );
+    }
 
     if (type === "img")
       return (
@@ -166,6 +213,15 @@ const Table = ({
           style={{ width: "100%", height: "40px", borderRadius: "5px" }}
         />
       );
+    if (type === "checkbox") {
+      return (
+        <input
+          type="checkbox"
+          checked={selectedRows.includes(rowData.id)}
+          onChange={() => handleCheckboxChange(rowData.id)}
+        />
+      );
+    }
 
     if (type === "badge")
       return <span className={`badge ${getBadgeClass(value)}`}>{value}</span>;
@@ -260,9 +316,14 @@ const Table = ({
 
       return (
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div className="progress" >
+          <div
+            className="progress"
+            style={{
+              backgroundColor: progressBarColor,
+            }}
+          >
             <div
-              className="progressbar"
+              className="progress-bar"
               style={{
                 width: `${(completed / total) * 100}%`,
                 backgroundColor: progressBarColor,
@@ -302,19 +363,22 @@ const Table = ({
       <table className="table ae-table" ref={tableRef} id={id}>
         <thead>
           <tr>
-            <th>
-              <input
-                type="checkbox"
-                checked={selectedRows.length === filteredData.length}
-                onChange={() => {
-                  setSelectedRows(
-                    selectedRows.length === filteredData.length
-                      ? []
-                      : filteredData.map((_, index) => index)
-                  );
-                }}
-              />
-            </th>
+            {/* ✅ Show checkboxes only if `showCheckbox` is true */}
+            {showCheckbox && (
+              <th>
+                <input
+                  type="checkbox"
+                  checked={selectedRows.length === filteredData.length}
+                  onChange={() => {
+                    setSelectedRows(
+                      selectedRows.length === filteredData.length
+                        ? []
+                        : filteredData.map((_, index) => index)
+                    );
+                  }}
+                />
+              </th>
+            )}
             {columns.map((column) => (
               <th
                 key={column.dbcol}
@@ -333,27 +397,33 @@ const Table = ({
           {currentData.length > 0 ? (
             currentData.map((row, index) => (
               <tr key={index}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.includes(startIndex + index)}
-                    onChange={() => handleCheckboxChange(startIndex + index)}
-                  />
-                </td>
+                {/* ✅ Show checkboxes only if `showCheckbox` is true */}
+                {showCheckbox && (
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.includes(startIndex + index)}
+                      onChange={() => handleCheckboxChange(startIndex + index)}
+                    />
+                  </td>
+                )}
                 {columns.map((column) => (
                   <td key={column.dbcol}>
-                    {renderCellContent(column, row[column.dbcol])}
+                    {renderCellContent(column, row[column.dbcol], row)}
                   </td>
                 ))}
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={columns.length + 1}>No data available</td>
+              <td colSpan={columns.length + (showCheckbox ? 1 : 0)}>
+                No data available
+              </td>
             </tr>
           )}
         </tbody>
       </table>
+
       {paginated ? (
         <>
           <br />

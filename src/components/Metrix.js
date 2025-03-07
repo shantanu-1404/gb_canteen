@@ -123,11 +123,11 @@ const Metrix = ({ title, operation, column, tableRef, jsonData }) => {
     }, [operation, column, tableRef, jsonData]);
 
     return (
-        <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <li style={{ display: "flex", flexWrap:"wrap", alignItems: "center", gap: "8px" }}>
             <span
                 style={{
-                    width: "10px",
-                    height: "10px",
+                    width: "8px",
+                    height: "8px",
                     borderRadius: "50%",
                     backgroundColor: dotColor,
                     display: "inline-block",

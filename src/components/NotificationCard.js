@@ -40,7 +40,7 @@ const NotificationCard = ({ notification }) => {
                         <label >{title}</label>
                         <p>{detail}</p>
                     </div>
-                    <div className="text-right gap-3 d-flex">{renderActionButtons()}</div>
+                    <div className="text-right gap-3 d-none d-md-flex">{renderActionButtons()}</div>
                 </div>
             </div>
 

@@ -39,11 +39,13 @@ const SM_Clients = () => {
   return (
     <Layout>
       <div className="d-flex justify-content-between">
-        <div className="mt-3 col-md-3">
+        <div className="mt-3 col-md-3 ">
           <DateInput label="" type="range" includeTime={false} />
         </div>
-        <div className="text-right gap-3 d-flex">
-          <Button buttonType="add" onClick={() => navigate("/add-client")} label="Add New Client" />
+        <div className="text-right ie-btn mt-4 mb-4 gap-3 d-flex">
+          <div className="dropdown">
+            <Button buttonType="add" onClick={() => navigate("/add-client")} label="Add New Client" />
+          </div>
         </div>
       </div>
 

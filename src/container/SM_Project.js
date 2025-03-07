@@ -33,7 +33,7 @@ const SM_Project = () => {
     return (
         <Layout>
             <div className="d-flex justify-content-between">
-                <div className="mt-3 col-md-3">
+                <div className="mt-3 md-date col-md-3">
                     <DateInput
                         label=""
                         type="range"
@@ -41,8 +41,10 @@ const SM_Project = () => {
                     />
 
                 </div>
-                <div className="text-right gap-3 d-flex">
-                    <Button buttonType="add" onClick={() => navigate("/add-project")} label="Add New" />
+                <div className="text-right gap-3 ie-btn mt-4 mb-4 d-flex">
+                    <div className="dropdown">
+                        <Button buttonType="add" onClick={() => navigate("/add-project")} label="Add New" />
+                    </div>
                 </div>
             </div>
             <DataTable

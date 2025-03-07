@@ -12,6 +12,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import postData from "../assets/json/posts.json";
 
+import wallet from "../assets/svg/wallet-blue.svg";
+import percent from "../assets/svg/percent.svg";
+import credit from "../assets/svg/credit-card.svg";
 
 
 const Analytics = () => {
@@ -30,12 +33,12 @@ const Analytics = () => {
     <Layout>
       <div className="d-flex justify-content-between">
         <div className="mt-3 d-flex align-items-center">
-          <div className="d-flex gap-5 ">
+          <div className="d-flex gap-5 md-date">
             <DateInput label="" type="range" includeTime={false} />
           </div>
 
           {/* Refresh Button */}
-          <div className=" mb-2 ps-3 ">
+          <div className=" mb-2 ps-3 md-refresh">
             <i
               className="bi bi-arrow-repeat icon-refresh"
               onClick={handleRefresh}
@@ -43,7 +46,7 @@ const Analytics = () => {
           </div>
         </div>
 
-        <div className="text-right gap-3 d-flex">
+        <div className="text-right gap-3 ie-btn mt-4 mb-4 d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
         </div>
@@ -56,7 +59,7 @@ const Analytics = () => {
             operation="total"
             column="col1"
             tableRef={tableRef}
-            icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            icon={wallet} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
             tooltipText="This shows the total Spend" // Tooltip for additional context
           />
         </Col>
@@ -67,7 +70,7 @@ const Analytics = () => {
             operation="negativeCount"
             column="col4"
             tableRef={tableRef}
-            icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            icon={percent} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
             tooltipText="This shows ROI per Campaign" // Tooltip for additional context
           />
         </Col>
@@ -78,7 +81,7 @@ const Analytics = () => {
             operation="ratio"
             column="col1,col2"
             tableRef={tableRef}
-            icon="http://localhost/gb_canteen/svg/return.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+            icon={credit} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
             tooltipText="This shows the Budget Utilization" // Tooltip for additional context
           />
         </Col>

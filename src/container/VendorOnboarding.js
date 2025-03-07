@@ -12,6 +12,15 @@ import Modal from "../components/Modal";
 import vendordata from "../assets/json/vendordata.json";
 import DateInput from "../components/DateInput";
 
+
+import active from "../assets/svg/pc-yellow.svg";
+import pending from "../assets/svg/calender.svg";
+import avg from "../assets/svg/chat-like.svg";
+import share from "../assets/svg/growth.svg";
+
+
+
+
 const VendorOnboarding = () => {
   const tableRef = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
@@ -36,25 +45,27 @@ const VendorOnboarding = () => {
     <Layout>
       <div className="d-flex justify-content-between">
         <div className="mt-3 d-flex align-items-center">
-          <div className="d-flex gap-5 ">
+          <div className="d-flex gap-5 md-date">
             <DateInput label="" type="range" includeTime={false} />
           </div>
           {/* Refresh Button */}
-          <div className=" mb-2 ps-3 ">
+          <div className=" md-refresh mb-2 ps-3 ">
             <i
               className="bi bi-arrow-repeat icon-refresh"
               onClick={handleRefresh}
             ></i>
           </div>
         </div>
-        <div className="text-right gap-3 d-flex">
+        <div className="text-right ie-btn mt-4 mb-4 gap-3 d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
-          <Button
-            buttonType="add"
-            onClick={() => navigate("")}
-            label="Add New"
-          />
+          <div className="dropdown">
+            <Button
+              buttonType="add"
+              onClick={() => navigate("")}
+              label="Add New"
+            />
+          </div>
         </div>
       </div>
 
@@ -66,7 +77,7 @@ const VendorOnboarding = () => {
               operation="count"
               column="col1"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={active} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the count of live blogs" // Tooltip for additional context
             />
           </Col>
@@ -76,7 +87,7 @@ const VendorOnboarding = () => {
               operation="count"
               column="col2"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/truck.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={pending} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the count of Draft Blog" // Tooltip for additional context
             />
           </Col>
@@ -86,7 +97,7 @@ const VendorOnboarding = () => {
               operation="total"
               column="col4"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_pending.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={avg} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Views" // Tooltip for additional context
             />
           </Col>
@@ -96,7 +107,7 @@ const VendorOnboarding = () => {
               operation="count"
               column="col2"
               tableRef={tableRef}
-              icon="http://localhost/gb_canteen/svg/order_bag.svg" // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
+              icon={share} // You can change this to any Bootstrap icon name like "check-circle", "database", etc.
               tooltipText="This shows the total of Users" // Tooltip for additional context
             />
           </Col>

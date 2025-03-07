@@ -169,8 +169,8 @@ const GridCard = ({ rowData, columns, countryFlags }) => {
       <div className="section_card flex-column">
         {columns.map((column, index) => (
           <div key={index} className="row">
-            <strong className="col-md">{column.headname} - </strong>
-            <p className={`col-md`}>{formatValue(column, rowData[column.dbcol])}</p>
+            <strong className="col">{column.headname} - </strong>
+            <p className={`col`}>{formatValue(column, rowData[column.dbcol])}</p>
           </div>
         ))}
         <div className="btn-sack-top">

@@ -11,7 +11,7 @@ const SearchBar = ({ tableId, gridviewId, placeholder = "Search Table...", onSea
   };
 
   return (
-    <div className="table-searchbar">
+    <div className="table-searchbar mt-2">
       <i className="bi bi-search aetablesearch-icon"></i>
       <input
         type="text"

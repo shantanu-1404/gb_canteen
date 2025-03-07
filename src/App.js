@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './container/layout';
 import LeftView from './container/leftview';
 import Header from './container/header';
-import Homepage from './container/homepage';
+import Homepage from './container/Homepage';
 import SocialMedia from './container/SocialMedia';
 import AddNewPost from './container/AddNewPost';
 import Index from './container/Index';
@@ -52,6 +52,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Homepage />} />
         <Route path="/gb_canteen" element={<Index />} />
         <Route path="/social-media" element={<SocialMedia />} />
         <Route path="/social-media/reports" element={<Reports />} />
@@ -80,6 +81,9 @@ const App = () => {
         <Route path="/products/purchase_order" element={<PurchaseOrder/>} />
         <Route path="/add-purchase_order" element={<AddNewPurchaseOrder/>} />
 
+        <Route path="/search" element={<Index />} />
+        <Route path="/notification" element={<Index />} />
+        <Route path="/profile" element={<Index />} />
 
 
       </Routes>

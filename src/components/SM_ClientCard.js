@@ -24,7 +24,7 @@ const SM_ClientCard = ({ client }) => {
                 <span className={`mb-3 badge ${statusClass}`}>{status}</span>
 
                 <div className="row mb-3 align-items-center">
-                    <strong className="col-md ">
+                    <strong className="col ">
                         <img
                             src={clientimg}
                             alt="Wallet Icon"
@@ -32,38 +32,38 @@ const SM_ClientCard = ({ client }) => {
                             className={`${statusClass === "cancelled" ? "grey" : ""}`} // Apply the grey image class for cancelled status
                         />Client -
                     </strong>
-                    <d className={`col-md ${statusClass === "cancelled" ? "grey" : "pink"}`}>{client_name}</d>
+                    <d className={`col ${statusClass === "cancelled" ? "grey" : "pink"}`}>{client_name}</d>
                 </div>
 
                 <div className="row">
-                    <strong className="col-md">Industry -</strong>
-                    <p className="col-md">{industry}</p>
+                    <strong className="col">Industry -</strong>
+                    <p className="col">{industry}</p>
                 </div>
 
                 <div className="row">
-                    <strong className="col-md">Profile Managed -</strong>
-                    <p className="col-md">{profiles_managed}</p>
+                    <strong className="col">Profile Managed -</strong>
+                    <p className="col">{profiles_managed}</p>
                 </div>
 
                 <div className="row">
-                    <strong className="col-md">Last Activity -</strong>
-                    <p className="col-md">{last_activity}</p>
+                    <strong className="col">Last Activity -</strong>
+                    <p className="col">{last_activity}</p>
                 </div>
 
                 <div className="row">
-                    <strong className="col-md">Engagement Rate -</strong>
-                    <p className="col-md">{engagement_rate}%</p>
+                    <strong className="col">Engagement Rate -</strong>
+                    <p className="col">{engagement_rate}%</p>
                 </div>
 
                 <div className="row align-items-center">
-                    <div className="customer_profiles col-md-7 d-flex align-items-center">
+                    <div className="customer_profiles col d-flex align-items-center">
                         {team_members.slice(0, 3).map((member, user_id) => (
                             <img key={user_id} src={member.img} alt="profile" className="profile-pic" />
                         ))}
                         <div className="profile-count">{team_members.length}</div>
                     </div>
 
-                    <div className="col-md d-flex align-items-center justify-content-end">
+                    <div className="col d-flex align-items-center justify-content-end">
                         <i className="bi bi-list-check task-icon" style={{ fontSize: "25px" }}></i>
                         <p style={{ marginTop: "12px" }}>{total_tasks} Tasks</p>
                     </div>

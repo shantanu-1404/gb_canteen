@@ -61,7 +61,7 @@ const AddNewBlogs = () => {
     <Layout>
       <FormHeader title="Add New Blog" backUrl="/blogs" closeUrl="/" />
       <Row>
-        <Col md={7}>
+        <Col lg={7}>
           <div className="form_section">
             <h6 className="card-title">Blog</h6>
             <TextInput
@@ -134,7 +134,7 @@ const AddNewBlogs = () => {
           </div>
         </Col>
 
-        <Col md={5}>
+        <Col lg={5}>
           <div className="form_section">
             <h6 className="card-title">Visibility & Category</h6>
             <SelectComponent

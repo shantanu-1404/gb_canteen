@@ -54,11 +54,14 @@ const Collections = () => {
         <div className="text-right gap-3 d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
-          <Button
-            buttonType="add"
-            onClick={() => navigate("/add-collections")}
-            label="Add New"
-          />
+          <div className="dropdown">
+            <Button
+              buttonType="add"
+              onClick={() => navigate("/add-collections")}
+              label="Add New"
+            />
+          </div>
+
         </div>
       </div>
 
@@ -104,7 +107,7 @@ const Collections = () => {
               tooltipText="This shows the total of Users" // Tooltip for additional context
             />
           </Col>
-        
+
         </Row>
       </div>
 

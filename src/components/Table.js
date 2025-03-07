@@ -355,108 +355,112 @@ const Table = ({
   };
 
   return (
+    <div className="section_card">
+      
     <div
-      className={`table-container list-view section_card ${
-        !paginated ? "scrollable-table" : ""
-      }`}
-    >
-      <table className="table ae-table" ref={tableRef} id={id}>
-        <thead>
-          <tr>
-            {/* ✅ Show checkboxes only if `showCheckbox` is true */}
-            {showCheckbox && (
-              <th>
-                <input
-                  type="checkbox"
-                  checked={selectedRows.length === filteredData.length}
-                  onChange={() => {
-                    setSelectedRows(
-                      selectedRows.length === filteredData.length
-                        ? []
-                        : filteredData.map((_, index) => index)
-                    );
-                  }}
-                />
-              </th>
-            )}
-            {columns.map((column) => (
-              <th
-                key={column.dbcol}
-                onClick={() => handleSort(column.dbcol)}
-                style={{ cursor: "pointer" }}
-              >
-                {column.headname.toUpperCase()}
-                {sortColumn === column.dbcol && (
-                  <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>
-                )}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          {currentData.length > 0 ? (
-            currentData.map((row, index) => (
-              <tr key={index}>
-                {/* ✅ Show checkboxes only if `showCheckbox` is true */}
-                {showCheckbox && (
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={selectedRows.includes(startIndex + index)}
-                      onChange={() => handleCheckboxChange(startIndex + index)}
-                    />
-                  </td>
-                )}
-                {columns.map((column) => (
-                  <td key={column.dbcol}>
-                    {renderCellContent(column, row[column.dbcol], row)}
-                  </td>
-                ))}
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={columns.length + (showCheckbox ? 1 : 0)}>
-                No data available
-              </td>
-            </tr>
+    className={`table-container list-view section_card ${
+      !paginated ? "scrollable-table" : ""
+    }`}
+  >
+    <table className="table ae-table" ref={tableRef} id={id}>
+      <thead>
+        <tr>
+          {/* ✅ Show checkboxes only if `showCheckbox` is true */}
+          {showCheckbox && (
+            <th>
+              <input
+                type="checkbox"
+                checked={selectedRows.length === filteredData.length}
+                onChange={() => {
+                  setSelectedRows(
+                    selectedRows.length === filteredData.length
+                      ? []
+                      : filteredData.map((_, index) => index)
+                  );
+                }}
+              />
+            </th>
           )}
-        </tbody>
-      </table>
-
-      {paginated ? (
-        <>
-          <br />
-          <br />
-          <div className="pagination-controls">
-            <RowsPerPageSelector
-              rowsPerPage={rowsPerPage}
-              setRowsPerPage={handleRowsPerPageChange}
-            />
-            <div
-              className="btn-sack position-relative"
-              style={{ padding: "10px" }}
+          {columns.map((column) => (
+            <th
+              key={column.dbcol}
+              onClick={() => handleSort(column.dbcol)}
+              style={{ cursor: "pointer" }}
             >
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                <i className="bi bi-chevron-left"></i>
-              </button>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              >
-                <i className="bi bi-chevron-right"></i>
-              </button>
-            </div>
-          </div>
-        </>
-      ) : (
-        <div className="scroll-indicator"></div>
-      )}
+              {column.headname.toUpperCase()}
+              {sortColumn === column.dbcol && (
+                <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>
+              )}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        {currentData.length > 0 ? (
+          currentData.map((row, index) => (
+            <tr key={index}>
+              {/* ✅ Show checkboxes only if `showCheckbox` is true */}
+              {showCheckbox && (
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(startIndex + index)}
+                    onChange={() => handleCheckboxChange(startIndex + index)}
+                  />
+                </td>
+              )}
+              {columns.map((column) => (
+                <td key={column.dbcol}>
+                  {renderCellContent(column, row[column.dbcol], row)}
+                </td>
+              ))}
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan={columns.length + (showCheckbox ? 1 : 0)}>
+              No data available
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+    
     </div>
-  );
+
+    {paginated ? (
+      <>
+        <br />
+        <br />
+        <div className="pagination-controls">
+          <RowsPerPageSelector
+            rowsPerPage={rowsPerPage}
+            setRowsPerPage={handleRowsPerPageChange}
+          />
+          <div
+            className="btn-sack position-relative"
+            style={{ padding: "10px" }}
+          >
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <i className="bi bi-chevron-left"></i>
+            </button>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              <i className="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </>
+    ) : (
+      <div className="scroll-indicator"></div>
+    )}
+  </div>
+);
 };
 
 export default Table;

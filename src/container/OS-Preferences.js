@@ -68,11 +68,13 @@ const Prefernces = () => {
         {/* Conditionally Render Buttons When Footer Pages Tab is Active */}
         {activeTab === "footerpages" && (
           <div className="gap-2 d-flex justify-content-end">
-            <Button
-              buttonType="add"
-              label="Add New"
-              onClick={() => navigate("/add-blogs")}
-            />
+            <div className="dropdown">
+              <Button
+                buttonType="add"
+                label="Add New"
+                onClick={() => navigate("/add-blogs")}
+              />
+            </div>
           </div>
         )}
 

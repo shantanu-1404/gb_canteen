@@ -30,7 +30,7 @@ const OnlineStore = () => {
         </div>
         <div className="container">
       <PreviewCard
-        src="http://localhost/gb_canteen/"
+        src="http://driphunter.in/"
         title="Live Preview"
       />
     </div>

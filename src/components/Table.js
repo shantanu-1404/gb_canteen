@@ -13,6 +13,7 @@ const Table = ({
   setFilteredData,
   paginated = true,
   handleButtonClick,
+  updateQuantity,
   showCheckbox = true, // ✅ Default is true, can be set to false
 }) => {
   const [sortColumn, setSortColumn] = useState(null);
@@ -37,6 +38,22 @@ const Table = ({
   useEffect(() => {
     setSortedData(filteredData);
   }, [filteredData]);
+
+  useEffect(() => {
+    setQuantities(
+      data.reduce(
+        (acc, item) => ({ ...acc, [item.id]: item.quantity || 1 }),
+        {}
+      )
+    );
+  }, [data]);
+
+  // ✅ Handle Quantity Updates
+  const updateTableQuantity = (rowId, newQuantity) => {
+    const updatedQuantity = Math.max(1, parseInt(newQuantity) || 1);
+    setQuantities((prev) => ({ ...prev, [rowId]: updatedQuantity }));
+    updateQuantity(rowId, updatedQuantity); // ✅ Sync across tables
+  };
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -114,27 +131,52 @@ const Table = ({
     );
   };
 
-  // ✅ Handle Quantity Updates
-  const updateQuantity = (rowId, newQuantity) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [rowId]: Math.max(1, parseInt(newQuantity) || 1), // Ensure valid number
-    }));
+  const updateAcceptReject = (productId, newAcceptValue) => {
+    setFilteredData((prevData) =>
+      prevData.map((product) =>
+        product.id === productId
+          ? {
+              ...product,
+              accept: Math.max(
+                0,
+                Math.min(newAcceptValue, product.total || 10)
+              ), // Prevent exceeding total
+              cancel:
+                (product.total || 10) -
+                Math.max(0, Math.min(newAcceptValue, product.total || 10)), // Auto-calculate Cancel
+              progress: `${Math.max(
+                0,
+                Math.min(newAcceptValue, product.total || 10)
+              )}/${product.total || 10}`, // ✅ Update progress bar dynamically
+            }
+          : product
+      )
+    );
   };
 
-  const increaseQuantity = (rowId) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [rowId]: (prev[rowId] || 1) + 1,
-    }));
+  const removeAcceptReject = (productId, newRejectValue) => {
+    setFilteredData((prevData) =>
+      prevData.map((product) =>
+        product.id === productId
+          ? {
+              ...product,
+              cancel: Math.max(
+                0,
+                Math.min(newRejectValue, product.total || 10)
+              ), // ✅ Ensure cancel does not exceed total
+              accept:
+                (product.total || 10) -
+                Math.max(0, Math.min(newRejectValue, product.total || 10)), // ✅ Auto-update Accept
+              progress: `${
+                (product.total || 10) -
+                Math.max(0, Math.min(newRejectValue, product.total || 10))
+              }/${product.total || 10}`, // ✅ Update Progress
+            }
+          : product
+      )
+    );
   };
 
-  const decreaseQuantity = (rowId) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [rowId]: Math.max((prev[rowId] || 1) - 1, 1),
-    }));
-  };
   const badgeColors = {
     positive: "positive_garph",
     negative: "critical",
@@ -180,27 +222,134 @@ const Table = ({
   // ✅ Function to handle all cell types including nested objects
   const renderCellContent = (column, value, rowData) => {
     const type = column.type || "text";
-    if (type === "quantity") {
+    if (column.type === "quantity") {
       return (
         <div className="quantity-control">
           <button
             className="btn a-btn-primary qty-btn"
-            onClick={() => decreaseQuantity(rowData.id)}
+            onClick={() =>
+              updateQuantity(
+                rowData.id,
+                (quantities[rowData.id] || rowData.quantity) - 1
+              )
+            }
           >
             -
           </button>
           <input
             type="text"
             className="form-control qty-input"
-            value={quantities[rowData.id] ?? 1}            
+            value={quantities[rowData.id] ?? rowData.quantity}
             onChange={(e) => updateQuantity(rowData.id, e.target.value)}
           />
           <button
             className="btn a-btn-primary qty-btn"
-            onClick={() => increaseQuantity(rowData.id)}
+            onClick={() =>
+              updateQuantity(
+                rowData.id,
+                (quantities[rowData.id] || rowData.quantity) + 1
+              )
+            }
           >
             +
           </button>
+        </div>
+      );
+    }
+
+    // ✅ Accept Column (Separate)
+    if (type === "accept") {
+      return (
+        <div className="quantity-control">
+          <button
+            className="btn qty-btn"
+            onClick={() =>
+              updateAcceptReject(rowData.id, (rowData.accept || 0) - 1)
+            }
+          >
+            -
+          </button>
+          <input
+            type="text"
+            className="form-control qty-input"
+            value={rowData.accept || 0}
+            onChange={(e) =>
+              updateAcceptReject(rowData.id, parseInt(e.target.value) || 0)
+            }
+          />
+          <button
+            className="btn qty-btn"
+            onClick={() =>
+              updateAcceptReject(rowData.id, (rowData.accept || 0) + 1)
+            }
+          >
+            +
+          </button>
+        </div>
+      );
+    }
+
+    // ✅ Cancel Column (Separate)
+    if (type === "cancel") {
+      return (
+        <div className="quantity-control">
+          <button
+            className="btn qty-btn"
+            onClick={() =>
+              removeAcceptReject(rowData.id, (rowData.cancel || 0) - 1)
+            }
+          >
+            -
+          </button>
+          <input
+            type="text"
+            className="form-control qty-input"
+            value={rowData.cancel || 0}
+            onChange={(e) =>
+              removeAcceptReject(rowData.id, parseInt(e.target.value) || 0)
+            }
+          />
+          <button
+            className="btn qty-btn"
+            onClick={() =>
+              removeAcceptReject(rowData.id, (rowData.cancel || 0) + 1)
+            }
+          >
+            +
+          </button>
+        </div>
+      );
+    }
+
+    // ✅ Progress Column (Separate)
+    if (type === "ar-progress") {
+      const total = rowData.total || 10;
+      const accepted = rowData.accept || 0;
+      const progressPercentage = (accepted / total) * 100;
+
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div
+            style={{
+              width: "100px",
+              height: "8px",
+              background: "#FFB3B3",
+              borderRadius: "5px",
+              position: "relative",
+            }}
+          >
+            <div
+              style={{
+                width: `${progressPercentage}%`,
+                height: "100%",
+                background: "#BDE275",
+                borderRadius: "5px",
+              }}
+            ></div>
+          </div>
+          <span>
+            {accepted}/{total}
+          </span>
         </div>
       );
     }
@@ -294,6 +443,7 @@ const Table = ({
         />
       );
     }
+
     // If the column type is "progress" and the value represents progress (e.g., "Ordered", "Completed", etc.)
     if (type === "progress") {
       const progressValue = value; // This should represent the current progress as a fraction (e.g., "2/10", "5/10")
@@ -355,112 +505,108 @@ const Table = ({
   };
 
   return (
-    <div className="section_card">
-      
     <div
-    className={`table-container list-view section_card ${
-      !paginated ? "scrollable-table" : ""
-    }`}
-  >
-    <table className="table ae-table" ref={tableRef} id={id}>
-      <thead>
-        <tr>
-          {/* ✅ Show checkboxes only if `showCheckbox` is true */}
-          {showCheckbox && (
-            <th>
-              <input
-                type="checkbox"
-                checked={selectedRows.length === filteredData.length}
-                onChange={() => {
-                  setSelectedRows(
-                    selectedRows.length === filteredData.length
-                      ? []
-                      : filteredData.map((_, index) => index)
-                  );
-                }}
-              />
-            </th>
-          )}
-          {columns.map((column) => (
-            <th
-              key={column.dbcol}
-              onClick={() => handleSort(column.dbcol)}
-              style={{ cursor: "pointer" }}
-            >
-              {column.headname.toUpperCase()}
-              {sortColumn === column.dbcol && (
-                <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>
-              )}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        {currentData.length > 0 ? (
-          currentData.map((row, index) => (
-            <tr key={index}>
-              {/* ✅ Show checkboxes only if `showCheckbox` is true */}
-              {showCheckbox && (
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.includes(startIndex + index)}
-                    onChange={() => handleCheckboxChange(startIndex + index)}
-                  />
-                </td>
-              )}
-              {columns.map((column) => (
-                <td key={column.dbcol}>
-                  {renderCellContent(column, row[column.dbcol], row)}
-                </td>
-              ))}
-            </tr>
-          ))
-        ) : (
+      className={`table-container list-view section_card ${
+        !paginated ? "scrollable-table" : ""
+      }`}
+    >
+      <table className="table ae-table" ref={tableRef} id={id}>
+        <thead>
           <tr>
-            <td colSpan={columns.length + (showCheckbox ? 1 : 0)}>
-              No data available
-            </td>
+            {/* ✅ Show checkboxes only if `showCheckbox` is true */}
+            {showCheckbox && (
+              <th>
+                <input
+                  type="checkbox"
+                  checked={selectedRows.length === filteredData.length}
+                  onChange={() => {
+                    setSelectedRows(
+                      selectedRows.length === filteredData.length
+                        ? []
+                        : filteredData.map((_, index) => index)
+                    );
+                  }}
+                />
+              </th>
+            )}
+            {columns.map((column) => (
+              <th
+                key={column.dbcol}
+                onClick={() => handleSort(column.dbcol)}
+                style={{ cursor: "pointer" }}
+              >
+                {column.headname.toUpperCase()}
+                {sortColumn === column.dbcol && (
+                  <span>{sortOrder === "asc" ? " ▲" : " ▼"}</span>
+                )}
+              </th>
+            ))}
           </tr>
-        )}
-      </tbody>
-    </table>
-    
-    </div>
+        </thead>
+        <tbody id="tableBody">
+          {currentData.length > 0 ? (
+            currentData.map((row, index) => (
+              <tr key={index}>
+                {/* ✅ Show checkboxes only if `showCheckbox` is true */}
+                {showCheckbox && (
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.includes(startIndex + index)}
+                      onChange={() => handleCheckboxChange(startIndex + index)}
+                    />
+                  </td>
+                )}
+                {columns.map((column) => (
+                  <td key={column.dbcol}>
+                    {renderCellContent(column, row[column.dbcol], row)}
+                  </td>
+                ))}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={columns.length + (showCheckbox ? 1 : 0)}>
+                No data available
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
 
-    {paginated ? (
-      <>
-        <br />
-        <br />
-        <div className="pagination-controls">
-          <RowsPerPageSelector
-            rowsPerPage={rowsPerPage}
-            setRowsPerPage={handleRowsPerPageChange}
-          />
-          <div
-            className="btn-sack position-relative"
-            style={{ padding: "10px" }}
-          >
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
+      {paginated ? (
+        <>
+          <br />
+          <br />
+          <div className="pagination-controls">
+            <RowsPerPageSelector
+              rowsPerPage={rowsPerPage}
+              setRowsPerPage={handleRowsPerPageChange}
+            />
+            <div
+              className="btn-sack position-relative"
+              style={{ padding: "10px" }}
             >
-              <i className="bi bi-chevron-left"></i>
-            </button>
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-            >
-              <i className="bi bi-chevron-right"></i>
-            </button>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                <i className="bi bi-chevron-left"></i>
+              </button>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                <i className="bi bi-chevron-right"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      </>
-    ) : (
-      <div className="scroll-indicator"></div>
-    )}
-  </div>
-);
+        </>
+      ) : (
+        <div className="scroll-indicator"></div>
+      )}
+    </div>
+  );
 };
 
 export default Table;

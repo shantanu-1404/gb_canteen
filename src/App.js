@@ -31,7 +31,7 @@ import GiftCrads from './container/GiftCards';
 import AddNewGiftCard from './container/AddNewGiftCard';
 import PurchaseOrder from './container/PurchaseOrder';
 import AddNewPurchaseOrder from "./container/AddNewPurchaseOrder";
-
+import Transfer from './container/Transfer';
 
 
 
@@ -80,7 +80,7 @@ const App = () => {
         <Route path="/add-giftcards" element={<AddNewGiftCard/>} />
         <Route path="/products/purchase_order" element={<PurchaseOrder/>} />
         <Route path="/add-purchase_order" element={<AddNewPurchaseOrder/>} />
-
+        <Route path="/products/transfer" element={<Transfer/>} />
         <Route path="/search" element={<Index />} />
         <Route path="/notification" element={<Index />} />
         <Route path="/profile" element={<Index />} />

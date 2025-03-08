@@ -1848,6 +1848,10 @@ select.form-control {
 
 }
 
+.view-buttons i {
+  color: #616161;
+}
+
 .view-buttons a {
   margin: 0 10px;
   cursor: pointer;
@@ -3716,9 +3720,12 @@ canvas {
   font-size: 1.5rem;
 }
 
-.view-buttons .active {
-  background-color: #ffffff;
-  color: #616161;
+.view-buttons .active i {
+  color: #2E2E2E;
+}
+
+.view-buttons .active{
+  background-color: #ece5ff;
 }
 
 
@@ -4276,6 +4283,95 @@ canvas {
 
 }
 
+.timeline {
+  list-style: none;
+  padding: 0;
+  position: relative;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  position: relative;
+}
+
+.timeline-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.timeline-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #8dd796; /* ✅ Light Green Background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+.checkmark {
+  font-size: 16px;
+  color: white;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 35px;
+  width: 2px;
+  height: 100%;
+
+}
+
+.timeline-details {
+  flex-grow: 1;
+}
+
+.timeline-details h5 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #1f2d3d; /* ✅ Dark Blue Heading */
+}
+
+.timeline-location {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #777; /* ✅ Light Grey Details */
+}
+
+.timeline-right {
+  font-size: 14px;
+  color: #a0a0a0; /* ✅ Grey Date & Time */
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15px;
+  height: 100%;
+  width: 2px;
+  background-color: #ddd;
+  z-index: 1;
+}
+
 
 
 /* Extra Small Devices (Portrait Phones) */
@@ -4535,19 +4631,19 @@ canvas {
     min-width: fit-content;
   }
 
-
-
-
-
-
-
 }
 
 
 
+.timeline-right{
+  margin-left: 30px;
+}
 
-
-
+.text-center .searchable_link{
+    display: flex;
+    flex-direction: row-reverse;
+    color: #089CFF;
+}
 
 
 @keyframes fadeIn {

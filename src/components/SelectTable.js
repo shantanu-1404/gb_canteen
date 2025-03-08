@@ -10,7 +10,8 @@ const SelectTable = ({
   data = [],
   multiSelect = true,
   onSelectionChange,
-  updateitemQuantity, // ✅ Quantity update function
+  updateQuantity,
+  selectedProducts, // ✅ Quantity update function
   setSelectedProducts, // ✅ Function to update JSON data for selected rows
 }) => {
   const [filteredData, setFilteredData] = useState(data);
@@ -34,6 +35,15 @@ const SelectTable = ({
     );
     setFilteredData(searchedData);
   };
+
+  // ✅ Ensure Selected Items Stay Checked When Reopening Modal
+  useEffect(() => {
+    setSelectedRows(selectedProducts);
+  }, [selectedProducts]);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   // ✅ Apply sorting whenever sort state changes
   useEffect(() => {
@@ -65,55 +75,28 @@ const SelectTable = ({
     setFilteredData(sortedData);
   }, [sortColumn, sortOrder]);
 
-  // ✅ Handle row selection when clicking outside of quantity buttons
+  // ✅ Handle Row Selection
   const handleRowSelect = (row, event) => {
-    event.stopPropagation(); // ✅ Prevents row selection when clicking inside td
-  
+    event.stopPropagation();
     let updatedSelection;
-  
+
     if (multiSelect) {
       updatedSelection = selectedRows.some((selected) => selected.id === row.id)
         ? selectedRows.filter((selected) => selected.id !== row.id)
-        : [...selectedRows, { ...row, quantity: row.quantity || 1 }];
+        : [
+            ...selectedRows,
+            { ...row, quantity: quantities[row.id] || row.quantity || 1 },
+          ];
     } else {
       updatedSelection =
         selectedRows[0]?.id === row.id
           ? []
           : [{ ...row, quantity: row.quantity || 1 }];
     }
-  
+
     setSelectedRows(updatedSelection);
-  
-    if (typeof setSelectedProducts === "function") {
-      setSelectedProducts(updatedSelection); // ✅ Update JSON data for `Table`
-    } else {
-      console.error("setSelectedProducts is not a function");
-    }
-  
+    setSelectedProducts(updatedSelection);
     onSelectionChange && onSelectionChange(updatedSelection);
-  };
-  
-
-  // ✅ Handle Quantity Updates
-  const updateQuantity = (rowId, newQuantity) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [rowId]: Math.max(1, parseInt(newQuantity) || 1), // Ensure valid number
-    }));
-  };
-
-  const increaseQuantity = (rowId) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [rowId]: (prev[rowId] || 1) + 1,
-    }));
-  };
-
-  const decreaseQuantity = (rowId) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [rowId]: Math.max((prev[rowId] || 1) - 1, 1),
-    }));
   };
 
   // ✅ Render Cell Content Based on Type
@@ -141,39 +124,39 @@ const SelectTable = ({
           />
         );
 
-      case "quantity":
+      case "currency":
+        return <span>${parseFloat(value).toFixed(2)}</span>;
+
+      case "badge":
+        return (
+          <span className={`badge badge-${value.toLowerCase()}`}>{value}</span>
+        );
+
+      case "quantity": // ✅ Add Quantity Handling
         return (
           <div
             className="quantity-control"
-            onClick={(event) => event.stopPropagation()} // ✅ Prevents row selection when clicking quantity buttons
+            onClick={(event) => event.stopPropagation()}
           >
             <button
               className="btn a-btn-primary qty-btn"
-              onClick={() => decreaseQuantity(rowData.id)}
+              onClick={() => updateQuantity(rowData.id, (value || 1) - 1)}
             >
               -
             </button>
             <input
               type="text"
               className="form-control qty-input"
-              value={quantities[rowData.id] ?? 1}
+              value={value ?? 1}
               onChange={(e) => updateQuantity(rowData.id, e.target.value)}
             />
             <button
               className="btn a-btn-primary qty-btn"
-              onClick={() => increaseQuantity(rowData.id)}
+              onClick={() => updateQuantity(rowData.id, (value || 1) + 1)}
             >
               +
             </button>
           </div>
-        );
-
-      case "currency":
-        return <span>₹{parseFloat(value).toFixed(2)}</span>;
-
-      case "badge":
-        return (
-          <span className={`badge badge-${value.toLowerCase()}`}>{value}</span>
         );
 
       default:

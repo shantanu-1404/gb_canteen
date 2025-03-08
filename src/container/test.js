@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from "react";
 import SelectTable from "../components/SelectTable";
 import Table from "../components/Table";
@@ -12,44 +14,32 @@ const App = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  // ✅ Map JSON Data to Expected Format
+  // ✅ Ensure Selected Items Stay Checked in the Modal
   const formattedProducts = productsData.map((product, index) => ({
-    id: index + 1, // ✅ Assign unique ID
-    imageUrl: product.col1, // ✅ Image
-    name: product.col2, // ✅ Product Name
-    price: parseFloat(product.col3), // ✅ Convert price to number
-    category: product.col4, // ✅ Category
-    quantity: quantities[index + 1] || 1, // ✅ Ensure quantity tracking
+    id: index + 1,
+    imageUrl: product.col1,
+    name: product.col2,
+    price: parseFloat(product.col3),
+    category: product.col4,
+    quantity: quantities[index + 1] || 1,
+    total: 10, // ✅ Set default total value
+    accept: 0, // ✅ Default accept value
+    cancel: 10, // ✅ Default cancel value (total - accept)
+    isChecked: selectedProducts.some((p) => p.id === index + 1), // ✅ Ensure previously selected items stay checked
   }));
 
-  // ✅ Update Quantity for Selected Products
-  const updateQuantity = (productId, newQuantity) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [productId]: Math.max(1, parseInt(newQuantity) || 1), // ✅ Ensure min quantity of 1
-    }));
-
-    setSelectedProducts((prevSelected) =>
-      prevSelected.map((product) =>
-        product.id === productId
-          ? { ...product, quantity: Math.max(1, parseInt(newQuantity) || 1) }
-          : product
-      )
-    );
-  };
-
-  // ✅ Handle Selection Change & Keep Checked Items
+  // ✅ Handle Selection Change
   const handleSelectionChange = (updatedSelection) => {
-    const updatedProducts = updatedSelection.map((item) => ({
-      id: item.id,
-      imageUrl: item.imageUrl,
-      name: item.name,
-      price: item.price,
-      category: item.category,
-      quantity: quantities[item.id] || item.quantity || 1,
-    }));
+    setSelectedProducts((prevSelected) => {
+      const newSelection = updatedSelection.map((item) => ({
+        ...item,
+        quantity: quantities[item.id] || item.quantity || 1, // ✅ Preserve quantity
+      }));
 
-    setSelectedProducts(updatedProducts);
+      return newSelection;
+    });
+
+    // ✅ Sync quantity tracking
     setQuantities((prev) => {
       const updatedQuantities = { ...prev };
       updatedSelection.forEach((item) => {
@@ -61,6 +51,44 @@ const App = () => {
     });
   };
 
+  const updateQuantity = (productId, newQuantity) => {
+    const updatedQuantity = Math.max(1, parseInt(newQuantity) || 1);
+
+    // ✅ Update quantity in state
+    setQuantities((prev) => ({
+      ...prev,
+      [productId]: updatedQuantity,
+    }));
+
+    // ✅ Update quantity in selected products (both SelectTable & Table)
+    setSelectedProducts((prevSelected) =>
+      prevSelected.map((product) =>
+        product.id === productId
+          ? { ...product, quantity: updatedQuantity }
+          : product
+      )
+    );
+  };
+
+  // ✅ Update Accept & Cancel
+  const updateAcceptReject = (productId, newAcceptValue) => {
+    setSelectedProducts((prevSelected) =>
+      prevSelected.map((product) =>
+        product.id === productId
+          ? {
+              ...product,
+              accept: Math.max(
+                0,
+                Math.min(newAcceptValue, product.total || 10)
+              ), // Prevent exceeding total
+              cancel:
+                (product.total || 10) -
+                Math.max(0, Math.min(newAcceptValue, product.total || 10)), // Auto-calculate Cancel
+            }
+          : product
+      )
+    );
+  };
   return (
     <div className="form_section container">
       <h2 className="text-xl font-bold">Select Products</h2>
@@ -85,7 +113,6 @@ const App = () => {
             <div className="modal-content form_section">
               <h6>Add Items</h6>
 
-              {/* ✅ SelectTable Component - Handles Selection & Generates JSON */}
               <SelectTable
                 id="productSelection"
                 columns={[
@@ -96,15 +123,14 @@ const App = () => {
                   { headname: "Quantity", dbcol: "quantity", type: "quantity" },
                 ]}
                 data={formattedProducts}
-                selectedProducts={selectedProducts} // ✅ Pass selectedProducts
-                setSelectedProducts={setSelectedProducts} // ✅ Pass setSelectedProducts
+                selectedProducts={selectedProducts}
+                setSelectedProducts={setSelectedProducts}
                 onSelectionChange={handleSelectionChange}
                 updateQuantity={updateQuantity}
+                quantities={quantities} // ✅ Ensure same quantity data
               />
 
               <br />
-              <br />
-              {/* ✅ Save & Close Buttons */}
               <div className="btn-sack">
                 <button className="a-btn-primary" onClick={closeModal}>
                   Close
@@ -128,10 +154,14 @@ const App = () => {
               { headname: "Price", dbcol: "price", type: "currency" },
               { headname: "Category", dbcol: "category" },
               { headname: "Quantity", dbcol: "quantity", type: "quantity" },
+              { headname: "Accept", dbcol: "accept", type: "accept" }, // ✅ Separate Accept Column
+              { headname: "Cancel", dbcol: "cancel", type: "cancel" }, // ✅ Separate Cancel Column
+              { headname: "Progress", dbcol: "progress", type: "ar-progress" }, // ✅ Separate Progress Column
             ]}
             filteredData={selectedProducts}
             setFilteredData={setSelectedProducts}
             updateQuantity={updateQuantity}
+            quantities={quantities} // ✅ Ensure same quantity data
             paginated={false}
             showCheckbox={false}
           />

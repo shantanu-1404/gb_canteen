@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 60bc177 (Tracked new files and updated .gitignore)
 import React, { useState, useEffect } from "react";
 import SelectTable from "../components/SelectTable";
 import Table from "../components/Table";
@@ -17,7 +12,6 @@ const App = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-<<<<<<< HEAD
   // ✅ Ensure Selected Items Stay Checked in the Modal
   const formattedProducts = productsData.map((product, index) => ({
     id: index + 1,
@@ -44,46 +38,6 @@ const App = () => {
     });
 
     // ✅ Sync quantity tracking
-=======
-  // ✅ Map JSON Data to Expected Format
-  const formattedProducts = productsData.map((product, index) => ({
-    id: index + 1, // ✅ Assign unique ID
-    imageUrl: product.col1, // ✅ Image
-    name: product.col2, // ✅ Product Name
-    price: parseFloat(product.col3), // ✅ Convert price to number
-    category: product.col4, // ✅ Category
-    quantity: quantities[index + 1] || 1, // ✅ Ensure quantity tracking
-  }));
-
-  // ✅ Update Quantity for Selected Products
-  const updateQuantity = (productId, newQuantity) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [productId]: Math.max(1, parseInt(newQuantity) || 1), // ✅ Ensure min quantity of 1
-    }));
-
-    setSelectedProducts((prevSelected) =>
-      prevSelected.map((product) =>
-        product.id === productId
-          ? { ...product, quantity: Math.max(1, parseInt(newQuantity) || 1) }
-          : product
-      )
-    );
-  };
-
-  // ✅ Handle Selection Change & Keep Checked Items
-  const handleSelectionChange = (updatedSelection) => {
-    const updatedProducts = updatedSelection.map((item) => ({
-      id: item.id,
-      imageUrl: item.imageUrl,
-      name: item.name,
-      price: item.price,
-      category: item.category,
-      quantity: quantities[item.id] || item.quantity || 1,
-    }));
-
-    setSelectedProducts(updatedProducts);
->>>>>>> 60bc177 (Tracked new files and updated .gitignore)
     setQuantities((prev) => {
       const updatedQuantities = { ...prev };
       updatedSelection.forEach((item) => {
@@ -95,7 +49,6 @@ const App = () => {
     });
   };
 
-<<<<<<< HEAD
   const updateQuantity = (productId, newQuantity) => {
     const updatedQuantity = Math.max(1, parseInt(newQuantity) || 1);
 
@@ -134,8 +87,6 @@ const App = () => {
       )
     );
   };
-=======
->>>>>>> 60bc177 (Tracked new files and updated .gitignore)
   return (
     <div className="form_section container">
       <h2 className="text-xl font-bold">Select Products</h2>
@@ -160,10 +111,6 @@ const App = () => {
             <div className="modal-content form_section">
               <h6>Add Items</h6>
 
-<<<<<<< HEAD
-=======
-              {/* ✅ SelectTable Component - Handles Selection & Generates JSON */}
->>>>>>> 60bc177 (Tracked new files and updated .gitignore)
               <SelectTable
                 id="productSelection"
                 columns={[
@@ -174,7 +121,6 @@ const App = () => {
                   { headname: "Quantity", dbcol: "quantity", type: "quantity" },
                 ]}
                 data={formattedProducts}
-<<<<<<< HEAD
                 selectedProducts={selectedProducts}
                 setSelectedProducts={setSelectedProducts}
                 onSelectionChange={handleSelectionChange}
@@ -183,17 +129,6 @@ const App = () => {
               />
 
               <br />
-=======
-                selectedProducts={selectedProducts} // ✅ Pass selectedProducts
-                setSelectedProducts={setSelectedProducts} // ✅ Pass setSelectedProducts
-                onSelectionChange={handleSelectionChange}
-                updateQuantity={updateQuantity}
-              />
-
-              <br />
-              <br />
-              {/* ✅ Save & Close Buttons */}
->>>>>>> 60bc177 (Tracked new files and updated .gitignore)
               <div className="btn-sack">
                 <button className="a-btn-primary" onClick={closeModal}>
                   Close
@@ -217,20 +152,14 @@ const App = () => {
               { headname: "Price", dbcol: "price", type: "currency" },
               { headname: "Category", dbcol: "category" },
               { headname: "Quantity", dbcol: "quantity", type: "quantity" },
-<<<<<<< HEAD
               { headname: "Accept", dbcol: "accept", type: "accept" }, // ✅ Separate Accept Column
               { headname: "Cancel", dbcol: "cancel", type: "cancel" }, // ✅ Separate Cancel Column
               { headname: "Progress", dbcol: "progress", type: "ar-progress" }, // ✅ Separate Progress Column
-=======
->>>>>>> 60bc177 (Tracked new files and updated .gitignore)
             ]}
             filteredData={selectedProducts}
             setFilteredData={setSelectedProducts}
             updateQuantity={updateQuantity}
-<<<<<<< HEAD
             quantities={quantities} // ✅ Ensure same quantity data
-=======
->>>>>>> 60bc177 (Tracked new files and updated .gitignore)
             paginated={false}
             showCheckbox={false}
           />

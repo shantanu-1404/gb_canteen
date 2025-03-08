@@ -29,7 +29,7 @@ const Homepage = () => {
   return (
     <Layout>
       <div className="container">
-        <div className="row">
+        <Row className="metrix-container">
           {/* Total Revenue */}
 
           <Col xs={4} md>
@@ -86,7 +86,7 @@ const Homepage = () => {
               </div>
             </MetricCard>
           </Col>
-        </div>
+        </Row>
 
         {/* Announcements Section */}
         <div className="row">

@@ -459,9 +459,8 @@ const Table = ({
         progressBarColor = "#D9D9D9"; // Grey for Pending
       } else if (completed > 0 && completed < total) {
         // Mixed colors for half completed and half pending
-        progressBarColor = `linear-gradient(to right, #BDE275 ${
-          (completed / total) * 100
-        }%, #FFB3B3 ${(completed / total) * 100}%)`;
+        progressBarColor = `linear-gradient(to right, #BDE275 ${(completed / total) * 100
+          }%, #FFB3B3 ${(completed / total) * 100}%)`;
       }
 
       return (

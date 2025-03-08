@@ -49,7 +49,7 @@ const SM_Clients = () => {
         </div>
       </div>
 
-      <Row>
+      <Row className="metrix-container">
         <Col xs={6} lg={3} md={4}>
           <MetricCard
             title="Total Clients"

@@ -123,7 +123,7 @@ const SM_Clients = () => {
         sortable={true}
         paginated={true}
       >
-        <Row>
+        <Row className="metrix-container">
           {clientData.map((client, index) => (
             <SM_ClientCard key={index} client={client} />
           ))}

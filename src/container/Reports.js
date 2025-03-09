@@ -274,7 +274,7 @@ const Reports = () => {
         <h6 className="card-title h6">Recent Reports</h6>
         <a>see all</a>
       </div>
-      <Row>
+      <Row className="metrix-container">
         {recentReports.map((report, index) => (
           <ReportsCard key={index} report={report} />
         ))}

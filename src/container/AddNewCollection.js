@@ -61,7 +61,8 @@ const AddNewCollection = () => {
     <Layout>
       <FormHeader
         title="Add New Collection"
-        backUrl="/collections"
+        backUrl="/products/collections"
+
         closeUrl="/"
       />
       <Row>

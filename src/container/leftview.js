@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css';
-import 'bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
+import "bootstrap";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const LeftSidebar = ({ isVisible, toggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate(); // Initialize navigate
-  const activePage = location.pathname.split('/')[1];
+  const activePage = location.pathname.split("/")[1];
   const sidebarRef = useRef(null); // ✅ Ref for detecting outside clicks
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -54,23 +54,20 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isVisible, isMobile]);
 
-
   return (
     <>
       {isMobile && isVisible && (
-        <div className="sidebar-overlay" onClick={() => toggleSidebar(false)}></div>
+        <div
+          className="sidebar-overlay"
+          onClick={() => toggleSidebar(false)}
+        ></div>
       )}
-      <div
-        id="left"
-        className={`left ${isVisible ? 'show' : ''}`}
-      >
-
-      </div>
+      <div id="left" className={`left ${isVisible ? "show" : ""}`}></div>
       <div
         id="left"
         ref={sidebarRef}
-        className={`left-container ${isVisible ? 'show' : ''}`}
-        style={{ width: '287px' }}
+        className={`left-container ${isVisible ? "show" : ""}`}
+        style={{ width: "287px" }}
       >
         <div className="d-flex md-user align-items-center">
           <img
@@ -94,23 +91,26 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
             {/* Vendor Onboarding Dropdown */}
             <li className="nav-item">
               <div
-                className={`nav-link ${openDropdowns["vendor"] ? "active" : ""
-                  }`}
+                className={`nav-link ${
+                  openDropdowns["vendor"] ? "active" : ""
+                }`}
                 onClick={() => handleDropdown("vendor")}
               >
                 <Link to="/vendoronboarding">
                   <i className="bi bi-shop shop-icon"></i> Vendor Onboarding
                 </Link>
                 <i
-                  className={`bi ${openDropdowns["vendor"]
-                    ? "bi-chevron-down"
-                    : "bi-chevron-right"
-                    }`}
+                  className={`bi ${
+                    openDropdowns["vendor"]
+                      ? "bi-chevron-down"
+                      : "bi-chevron-right"
+                  }`}
                 ></i>
               </div>
               <ul
-                className={`submenu collapse ${openDropdowns["vendor"] ? "show" : ""
-                  }`}
+                className={`submenu collapse ${
+                  openDropdowns["vendor"] ? "show" : ""
+                }`}
               >
                 <li>
                   <Link className="dropdown-item" to="/add_new_restaurant">
@@ -140,15 +140,17 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                   <i className="bi bi-cart cart-icon"></i> Order Management
                 </span>
                 <i
-                  className={`bi ${openDropdowns["order"]
-                    ? "bi-chevron-down"
-                    : "bi-chevron-right"
-                    }`}
+                  className={`bi ${
+                    openDropdowns["order"]
+                      ? "bi-chevron-down"
+                      : "bi-chevron-right"
+                  }`}
                 ></i>
               </div>
               <ul
-                className={`submenu collapse ${openDropdowns["order"] ? "show" : ""
-                  }`}
+                className={`submenu collapse ${
+                  openDropdowns["order"] ? "show" : ""
+                }`}
               >
                 <li>
                   <Link className="dropdown-item" to="/order/view">
@@ -168,19 +170,100 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
               </ul>
             </li>
 
+            {/* Products Dropdown */}
+            <li className="nav-item">
+              <div
+                className={`nav-link ${
+                  openDropdowns["product"] ? "active" : ""
+                }`}
+                onClick={() => handleDropdown("product")}
+              >
+                <span
+                  onClick={() => handleDropdown("social-media", "/products")}
+                >
+                  <i className="bi bi-handbag"></i> Products
+                </span>
 
-            <li><Link to="#"><i className="bi bi-people customer-icon"></i> Customer Management</Link></li>
-            <li><Link to="#"><i className="bi bi-bar-chart-line analytics-and-reporting-icon"></i> Analytics & Reporting</Link></li>
-            <li><Link to="#"><i className="bi bi-receipt"></i> Invoice</Link></li>
-            <li><Link to="#"><i className="bi bi-columns"></i> Integrations</Link></li>
-            <li><Link to="#"><i className="bi bi-percent"></i> Offers & Promotions</Link></li>
-            <li><Link to="#"><i className="bi bi-terminal-plus"></i> Loyalty & Referrals</Link></li>
+                <i
+                  className={`bi ${
+                    openDropdowns["product"]
+                      ? "bi-chevron-down"
+                      : "bi-chevron-right"
+                  }`}
+                ></i>
+              </div>
+              <ul
+                className={`submenu collapse ${
+                  openDropdowns["product"] ? "show" : ""
+                }`}
+              >
+                <li>
+                  <Link className="dropdown-item" to="/products/collections">
+                    <i className="bi bi-dash"></i> Collections
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/products/inventory-management">
+                    <i className="bi bi-dash"></i> Inventory
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/products/giftcards">
+                    <i className="bi bi-dash"></i>Gift Cards
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/products/purchase_order">
+                    <i className="bi bi-dash"></i>Purchase order
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/products/transfer">
+                    <i className="bi bi-dash"></i>Transfers
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <Link to="#">
+                <i className="bi bi-people customer-icon"></i> Customer
+                Management
+              </Link>
+            </li>
+            <li>
+              <Link to="#">
+                <i className="bi bi-bar-chart-line analytics-and-reporting-icon"></i>{" "}
+                Analytics & Reporting
+              </Link>
+            </li>
+            <li>
+              <Link to="#">
+                <i className="bi bi-receipt"></i> Invoice
+              </Link>
+            </li>
+            <li>
+              <Link to="#">
+                <i className="bi bi-columns"></i> Integrations
+              </Link>
+            </li>
+            <li>
+              <Link to="#">
+                <i className="bi bi-percent"></i> Offers & Promotions
+              </Link>
+            </li>
+            <li>
+              <Link to="#">
+                <i className="bi bi-terminal-plus"></i> Loyalty & Referrals
+              </Link>
+            </li>
 
             {/* Social Media with Multi-Level Dropdown */}
             <li className="nav-item">
               <div
-                className={`nav-link ${openDropdowns['social-media'] ? 'active' : ''}`}
-
+                className={`nav-link ${
+                  openDropdowns["social-media"] ? "active" : ""
+                }`}
               >
                 <span
                   onClick={() =>
@@ -191,36 +274,41 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                 </span>
                 <i
                   onClick={() => handleDropdown("social-media")}
-                  className={`bi ${openDropdowns["social-media"]
-                    ? "bi-chevron-down"
-                    : "bi-chevron-right"
-                    }`}
+                  className={`bi ${
+                    openDropdowns["social-media"]
+                      ? "bi-chevron-down"
+                      : "bi-chevron-right"
+                  }`}
                 ></i>
               </div>
               <ul
-                className={`submenu collapse ${openDropdowns["social-media"] ? "show" : ""
-                  }`}
+                className={`submenu collapse ${
+                  openDropdowns["social-media"] ? "show" : ""
+                }`}
               >
                 {/* Sub-menu under Social Media */}
                 <li className="nav-item">
                   <div
-                    className={`nav-link ${openDropdowns["reports"] ? "active" : ""
-                      }`}
+                    className={`nav-link ${
+                      openDropdowns["reports"] ? "active" : ""
+                    }`}
                     onClick={() => handleDropdown("reports")}
                   >
                     <span>
                       <i className="bi bi-dash"></i> Reporting & Analysis
                     </span>
                     <i
-                      className={`bi ${openDropdowns["reports"]
-                        ? "bi-chevron-down"
-                        : "bi-chevron-right"
-                        }`}
+                      className={`bi ${
+                        openDropdowns["reports"]
+                          ? "bi-chevron-down"
+                          : "bi-chevron-right"
+                      }`}
                     ></i>
                   </div>
                   <ul
-                    className={`submenu collapse ${openDropdowns["reports"] ? "show" : ""
-                      }`}
+                    className={`submenu collapse ${
+                      openDropdowns["reports"] ? "show" : ""
+                    }`}
                   >
                     <li
                       className={`${openDropdowns["reports"] ? "active" : ""}`}
@@ -343,7 +431,11 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
             </li>
           </ul>
         </div>
-        <p className="logout"><a href="#">Logout <i class="bi mx-1 bi-arrow-right"></i></a></p>
+        <p className="logout">
+          <a href="#">
+            Logout <i class="bi mx-1 bi-arrow-right"></i>
+          </a>
+        </p>
       </div>
     </>
   );

@@ -196,7 +196,7 @@ const AddNewPurchaseOrder = () => {
               <div className="col p-3">
                 <a className="search-input-wrapper" onClick={openModal}>
                   <div className="ae-search-container">
-                    <i className="fa-solid fa-magnifying-glass"></i> Search and
+                  <i class="bi bi-search"></i> Search and
                     add to your order instantly...
                   </div>
                 </a>
@@ -303,10 +303,7 @@ const AddNewPurchaseOrder = () => {
               />
 
               {selectedSupplier && (
-                <div className="mt-4 p-4 border rounded-md shadow-md bg-white w-80 form_section">
-                  <h4 className="text-md font-bold text-gray-800">
-                    Supplier Details
-                  </h4>
+                <div className="pb-3">
                   <p>
                     <strong>Name:</strong> {selectedSupplier.name}
                   </p>
@@ -335,10 +332,7 @@ const AddNewPurchaseOrder = () => {
 
               {/* ✅ Selected Destination Details */}
               {selectedDestination && (
-                <div className="mt-4 p-4 border rounded-md shadow-md bg-white w-80 form_section">
-                  <h4 className="text-md font-bold text-gray-800">
-                    Destination Details
-                  </h4>
+                <div className="pb-3">
                   <p>
                     <strong>Country:</strong> {selectedDestination.country}
                   </p>

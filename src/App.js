@@ -32,6 +32,7 @@ import Transfer from './container/Transfer';
 import AddNewInventoryTransfer from "./container/AddNewInventoryTransfer";
 import ReceiveItems from "./container/Receive_Items";
 import Order from './container/Order';
+import AddNewOrder from './container/AddNewOrder';
 import DraftOrder from './container/DraftOrder';
 import AbandonOrder from './container/AbandonOrder';
 import Shipment from './container/Shipment.js';
@@ -78,6 +79,7 @@ const App = () => {
         <Route path="/add-purchase_order" element={<AddNewPurchaseOrder/>} />
         <Route path="/products/transfer" element={<Transfer/>} />
         <Route path="/order" element={<Order/>} />
+        <Route path="/add-order" element={<AddNewOrder/>} />
         <Route path="/order/draft" element={<DraftOrder/>} />
         <Route path="/order/abandon" element={<AbandonOrder/>} />
         <Route path="/order/shipment" element={<Shipment/>} />

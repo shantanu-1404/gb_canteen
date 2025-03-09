@@ -21,35 +21,38 @@ const Transfer = () => {
     { headname: "STATUS", type: "badge", dbcol: "col3" },
     { headname: "Received", type: "progress", dbcol: "col4" },
   ];
-    // ✅ Refresh page
-    const handleRefresh = () => {
-        window.location.reload(); // This will refresh the page
-      };
+  // ✅ Refresh page
+  const handleRefresh = () => {
+    window.location.reload(); // This will refresh the page
+  };
 
   return (
     <Layout>
-       <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between">
         <div className="mt-3 d-flex align-items-center">
-          <div className="d-flex gap-5 ">
+          <div className="d-flex gap-5 md-date">
             <DateInput label="" type="range" includeTime={false} />
           </div>
 
           {/* Refresh Button */}
-          <div className=" mb-2 ps-3 ">
+          <div className=" mb-2 ps-3 md-refresh">
             <i
               className="bi bi-arrow-repeat icon-refresh"
               onClick={handleRefresh}
             ></i>
           </div>
         </div>
-        <div className="text-right gap-3 d-flex">
+        <div className="text-right mb-3 mt-3 ie-btn gap-3 d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
-          <Button
-            buttonType="add"
-            onClick={() => navigate("/add-inventory_transfer")}
-            label="Add New"
-          />
+          <div className="dropdown">
+            <Button
+
+              buttonType="add"
+              onClick={() => navigate("/add-inventory_transfer")}
+              label="Add New"
+            />
+          </div>
         </div>
       </div>
       <div className="card-container gap-4 flex-wrap">
@@ -94,7 +97,7 @@ const Transfer = () => {
               tooltipText="This shows the total of Users" // Tooltip for additional context
             />
           </Col>
-     
+
         </Row>
       </div>
 

@@ -59,7 +59,7 @@ const DraftOrder = () => {
                     <div className="dropdown">
                         <Button
                             buttonType="add"
-                            onClick={() => navigate("/add-product")}
+                            onClick={() => navigate("/add-order")}
                             label="Add New"
                         />
                     </div>

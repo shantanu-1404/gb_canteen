@@ -62,7 +62,7 @@ const Shipment = () => {
                     <div className="dropdown">
                         <Button
                             buttonType="add"
-                            onClick={() => navigate("/add-product")}
+                            onClick={() => navigate("/add-shipment")}
                             label="Add New"
                         />
                     </div>

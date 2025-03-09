@@ -46,14 +46,14 @@ const Products = () => {
           </div>
 
           {/* Refresh Button */}
-          <div className=" mb-2 ps-3 ">
+          <div className=" mb-2 ps-3 md-refresh ">
             <i
               className="bi bi-arrow-repeat icon-refresh"
               onClick={handleRefresh}
             ></i>
           </div>
         </div>
-        <div className="text-right gap-3 d-flex">
+        <div className="text-right gap-3 mb-3 mt-3 ie-btn d-flex">
           <Button buttonType="import" label="Import" />
           <Button buttonType="export" label="Export" />
           <div className="dropdown">

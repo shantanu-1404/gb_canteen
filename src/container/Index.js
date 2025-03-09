@@ -124,7 +124,7 @@ const Index = () => {
       <div className="card-container d-flex gap-4 flex-wrap">
         <Row className="metrix-container">
           <Col xs={4} md={3}>
-            <MetricCard
+            <MetricCard 
               title="Total of Col-1"
               operation="total"
               column="col1"

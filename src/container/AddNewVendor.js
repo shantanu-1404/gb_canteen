@@ -13,6 +13,8 @@ import TabComponent from "../components/InventaryPanel";
 import DateInput from "../components/DateInput";
 import RadioInput from "../components/RadioInput";
 import PhoneInput from "../components/PhoneInput";
+import AddSubsection from "../components/AddSubsection";
+import CheckboxInput from "../components/CheckboxInput";
 
 const AddNewCollection = () => {
   const [fileData, setFileData] = useState(null);
@@ -57,6 +59,55 @@ const AddNewCollection = () => {
     { label: "Hidden", value: "credit" },
     { label: "Visible", value: "paypal" },
   ];
+
+  const spicelevel = [
+    { label: "Mild", value: "spice1" },
+    { label: "Medium", value: "spice2" },
+    { label: "Hot", value: "spice3" },
+  ];
+  const allergens = [
+    { label: "Peanuts", value: "allergen1" },
+    { label: "Dairy", value: "allergen2" },
+    { label: "Gluten", value: "allergen3" },
+    { label: "Soy", value: "allergen4" },
+    { label: "Eggs", value: "allergen5" },
+    { label: "Shellfish", value: "allergen6" },
+    { label: "Tree Nuts", value: "allergen7" },
+    { label: "Sesame", value: "allergen8" },
+  ];
+  const dietaryLabels = [
+    { label: "Vegetarian", value: "diet1" },
+    { label: "Vegan", value: "diet2" },
+    { label: "Gluten-Free", value: "diet3" },
+    { label: "Keto", value: "diet4" },
+    { label: "Paleo", value: "diet5" },
+    { label: "Dairy-Free", value: "diet6" },
+    { label: "Nut-Free", value: "diet7" },
+    { label: "Low-Carb", value: "diet8" },
+  ];
+  const paymentTerms = [
+    { label: "Net 30", value: "payment1" },
+    { label: "Net 60", value: "payment2" },
+    { label: "Net 90", value: "payment3" },
+    { label: "Due on Receipt", value: "payment4" },
+    { label: "Installments", value: "payment5" },
+    { label: "Cash on Delivery (COD)", value: "payment6" },
+    { label: "Advance Payment", value: "payment7" },
+    { label: "Partial Payment", value: "payment8" },
+  ];
+  const packagingRequirements = [
+    { label: "Eco-Friendly", value: "packaging1" }, // Sustainable & biodegradable
+    { label: "Recyclable", value: "packaging2" }, // Made from recyclable materials
+    { label: "Compostable", value: "packaging3" }, // Can be composted
+    { label: "Minimal Packaging", value: "packaging4" }, // Reduced waste packaging
+    { label: "Plastic-Free", value: "packaging5" }, // No plastic used
+    { label: "Biodegradable", value: "packaging6" }, // Breaks down naturally
+    { label: "Reusable", value: "packaging7" }, // Can be used multiple times
+    { label: "Vacuum Sealed", value: "packaging8" }, // Airtight packaging
+    { label: "Tamper-Proof", value: "packaging9" }, // Sealed for security
+    { label: "Temperature-Controlled", value: "packaging10" }, // Maintains specific temperature
+  ];
+
   const [activeStep, setActiveStep] = useState(1);
 
   // Navigate to the previous step
@@ -70,6 +121,9 @@ const AddNewCollection = () => {
   // Navigate to the selected step directly
   const navigateToStep = (step) => {
     setActiveStep(step);
+  };
+  const handleAgreementChange = (isChecked) => {
+    console.log("User agreed:", isChecked);
   };
 
   return (
@@ -276,16 +330,163 @@ const AddNewCollection = () => {
 
         {/*-------------------------------------------------------------------------Page three------------------------------------------------------- */}
         {activeStep === 3 && (
-          <div className="row mt-3 mb-6 form-step" id="step-3"></div>
+          <div className="row mt-3 mb-6 form-step" id="step-3">
+            <AddSubsection Cardtitle="Menu Items">
+              {/* Pass form components dynamically */}
+              <TextInput
+                label="Dish Name"
+                required={true}
+                placeholder="Name"
+                onChange={handleTextInputChange}
+              />
+              <FileUploadComponent
+                label="Recommended Size - 1350px X 1080px"
+                name="imageUpload"
+                allowedClasses="image"
+                onChange={handleFileChange}
+              />
+              <Aetextarea
+                label="Description"
+                name="Description"
+                placeholder="Description"
+                onChange={handleCaptionChange}
+                isWordCount={true}
+                wordLimit={300}
+              />
+              <Row>
+                <SelectComponent
+                  label="Spice Level"
+                  name="Spice Level"
+                  options={spicelevel}
+                  isMulti={false}
+                  onChange={setSelectedSingle}
+                />
+                <TextInput
+                  label="Price"
+                  required={true}
+                  placeholder="Amount"
+                  onChange={handleTextInputChange}
+                  type="number"
+                />
+              </Row>
+              <Row>
+                <SelectComponent
+                  label="Allergens"
+                  name="Allergens"
+                  options={allergens}
+                  isMulti={false}
+                  onChange={setSelectedSingle}
+                />
+                <SelectComponent
+                  label="Dietary Labels"
+                  name="Recurrence"
+                  options={dietaryLabels}
+                  isMulti={false}
+                  onChange={setSelectedSingle}
+                />
+              </Row>
+            </AddSubsection>
+            <div className="form_section">
+              <h6 className="card-title">Bulk Upload</h6>
+              <FileUploadComponent
+                label="Recommended Size - 1350px X 1080px"
+                name="imageUpload"
+                allowedClasses="image"
+                onChange={handleFileChange}
+              />
+            </div>
+          </div>
         )}
         {/*-------------------------------------------------------------------------Page four------------------------------------------------------- */}
         {/* Step 4 - Revenue Share Agreement */}
         {activeStep === 4 && (
-          <div className="row mt-3 mb-5 form-step" id="step-4"></div>
+          <div className="row mt-3 mb-5 form-step" id="step-4">
+            <Row>
+              <Col md={7}>
+                <div className="form_section">
+                  <h6 className="card-title">Revenue Share Agreement</h6>
+                  <TextInput
+                    label="Platform Commission Percentage"
+                    info="Defines the platform's cut from each order"
+                    placeholder="0%"
+                    required={true}
+                    onChange={handleTextInputChange}
+                  />
+                  <SelectComponent
+                    label="Payment Terms"
+                    name="Payment"
+                    options={paymentTerms}
+                    isMulti={false}
+                    onChange={setSelectedSingle}
+                    info="Specifies how and when payments are made to the restaurant"
+                  />
+                </div>
+                <div className="form_section">
+                  <h6 className="card-title">Service Level Expectations</h6>
+                  <SelectComponent
+                    label="Packaging Requirements"
+                    name="Packaging Requirements"
+                    options={packagingRequirements}
+                    isMulti={false}
+                    onChange={setSelectedSingle}
+                    info="Allows the user to specify packaging standards to ensure consistency in handling and delivery"
+                  />
+                </div>
+              </Col>
+
+              <Col md={5}>
+                <div className="form_section">
+                  <h6 className="card-title">Custom Terms </h6>
+                  <TextInput
+                    placeholder="Add term"
+                    required={true}
+                    onChange={handleTextInputChange}
+                  />
+                  <Row>
+                    <Col>
+                      <DateInput label="Start Date" type="past" />
+                    </Col>
+                    <Col>
+                      <DateInput label="End Date" type="future" />
+                    </Col>
+                  </Row>
+                  <CheckboxInput
+                    label="I have read and agree to the"
+                    linkText="Terms and Conditions"
+                    linkUrl="/"
+                    onChange={handleAgreementChange}
+                  />
+                  <div className="form-group row gap-2 text-center">
+                    <a type="submit" className="btn col-4 a-btn-primary">
+                      Save for later
+                    </a>
+                    <a type="submit" className="btn col-4 a-btn-primary">
+                      Activate
+                    </a>
+                  </div>
+                </div>
+                <div className="form-group row p-3 gap-2 text-center">
+                  <a type="submit" className="btn col-4 a-btn-primary">
+                    Save
+                  </a>
+                </div>
+              </Col>
+            </Row>
+          </div>
         )}
         {/*-------------------------------------------------------------------------Page five------------------------------------------------------- */}
         {activeStep === 5 && (
-          <div className="row mt-3 mb-5 form-step" id="step-5"></div>
+          <div className="row mt-3 mb-5 form-step" id="step-5">
+            <AddSubsection Cardtitle="Training Modules">
+              {/* Pass form components dynamically */}
+              <TextInput
+                label="Add Packaging Guidelines"
+                required={true}
+                placeholder="Name"
+                onChange={handleTextInputChange}
+              />
+            </AddSubsection>
+          </div>
         )}
         {/*-------------------------------------------------------------------------Page six------------------------------------------------------- */}
 

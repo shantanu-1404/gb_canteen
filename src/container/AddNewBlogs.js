@@ -84,7 +84,10 @@ const AddNewBlogs = () => {
             />
           </div>
 
-          <AddSubsection Cardtitle="Blog Subsection">
+          <AddSubsection
+           Cardtitle="Blog Subsection"
+           >
+            
             {/* Pass form components dynamically */}
             <TextInput
               label="Title"

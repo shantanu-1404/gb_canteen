@@ -350,7 +350,6 @@ const Index = () => {
               availableTags={availableTags}
               onTagsChange={handleTagsChange}
             />
-
             <Row>
               <Col>
                 <DateInput label="Select Past Date" type="past" />

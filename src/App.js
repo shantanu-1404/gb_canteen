@@ -1,10 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './container/layout';
-import LeftView from './container/leftview';
-import Header from './container/header';
-import Homepage from './container/Homepage';
 import SocialMedia from './container/SocialMedia';
+import Homepage from './container/Homepage';
 import AddNewPost from './container/AddNewPost';
 import Index from './container/Index';
 import AddNewCampaign from './container/AddNewCampaign';
@@ -34,18 +31,15 @@ import AddNewPurchaseOrder from "./container/AddNewPurchaseOrder";
 import Transfer from './container/Transfer';
 import AddNewInventoryTransfer from "./container/AddNewInventoryTransfer";
 import ReceiveItems from "./container/Receive_Items";
+import Order from './container/Order';
+import DraftOrder from './container/DraftOrder';
+import AbandonOrder from './container/AbandonOrder';
+import Shipment from './container/Shipment.js';
 
 
 
 
-import WordLimit from './components/word_limit_textarea';
-import Table from './components/Table';
-import MetricCard from './components/MetricCard';
-import SearchBar from './components/Searchbar';
-import Filter from './components/Filter';
-import GridView from './components/Gridview';
-import DataTable from "./components/DataTable";
-import ProjectCard from "./components/ProjectDashboard"
+
 
 
 
@@ -83,6 +77,10 @@ const App = () => {
         <Route path="/products/purchase_order" element={<PurchaseOrder/>} />
         <Route path="/add-purchase_order" element={<AddNewPurchaseOrder/>} />
         <Route path="/products/transfer" element={<Transfer/>} />
+        <Route path="/order" element={<Order/>} />
+        <Route path="/order/draft" element={<DraftOrder/>} />
+        <Route path="/order/abandon" element={<AbandonOrder/>} />
+        <Route path="/order/shipment" element={<Shipment/>} />
         <Route path="/search" element={<Index />} />
         <Route path="/notification" element={<Index />} />
         <Route path="/profile" element={<Index />} />

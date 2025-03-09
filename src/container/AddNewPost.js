@@ -152,13 +152,6 @@ const AddNewPost = () => {
                             required={true}
                             onChange={(e) => handleUserTagsChange(e)}
                         />
-                        <SelectComponent
-                            label="Post Frequency"
-                            name="post_frequency"
-                            options={post_frequency}
-                            isMulti={false}
-                            onChange={setPostFrequency}
-                        />
                         <RadioInput
                             label="Publishing Preferences"
                             name="preference"
@@ -169,7 +162,19 @@ const AddNewPost = () => {
                             required={true}
                             onChange={handlePreferencesChange}
                         />
-                        {showDateInput && <DateInput label="Date & Time" includeTime={true} type="future" />}
+                        {showDateInput &&
+                            <>
+                                <DateInput label="Date & Time" includeTime={true} type="future" />
+                                <SelectComponent
+                                    label="Post Frequency"
+                                    name="post_frequency"
+                                    options={post_frequency}
+                                    isMulti={false}
+                                    onChange={setPostFrequency}
+                                />
+                            </>
+
+                        }
                         <div className="form-group">
                             <label className="form-label">
                                 Add To Campaign

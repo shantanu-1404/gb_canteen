@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import { sortData } from "./SortTable"; // ✅ Import sorting logic
 import moment from "moment"; // ✅ For time formatting
+import ProductDropdown from "../components/ProductDropdown";
 import Button from "../components/Button";
 
 const GridCard = ({ rowData, columns, countryFlags }) => {
@@ -99,7 +100,7 @@ const GridCard = ({ rowData, columns, countryFlags }) => {
       );
     }
 
-    
+
     if (type === "button") {
       return (
         <Button
@@ -153,6 +154,9 @@ const GridCard = ({ rowData, columns, countryFlags }) => {
       );
     }
 
+    if (type === "product") {
+      return <ProductDropdown items={rowData.items} />;
+    }
 
 
     if (typeof value === "object" && value !== null) {
@@ -206,7 +210,7 @@ const GridView = ({ data, columns, sortColumn, sortOrder, viewType = "grid" }) =
   }, [sortColumn, sortOrder, data]);
 
   return viewType === "grid" ? (
-    <Row>
+    <Row className="metrix-container">
       {sortedData.length > 0 ? (
         sortedData.map((row, index) => (
           <GridCard key={index} rowData={row} columns={columns} countryFlags={countryFlags} />

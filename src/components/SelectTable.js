@@ -3,6 +3,7 @@ import SearchBar from "./Searchbar";
 import Filter from "./Filter";
 import SortTable from "./SortTable";
 import { Row, Col } from "react-bootstrap";
+import ProductDropdown from "../components/ProductDropdown";
 
 const SelectTable = ({
   id = "selectTable",
@@ -84,9 +85,9 @@ const SelectTable = ({
       updatedSelection = selectedRows.some((selected) => selected.id === row.id)
         ? selectedRows.filter((selected) => selected.id !== row.id)
         : [
-            ...selectedRows,
-            { ...row, quantity: quantities[row.id] || row.quantity || 1 },
-          ];
+          ...selectedRows,
+          { ...row, quantity: quantities[row.id] || row.quantity || 1 },
+        ];
     } else {
       updatedSelection =
         selectedRows[0]?.id === row.id
@@ -158,6 +159,10 @@ const SelectTable = ({
             </button>
           </div>
         );
+
+      case "product":
+        return (<ProductDropdown items={rowData.items} />);
+
 
       default:
         return value;

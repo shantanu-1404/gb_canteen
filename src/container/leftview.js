@@ -113,7 +113,7 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                 }`}
               >
                 <li>
-                  <Link className="dropdown-item" to="/add_new_restaurant">
+                  <Link className="dropdown-item" to="/add-vendor">
                     <i className="bi bi-dash"></i> Add New Restaurant
                   </Link>
                 </li>
@@ -133,18 +133,22 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
             {/* Order Management Dropdown */}
             <li className="nav-item">
               <div
-                className={`nav-link ${openDropdowns["order"] ? "active" : ""}`}
-                onClick={() => handleDropdown("order")}
+                className={`nav-link ${openDropdowns["order"] ? "active" : ""}`}                
               >
-                <span>
+                <span
+                  onClick={() =>
+                    handleDropdown("order", "/order")
+                  }
+                >
                   <i className="bi bi-cart cart-icon"></i> Order Management
                 </span>
                 <i
-                  className={`bi ${
-                    openDropdowns["order"]
-                      ? "bi-chevron-down"
-                      : "bi-chevron-right"
-                  }`}
+                  onClick={() => handleDropdown("order")}
+                  className={`bi ${openDropdowns["order"]
+                    ? "bi-chevron-down"
+                    : "bi-chevron-right"
+                    }`}
+                 
                 ></i>
               </div>
               <ul
@@ -395,26 +399,23 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
             {/* Onlinestrore Dropdown */}
             <li className="nav-item">
               <div
-                className={`nav-link ${
-                  openDropdowns["onlinestore"] ? "active" : ""
-                }`}
+                className={`nav-link ${openDropdowns["onlinestore"] ? "active" : ""
+                  }`}
                 onClick={() => handleDropdown("onlinestore")}
               >
                 <Link to="/onlinestore">
                   <i className="bi bi-shop shop-icon"></i>Online Store
                 </Link>
                 <i
-                  className={`bi ${
-                    openDropdowns["onlinestore"]
+                  className={`bi ${openDropdowns["onlinestore"]
                       ? "bi-chevron-down"
                       : "bi-chevron-right"
-                  }`}
+                    }`}
                 ></i>
               </div>
               <ul
-                className={`submenu collapse ${
-                  openDropdowns["onlinestore"] ? "show" : ""
-                }`}
+                className={`submenu collapse ${openDropdowns["onlinestore"] ? "show" : ""
+                  }`}
               >
                 <li>
                   <Link className="dropdown-item" to=" ">

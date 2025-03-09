@@ -3820,6 +3820,7 @@ canvas {
   border-width: 1px;
   border-radius: 12px;
   height: 52px;
+  margin-bottom: 20px;
 }
 
 .searchable_dropdown .bi-chevron-down {
@@ -4015,6 +4016,15 @@ canvas {
   border-bottom-color: #dee2e6;
 }
 
+
+.table td h6 {
+  color: #253154;
+  margin-bottom: 5px;
+}
+.table td p {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
 
 
 

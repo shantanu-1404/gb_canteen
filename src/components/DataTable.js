@@ -16,7 +16,9 @@ const DataTable = ({
   filterable = true,
   sortable = true,
   paginated = true,
-  children
+  showCheckbox = true,
+  grid = true,
+  children,
 }) => {
   const [filteredData, setFilteredData] = useState(data); // Store filtered data
   const [view, setView] = useState(defaultView); // Toggle between table/grid views
@@ -44,7 +46,6 @@ const DataTable = ({
     });
     setFilteredData(searchedData);
   };
-
 
   // Apply sorting whenever sort state changes
   useEffect(() => {
@@ -103,11 +104,13 @@ const DataTable = ({
             )}
 
             {/* View Toggle Button */}
-            <div className="table-btn">
-              <button className="btn grid-btn " onClick={handleViewToggle}>
-                <i className="bi bi-grid"></i>
-              </button>
-            </div>
+            {grid && (
+              <div className="table-btn">
+                <button className="btn grid-btn " onClick={handleViewToggle}>
+                  <i className="bi bi-grid"></i>
+                </button>
+              </div>
+            )}
 
             {sortable && (
               <SortTable
@@ -131,22 +134,24 @@ const DataTable = ({
           columns={columns}
           tableRef={tableRef}
           filteredData={filteredData}
+          showCheckbox={showCheckbox}
           setFilteredData={setFilteredData}
           paginated={paginated}
         />
       ) : (
         <>
-          {
-            children ? <>{children}</> :
-              <GridView
-                gridviewId={id}
-                data={filteredData} // Pass filteredData to GridView
-                columns={columns}
-                sortColumn={sortColumn} // Pass sortColumn to GridView
-                sortOrder={sortOrder} // Pass sortOrder to GridView
-                viewType={view}
-              />
-          }
+          {children ? (
+            <>{children}</>
+          ) : (
+            <GridView
+              gridviewId={id}
+              data={filteredData} // Pass filteredData to GridView
+              columns={columns}
+              sortColumn={sortColumn} // Pass sortColumn to GridView
+              sortOrder={sortOrder} // Pass sortOrder to GridView
+              viewType={view}
+            />
+          )}
         </>
       )}
     </div>

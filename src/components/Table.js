@@ -269,6 +269,16 @@ const Table = ({
       );
     }
 
+    if (type === "grouped") {
+      return (
+        <div className="col">
+          <h6>{rowData.heading}</h6>
+          <p>{rowData.p1}</p>
+          <p>{rowData.p2}</p>
+        </div>
+      ); // ✅ Now JSX is rendered correctly inside the table
+    }
+
     // ✅ Accept Column (Separate)
     if (type === "accept") {
       return (
@@ -471,8 +481,9 @@ const Table = ({
         progressBarColor = "#D9D9D9"; // Grey for Pending
       } else if (completed > 0 && completed < total) {
         // Mixed colors for half completed and half pending
-        progressBarColor = `linear-gradient(to right, #BDE275 ${(completed / total) * 100
-          }%, #FFB3B3 ${(completed / total) * 100}%)`;
+        progressBarColor = `linear-gradient(to right, #BDE275 ${
+          (completed / total) * 100
+        }%, #FFB3B3 ${(completed / total) * 100}%)`;
       }
 
       return (

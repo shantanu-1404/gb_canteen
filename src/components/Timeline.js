@@ -26,7 +26,7 @@ const TimelineItem = ({ status, scan, date, time, location }) => {
 
       {/* Middle: Shipment Details */}
       <div className="timeline-details">
-        <h5>{scan}</h5>
+        <h7>{scan}</h7>
         <p className="timeline-location">{location}</p>
       </div>
 

@@ -212,7 +212,7 @@ const AddNewInventoryTransfer = () => {
               <div className="col p-3">
                 <a className="search-input-wrapper" onClick={openModal}>
                   <div className="ae-search-container">
-                    <i className="fa-solid fa-magnifying-glass"></i> Search and
+                  <i class="bi bi-search"></i> Search and
                     add to your order instantly...
                   </div>
                 </a>

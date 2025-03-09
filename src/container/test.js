@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import SelectTable from "../components/SelectTable";
 import Table from "../components/Table";

@@ -32,6 +32,8 @@ import AddNewGiftCard from './container/AddNewGiftCard';
 import PurchaseOrder from './container/PurchaseOrder';
 import AddNewPurchaseOrder from "./container/AddNewPurchaseOrder";
 import Transfer from './container/Transfer';
+import AddNewInventoryTransfer from "./container/AddNewInventoryTransfer";
+import ReceiveItems from "./container/Receive_Items";
 
 
 
@@ -84,6 +86,8 @@ const App = () => {
         <Route path="/search" element={<Index />} />
         <Route path="/notification" element={<Index />} />
         <Route path="/profile" element={<Index />} />
+        <Route path="/add-inventory_transfer" element={<AddNewInventoryTransfer/>} />
+        <Route path="/receive_items" element={<ReceiveItems/>} />
 
 
       </Routes>

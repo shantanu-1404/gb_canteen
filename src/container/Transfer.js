@@ -47,7 +47,7 @@ const Transfer = () => {
           <Button buttonType="export" label="Export" />
           <Button
             buttonType="add"
-            onClick={() => navigate("/add-purchase_order")}
+            onClick={() => navigate("/add-inventory_transfer")}
             label="Add New"
           />
         </div>

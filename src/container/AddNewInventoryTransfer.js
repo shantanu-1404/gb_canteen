@@ -14,9 +14,13 @@ import suppliersData from "../assets/json/supplierdata.json";
 import DestinationDropdown from "../components/DestinationDropdown";
 import destinationdata from "../assets/json/destinationdata.json";
 import SelectComponent from "../components/SelectComponent";
+import DateInput from "../components/DateInput";
+import TagInput from "../components/TagInput";
+import Timeline from "../components/Timeline";
+import trackingdata from "../assets/json/tracking.json";
 import Button from "../components/Button";
 
-const AddNewPurchaseOrder = () => {
+const AddNewInventoryTransfer = () => {
   const [selectedSingle, setSelectedSingle] = useState("");
   const navigate = useNavigate();
 
@@ -175,19 +179,31 @@ const AddNewPurchaseOrder = () => {
       setDestinations((prev) => [...prev, newDestination]);
     }
   };
+  const handleTagsChange = (tags) => {
+    console.log("Selected Tags:", tags);
+  };
+  const availableTags = [
+    "JavaScript",
+    "HTML",
+    "CSS",
+    "React",
+    "Node.js",
+    "Angular",
+    "Vue",
+    "Python",
+    "Django",
+    "Flask",
+  ];
 
   return (
     <Layout>
       <FormHeader
-        title="Add New Purchase Order"
-        backUrl="/products/purchase_order"
+        title="Add New Inventory Transfer"
+        backUrl="/products/transfer"
         closeUrl="/"
       />
       <Row>
         <Col md={7}>
-          <div className="form_section">
-            <h6 className="card-title">Shipment Details</h6>
-          </div>
           <div className="form_section">
             <h6 className="card-title">Select Products</h6>
 
@@ -271,19 +287,41 @@ const AddNewPurchaseOrder = () => {
               </div>
             )}
             <div className="form-group row  gap-2 text-center d-flex justify-content-end">
-              <Button
-                onClick={() => navigate("/receive_items")}
-                label="Receive Items"
-              />
+            <Button
+              onClick={() => navigate("/receive_items")}
+              label="Receive Items"
+            />
             </div>
           </div>
+
           <div className="form_section">
-            <h6 className="card-title">Note To Supplier</h6>
+            <h6 className="card-title">Shipment Details</h6>
             <TextInput
-              label="Note"
-              placeholder="Title"
+              label="Tracking Id"
+              placeholder="Id"
               required={true}
               onChange={handleTextInputChange}
+            />
+            <TextInput
+              label="Shipping Carrier"
+              placeholder="Carrier"
+              required={true}
+              onChange={handleTextInputChange}
+            />
+            <DateInput label="Estimated Arrival" type="future" />
+
+            <TextInput
+              label="Tracking Number"
+              placeholder="Number"
+              type="number"
+            />
+            <TextInput label="Tracking URL" placeholder="URL" type="url" />
+            <SelectComponent
+              label="Shipping Carrier"
+              name="singleSelect"
+              options={options}
+              isMulti={false}
+              onChange={setSelectedSingle}
             />
           </div>
         </Col>
@@ -366,23 +404,22 @@ const AddNewPurchaseOrder = () => {
               type="number"
               placeholder="Number"
             />
-            <SelectComponent
-              label="Supplier Currency"
-              name="singleSelect"
-              options={options}
-              isMulti={false}
-              onChange={setSelectedSingle}
-            />
-            <SelectComponent
-              label="Payment Terms (Optional)"
-              name="singleSelect"
-              options={options}
-              isMulti={false}
-              onChange={setSelectedSingle}
-            />
           </div>
           <div className="form_section">
-            <h6 className="card-title">Payment Summary</h6>
+            <h6 className="card-title">Assign tags</h6>
+            <TagInput
+              availableTags={availableTags}
+              onTagsChange={handleTagsChange}
+            />
+          </div>
+          <div className=" form_section">
+            <h6 className="card-title">Timeline</h6>
+            <Timeline events={trackingdata} />
+            <TextInput
+              placeholder="Share Your Thoughts...."
+              required={true}
+              onChange={handleTextInputChange}
+            />
           </div>
 
           <div className="form-group row p-3 gap-2 text-center">
@@ -399,4 +436,4 @@ const AddNewPurchaseOrder = () => {
   );
 };
 
-export default AddNewPurchaseOrder;
+export default AddNewInventoryTransfer;

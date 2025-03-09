@@ -18,7 +18,7 @@ const App = () => {
     };
   return (
  
-    <AddSubsection Cardtitle="Feature Section" layoutType="card">
+    <AddSubsection Cardtitle="Platform Tutorials" layoutType="list">
        <TextInput
               label="Title"
               placeholder=""

@@ -331,8 +331,9 @@ const AddNewCollection = () => {
         {/*-------------------------------------------------------------------------Page three------------------------------------------------------- */}
         {activeStep === 3 && (
           <div className="row mt-3 mb-6 form-step" id="step-3">
-            <AddSubsection Cardtitle="Menu Items">
-              {/* Pass form components dynamically */}
+            <div className="">
+           <AddSubsection Cardtitle="Menu Items" layoutType="card">
+           
               <TextInput
                 label="Dish Name"
                 required={true}
@@ -350,8 +351,7 @@ const AddNewCollection = () => {
                 name="Description"
                 placeholder="Description"
                 onChange={handleCaptionChange}
-                isWordCount={true}
-                wordLimit={300}
+                
               />
               <Row>
                 <SelectComponent
@@ -386,6 +386,7 @@ const AddNewCollection = () => {
                 />
               </Row>
             </AddSubsection>
+            </div>
             <div className="form_section">
               <h6 className="card-title">Bulk Upload</h6>
               <FileUploadComponent
@@ -477,15 +478,24 @@ const AddNewCollection = () => {
         {/*-------------------------------------------------------------------------Page five------------------------------------------------------- */}
         {activeStep === 5 && (
           <div className="row mt-3 mb-5 form-step" id="step-5">
-            <AddSubsection Cardtitle="Training Modules">
-              {/* Pass form components dynamically */}
-              <TextInput
-                label="Add Packaging Guidelines"
-                required={true}
-                placeholder="Name"
-                onChange={handleTextInputChange}
+            <div className="form_section">
+              <h6 className="card-title">Training Modules</h6>
+              <AddSubsection
+                Cardtitle="Add Packaging Guidelines"
+                layoutType="list"
+              ></AddSubsection>
+              <FileUploadComponent
+                label="Recommended Size - 1350px X 1080px"
+                name="imageUpload"
+                allowedClasses="image"
+                onChange={handleFileChange}
               />
-            </AddSubsection>
+
+              <AddSubsection
+                Cardtitle="Platform Usage Tutorials"
+                layoutType="list"
+              ></AddSubsection>
+            </div>
           </div>
         )}
         {/*-------------------------------------------------------------------------Page six------------------------------------------------------- */}

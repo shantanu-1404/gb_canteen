@@ -58,41 +58,23 @@ const AddSubsection = ({ Cardtitle, layoutType, children }) => {
       {/* ✅ Render sections dynamically */}
       {sections.map((section) => (
         <div key={section.id} className="form_section">
-          <h6 className="card-title">
-            {Cardtitle} {sections.indexOf(section) + 1}
-          </h6>
+         
 
           {/* ✅ Dynamic Children Rendering */}
           {layoutType === "card" ? (
-            <>
+            <> <h6 className="card-title">
+            {Cardtitle} {sections.indexOf(section) + 1}
+          </h6>
               {/* Render dynamic children */}
               {children}
 
               {/* Default Inputs */}
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Title"
-                value={section.title}
-                onChange={(e) =>
-                  handleInputChange(section.id, "title", e.target.value)
-                }
-              />
-              <br />
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Description"
-                value={section.description}
-                onChange={(e) =>
-                  handleInputChange(section.id, "description", e.target.value)
-                }
-              />
+              
             </>
           ) : (
             <>
               <div className="row">
-                <div className="col-md">
+                <div className="col-md ">
                   <div className="form-group">
                     <label htmlFor="list-item-input" className="form-label">
                       {Cardtitle}
@@ -111,7 +93,7 @@ const AddSubsection = ({ Cardtitle, layoutType, children }) => {
                           />
                           <button
                             type="button"
-                            className="btn col-2 m-0 btn-danger"
+                            className="btn col-2 m-0 h-100 btn-danger"
                             onClick={() => handleRemoveListItem(index)}
                           >
                             Remove

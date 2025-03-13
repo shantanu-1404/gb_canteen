@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+
+
+import React, {useRef } from "react";
 import Layout from "./layout";
 import { useNavigate } from "react-router-dom";
 
-import Metrix from "../components/Metrix";
+
 import MetricCard from "../components/MetricCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -14,7 +16,7 @@ import productsdata from "../assets/json/product.json";
 
 const Products = () => {
   const tableRef = useRef();
-  const [isModalOpen, setModalOpen] = useState(false);
+
   const navigate = useNavigate();
 
   const columns = [
@@ -26,13 +28,7 @@ const Products = () => {
     { headname: "Vendor", type: "", dbcol: "col6" },
     { headname: "Published on", type: "time", dbcol: "col7" },
   ];
-  const columns1 = [
-    { headname: "id", type: "id", dbcol: "col1" },
-    { headname: "Title", type: "", dbcol: "col2" },
-    { headname: "Deleted at", type: "time", dbcol: "col3" },
-    { headname: "Action by", type: "", dbcol: "col4" },
-    { headname: "Action Taken", type: "", dbcol: "col5" },
-  ];
+
   // ✅ Refresh page
   const handleRefresh = () => {
     window.location.reload(); // This will refresh the page

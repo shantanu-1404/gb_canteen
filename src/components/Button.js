@@ -28,6 +28,8 @@ const Button = ({
         return "bi bi-graph-up-arrow"; // Grow icon
       case "edit":
         return "bi bi-pencil-square"; // Edit icon
+        case "bulkuplaod":
+        return "bi bi-arrow-down-left-circle"; // Edit icon
       default:
         return "";
     }

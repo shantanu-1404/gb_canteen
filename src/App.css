@@ -4187,7 +4187,13 @@ canvas {
 
 
 
-
+.progress-container {
+  position: relative;
+  background-color: #bdbbb2;
+  border-radius: 20px;
+  height: 8px;
+  width: 100%;
+}
 
 
 

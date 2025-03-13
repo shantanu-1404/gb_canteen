@@ -57,7 +57,7 @@ const AddSubsection = ({ Cardtitle, layoutType, children }) => {
     <div className="subsection-container">
       {/* ✅ Render sections dynamically */}
       {sections.map((section) => (
-        <div key={section.id} className="form_section">
+        <div key={section.id} className="section_card">
          
 
           {/* ✅ Dynamic Children Rendering */}

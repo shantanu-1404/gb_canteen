@@ -36,7 +36,17 @@ import AddNewOrder from './container/AddNewOrder';
 import DraftOrder from './container/DraftOrder';
 import AbandonOrder from './container/AbandonOrder';
 import Shipment from './container/Shipment.js';
-
+import CuisinesLocation from "./container/Cuisines_and_Location.js"
+import ManageCuisine from './container/Manage_cuisine.js';
+import AddNewCuisine from './container/AddNewCuisine';
+import ManageLocation from './container/Manage_Location.js';
+import StoreProfiles from './container/Store_profiles.js';
+import StoreMenu from './container/StoreMenu.js';
+import SubscriptionPlan from './container/SubscriptionPlan.js';
+import Subscriber from './container/Subscriber.js';
+import AddNewLocation from "./container/AddNewLocation.js";
+import StoreManagement from "./container/StoreManagement.js";
+import AddNewDish from "./container/AddNewDish.js"
 
 
 
@@ -88,6 +98,18 @@ const App = () => {
         <Route path="/profile" element={<Index />} />
         <Route path="/add-inventory_transfer" element={<AddNewInventoryTransfer/>} />
         <Route path="/receive_items" element={<ReceiveItems/>} />
+        <Route path="/cuisine_location" element={<CuisinesLocation/>} />
+        <Route path="/manage_cuisine" element={< ManageCuisine/>} />
+        <Route path="/manage_location" element={< ManageLocation/>} />
+        <Route path="/add-cuisine" element={<AddNewCuisine/>} />
+        <Route path="/store_profiles" element={<StoreProfiles/>} />
+        <Route path="/store_menu" element={<StoreMenu/>} />
+        <Route path="/subscription_plan" element={<SubscriptionPlan/>} />
+        <Route path="/subscriber" element={<Subscriber/>} />
+        <Route path="/add-location" element={<AddNewLocation/>} />
+        <Route path="/store-management" element={<StoreManagement/>} />
+        <Route path="/add-dish" element={<AddNewDish/>} />
+        
 
 
       </Routes>

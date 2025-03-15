@@ -11,13 +11,13 @@ const TabsComponent = ({ tabs }) => {
   };
 
   return (
-    <div className="section_card">
+    <div className="section_card ">
       {/* Tab Navigation */}
-      <ul className="nav nav-tabs d-flex justify-content-between" id="myTab" role="tablist">
+      <ul className="nav nav-tabs d-flex justify-content-between " id="myTab" role="tablist">
         {tabs.map((tab) => (
           <li className="nav-item" role="presentation" key={tab.id}>
             <button
-              className={`nav-link-tabs ${activeTab === tab.id ? "active" : ""}`}
+              className={`nav-link-tabs  ${activeTab === tab.id ? "active" : ""}`}
               id={`${tab.id}-tab`}
               data-bs-toggle="tab"
               data-bs-target={`#${tab.id}-pane`}

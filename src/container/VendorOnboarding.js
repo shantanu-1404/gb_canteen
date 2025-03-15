@@ -62,7 +62,7 @@ const VendorOnboarding = () => {
           <div className="dropdown">
             <Button
               buttonType="add"
-              onClick={() => navigate("")}
+              onClick={() => navigate("/add-vendor")}
               label="Add New"
             />
           </div>

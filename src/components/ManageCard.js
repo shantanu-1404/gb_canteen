@@ -6,7 +6,8 @@ const ManageCard = ({
   imageKey = "col1", // Now handles text if not an image
   descriptionKey = "col3",
   descriptionLabelKey = "Details", // ✅ Default label if not provided
-  buttonAction = null
+  buttonAction = null,
+  onClick // ✅ Make sure `onClick` works
 }) => {
   if (!data || typeof data !== "object") {
     console.error("❌ Invalid data:", data);
@@ -20,6 +21,13 @@ const ManageCard = ({
   return (
     <div className="col-md-6 col-lg-4">
       <div className="section_card flex-column p-3">
+      <div 
+        onClick={() => {
+          console.log(`🖱️ Clicked on ManageCard: ${title}`); // ✅ Log Click
+          if (onClick) onClick(); // ✅ Ensure `onClick` is called
+        }}
+        style={{ cursor: "pointer" }} // ✅ Make sure it's clickable
+      >
         
         {/* ✅ Conditionally Render Image or Text */}
         <div className="mb-3 d-flex justify-content-center">
@@ -63,6 +71,7 @@ const ManageCard = ({
           <span></span>
         </div>
       </div>
+    </div>
     </div>
   );
 };

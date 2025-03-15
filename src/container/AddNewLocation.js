@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState} from "react";
 import Layout from "./layout";
-import Aetextarea from "../components/Aetextarea";
 import TextInput from "../components/TextInput";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import SelectComponent from "../components/SelectComponent";
-import DateInput from "../components/DateInput";
-import TagInput from "../components/TagInput";
 import FormHeader from "../components/FormHeader";
-import FileUploadComponent from "../components/FileUploadComponent";
-import AddSubsection from "../components/AddSubsection";
+
 
 const AddNewLocation = () => {
   const handleTextInputChange = (value) => {
@@ -32,39 +29,8 @@ const AddNewLocation = () => {
     { value: "american", label: "American" },
   ];
 
-  const options = [
-    { value: "1", label: "Option 1" },
-    { value: "2", label: "Option 2" },
-    { value: "3", label: "Option 3" },
-    { value: "4", label: "Option 4" },
-  ];
-  const status_options = [
-    { value: "active", label: "Active" },
-    { value: "inactive", label: "Inactive" },
-    { value: "pending", label: "Pending" },
-    { value: "archived", label: "Archived" },
-  ];
 
-  const handleTagsChange = (tags) => {
-    console.log("Selected Tags:", tags);
-  };
-  const availableTags = [
-    "JavaScript",
-    "HTML",
-    "CSS",
-    "React",
-    "Node.js",
-    "Angular",
-    "Vue",
-    "Python",
-    "Django",
-    "Flask",
-  ];
-  const handleFileChange = (file, isValid) => {
-    console.log("Selected file:", file);
-    console.log("Is valid:", isValid);
-    setFileData(file);
-  };
+
 
   return (
     <Layout>

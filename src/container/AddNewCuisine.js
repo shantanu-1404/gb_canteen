@@ -63,7 +63,7 @@ const AddNewCuisine = () => {
     <Layout>
       <Row>
         <FormHeader
-          title="Add New Location"
+          title="Add New Cuisine"
           backUrl="/manage_cuisine"
           closeUrl="/"
         />

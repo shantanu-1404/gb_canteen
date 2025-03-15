@@ -30,6 +30,8 @@ const Button = ({
         return "bi bi-pencil-square"; // Edit icon
         case "bulkuplaod":
         return "bi bi-arrow-down-left-circle"; // Edit icon
+        case "pause":
+        return "bi bi-pause-fill"; // Edit icon
       default:
         return "";
     }

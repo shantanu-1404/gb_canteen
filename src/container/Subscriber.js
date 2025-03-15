@@ -7,14 +7,50 @@ import Row from "react-bootstrap/Row";
 import subscribersDataJson from "../assets/json/subscriber.json"; // ✅ Import Subscribers Data
 import FormHeader from "../components/FormHeader";
 import { useNavigate } from "react-router-dom";
+import Modal from "../components/Modal";
+import FileUploadComponent from "../components/FileUploadComponent";
 
 const Subscribers = () => {
   const [subscribersData, setSubscribersData] = useState([]);
   const navigate = useNavigate();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [fileData, setFileData] = useState(null);
+  const [selectedSubscriber, setSelectedSubscriber] = useState(null); // ✅ Stores the selected subscriber
+
+  // ✅ Handle File Upload Change
+  const handleFileChange = (file, isValid) => {
+    console.log("📂 Selected file:", file);
+    console.log("✅ Is valid:", isValid);
+    setFileData(file);
+  };
+
+  // ✅ Handle Form Submission for File Upload
+  const handleFileUploadSubmit = (e) => {
+    e.preventDefault();
+    if (!fileData) {
+      alert("⚠️ Please select a file to upload.");
+      return;
+    }
+    console.log("✅ File uploaded:", fileData);
+    setModalOpen(false);
+  };
+
+  // ✅ Open Modal & Set Selected Subscriber Data
+  const handleCardClick = (subscriber) => {
+    console.log("🖱️ Clicked on Subscriber:", subscriber); // ✅ Log clicked data
+    if (!subscriber) {
+      console.error("❌ No subscriber data received");
+      return;
+    }
+    setSelectedSubscriber(subscriber);
+    setModalOpen(true);
+  };
 
   // ✅ Ensure JSON Data is Loaded Before Setting State
   useEffect(() => {
+    console.log("📥 Loading subscriber data...");
     if (Array.isArray(subscribersDataJson) && subscribersDataJson.length > 0) {
+      console.log("✅ Loaded Subscriber Data:", subscribersDataJson);
       setSubscribersData(subscribersDataJson);
     } else {
       console.error("❌ Invalid or Empty JSON Data:", subscribersDataJson);
@@ -32,11 +68,7 @@ const Subscribers = () => {
   return (
     <Layout>
       {/* ✅ Page Header */}
-      <FormHeader
-        title=" Subscribers"
-        backUrl="/dashboard"
-        closeUrl="/"
-      />
+      <FormHeader title="Subscribers" backUrl="/dashboard" closeUrl="/" />
 
       {/* ✅ Data Table */}
       {subscribersData.length > 0 ? (
@@ -59,6 +91,10 @@ const Subscribers = () => {
                 imageKey="col1" // ✅ Profile Image
                 descriptionKey="col3" // ✅ Plan
                 descriptionLabelKey="Plan Type" // ✅ Dynamic Label
+                onClick={() => {
+                  console.log(`🖱️ ManageCard Clicked: ${subscriber.col2}`); // ✅ Log Click
+                  handleCardClick(subscriber);
+                }}
               />
             ))}
           </Row>
@@ -66,6 +102,36 @@ const Subscribers = () => {
       ) : (
         <p className="text-center">No Subscribers Available</p>
       )}
+
+      {/* ✅ Modal Opens When Clicking a ManageCard */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Subscriber Details"
+      >
+        {selectedSubscriber ? (
+          <div>
+            <h5>👤 {selectedSubscriber.col2}</h5>
+            <p>
+              <strong>Plan:</strong> {selectedSubscriber.col3}
+            </p>
+            <p>
+              <strong>More Info:</strong> Additional subscriber details.
+            </p>
+          </div>
+        ) : (
+          <p>Loading subscriber details...</p>
+        )}
+
+        <form >
+        <br />
+          <br />
+          <div className="btn-sack">
+          <Button buttonType="pause" label="Pause Subscription"/>
+          <Button buttonType="uncheck" label="Cancel Subscription" btnStyle="red" />
+          </div>
+        </form>
+      </Modal>
     </Layout>
   );
 };

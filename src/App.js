@@ -44,11 +44,14 @@ import StoreProfiles from './container/Store_profiles.js';
 import StoreMenu from './container/StoreMenu.js';
 import SubscriptionPlan from './container/SubscriptionPlan.js';
 import Subscriber from './container/Subscriber.js';
+import Subscription from './container/Subscription.js';
 import AddNewLocation from "./container/AddNewLocation.js";
 import StoreManagement from "./container/StoreManagement.js";
-import AddNewDish from "./container/AddNewDish.js"
-
-
+import AddNewDish from "./container/AddNewDish.js";
+import CorporateCatering from "./container/Corporate_Catering.js";
+import ManageCorporateClient from "./container/ManageCorporateClient.js";
+import ManageCateringRequest from "./container/ManageCateringRequest.js";
+import AddNewPlan from "./container/AddNewPlan.js";
 
 
 
@@ -105,11 +108,15 @@ const App = () => {
         <Route path="/store_profiles" element={<StoreProfiles/>} />
         <Route path="/store_menu" element={<StoreMenu/>} />
         <Route path="/subscription_plan" element={<SubscriptionPlan/>} />
+        <Route path="/subscription" element={<Subscription/>} />
         <Route path="/subscriber" element={<Subscriber/>} />
         <Route path="/add-location" element={<AddNewLocation/>} />
         <Route path="/store-management" element={<StoreManagement/>} />
         <Route path="/add-dish" element={<AddNewDish/>} />
-        
+        <Route path="/add-plan" element={<AddNewPlan/>} />
+        <Route path="/corporate_catering" element={<CorporateCatering/>} />
+        <Route path="/manage-corporate-client" element={<ManageCorporateClient/>} />
+        <Route path="/manage-catering-request" element={<ManageCateringRequest/>} />
 
 
       </Routes>

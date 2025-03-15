@@ -439,6 +439,7 @@ const Index = () => {
             <Button label="Save" type="submit" />
             <Button buttonType="edit" label="Edit" />
             <Button label="Bulk Upload" buttonType="bulkuplaod"/>
+            <Button buttonType="pause" label="Pause Subscription"/>
 
             <Button
               buttonType="import"

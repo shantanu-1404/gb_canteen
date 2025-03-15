@@ -7,11 +7,21 @@ import Row from "react-bootstrap/Row";
 import cuisineDataJson from "../assets/json/Cuisinesdata.json";
 import FormHeader from "../components/FormHeader";
 import { useNavigate } from "react-router-dom";
+import Modal from "../components/Modal";
+import FileUploadComponent from "../components/FileUploadComponent";
 
 const ManageCuisine = () => {
   const [cuisineData, setCuisineData] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [fileData, setFileData] = useState(null);
 
   const navigate = useNavigate();
+
+  const handleFileChange = (file, isValid) => {
+    console.log("Selected file:", file);
+    console.log("Is valid:", isValid);
+    setFileData(file);
+  };
 
   // ✅ Ensure JSON Data is Loaded Before Setting State
   useEffect(() => {
@@ -47,14 +57,42 @@ const ManageCuisine = () => {
       />
 
       {/* ✅ Action Buttons */}
-      <div className="form-group row p-3 gap-2 text-center d-flex justify-content-end"> 
-      <Button label="Bulk Upload" buttonType="bulkuplaod"/>
+      <div className="form-group row p-3 gap-2  d-flex justify-content-end">
+        <Button
+          label="Bulk Upload"
+          buttonType="bulkuplaod"
+          onClick={() => setModalOpen(true)}
+        />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          title="Bulk Upload"
+        >
+          <form>
+            <FileUploadComponent
+              label="Recommended Size - 1350px X 1080px"
+              name="imageUpload"
+              allowedClasses="image"
+              onChange={handleFileChange}
+            />
+            <br />
+            <br />
+            <div className="btn-sack">
+              <Button
+                label="Cancel"
+                type="button"
+                onClick={() => setModalOpen(false)}
+              />
+              <Button label="Upload" type="submit" />
+            </div>
+          </form>
+        </Modal>
+
         <Button
           buttonType="add"
           onClick={() => navigate("/add-cuisine")}
-          label="Add New Cuisine"
+          label="Add New "
         />
-       
       </div>
 
       {/* ✅ Data Table */}
@@ -64,10 +102,10 @@ const ManageCuisine = () => {
           columns={ManageCuisineColumns}
           data={cuisineData}
           defaultView="grid"
-          searchable={true} // ✅ Ensure search is working
-          filterable={true} // ✅ Ensure filters work
-          sortable={true} // ✅ Ensure sorting works
-          paginated={true} // ✅ Enable pagination
+          searchable={true}
+          filterable={true}
+          sortable={true}
+          paginated={true}
         >
           <Row className="metrix-container">
             {cuisineData.map((cuisine, index) => (

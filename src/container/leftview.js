@@ -112,20 +112,185 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                   openDropdowns["vendor"] ? "show" : ""
                 }`}
               >
-                <li>
-                  <Link className="dropdown-item" to="/add-vendor">
-                    <i className="bi bi-dash"></i> Add New Restaurant
-                  </Link>
+                {/* Sub-menu under vendoronboarding Cuisines & Locations */}
+                <li className="nav-item">
+                  <div
+                    className={`nav-link ${
+                      openDropdowns["cuisines"] ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      handleDropdown("cuisines", "/cuisine_location")
+                    }
+                  >
+                    <span>
+                      <i className="bi bi-dash"></i> Cuisines & Locations
+                    </span>
+                    <i
+                      className={`bi ${
+                        openDropdowns["cuisines"]
+                          ? "bi-chevron-down"
+                          : "bi-chevron-right"
+                      }`}
+                    ></i>
+                  </div>
+                  <ul
+                    className={`submenu collapse ${
+                      openDropdowns["cuisines"] ? "show" : ""
+                    }`}
+                  >
+                    <li
+                      className={`${openDropdowns["cuisines"] ? "active" : ""}`}
+                    >
+                      <Link className="dropdown-item" to="/manage_cuisine">
+                        <i className="bi bi-dash"></i>Manage Cuisines
+                      </Link>
+                    </li>
+                    <li
+                      className={`${openDropdowns["cuisines"] ? "active" : ""}`}
+                    >
+                      <Link className="dropdown-item" to="/manage_location">
+                        <i className="bi bi-dash"></i>Manage Locations
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
-                <li>
-                  <Link className="dropdown-item" to="/restaurant/view">
-                    <i className="bi bi-dash"></i> View Restaurants
-                  </Link>
+
+                {/* Sub-menu under vendoronboarding Store Management */}
+                <li className="nav-item">
+                  <div
+                    className={`nav-link ${
+                      openDropdowns["store"] ? "active" : ""
+                    }`}
+                    onClick={() => handleDropdown("store", "/store-management")}
+                  >
+                    <span>
+                      <i className="bi bi-dash"></i> Store Management
+                    </span>
+                    <i
+                      className={`bi ${
+                        openDropdowns["store"]
+                          ? "bi-chevron-down"
+                          : "bi-chevron-right"
+                      }`}
+                    ></i>
+                  </div>
+                  <ul
+                    className={`submenu collapse ${
+                      openDropdowns["store"] ? "show" : ""
+                    }`}
+                  >
+                    <li className={`${openDropdowns["store"] ? "active" : ""}`}>
+                      <Link className="dropdown-item" to="/store_profiles">
+                        <i className="bi bi-dash"></i>Store Profile
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
-                <li>
-                  <Link className="dropdown-item" to="#">
-                    <i className="bi bi-dash"></i> Restaurant Settings
-                  </Link>
+
+                {/* Sub-menu under vendoronboarding Subscription */}
+                <li className="nav-item">
+                  <div
+                    className={`nav-link ${
+                      openDropdowns["subscription"] ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      handleDropdown("subscription", "/subscription")
+                    }
+                  >
+                    <span>
+                      <i className="bi bi-dash"></i> Subscription
+                    </span>
+                    <i
+                      className={`bi ${
+                        openDropdowns["subscription"]
+                          ? "bi-chevron-down"
+                          : "bi-chevron-right"
+                      }`}
+                    ></i>
+                  </div>
+                  <ul
+                    className={`submenu collapse ${
+                      openDropdowns["subscription"] ? "show" : ""
+                    }`}
+                  >
+                    <li
+                      className={`${
+                        openDropdowns["subscription"] ? "active" : ""
+                      }`}
+                    >
+                      <Link
+                        className="dropdown-item"
+                        to="/subscription_plan"
+                      >
+                        <i className="bi bi-dash"></i>
+                        Subscription Plans
+                      </Link>
+                    </li>
+                    <li
+                      className={`${
+                        openDropdowns["subscription"] ? "active" : ""
+                      }`}
+                    >
+                      <Link
+                        className="dropdown-item"
+                        to="/subscriber"
+                      >
+                        <i className="bi bi-dash"></i>Subscriber
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+
+                {/* Sub-menu under vendoronboarding Corporate/Bulk Catering */}
+                <li className="nav-item">
+                  <div
+                    className={`nav-link ${
+                      openDropdowns["Corporate/Bulk Catering"] ? "active" : ""
+                    }`}
+                    onClick={() => handleDropdown("Corporate/Bulk Catering" , "/corporate_catering")}
+                  >
+                    <span>
+                      <i className="bi bi-dash"></i> Corporate/Bulk Catering
+                    </span>
+                    <i
+                      className={`bi ${
+                        openDropdowns["Corporate/Bulk Catering"]
+                          ? "bi-chevron-down"
+                          : "bi-chevron-right"
+                      }`}
+                    ></i>
+                  </div>
+                  <ul
+                    className={`submenu collapse ${
+                      openDropdowns["Corporate/Bulk Catering"] ? "show" : ""
+                    }`}
+                  >
+                    <li
+                      className={`${
+                        openDropdowns["Corporate/Bulk Catering"] ? "active" : ""
+                      }`}
+                    >
+                      <Link
+                        className="dropdown-item"
+                        to="/manage-corporate-client"
+                      >
+                        <i className="bi bi-dash"></i>
+                        Corporate Clients
+                      </Link>
+                    </li>
+                    <li
+                      className={`${
+                        openDropdowns["Corporate/Bulk Catering"] ? "active" : ""
+                      }`}
+                    >
+                      <Link
+                        className="dropdown-item"
+                        to="/manage-catering-request"
+                      >
+                        <i className="bi bi-dash"></i>Catering Requests
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>

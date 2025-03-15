@@ -53,7 +53,7 @@ const SubscriptionPlan = () => {
     console.log("✅ Is valid:", isValid);
     setFileData(file);
   };
-  
+
   return (
     <Layout>
       {/* ✅ Page Header */}
@@ -76,6 +76,7 @@ const SubscriptionPlan = () => {
           sortable={true}
           paginated={true}
         >
+         
           <Row className="metrix-container">
             {planData.map((plan, index) => (
               <ManageCard

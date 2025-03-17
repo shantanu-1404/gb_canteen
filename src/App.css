@@ -4163,7 +4163,6 @@ canvas {
 .timeline-right {
   font-size: 14px;
   color: #a0a0a0;
-  /* ✅ Grey Date & Time */
   text-align: right;
   flex-shrink: 0;
 }
@@ -4193,10 +4192,26 @@ canvas {
 }
 
 
+.modal-header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+ 
+}
 
 
+/* ✅ Clickable Link */
+.tax-link {
+  color: #089CFF;  /* Bootstrap primary link color */
+  font-weight: 400;
+  text-decoration: none;
+}
 
 
+.custom-popover .popover-body {
+  padding: 15px;
+}
 
 
 

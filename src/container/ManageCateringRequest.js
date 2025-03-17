@@ -8,7 +8,7 @@ import SelectComponent from "../components/SelectComponent";
 import FormHeader from "../components/FormHeader";
 import PhoneInput from "../components/PhoneInput";
 import DateInput from "../components/DateInput";
-import RadioInput from "../components/RadioInput";
+import CheckboxInput from "../components/CheckboxInput";
 
 const ManageCateringRequest = () => {
   const handleTextInputChange = (value) => {
@@ -17,6 +17,9 @@ const ManageCateringRequest = () => {
 
   const handleOptionChange = (selectedValue) => {
     console.log("Selected:", selectedValue);
+  };
+  const handleAgreementChange = (isChecked) => {
+    console.log("User agreed:", isChecked);
   };
 
   const [selectedSingle, setSelectedSingle] = useState("");
@@ -141,24 +144,34 @@ const ManageCateringRequest = () => {
               name="address"
               placeholder="Requests"
             />
-            <RadioInput
-              label="Add-Ons"
-              name="payment"
-              options={[
-                { label: "Add-On Option 1", value: "option1 " },
-                { label: "Add-On Option 2", value: "option2" },
-                { label: "Add-On Option 3", value: "option3" },
-                { label: "Add-On Option 4", value: "option4" },
-                { label: "Add-On Option 5", value: "option5" },
-              ]}
-              required={true}
-              onChange={handleOptionChange}
+            <Row>
+              <CheckboxInput
+              label="Add-On Option 1"
+              onChange={handleAgreementChange}
             />
+              <CheckboxInput
+              label="Add-On Option 2"
+              onChange={handleAgreementChange}
+            />
+              <CheckboxInput
+              label="Add-On Option 3"
+              onChange={handleAgreementChange}
+            />
+              <CheckboxInput
+              label="Add-On Option 4"
+              onChange={handleAgreementChange}
+            />
+              <CheckboxInput
+              label="Add-On Option 5"
+              onChange={handleAgreementChange}
+            />
+            </Row>
+            
             <TextInput
               placeholder="Specify any other Add-Ons"
               required={true}
               onChange={handleTextInputChange}
-              type="number"
+             
             />
           </div>
 

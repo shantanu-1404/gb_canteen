@@ -10,20 +10,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import SelectTable from "../components/SelectTable";
 import Table from "../components/Table";
-import OriginDropdown from "../components/OriginDropdown";
 import SelectComponent from "../components/SelectComponent";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
-
-import suppliersData from "../assets/json/supplierdata.json";
 import customersData from "../assets/json/customer.json";
-import DestinationDropdown from "../components/DestinationDropdown";
-import destinationdata from "../assets/json/destinationdata.json";
 import productsData from "../assets/json/product.json"; // ✅ Import JSON data
+import CustomPopover from "../components/Pop-up";
+import CheckboxInput from "../components/CheckboxInput";
 
 const AddNewOrder = () => {
-  const [selectedSingle, setSelectedSingle] = useState("");
-  const navigate = useNavigate();
+  const [setSelectedSingle] = useState("");
+
 
   const handleTextInputChange = (value) => {
     console.log("TextInput:", value);
@@ -66,6 +63,10 @@ const AddNewOrder = () => {
     isChecked: selectedProducts.some((p) => p.id === index + 1), // ✅ Ensure previously selected items stay checked
   }));
 
+  const handleAgreementChange = (isChecked) => {
+    console.log("User agreed:", isChecked);
+  };
+
   // ✅ Handle Selection Change
   const handleSelectionChange = (updatedSelection) => {
     setSelectedProducts((prevSelected) => {
@@ -106,17 +107,6 @@ const AddNewOrder = () => {
           : product
       )
     );
-  };
-  // ✅ Function to convert supplier data into location-based structure
-  const convertToLocationBasedData = (suppliers) => {
-    return suppliers.reduce((acc, supplier) => {
-      const city = supplier.city;
-      if (!acc[city]) {
-        acc[city] = [];
-      }
-      acc[city].push(supplier);
-      return acc;
-    }, {});
   };
 
   useEffect(() => {
@@ -159,9 +149,14 @@ const AddNewOrder = () => {
             <Modal
               isOpen={isCustomerModalOpen}
               onClose={() => setCustomerModalOpen(false)}
-              title="Add Customer"
             >
-              <Button  buttonType="add" label="Add New" />
+              {/* ✅ Header with Button in Same Row */}
+              <div className="modal-header-with-button">
+                <h6 className="modal-title">Select Customer</h6>
+                <Button buttonType="add" label="Create New" />
+              </div>
+
+              {/* ✅ Customer Selection Table */}
               <SelectTable
                 id="productSelection"
                 columns={[
@@ -274,7 +269,6 @@ const AddNewOrder = () => {
                 updateQuantity={updateQuantity}
                 quantities={quantities} // ✅ Ensure same quantity data
               />
-
               <br />
               <div className="btn-sack">
                 <button
@@ -332,11 +326,29 @@ const AddNewOrder = () => {
               </label>
               <p className="col text-end"> ₹0.00</p>
             </Row>
-            <Row>
-              <label className="col">
-                <a>Tax Estimate -</a>
-              </label>
-              <p className="col text-end"> ₹0.00</p>
+            <Row className="align-items-center">
+              <Col>
+                <CustomPopover
+                  className="form_section"
+                  title="Tax Are Automatically Calculated"
+                  triggerText="Tax Estimate (10%)"
+                >
+                  <CheckboxInput
+                    label="Charge Tax"
+                    onChange={handleAgreementChange}
+                  />
+                  <div className="form-group row p-3 gap-2 text-center">
+                    <a type="submit" className="btn col-4 a-btn-primary">
+                      Apply
+                    </a>
+                  </div>
+                </CustomPopover>
+              </Col>
+
+              {/* ✅ Amount Display */}
+              <Col className="text-end">
+                <p>₹0.00</p>
+              </Col>
             </Row>
 
             <Row className="mt-2">
@@ -347,8 +359,11 @@ const AddNewOrder = () => {
               Add your favourite items to the cart and review your order
               summary.
             </small>
+            <CheckboxInput
+              label="Payment Due Later"
+              onChange={handleAgreementChange}
+            />
 
-            <br />
             <br />
             <br />
             <div className="btn-sack">

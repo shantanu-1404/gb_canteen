@@ -52,6 +52,10 @@ import CorporateCatering from "./container/Corporate_Catering.js";
 import ManageCorporateClient from "./container/ManageCorporateClient.js";
 import ManageCateringRequest from "./container/ManageCateringRequest.js";
 import AddNewPlan from "./container/AddNewPlan.js";
+import CustomerDetails from './container/CustomerDetails.js';
+import AddNewShipment from "./container/AddNewShipment.js"
+import Customer from './container/Customer.js';
+import AddNewCustomer from "./container/AddNewCustomer.js";
 
 
 
@@ -117,6 +121,11 @@ const App = () => {
         <Route path="/corporate_catering" element={<CorporateCatering/>} />
         <Route path="/manage-corporate-client" element={<ManageCorporateClient/>} />
         <Route path="/manage-catering-request" element={<ManageCateringRequest/>} />
+        <Route path="/customer-details" element={<CustomerDetails/>} />
+        <Route path="/add-shipment" element={<AddNewShipment/>} />
+        <Route path='/customer' element={<Customer/>}/>
+        <Route path="/add-customer" element={<AddNewCustomer/>} />
+
 
 
       </Routes>

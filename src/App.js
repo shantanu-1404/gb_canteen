@@ -56,6 +56,9 @@ import CustomerDetails from './container/CustomerDetails.js';
 import AddNewShipment from "./container/AddNewShipment.js"
 import Customer from './container/Customer.js';
 import AddNewCustomer from "./container/AddNewCustomer.js";
+import BatchShipping from './container/BatchShipping.js';
+import ShippingRate from './container/Shipping_Rates.js';
+import RateComparisonTable from './container/RateComparisonTable.js'
 
 
 
@@ -125,6 +128,9 @@ const App = () => {
         <Route path="/add-shipment" element={<AddNewShipment/>} />
         <Route path='/customer' element={<Customer/>}/>
         <Route path="/add-customer" element={<AddNewCustomer/>} />
+        <Route path="/badge-shipping" element={<BatchShipping/>} />
+        <Route path="/shipping-rates" element={<ShippingRate/>} />
+        <Route path="/rate-comparison-table" element={<RateComparisonTable/>} />
 
 
 

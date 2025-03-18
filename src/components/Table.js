@@ -138,19 +138,19 @@ const Table = ({
       prevData.map((product) =>
         product.id === productId
           ? {
-            ...product,
-            accept: Math.max(
-              0,
-              Math.min(newAcceptValue, product.total || 10)
-            ), // Prevent exceeding total
-            cancel:
-              (product.total || 10) -
-              Math.max(0, Math.min(newAcceptValue, product.total || 10)), // Auto-calculate Cancel
-            progress: `${Math.max(
-              0,
-              Math.min(newAcceptValue, product.total || 10)
-            )}/${product.total || 10}`, // ✅ Update progress bar dynamically
-          }
+              ...product,
+              accept: Math.max(
+                0,
+                Math.min(newAcceptValue, product.total || 10)
+              ), // Prevent exceeding total
+              cancel:
+                (product.total || 10) -
+                Math.max(0, Math.min(newAcceptValue, product.total || 10)), // Auto-calculate Cancel
+              progress: `${Math.max(
+                0,
+                Math.min(newAcceptValue, product.total || 10)
+              )}/${product.total || 10}`, // ✅ Update progress bar dynamically
+            }
           : product
       )
     );
@@ -161,18 +161,19 @@ const Table = ({
       prevData.map((product) =>
         product.id === productId
           ? {
-            ...product,
-            cancel: Math.max(
-              0,
-              Math.min(newRejectValue, product.total || 10)
-            ), // ✅ Ensure cancel does not exceed total
-            accept:
-              (product.total || 10) -
-              Math.max(0, Math.min(newRejectValue, product.total || 10)), // ✅ Auto-update Accept
-            progress: `${(product.total || 10) -
-              Math.max(0, Math.min(newRejectValue, product.total || 10))
+              ...product,
+              cancel: Math.max(
+                0,
+                Math.min(newRejectValue, product.total || 10)
+              ), // ✅ Ensure cancel does not exceed total
+              accept:
+                (product.total || 10) -
+                Math.max(0, Math.min(newRejectValue, product.total || 10)), // ✅ Auto-update Accept
+              progress: `${
+                (product.total || 10) -
+                Math.max(0, Math.min(newRejectValue, product.total || 10))
               }/${product.total || 10}`, // ✅ Update Progress
-          }
+            }
           : product
       )
     );
@@ -205,20 +206,13 @@ const Table = ({
       return badgeColors.positive;
 
     if (
-      [
-        "negative",
-        "inactive",
-        "cancelled",
-        "false",
-        "critical"
-      ].includes(lowerValue))
+      ["negative", "inactive", "cancelled", "false", "critical"].includes(
+        lowerValue
+      )
+    )
       return badgeColors.negative;
 
-    if (
-      [
-        "pending",
-        "draft"
-      ].includes(lowerValue)) return badgeColors.pending;
+    if (["pending", "draft"].includes(lowerValue)) return badgeColors.pending;
 
     // ✅ If value already has a color assigned, return it
     if (badgeColorMap.has(lowerValue)) return badgeColorMap.get(lowerValue);
@@ -279,6 +273,20 @@ const Table = ({
       ); // ✅ Now JSX is rendered correctly inside the table
     }
 
+    // ✅ Editable Cell with Pencil Icon
+    if (type === "editable") {
+      return (
+        <div className="editable-cell">
+          <span>{value}</span>
+          <i
+            className="bi bi-pencil-square edit-icon"
+           
+            onClick={() => handleEditClick(rowData, column.dbcol)}
+            title="Edit"
+          ></i>
+        </div>
+      );
+    }
     // ✅ Accept Column (Separate)
     if (type === "accept") {
       return (
@@ -481,8 +489,9 @@ const Table = ({
         progressBarColor = "#D9D9D9"; // Grey for Pending
       } else if (completed > 0 && completed < total) {
         // Mixed colors for half completed and half pending
-        progressBarColor = `linear-gradient(to right, #BDE275 ${(completed / total) * 100
-          }%, #FFB3B3 ${(completed / total) * 100}%)`;
+        progressBarColor = `linear-gradient(to right, #BDE275 ${
+          (completed / total) * 100
+        }%, #FFB3B3 ${(completed / total) * 100}%)`;
       }
 
       return (
@@ -531,11 +540,10 @@ const Table = ({
 
   return (
     <div className="section_card">
-
-
       <div
-        className={`table-container list-view  ${!paginated ? "scrollable-table" : ""
-          }`}
+        className={`table-container list-view  ${
+          !paginated ? "scrollable-table" : ""
+        }`}
       >
         <table className="table ae-table" ref={tableRef} id={id}>
           <thead>
@@ -580,7 +588,9 @@ const Table = ({
                       <input
                         type="checkbox"
                         checked={selectedRows.includes(startIndex + index)}
-                        onChange={() => handleCheckboxChange(startIndex + index)}
+                        onChange={() =>
+                          handleCheckboxChange(startIndex + index)
+                        }
                       />
                     </td>
                   )}

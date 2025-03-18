@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+
+import React, { useState, useRef } from "react";
 import Layout from "./layout";
 import { useNavigate } from "react-router-dom";
 
-import Metrix from "../components/Metrix";
 import MetricCard from "../components/MetricCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

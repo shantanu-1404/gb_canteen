@@ -1,0 +1,66 @@
+[
+    {
+      "col1": "Maersk Line India",
+      "col2": "Standard Delivery",
+      "col3": "200",
+      "col4": "5-7 Days",
+      "col5": "Available",
+      "col6": "Included",
+      "col7": "10 kg"
+    },
+    {
+      "col1": "DHL Express",
+      "col2": "Express Delivery",
+      "col3": "350",
+      "col4": "2-3 Days",
+      "col5": "Available",
+      "col6": "Optional",
+      "col7": "5 kg"
+    },
+    {
+      "col1": "FedEx International",
+      "col2": "Overnight Delivery",
+      "col3": "500",
+      "col4": "1 Day",
+      "col5": "Available",
+      "col6": "Included",
+      "col7": "2 kg"
+    },
+    {
+      "col1": "UPS Freight",
+      "col2": "Freight Shipping",
+      "col3": "800",
+      "col4": "7-10 Days",
+      "col5": "Available",
+      "col6": "Optional",
+      "col7": "50 kg"
+    },
+    {
+      "col1": "Blue Dart",
+      "col2": "Same Day Delivery",
+      "col3": "250",
+      "col4": "Same Day",
+      "col5": "Available",
+      "col6": "Included",
+      "col7": "3 kg"
+    },
+    {
+      "col1": "USPS",
+      "col2": "International Shipping",
+      "col3": "600",
+      "col4": "10-15 Days",
+      "col5": "Available",
+      "col6": "Optional",
+      "col7": "20 kg"
+    },
+    {
+      "col1": "TNT Express",
+      "col2": "Scheduled Delivery",
+      "col3": "400",
+      "col4": "3-5 Days",
+      "col5": "Available",
+      "col6": "Included",
+      "col7": "7 kg"
+    }
+  ]
+  

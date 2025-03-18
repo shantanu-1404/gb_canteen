@@ -334,7 +334,6 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                 </li>
               </ul>
             </li>
-
             {/* Products Dropdown */}
             <li className="nav-item">
               <div

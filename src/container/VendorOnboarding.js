@@ -1,29 +1,23 @@
-import React, { useState, useEffect, useRef } from "react";
+
+import React, { useRef } from "react";
 import Layout from "./layout";
 import { useNavigate } from "react-router-dom";
 
-import Metrix from "../components/Metrix";
 import MetricCard from "../components/MetricCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import DataTable from "../components/DataTable";
 import Button from "../components/Button";
-import Modal from "../components/Modal";
 import vendordata from "../assets/json/vendordata.json";
 import DateInput from "../components/DateInput";
-
 
 import active from "../assets/svg/pc-yellow.svg";
 import pending from "../assets/svg/calender.svg";
 import avg from "../assets/svg/chat-like.svg";
 import share from "../assets/svg/growth.svg";
 
-
-
-
 const VendorOnboarding = () => {
   const tableRef = useRef();
-  const [isModalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const columns = [

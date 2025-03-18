@@ -10,7 +10,7 @@ import Button from "../components/Button";
 
 
 const App= () => {
-  const [selectedSingle, setSelectedSingle] = useState("");
+  const [ setSelectedSingle] = useState("");
   const [currentStep, setCurrentStep] = useState(1);
 
   const totalSteps = 3; // ✅ Define Total Steps

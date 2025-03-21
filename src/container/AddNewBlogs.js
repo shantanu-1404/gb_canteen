@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState } from "react";
 import Layout from "./layout";
 
 import FormHeader from "../components/FormHeader";
@@ -85,7 +86,6 @@ const AddNewBlogs = () => {
           </div>
 
           <AddSubsection Cardtitle="Menu Items" layoutType="card">
-            
             {/* Pass form components dynamically */}
             <TextInput
               label="Title"
@@ -182,7 +182,8 @@ const AddNewBlogs = () => {
                   required={true}
                   onChange={handleTextInputChange}
                 />
-                <br/><br/>
+                <br />
+                <br />
                 <div className="btn-sack">
                   <Button label="Save" type="submit" />
                   <Button

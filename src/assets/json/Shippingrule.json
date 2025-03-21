@@ -1,0 +1,28 @@
+[
+    {
+      "col1": "Active",
+      "col2": "Express Shipping",
+      "col3": "2025-03-18T14:30:00Z"
+    },
+    {
+      "col1": "Inactive",
+      "col2": "Standard Shipping",
+      "col3": "2025-02-25T09:15:00Z"
+    },
+    {
+      "col1": "Pending",
+      "col2": "Free Shipping on Orders Over $50",
+      "col3": "2025-03-10T16:45:00Z"
+    },
+    {
+      "col1": "Active",
+      "col2": "Same-Day Delivery",
+      "col3": "2025-03-05T12:20:00Z"
+    },
+    {
+      "col1": "Inactive",
+      "col2": "International Shipping",
+      "col3": "2025-01-30T08:50:00Z"
+    }
+  ]
+  

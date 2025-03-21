@@ -58,7 +58,12 @@ import Customer from './container/Customer.js';
 import AddNewCustomer from "./container/AddNewCustomer.js";
 import BatchShipping from './container/BatchShipping.js';
 import ShippingRate from './container/Shipping_Rates.js';
-import RateComparisonTable from './container/RateComparisonTable.js'
+import RateComparisonTable from './container/RateComparisonTable.js';
+import ShipmentBoxRule from './container/ShipmentBoxRule.js';
+import AddNewContract from './container/AddNewContract.js';
+import ShipmentDefaultSetting from './container/ShipmentDefaultSetting.js';
+import CarrierContract from './container/CarrierContracts.js';
+import ShipmentProtection from './container/ShipmentProtection.js';
 
 
 
@@ -128,9 +133,14 @@ const App = () => {
         <Route path="/add-shipment" element={<AddNewShipment/>} />
         <Route path='/customer' element={<Customer/>}/>
         <Route path="/add-customer" element={<AddNewCustomer/>} />
-        <Route path="/badge-shipping" element={<BatchShipping/>} />
+        <Route path="/batch-shipping" element={<BatchShipping/>} />
         <Route path="/shipping-rates" element={<ShippingRate/>} />
         <Route path="/rate-comparison-table" element={<RateComparisonTable/>} />
+        <Route path="/shipment-box-rule" element={<ShipmentBoxRule/>} />
+        <Route path="/add-contract" element={<AddNewContract/>} />
+        <Route path="/shipment-default-setting" element={<ShipmentDefaultSetting/>} />
+        <Route path="/carrier-contracts" element={<CarrierContract/>} />
+        <Route path="/shipment-protection" element={<ShipmentProtection/>} />
 
 
 

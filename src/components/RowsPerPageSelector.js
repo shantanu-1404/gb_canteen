@@ -11,11 +11,7 @@ const RowsPerPageSelector = ({ rowsPerPage, setRowsPerPage }) => {
       <div className="rows-per-page-selector">
         <label htmlFor="rowsPerPage">Rows per page: </label>
         <div className="select-wrapper">
-          <select
-            id="rowsPerPage"
-            value={rowsPerPage}
-            onChange={handleChange}
-          >
+          <select id="rowsPerPage" value={rowsPerPage} onChange={handleChange}>
             <option value={5}>5</option>
             <option value={10}>10</option>
             <option value={20}>20</option>
@@ -31,6 +27,3 @@ const RowsPerPageSelector = ({ rowsPerPage, setRowsPerPage }) => {
 };
 
 export default RowsPerPageSelector;
-
-
-

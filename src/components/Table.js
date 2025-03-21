@@ -474,6 +474,7 @@ const Table = ({
       );
     }
 
+    
     // If the column type is "progress" and the value represents progress (e.g., "Ordered", "Completed", etc.)
     if (type === "progress") {
       const progressValue = value; // This should represent the current progress as a fraction (e.g., "2/10", "5/10")

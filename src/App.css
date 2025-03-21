@@ -1155,9 +1155,7 @@ a.search-input-wrapper .ae-search-container {
   transform: translate(-60%, 15%) !important;
 }
 
-.filter-menu .form-check-label {
-  text-wrap-mode: nowrap;
-}
+
 
 .filter-menu .form-group {
   margin-bottom: 0px;
@@ -4202,28 +4200,164 @@ canvas {
 
 
 /* ✅ Clickable Link */
-.tax-link {
-  color: #089CFF;  /* Bootstrap primary link color */
-  font-weight: 400;
-  text-decoration: none;
+.tab-header {
+  display: flex;
+  gap: 10px; 
+}
+
+.tab-button {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-bottom: 3px solid transparent;
+  transition: 0.3s;
+  background-color: white;
+  color: #0E032F;
+  border-radius: 12px;
+  border: 1px solid #0E032F; /* ✅ Adds border */
+  margin-right: 10px;
+}
+
+.tab-button.active {
+  border-bottom: 3px solid #0E032F;
+  font-weight: bold;
+  background-color: #0E032F;
+  color: white;
+  
+}
+
+.tab-content {
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* ✅ InputSwitch Container */
+.input-switch-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  padding-bottom: 25px;
+}
+
+/* ✅ Toggle Switch */
+.input-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.input-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* ✅ Slider Styles */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #868686;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* ✅ Toggle ON */
+.input-switch input:checked + .slider {
+  background-color: #253154; /* ✅ Green for ON */
+}
+
+.input-switch input:checked + .slider:before {
+  transform: translateX(20px);
 }
 
 
-.custom-popover .popover-body {
-  padding: 15px;
+.add-condition-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* ✅ Centering Content */
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #00af35;
+  background-color: #f6ffec;
+  border: 1px solid #00af35;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-condition-btn .plus-icon {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.add-condition-btn .button-label {
+  color: #253154; /* ✅ Label in #253154 */
+}
+
+.add-condition-btn:hover {
+  background-color: #eaffd6;
+  border-color: #008f2a;
+}
+
+.add-condition-btn:active {
+  background-color: #dfffc0;
+  border-color: #007c26;
 }
 
 
-
-
-
-
-
-
-
-
-
-
+/* ✅ Card Styling */
+.color-card {
+  gap:10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 50%;
+  border-radius: 12px 100px 12px 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 1s ease-in-out; /* ✅ Smooth transition */
+  margin-left: 10px;
+}
+/* ✅ Image Styling */
+.card-image {
+  width: 50%;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+.card-title {
+  font-size: 16px;
+  color: #253154;
+  font-weight: 500;
+}
 
 
 

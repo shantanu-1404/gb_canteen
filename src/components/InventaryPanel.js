@@ -23,7 +23,6 @@ const TabComponent = () => {
 
   const [selectedSingle, setSelectedSingle] = useState("");
   const [selectedMulti, setSelectedMulti] = useState([]);
-
   const [selectedOption, setSelectedOption] = useState("");
 
   const radioOptions = [
@@ -77,7 +76,7 @@ const TabComponent = () => {
     {
       label: "Fulfilled by Seller",
       value: "option1",
-      info: "You’ll be responsible for product delivery.Any damage or delay during shipping may cost you a Damage fee.",
+      info: "You'll be responsible for product delivery.Any damage or delay during shipping may cost you a Damage fee.",
     },
     {
       label: "Fulfilled by Us",

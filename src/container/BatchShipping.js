@@ -16,15 +16,14 @@ import live from "../assets/svg/chat-like.svg";
 import draft from "../assets/svg/channel.svg";
 import view from "../assets/svg/chat-pic.svg";
 
-
 const BatchShipping = () => {
   const [setSelectedSingle] = useState("");
   const tableRef = useRef();
+  
 
   const handleTextInputChange = (value) => {
     console.log("TextInput:", value);
   };
-
 
   const columns = [
     { headname: "Image", type: "img", dbcol: "col1" },

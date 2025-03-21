@@ -9,9 +9,7 @@ import TextInput from "../components/TextInput";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TagInput from "../components/TagInput";
-import TabComponent from "../components/InventaryPanel";
 import DateInput from "../components/DateInput";
-import RadioInput from "../components/RadioInput";
 import PhoneInput from "../components/PhoneInput";
 import AddSubsection from "../components/AddSubsection";
 import CheckboxInput from "../components/CheckboxInput";
@@ -35,9 +33,7 @@ const AddNewCollection = () => {
     console.log("Is valid:", isValid);
     setFileData(file);
   };
-  const handleOptionChange = (selectedValue) => {
-    console.log("Selected:", selectedValue);
-  };
+ 
 
   const handleTagsChange = (tags) => {
     console.log("Selected Tags:", tags);

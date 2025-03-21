@@ -136,16 +136,19 @@ const ShippingRate = () => {
                 placeholder="Cm"
                 required={true}
                 onChange={handleTextInputChange}
+                type="number"
               />
               <TextInput
                 placeholder="Cm"
                 required={true}
                 onChange={handleTextInputChange}
+                type="number"
               />
               <TextInput
                 placeholder="Cm"
                 required={true}
                 onChange={handleTextInputChange}
+                type="number"
               />
             </Row>
           </Col>

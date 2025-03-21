@@ -2,18 +2,7 @@ import React, { useState, useRef } from "react";
 import Layout from "./layout";
 
 import FormHeader from "../components/FormHeader";
-import FileUploadComponent from "../components/FileUploadComponent";
-import SelectComponent from "../components/SelectComponent";
-import Aetextarea from "../components/Aetextarea";
-import DateInput from "../components/DateInput";
-import RadioInput from "../components/RadioInput";
-import ColorPicker from "../components/ColorPicker";
-import TextInput from "../components/TextInput";
-import PostPreview from "../components/PostPreview";
 import Button from "../components/Button";
-import SocialMediaSelect from "../components/SocialMediaSelect";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import TabsComponent from "../components/TabsComponent";
 import Modal from "../components/Modal";
 import logsdata from "../assets/json/logsdata.json";

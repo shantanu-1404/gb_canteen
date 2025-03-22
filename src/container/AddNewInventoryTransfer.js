@@ -247,7 +247,6 @@ const AddNewInventoryTransfer = () => {
                       updateQuantity={updateQuantity}
                       quantities={quantities} // ✅ Ensure same quantity data
                     />
-
                     <br />
                     <div className="btn-sack">
                       <button className="a-btn-primary" onClick={closeModal}>
@@ -258,7 +257,6 @@ const AddNewInventoryTransfer = () => {
                 </div>
               </div>
             )}
-
             {/* ✅ Display Selected Products in Table */}
             {selectedProducts.length > 0 && (
               <div className="mt-4">

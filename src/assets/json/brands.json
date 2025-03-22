@@ -1,0 +1,33 @@
+[
+    {
+      "col1": "https://img.freepik.com/free-vector/gradient-technology-logo-template-collection_23-2148216802.jpg?t=st=1742626141~exp=1742629741~hmac=1a1aa9b79801224d83071c57dcf5b13bbd815e504e13f38d6fc0957ca5790ebb&w=740",
+      "col2": "Brand A",
+      "col3": "199",
+      "col4": "Electronics"
+    },
+    {
+      "col1": "https://img.freepik.com/free-vector/illustration-boutique-shop-logo-stamp-banner_53876-6834.jpg?t=st=1742626238~exp=1742629838~hmac=0ae0c46966cf96165e7a857ee39619fcd7cad9ad92e4e17c51896941bfe3b809&w=740",
+      "col2": "Brand B",
+      "col3": "149",
+      "col4": "Fashion"
+    },
+    {
+      "col1": "https://img.freepik.com/free-vector/lotus-flower-logo-icon-linear-style_126523-708.jpg?t=st=1742626243~exp=1742629843~hmac=e64203df3d3c07eb34aa48a5333d6799319ab35d548002d33a9544ae311b73e6&w=900",
+      "col2": "Brand D",
+      "col3": "179",
+      "col4": "Health & Beauty"
+    },
+    {
+      "col1": "https://img.freepik.com/free-vector/elegant-design-furniture-logo_23-2148468234.jpg?t=st=1742626377~exp=1742629977~hmac=edc5e6e39fe8d1d4cf1c93ba6d0e98e19a6336dd3f6516549821adb15a4e10b5&w=740",
+      "col2": "Brand F",
+      "col3": "299",
+      "col4": "Furniture"
+    },
+    {
+      "col1": "https://img.freepik.com/free-vector/gradient-mobile-store-logo_23-2149738973.jpg?t=st=1742626412~exp=1742630012~hmac=4e9faa90f09f84fc75391faa3e6a3b12514ce6a37c4a9b2d4f8dfd4e33e6075f&w=740",
+      "col2": "Brand G",
+      "col3": "159",
+      "col4": "Gadgets"
+    }
+  ]
+  

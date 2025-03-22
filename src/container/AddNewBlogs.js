@@ -19,29 +19,24 @@ const AddNewBlogs = () => {
   const [message, setMessage] = useState("");
   const [selectedSingle, setSelectedSingle] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
-
   // Handle caption change
   const handleCaptionChange = (text) => {
     setMessage(text);
   };
-
   const handleTextInputChange = (value) => {
     console.log("TextInput:", value);
   };
-
   const handleFileChange = (file, isValid) => {
     console.log("Selected file:", file);
     console.log("Is valid:", isValid);
     setFileData(file);
   };
-
   const options = [
     { value: "1", label: "Option 1" },
     { value: "2", label: "Option 2" },
     { value: "3", label: "Option 3" },
     { value: "4", label: "Option 4" },
   ];
-
   const handleTagsChange = (tags) => {
     console.log("Selected Tags:", tags);
   };
@@ -84,7 +79,6 @@ const AddNewBlogs = () => {
               onChange={handleCaptionChange}
             />
           </div>
-
           <AddSubsection Cardtitle="Menu Items" layoutType="card">
             {/* Pass form components dynamically */}
             <TextInput
@@ -107,7 +101,6 @@ const AddNewBlogs = () => {
               onChange={handleFileChange}
             />
           </AddSubsection>
-
           <div className="form_section">
             <h6 className="card-title">Add Meta Fields</h6>
             <Aetextarea
@@ -134,7 +127,6 @@ const AddNewBlogs = () => {
             />
           </div>
         </Col>
-
         <Col lg={5}>
           <div className="form_section">
             <h6 className="card-title">Visibility & Category</h6>
@@ -175,7 +167,6 @@ const AddNewBlogs = () => {
                   required={true}
                   onChange={handleTextInputChange}
                 />
-
                 <TextInput
                   label="Category Value"
                   placeholder="Value"
@@ -195,7 +186,6 @@ const AddNewBlogs = () => {
               </form>
             </Modal>
           </div>
-
           <div className="form_section">
             <h6 className="card-title">Main Blog PC Image</h6>
             <FileUploadComponent

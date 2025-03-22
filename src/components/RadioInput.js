@@ -26,7 +26,7 @@ const RadioInput = ({
     <Row>
       <label className="form-label">{label}</label>
       {options.map((option) => (
-        <Col xs={4} md={3} key={option.value}>  {/* Use option.value as the key */}
+        <Col xs={6} md={4} key={option.value}>  {/* Use option.value as the key */}
           <div className="form-group form-check col-md">
             <input
               className="form-check-input"

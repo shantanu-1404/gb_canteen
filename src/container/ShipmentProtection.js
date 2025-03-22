@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Layout from "./layout";
 
 import FormHeader from "../components/FormHeader";
-import FileUploadComponent from "../components/FileUploadComponent";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ColorCard from "../components/ColorCards"; // ✅ Import ColorCard Component
+import ColorCard from "../components/ColorCards";
+import RadioInput from "../components/RadioInput";
+import DataTable from "../components/DataTable";
+import smprojectsData from "../assets/json/smprojects.json";
 
 const ShipmentProtection = () => {
   const [fileData, setFileData] = useState(null);
@@ -22,6 +24,20 @@ const ShipmentProtection = () => {
     setFileData(file);
   };
 
+  const handleOptionChange = (selectedValue) => {
+    console.log("Selected:", selectedValue);
+  };
+  const smprojectcolumns = [
+    { headname: "project name", dbcol: "project_name" },
+    { headname: "status", dbcol: "status" },
+    { headname: "client name", dbcol: "client_name" },
+    { headname: "budget", dbcol: "budget" },
+    { headname: "progress", dbcol: "progress" },
+    { headname: "total tasks", dbcol: "total_tasks" },
+    { headname: "start date", dbcol: "start_date" },
+    { headname: "end date", dbcol: "end_date" },
+  ];
+
   return (
     <Layout>
       <FormHeader title="Shipment Protection" backUrl="/" closeUrl="/" />
@@ -35,44 +51,56 @@ const ShipmentProtection = () => {
               and theft. View the policy details and pricing.
             </label>
             <Row>
-              <TextInput
-                label="Contract Name "
-                placeholder="Contract Name  "
+              <RadioInput
+                label="Insure Based On Percentage"
+                name="payment"
+                options={[
+                  { label: "Custom Insure  ", value: "option1" },
+                  {
+                    label:
+                      "Automatically insures shipments based on a fixed percentage of the order value",
+                    value: "option2",
+                  },
+                ]}
                 required={true}
-                onChange={handleTextInputChange}
-              />
-              <TextInput
-                label="Account ID"
-                placeholder="Account ID"
-                required={true}
-                onChange={handleTextInputChange}
-              />
-            </Row>
-            <Row>
-              <TextInput
-                label="General Service Passphrase "
-                placeholder="General Service Passphrase  "
-                required={true}
-                onChange={handleTextInputChange}
-              />
-              <TextInput
-                label="Tracking Service Passphrase"
-                placeholder="Tracking Service Passphrase"
-                required={true}
-                onChange={handleTextInputChange}
+                onChange={handleOptionChange}
               />
             </Row>
+
             <br />
             <br />
             <div className="btn-sack">
               <Button label="Update Settings" />
             </div>
           </div>
+          <div className="form_section">
+            <h6>Protection through shipping rules</h6>
+            <label>
+              You've set up some rules for shipment protection. To enable them
+              or create more advanced ones, go to Shipping rules.
+            </label>
+            <DataTable
+              id="table"
+              columns={smprojectcolumns}
+              data={smprojectsData}
+              defaultView="table"
+              searchable={false}
+              filterable={false}
+              sortable={false}
+              paginated={false}
+              grid={false}
+            >
+            </DataTable>
+            <br />
+            <br />
+            <div className="btn-sack">
+              <Button label="Go  To Shipping Rules" />
+            </div>
+          </div>
+
           <div className="form_section ">
             <strong>Why shipment protection matters</strong>
-            <Row
-            className="d-flex justify-content-around"
-            >
+            <Row className="d-flex justify-content-around">
               <ColorCard
                 style={{
                   backgroundColor: "#EDFEFF",
@@ -86,7 +114,7 @@ const ShipmentProtection = () => {
               />
               <ColorCard
                 style={{
-                  backgroundColor:"#F4FFED",
+                  backgroundColor: "#F4FFED",
                   borderRadius: "12px 12px 100px 12px", // top-left, top-right, bottom-right, bottom-left
                   padding: "20px",
                   width: "300px",
@@ -108,8 +136,8 @@ const ShipmentProtection = () => {
               />
             </Row>
             <label>
-            You've set up some rules for shipment protection. 
-            To enable them or create more advanced ones, go to Shipping rules.
+              You've set up some rules for shipment protection. To enable them
+              or create more advanced ones, go to Shipping rules.
             </label>
           </div>
         </Col>

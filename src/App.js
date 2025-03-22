@@ -64,6 +64,7 @@ import AddNewContract from './container/AddNewContract.js';
 import ShipmentDefaultSetting from './container/ShipmentDefaultSetting.js';
 import CarrierContract from './container/CarrierContracts.js';
 import ShipmentProtection from './container/ShipmentProtection.js';
+import Tracking from "./container/TrackingExperience.js"
 
 
 
@@ -141,6 +142,7 @@ const App = () => {
         <Route path="/shipment-default-setting" element={<ShipmentDefaultSetting/>} />
         <Route path="/carrier-contracts" element={<CarrierContract/>} />
         <Route path="/shipment-protection" element={<ShipmentProtection/>} />
+        <Route path="/tracking-experience" element={<Tracking/>} />
 
 
 

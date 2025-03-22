@@ -2,20 +2,20 @@ import React, { useState, useRef } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import TabPanel from "../components/TabsComponent"; // ✅ Import TabPanel Component
-import DataTable from "../components/DataTable"; // ✅ Import DataTable Component
-import Layout from "./layout"; // ✅ Import Layout
-import Button from "../components/Button"; // ✅ Import Button Component
-import Modal from "../components/Modal"; // ✅ Import Modal Component
-import shippingruledata from "../assets/json/Shippingrule.json"; // ✅ Shipping Rule Data
-import boxruledata from "../assets/json/Boxrule.json"; // ✅ Box Rule Data
+import TabPanel from "../components/TabsComponent"; 
+import DataTable from "../components/DataTable"; 
+import Layout from "./layout"; 
+import Button from "../components/Button"; 
+import Modal from "../components/Modal"; 
+import shippingruledata from "../assets/json/Shippingrule.json";
+import boxruledata from "../assets/json/Boxrule.json";
 import TextInput from "../components/TextInput";
 import SelectTable from "../components/SelectTable";
 import productsData from "../assets/json/product.json";
 import InputSwitch from "../components/InputSwitch";
 import SelectComponent from "../components/SelectComponent";
 import AddConditionButton from "../components/AddConditionBtn";
-import ColorCard from "../components/ColorCards"; // ✅ Import ColorCard Component
+import ColorCard from "../components/ColorCards"; 
 import { Colors } from "chart.js";
 
 // ✅ Shipping Rules Table Columns

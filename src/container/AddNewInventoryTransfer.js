@@ -212,8 +212,8 @@ const AddNewInventoryTransfer = () => {
               <div className="col p-3">
                 <a className="search-input-wrapper" onClick={openModal}>
                   <div className="ae-search-container">
-                  <i class="bi bi-search"></i> Search and
-                    add to your order instantly...
+                    <i class="bi bi-search"></i> Search and add to your order
+                    instantly...
                   </div>
                 </a>
               </div>
@@ -285,10 +285,10 @@ const AddNewInventoryTransfer = () => {
               </div>
             )}
             <div className="form-group row  gap-2 text-center d-flex justify-content-end">
-            <Button
-              onClick={() => navigate("/receive_items")}
-              label="Receive Items"
-            />
+              <Button
+                onClick={() => navigate("/receive_items")}
+                label="Receive Items"
+              />
             </div>
           </div>
 
@@ -323,11 +323,9 @@ const AddNewInventoryTransfer = () => {
             />
           </div>
         </Col>
-
         <Col md={5}>
           <div className="form_section">
             <h6 className="card-title">Additional Details</h6>
-
             <div className="flex flex-col gap-4 items-center p-8">
               <OriginDropdown
                 label="Origin"
@@ -337,9 +335,8 @@ const AddNewInventoryTransfer = () => {
                 createAction={handleCreateSupplier}
                 createLabel="Create New Supplier"
               />
-
               {selectedSupplier && (
-                <div className="mt-4 p-4 border rounded-md shadow-md bg-white w-80 form_section">
+                <div className="mt-4 p-4 border rounded-md shadow-md bg-white w-80 ">
                   <h4 className="text-md font-bold text-gray-800">
                     Supplier Details
                   </h4>
@@ -368,10 +365,9 @@ const AddNewInventoryTransfer = () => {
                 createAction={handleCreateDestination}
                 createLabel="Add New Destination"
               />
-
               {/* ✅ Selected Destination Details */}
               {selectedDestination && (
-                <div className="mt-4 p-4 border rounded-md shadow-md bg-white w-80 form_section">
+                <div className="mt-4 p-4 border rounded-md shadow-md bg-white w-80 ">
                   <h4 className="text-md font-bold text-gray-800">
                     Destination Details
                   </h4>
@@ -419,7 +415,6 @@ const AddNewInventoryTransfer = () => {
               onChange={handleTextInputChange}
             />
           </div>
-
           <div className="form-group row p-3 gap-2 text-center">
             <a type="submit" className="btn col a-btn-primary">
               Save and continue later

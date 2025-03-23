@@ -10,6 +10,7 @@ import ColorCard from "../components/ColorCards";
 import RadioInput from "../components/RadioInput";
 import DataTable from "../components/DataTable";
 import smprojectsData from "../assets/json/smprojects.json";
+import InfoTextWithLink from "../components/InfoTextWithLink";
 
 const ShipmentProtection = () => {
   const [fileData, setFileData] = useState(null);
@@ -45,11 +46,12 @@ const ShipmentProtection = () => {
         <Col lg={12}>
           <div className="form_section">
             <h6 className="card-title">Shipment Protection Defaults</h6>
-            <label>
-              Ensure the safety of your shipments with Shipment Protection. Our
-              award-winning partner Cover provides coverage for loss, damage,
-              and theft. View the policy details and pricing.
-            </label>
+            <InfoTextWithLink
+              text="Ensure the safety of your shipments with Shipment Protection. Our award-winning partner Cover provides coverage for loss, damage, and theft. View "
+              linkText=" policy details and pricing"
+              linkUrl="https://your-privacy-policy-link.com"
+            />
+
             <Row>
               <RadioInput
                 label="Insure Based On Percentage"
@@ -61,12 +63,17 @@ const ShipmentProtection = () => {
                       "Automatically insures shipments based on a fixed percentage of the order value",
                     value: "option2",
                   },
+                  { label: "Custom   ", value: "option1" },
+                  {
+                    label:
+                      "Automatically percentage of the order value",
+                    value: "option2",
+                  },
                 ]}
                 required={true}
                 onChange={handleOptionChange}
               />
             </Row>
-
             <br />
             <br />
             <div className="btn-sack">
@@ -89,8 +96,7 @@ const ShipmentProtection = () => {
               sortable={false}
               paginated={false}
               grid={false}
-            >
-            </DataTable>
+            ></DataTable>
             <br />
             <br />
             <div className="btn-sack">

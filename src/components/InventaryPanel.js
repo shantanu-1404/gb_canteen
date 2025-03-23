@@ -196,12 +196,14 @@ const TabComponent = () => {
               placeholder="Price"
               required={true}
               onChange={handleTextInputChange}
+              type="number"
             />
             <TextInput
               label="Sale Price"
               placeholder="Price"
               required={true}
               onChange={handleTextInputChange}
+              type="number"
             />
           </div>
 
@@ -253,8 +255,7 @@ const TabComponent = () => {
             aria-labelledby="v-pills-shipping-tab"
             tabIndex="0"
           >
-            <h2>Shipping Type</h2>
-
+            <h6 className="card-title">Shipping Type</h6>
             {/* RadioInput for shipping options */}
             <RadioInput
               name="shippingType"
@@ -265,7 +266,7 @@ const TabComponent = () => {
             {/* Conditionally render additional info for selected shipping option */}
             {selectedShippingInfo && (
               <div>
-                <p>{selectedShippingInfo}</p>
+                <label>{selectedShippingInfo}</label>
               </div>
             )}
           </div>
@@ -280,11 +281,9 @@ const TabComponent = () => {
             aria-labelledby="v-pills-delivery-tab"
             tabIndex="0"
           >
-            <h2>Shipping Type</h2>
-
+           <h6 className="card-title">Shipping Type</h6>
             {/* RadioInput for shipping options */}
             <RadioInput
-              label="Select Shipping Type"
               name="shippingType"
               options={radioOptions}
               onChange={handleRadioChange}

@@ -218,10 +218,7 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                         openDropdowns["subscription"] ? "active" : ""
                       }`}
                     >
-                      <Link
-                        className="dropdown-item"
-                        to="/subscription_plan"
-                      >
+                      <Link className="dropdown-item" to="/subscription_plan">
                         <i className="bi bi-dash"></i>
                         Subscription Plans
                       </Link>
@@ -231,10 +228,7 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                         openDropdowns["subscription"] ? "active" : ""
                       }`}
                     >
-                      <Link
-                        className="dropdown-item"
-                        to="/subscriber"
-                      >
+                      <Link className="dropdown-item" to="/subscriber">
                         <i className="bi bi-dash"></i>Subscriber
                       </Link>
                     </li>
@@ -247,7 +241,12 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                     className={`nav-link ${
                       openDropdowns["Corporate/Bulk Catering"] ? "active" : ""
                     }`}
-                    onClick={() => handleDropdown("Corporate/Bulk Catering" , "/corporate_catering")}
+                    onClick={() =>
+                      handleDropdown(
+                        "Corporate/Bulk Catering",
+                        "/corporate_catering"
+                      )
+                    }
                   >
                     <span>
                       <i className="bi bi-dash"></i> Corporate/Bulk Catering
@@ -327,11 +326,94 @@ const LeftSidebar = ({ isVisible, toggleSidebar }) => {
                     <i className="bi bi-dash"></i> Abandon Checkouts
                   </Link>
                 </li>
-                <li>
-                  <Link className="dropdown-item" to="/order/shipment">
-                    <i className="bi bi-dash"></i> Shipment Management
-                  </Link>
+             
+
+
+
+  {/* Sub-menu under Shipment Management */}
+  <li className="nav-item">
+                  <div
+                    className={`nav-link ${
+                      openDropdowns["shipment"] ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      handleDropdown("shipment", "/order/shipment")
+                    }
+                  >
+                    <span>
+                      <i className="bi bi-dash"></i>Shipment Management
+                    </span>
+                    <i
+                      className={`bi ${
+                        openDropdowns["shipment"]
+                          ? "bi-chevron-down"
+                          : "bi-chevron-right"
+                      }`}
+                    ></i>
+                  </div>
+                  <ul
+                    className={`submenu collapse ${
+                      openDropdowns["shipment"] ? "show" : ""
+                    }`}
+                  >
+                    <li
+                      className={`${openDropdowns["shipment"] ? "active" : ""}`}
+                    >
+                      <Link className="dropdown-item" to="/shipping-rates">
+                        <i className="bi bi-dash"></i>Shipping Rates
+                      </Link>
+                    </li>
+                    <li
+                      className={`${openDropdowns["shipment"] ? "active" : ""}`}
+                    >
+                      <Link className="dropdown-item" to="/shipment-box-rule">
+                        <i className="bi bi-dash"></i>Shipment & Box Rules
+                      </Link>
+                    </li>
+                    <li
+                      className={`${openDropdowns["shipment"] ? "active" : ""}`}
+                    >
+                      <Link className="dropdown-item" to="/carrier-contracts">
+                        <i className="bi bi-dash"></i>Carrier Contracts
+                      </Link>
+                    </li>
+                    <li
+                      className={`${openDropdowns["shipment"] ? "active" : ""}`}
+                    >
+                      <Link className="dropdown-item" to="/shipment-protection">
+                        <i className="bi bi-dash"></i>Shipment Protection
+                      </Link>
+                    </li>
+                    <li
+                      className={`${openDropdowns["shipment"] ? "active" : ""}`}
+                    >
+                      <Link className="dropdown-item" to="/tracking-experience">
+                        <i className="bi bi-dash"></i>Tracking Experience
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               </ul>
             </li>
             {/* Products Dropdown */}

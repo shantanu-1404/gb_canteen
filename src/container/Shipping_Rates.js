@@ -173,16 +173,51 @@ const ShippingRate = () => {
         </Row>
         <Row>
           <Col md={6}>
-            <RadioInput
-              label="Weight"
-              name="Weight"
-              options={[
-                { label: "Fixed", value: "Fixed" },
-                { label: "Within range", value: "range" },
-              ]}
-              required={true}
-              onChange={handleOptionChange}
-            />
+            <Row>
+            <Col md={3}>
+              <RadioInput
+                label="Weight"
+                name="Weight"
+                options={[{ label: "Fixed", value: "Fixed" }]}
+                required={true}
+                onChange={handleOptionChange}
+              />
+              </Col>
+              <Col md={8}>
+              <TextInput
+                placeholder="Cm"
+                required={true}
+                onChange={handleTextInputChange}
+                type="number"
+              />
+               </Col>
+            </Row>
+            <Row>
+              <Col md={4}>
+              <RadioInput
+                name="Weight"
+                options={[{ label: "Within range", value: "range" }]}
+                required={true}
+                onChange={handleOptionChange}
+              />
+              </Col>
+              <Col md={3}>
+              <TextInput
+                placeholder="Cm"
+                required={true}
+                onChange={handleTextInputChange}
+                type="number"
+              />
+               </Col>
+              <Col md={3}>
+              <TextInput
+                placeholder="Cm"
+                required={true}
+                onChange={handleTextInputChange}
+                type="number"
+              />
+              </Col>
+            </Row>
           </Col>
           <Col md={6}>
             <DateInput label="Estimated Delivery Date " includeTime={true} />

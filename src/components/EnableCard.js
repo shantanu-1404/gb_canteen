@@ -1,6 +1,6 @@
 import React from "react";
 
-const EnableCardWithSack = ({
+const EnableCard = ({
   carrierName = "Shadowfax",
   carrierLogo,
   features = ["Feature 1", "Feature 2", "Feature 3"],
@@ -11,14 +11,20 @@ const EnableCardWithSack = ({
   return (
     <div className="enable-card-container">
       <div className="enable-card-content">
-        {/* Card Header */}
+        {/* ✅ Card Header */}
         <div className="card-header">
           <h3 className="carrier-name">{carrierName}</h3>
           {carrierLogo && (
-            <img src={carrierLogo} alt={carrierName} className="carrier-logo" />
+            <div className="carrier-logo-wrapper">
+              <img
+                src={carrierLogo}
+                alt={carrierName}
+                className="carrier-logo"
+              />
+            </div>
           )}
         </div>
-        {/* Features */}
+        {/* ✅ Features */}
         <ul className="carrier-features">
           {features.map((feature, index) => (
             <li key={index}>
@@ -26,14 +32,11 @@ const EnableCardWithSack = ({
             </li>
           ))}
         </ul>
-
-        {/* Terms Link */}
+        {/* ✅ Terms Link */}
         <a href={termsLink} className="terms-link">
           Terms & Conditions
         </a>
-        <br />
-        <br />
-        {/* ✅ Enable Button Sack */}
+        {/* ✅ Button Sack with Corner Cut */}
         <div className="btn-sack-style">
           <div
             className="corner-cut"
@@ -46,4 +49,4 @@ const EnableCardWithSack = ({
   );
 };
 
-export default EnableCardWithSack;
+export default EnableCard;

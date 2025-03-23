@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import Layout from "./layout";
 import FormHeader from "../components/FormHeader";
 import TextInput from "../components/TextInput";
@@ -8,10 +9,8 @@ import CheckboxInput from "../components/CheckboxInput";
 import Button from "../components/Button";
 
 const CustomerDetails = () => {
-  // ✅ Checkbox State
   const [sameAsShipping, setSameAsShipping] = useState(false);
 
-  // ✅ Shipping Address State
   const [shippingAddress, setShippingAddress] = useState({
     address: "",
     street: "",
@@ -20,7 +19,6 @@ const CustomerDetails = () => {
     postalCode: "",
   });
 
-  // ✅ Billing Address State (Initially Empty)
   const [billingAddress, setBillingAddress] = useState({
     address: "",
     street: "",
@@ -29,37 +27,39 @@ const CustomerDetails = () => {
     postalCode: "",
   });
 
-  // ✅ Handle Checkbox Change
+  // ✅ Automatically update billing if checkbox is checked
+  useEffect(() => {
+    if (sameAsShipping) {
+      console.log("📦 Auto-updating billing address from shipping...");
+      setBillingAddress({ ...shippingAddress });
+    }
+  }, [shippingAddress, sameAsShipping]);
+
+  // ✅ Checkbox toggle
   const handleCheckboxChange = (isChecked) => {
     console.log("📌 Checkbox Checked:", isChecked);
     setSameAsShipping(isChecked);
 
     if (isChecked) {
       console.log("✅ Copying Shipping Address to Billing Address...");
-      setBillingAddress({ ...shippingAddress }); // ✅ Ensures billing updates immediately
+      setBillingAddress({ ...shippingAddress });
     }
   };
 
-  // ✅ Handle Shipping Input Change
+  // ✅ Update shipping fields
   const handleShippingChange = (field, value) => {
     console.log(`✏️ Shipping ${field} Changed:`, value);
-    setShippingAddress((prev) => {
-      const updatedShipping = { ...prev, [field]: value };
-
-      // ✅ If checkbox is checked, sync billing address immediately
-      if (sameAsShipping) {
-        console.log("🔄 Syncing with Billing Address...");
-        setBillingAddress({ ...updatedShipping });
-      }
-
-      return updatedShipping;
-    });
+    setShippingAddress((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
     <Layout>
       <Row>
-        <FormHeader title="Customer Details" backUrl="/dashboard" closeUrl="/" />
+        <FormHeader
+          title="Customer Details"
+          backUrl="/dashboard"
+          closeUrl="/"
+        />
 
         {/* ✅ Shipping Address */}
         <Col md={6}>
@@ -99,45 +99,42 @@ const CustomerDetails = () => {
                   label="Postal Code"
                   placeholder="Code"
                   value={shippingAddress.postalCode}
-                  onChange={(value) => handleShippingChange("postalCode", value)}
+                  onChange={(value) =>
+                    handleShippingChange("postalCode", value)
+                  }
                 />
               </Col>
             </Row>
-          </div>
-        </Col>
+  
 
-        {/* ✅ Checkbox to Sync Billing Address */}
-        <Col md={12} className="mt-3">
+        {/* ✅ Checkbox */}
+   
           <CheckboxInput
             label="My billing and shipping addresses are the same"
-            onChange={handleCheckboxChange}
             checked={sameAsShipping}
+            onChange={handleCheckboxChange}
           />
-        </Col>
-
-        {/* ✅ Billing Address */}
-        <Col md={6}>
-          <div className="form_section">
+  
             <h6 className="card-title">Billing Address</h6>
             <TextInput
               label="Address"
               placeholder="Enter address"
               value={billingAddress.address}
+              disabled={sameAsShipping}
               onChange={(value) =>
                 !sameAsShipping &&
                 setBillingAddress((prev) => ({ ...prev, address: value }))
               }
-              disabled={sameAsShipping}
             />
             <TextInput
               label="Street Name"
               placeholder="Street"
               value={billingAddress.street}
+              disabled={sameAsShipping}
               onChange={(value) =>
                 !sameAsShipping &&
                 setBillingAddress((prev) => ({ ...prev, street: value }))
               }
-              disabled={sameAsShipping}
             />
             <Row>
               <Col md={4}>
@@ -145,11 +142,11 @@ const CustomerDetails = () => {
                   label="City"
                   placeholder="City"
                   value={billingAddress.city}
+                  disabled={sameAsShipping}
                   onChange={(value) =>
                     !sameAsShipping &&
                     setBillingAddress((prev) => ({ ...prev, city: value }))
                   }
-                  disabled={sameAsShipping}
                 />
               </Col>
               <Col md={4}>
@@ -157,11 +154,11 @@ const CustomerDetails = () => {
                   label="State"
                   placeholder="State"
                   value={billingAddress.state}
+                  disabled={sameAsShipping}
                   onChange={(value) =>
                     !sameAsShipping &&
                     setBillingAddress((prev) => ({ ...prev, state: value }))
                   }
-                  disabled={sameAsShipping}
                 />
               </Col>
               <Col md={4}>
@@ -169,18 +166,21 @@ const CustomerDetails = () => {
                   label="Postal Code"
                   placeholder="Code"
                   value={billingAddress.postalCode}
+                  disabled={sameAsShipping}
                   onChange={(value) =>
                     !sameAsShipping &&
-                    setBillingAddress((prev) => ({ ...prev, postalCode: value }))
+                    setBillingAddress((prev) => ({
+                      ...prev,
+                      postalCode: value,
+                    }))
                   }
-                  disabled={sameAsShipping}
                 />
               </Col>
             </Row>
           </div>
         </Col>
 
-        {/* ✅ Submit Buttons */}
+        {/* ✅ Submit */}
         <Col md={12} className="text-center mt-3">
           <Button label="Save and Continue" buttonType="primary" />
         </Col>

@@ -19,7 +19,6 @@ import view from "../assets/svg/chat-pic.svg";
 const BatchShipping = () => {
   const [setSelectedSingle] = useState("");
   const tableRef = useRef();
-  
 
   const handleTextInputChange = (value) => {
     console.log("TextInput:", value);
@@ -129,6 +128,11 @@ const BatchShipping = () => {
               sortable={true}
               paginated={true}
             />
+            <div className="form-group row p-3 gap-2 d-flex justify-content-end">
+              <a type="submit" className="btn col-4 a-btn-primary">
+                Save
+              </a>
+            </div>
           </div>
         )}
         {/*-------------------------------------------------------------------------Page two------------------------------------------------------- */}
@@ -181,6 +185,14 @@ const BatchShipping = () => {
                   </div>
                 </Col>
               </Row>
+              <div className="form-group row p-3 gap-2 d-flex justify-content-between">
+                <a type="submit" className="btn col-4 a-btn-primary">
+                  Back
+                </a>
+                <a type="submit" className="btn col-4 a-btn-primary">
+                  Save
+                </a>
+              </div>
             </div>
           </div>
         )}
@@ -193,7 +205,6 @@ const BatchShipping = () => {
                 <Col md={12}>
                   <div className="form_section">
                     <h6 className="card-title">Shared Package Details</h6>
-
                     <Row>
                       <TextInput
                         label="Weight ( Per Package )"
@@ -229,7 +240,10 @@ const BatchShipping = () => {
                           />
                         </Row>
                       </Col>
-                      <Col md={6}>
+
+                      <Col md={6} style={{ marginTop: "-30px" }}>
+                        {" "}
+                        {/* Adds bottom margin */}
                         <SelectComponent
                           label="Country Of Origin"
                           name="Country Of Origin"
@@ -262,6 +276,14 @@ const BatchShipping = () => {
                   </div>
                 </Col>
               </Row>
+              <div className="form-group row p-3 gap-2 d-flex justify-content-between">
+                <a type="submit" className="btn col-4 a-btn-primary">
+                  Back
+                </a>
+                <a type="submit" className="btn col-4 a-btn-primary">
+                  Save
+                </a>
+              </div>
             </div>
           </div>
         )}
@@ -294,11 +316,25 @@ const BatchShipping = () => {
                   onChange={setSelectedSingle}
                 />
               </Col>
-              <CheckboxInput
-                label="Include a packing slip for each shipment."
-                onChange={handleAgreementChange}
-              />
+
+              <div className="form-group row p-3 gap-2 d-flex justify-content-between">
+                <CheckboxInput
+                  label="Include a packing slip for each shipment."
+                  onChange={handleAgreementChange}
+                />
+                <a type="submit" className="btn col-4 a-btn-primary">
+                  Print All Labels Now
+                </a>
+              </div>
             </div>
+            <div className="form-group row p-3 gap-2 d-flex justify-content-between">
+                <a type="submit" className="btn col-4 a-btn-primary">
+                  Back
+                </a>
+                <a type="submit" className="btn col-4 a-btn-primary">
+                  Save
+                </a>
+              </div>
           </div>
         )}
         {/*-------------------------------------------------------------------------Page five------------------------------------------------------- */}
@@ -351,13 +387,17 @@ const BatchShipping = () => {
               paginated={false}
               grid={false}
             />
+              <div className="form-group row p-3 gap-2 d-flex justify-content-end">
+                <a type="" className="btn col-4 a-btn-primary">
+                Save Draft
+                </a>
+                <a type="" className="btn col-4 a-btn-primary">
+                Create Shipment
+                </a>
+              </div>
           </div>
         )}
-        {/*-------------------------------------------------------------------------Page six------------------------------------------------------- */}
-
-        {activeStep === 6 && (
-          <div className="row mt-3 mb-5 form-step" id="step-5"></div>
-        )}
+       
       </form>
     </Layout>
   );

@@ -2,11 +2,11 @@ import React, { useState, useRef } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import TabPanel from "../components/TabsComponent"; 
-import DataTable from "../components/DataTable"; 
-import Layout from "./layout"; 
-import Button from "../components/Button"; 
-import Modal from "../components/Modal"; 
+import TabPanel from "../components/TabsComponent";
+import DataTable from "../components/DataTable";
+import Layout from "./layout";
+import Button from "../components/Button";
+import Modal from "../components/Modal";
 import shippingruledata from "../assets/json/Shippingrule.json";
 import boxruledata from "../assets/json/Boxrule.json";
 import TextInput from "../components/TextInput";
@@ -15,8 +15,8 @@ import productsData from "../assets/json/product.json";
 import InputSwitch from "../components/InputSwitch";
 import SelectComponent from "../components/SelectComponent";
 import AddConditionButton from "../components/AddConditionBtn";
-import ColorCard from "../components/ColorCards"; 
-import { Colors } from "chart.js";
+import ColorCard from "../components/ColorCards";
+import EnableCard from "../components/EnableCard";
 
 // ✅ Shipping Rules Table Columns
 const shipping_rules = [
@@ -122,18 +122,41 @@ const CarrierContract = () => {
     {
       label: "Carrier Selection",
       content: (
-        <DataTable
-          id="shipping_rules_table"
-          tableRef={tableRef}
-          columns={shipping_rules}
-          data={shippingruledata}
-          defaultView="table"
-          searchable
-          filterable
-          sortable
-          paginated={false}
-          grid
-        />
+        <Row>
+          <EnableCard
+            carrierName="Blue Dart"
+            carrierLogo="https://s3-alpha-sig.figma.com/img/3d4e/afc9/499ef390aeefb917ee0f201ef18ca0ab?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=haRqbFAx-Lhl~18In4ZFlC9y5-T-RpNpnyuyIDbeF-1bm4p9kYJ8A6wYBg5P7eUZAw6GTfqSMIUjV3T4l-lyEvsAlKfQe1cuqiYtwx7tjvK6nuPBxT4G6FFEcAoAT5f6lxwz9NnKmd6fiDUNsTIugsgUDDyTj721hN3Szph22rkieyw0E~y5iAQTteDHXU-dXF-~cz6tj4JILUi1LsrMGQbjPk6aW5pXfiavrYFYvCxbSRXrOOvWMNjutUXmDSymzIXeXxSYd6G5eob80pNK08urNOHnMW7tGhvxqV4gEZXT~~gmCaXVJ7W0LOsMI7weTAQ-0VjZavyJQgYgS8J2Xw__"
+            features={["Fast Delivery", "Live Tracking", "Secure Handling"]}
+            termsLink="#"
+            buttonText="Add Contract"
+            bgColor="#FDB742"
+          />
+
+<EnableCard
+            carrierName="Shiprocket"
+            carrierLogo="https://s3-alpha-sig.figma.com/img/4dfb/36d2/3a2bfc1be2656bfa87f69c5785f5b9ff?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=cXgYTXGpSQLUXfgJc-UqBMkDsoEy2zvashGU02p6dNhWVto5pybjL8fuT28Vw6keOkXLcvrFwbD4TiSgTEmkeJHGWfg55OkI66v0GIppNp~T3e8fGxcRbFZ88TV0HBXuWguVO8tYtZH9ew-lnZT8APZXympGwO1Uwd4WPXH~t7tRoU9Ftesh9SzGxGARYzq8u-~6kzcyhVarVB5cPKXOP7gSPL7i4JFNJ1Q82oRFHaXjX5yhukpSq1XWy3fojwQ32rG3FVp45j04zKzeuBErNVUdMPeETQj6DJDl3vFqrrqgO5fHoKM5xtDUvqGnDb~v~~q~IYNmI5PGf52lLkqy1Q__"
+            features={["Fast Delivery", "Live Tracking", "Secure Handling"]}
+            termsLink="#"
+            buttonText="Add Contract"
+            bgColor="#FDB742"
+          />
+             <EnableCard
+            carrierName="Blue Dart"
+            carrierLogo="https://s3-alpha-sig.figma.com/img/1a63/4b3f/3547f977f8999db34d776a1729e7cdaa?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=i1DGWfWM6DXF8vC55bM4kPdxJ3r4JhlIYeNWrGmAb1h465QPl0eeUmZ7SGKIVQgYJoRMjhB3vHvFUdsci2VzGDKBmfLUORL-lztMXXVK5Tm4j9HQaELoTsMvw9KniAV4X~5gO2YNU6Pcqijywrqt1UhYjHbgVyyk73ilLDE9Pr8ppIXjXP2Ln9cf~~i3CDkYB~RKWInaGGANKRQ5GgtrJSCXW4Lr4wjTioHfS2PP4OSm6iZDNAELYubH86fQIozCumnYIUFXGdv0xILhaT5bJgNRCQaPjR~09N4Oj2inrMhiJyHbJCNpTpn~~rnBJT1ZnXgxM2Nmg9IUMV9Y~npptQ__"
+            features={["Fast Delivery", "Live Tracking", "Secure Handling"]}
+            termsLink="#"
+            buttonText="Add Contract"
+            bgColor="#FDB742"
+          />
+             <EnableCard
+            carrierName="Shiprocket"
+            carrierLogo="https://s3-alpha-sig.figma.com/img/01fd/2702/43b701340302ab57ded4933330a36297?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=AJJGk~JVWOqjJQDNwbB7oSnOwChv-GkW4Z9NEz2OMICoZPdutKhmQiZLajyugzHthOxw~ZCKjOyKPgg28Zt1oRhH~DoB589IZCbwlGVlmI5CJEb2SPepcLeEM1ugU78mI1nca3ri8eEvt9u2dRYJtyM2FkWqeAFsoOugJuHh2yckZhGbmPAydPbskRiP0hbzHHv3qIFTJF9lP3AbssSoH58Gs22~tu~wP6wSPbco3kN3RepJF7TItpPyLof1ZQPiEtrQMi79L-kVR8q86oJ7uWUrYuNb-E0IdsuG4Hj4h5BSqEbCfITYRhz8aCXCH~B0K95uvXoS3V8AsgzcFLpbyg__"
+            features={["Fast Delivery", "Live Tracking", "Secure Handling"]}
+            termsLink="#"
+            buttonText="Add Contract"
+            bgColor="#FDB742"
+          />
+        </Row>
       ),
     },
     {
@@ -344,36 +367,35 @@ const CarrierContract = () => {
           />
 
           <ColorCard
-           style={{
-            backgroundColor: "#F4FFED",
-            borderRadius: "12px 12px 100px 12px", // top-left, top-right, bottom-right, bottom-left
-            padding: "20px",
-            width: "300px",
-            textAlign: "center",
-          }}
-           title="Understand the specific price for each shipping service."
+            style={{
+              backgroundColor: "#F4FFED",
+              borderRadius: "12px 12px 100px 12px", // top-left, top-right, bottom-right, bottom-left
+              padding: "20px",
+              width: "300px",
+              textAlign: "center",
+            }}
+            title="Understand the specific price for each shipping service."
             image="https://s3-alpha-sig.figma.com/img/50ad/5914/0f3c78d5f6508d7197f7ad2bedadc1aa?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ZDarLofiTu5~pFmMTmoiMatpBSiOGE3qQf7B9GKUF7PFuED3tgXW9JtKrcgHPCBgEN0TKy7KnXvWVPgGSd1d-Q0Yyk310sSOqoPhSoJi089ghR9Ft1kYVKmFZ6qV5TgRM-IuHzptmmbv23qcSMuxvZ9alyhP-rLmx2M30ANQnRij-t3t6tjvBXzzzYLb49BzDeeDiNnzn1ZCVU8Mei~xIgUYAeqpbf1sQGdWydTSgStXnw9vhkUe9JgGiLxd7jh9s42f3l-5DW9KFYLgPCD3OboJMSVOhQfbtsJbSKBI5XFGbW2LEeU0ps2y~rGE6fmmMIk~H0U09r9nHs3tBGYX~w__"
-           
           />
           <ColorCard
             style={{
-                backgroundColor: "#FFEDFE",
-                borderRadius: "12px 100px 12px 12px", // top-left, top-right, bottom-right, bottom-left
-                padding: "20px",
-                width: "300px",
-                textAlign: "center",
-              }}
+              backgroundColor: "#FFEDFE",
+              borderRadius: "12px 100px 12px 12px", // top-left, top-right, bottom-right, bottom-left
+              padding: "20px",
+              width: "300px",
+              textAlign: "center",
+            }}
             image="https://s3-alpha-sig.figma.com/img/51f5/a8c3/6ee2b09a5e2f3fc18ba59fddeab1e8e7?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=eGKurI8QGM2jmnxW3wu9yaBCcjw5NhuXd4XzTKTcqWCxMKqgn0AGrpWjd8lzvmqDlnBq2e1iTXfDiy7Y5WkB-Mna5CswP7uKCnq7NjKqHxAhxUDuX2nB~TYsliQjT1lUru2558pOcNcfsvIQeEy5O74ysYKTYbtxmN3JKKNsTaORZavqiIbfclIZPnuOxeY-i4v7V6LEQs9Kjphfa8vDmkVAusG526oE1DhwMa28Y5vwalM0obiijisp9TB8YpEygyth4Dr-oz9C4xj7sS9SduCLI84ND8DVHp5zdbZlZb9C5HuQsrx8oNP~cYj8KIG1NLMIT~KZnQeZFPQGRhgP2g__"
             title="Compare your negotiated rates with carrier costs."
           />
           <ColorCard
-           style={{
-            backgroundColor: "#FFFEED",
-            borderRadius: "12px 12px 100px 12px", // top-left, top-right, bottom-right, bottom-left
-            padding: "20px",
-            width: "300px",
-            textAlign: "center",
-          }}
+            style={{
+              backgroundColor: "#FFFEED",
+              borderRadius: "12px 12px 100px 12px", // top-left, top-right, bottom-right, bottom-left
+              padding: "20px",
+              width: "300px",
+              textAlign: "center",
+            }}
             image="https://s3-alpha-sig.figma.com/img/4c0f/ffd4/abb612236dcadbd65384bad4ca9592ea?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Y2sH2Jq5P8KyCsdwk~D-toc3EkQCryBd6B54uuhEcfHuBEC1btL8Q1zyBvrndYKwMKYyAuu5fyl2cXraT8omDkajzF7myartM~KOnUDQtuu0oaB~lQ6jCvjk1CDg7NgqwBetYueDoYigCQdq02AfQ7aCbZXn7de6bL6WHaW6xnfSrCS1I8QHYQiKWauqPBWXp-91XK993MHoykoXzqC4tW2Sxhve1a3lKzYshimTDHJxFDyBJP8dN7SlesM6H77-ljrP9Ch-LM51FM1gWyYPea7dX4At4m60Y1TZ0ZicQFZOveMA~~vLzVd8hDXZwKHY6v0m0V4X8amknk~pSk6inw__"
             title="Get recommended shipping options with their best rates."
           />

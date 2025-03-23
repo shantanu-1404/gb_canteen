@@ -57,27 +57,23 @@ const OriginDropdown = ({
     setSelectedLabel(location);
     setSearchTerm(""); // Reset search term
   };
-
   // Handle selection of supplier
   const handleSelectSupplier = (supplier) => {
     setSelectedLabel(`${selectedLocation} - ${supplier.name}`);
     setIsDropdownOpen(false);
     if (onChange) onChange(supplier);
   };
-
   const [isModalOpen, setModalOpen] = useState(false);
   const handleTextInputChange = (value) => {
     console.log("TextInput:", value);
   };
   const [selectedSingle, setSelectedSingle] = useState("");
-
   const countries = [
     { value: "1", label: "India" },
     { value: "2", label: "UK" },
     { value: "3", label: "US" },
     { value: "4", label: "Canada" },
   ];
-
   return (
     <div className="relative w-72" ref={selectRef}>
       {/* Label */}
@@ -114,10 +110,8 @@ const OriginDropdown = ({
               <p className="text-gray-500 text-sm p-2">No locations found</p>
             )}
           </div>
-
           {/* Horizontal Divider */}
           <hr className="dropdown-divider" />
-
           {/* Supplier List */}
           <div className="supplier-list-container">
             {selectedLocation && filteredSuppliers.length > 0 ? (
@@ -138,7 +132,6 @@ const OriginDropdown = ({
               </p>
             )}
           </div>
-
           {/* Create New Supplier Link */}
           {createAction && (
             <div className="searchable_link p-3">
@@ -213,6 +206,8 @@ const OriginDropdown = ({
                       />
                     </div>
                   </div>
+                  <br/>
+                  <br/>
                   <div className="btn-sack">
                   <Button label="Save" type="submit" />
                   <Button

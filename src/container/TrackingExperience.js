@@ -7,6 +7,7 @@ import Layout from "./layout";
 import CheckboxInput from "../components/CheckboxInput";
 import InfoAlert from "../components/InfoAlert";
 import CarrierCard from "../components/EnableCard";
+import InfoTextWithLink from "../components/InfoTextWithLink";
 
 import SelectComponent from "../components/SelectComponent";
 import Row from "react-bootstrap/Row";
@@ -63,22 +64,24 @@ const TrackingExperience = () => {
   const cardData = [
     {
       carrierName: "Shadowfax",
-      carrierLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Shadowfax_logo.svg/2560px-Shadowfax_logo.svg.png",
+      carrierLogo:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Shadowfax_logo.svg/2560px-Shadowfax_logo.svg.png",
       features: ["Feature 1", "Feature 2", "Feature 3"],
       termsLink: "#",
       bgColor: "#F9B233",
-      buttonText: "Add Contract"
+      buttonText: "Add Contract",
     },
     {
       carrierName: "Blue Dart",
-      carrierLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Blue_Dart_Express_logo.svg/2560px-Blue_Dart_Express_logo.svg.png",
+      carrierLogo:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Blue_Dart_Express_logo.svg/2560px-Blue_Dart_Express_logo.svg.png",
       features: ["Fast Delivery", "Tracking", "Cash on Delivery"],
       termsLink: "#",
       bgColor: "#FDB742",
-      buttonText: "Enable"
-    }
+      buttonText: "Enable",
+    },
   ];
-  
+
   const backgroundColorOptions = [
     { value: "#FFFFFF", label: "White" },
     { value: "#F6FFEC", label: "Light Green" },
@@ -201,12 +204,18 @@ const TrackingExperience = () => {
               />
             </div>
           )}
-          <label>
-            To upload your logo and set your brand colours, go to the settings
-            for this brand. To create more Tracking templates, add additional
-            brands in your brand settings.
-          </label>
+          <InfoTextWithLink
+            text="To upload your logo and set your brand colours, go to  "
+            linkText=" the settings for this brand"
+            linkUrl="https://your-privacy-policy-link.com"
+          />
+          <InfoTextWithLink
+            text="To create more Tracking templates, add additional brands in your"
+            linkText=" brand settings"
+            linkUrl="https://your-privacy-policy-link.com"
+          />
         </div>
+
         <div className="form_section">
           <h6 className="card-title">Create a Custom Tracking Page</h6>
           <label>
@@ -362,40 +371,6 @@ const TrackingExperience = () => {
               <div className="gray-referral">Referral Program</div>
               <div className="gray-footer">Footer</div>
             </div>
-          </Row>
-          <Row>
-            <CarrierCard
-              carrierName="Blue Dart"
-              logoUrl="https://s3-alpha-sig.figma.com/img/3d4e/afc9/499ef390aeefb917ee0f201ef18ca0ab?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=haRqbFAx-Lhl~18In4ZFlC9y5-T-RpNpnyuyIDbeF-1bm4p9kYJ8A6wYBg5P7eUZAw6GTfqSMIUjV3T4l-lyEvsAlKfQe1cuqiYtwx7tjvK6nuPBxT4G6FFEcAoAT5f6lxwz9NnKmd6fiDUNsTIugsgUDDyTj721hN3Szph22rkieyw0E~y5iAQTteDHXU-dXF-~cz6tj4JILUi1LsrMGQbjPk6aW5pXfiavrYFYvCxbSRXrOOvWMNjutUXmDSymzIXeXxSYd6G5eob80pNK08urNOHnMW7tGhvxqV4gEZXT~~gmCaXVJ7W0LOsMI7weTAQ-0VjZavyJQgYgS8J2Xw__"
-              features={["Feature 1", "Feature 1", "Feature 1"]}
-              termsLink="#"
-              buttonText="Add Contract"
-              cornerBgColor="#FDB742"
-            />
-            <CarrierCard
-              carrierName="Blue Dart"
-              logoUrl="https://s3-alpha-sig.figma.com/img/3d4e/afc9/499ef390aeefb917ee0f201ef18ca0ab?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=haRqbFAx-Lhl~18In4ZFlC9y5-T-RpNpnyuyIDbeF-1bm4p9kYJ8A6wYBg5P7eUZAw6GTfqSMIUjV3T4l-lyEvsAlKfQe1cuqiYtwx7tjvK6nuPBxT4G6FFEcAoAT5f6lxwz9NnKmd6fiDUNsTIugsgUDDyTj721hN3Szph22rkieyw0E~y5iAQTteDHXU-dXF-~cz6tj4JILUi1LsrMGQbjPk6aW5pXfiavrYFYvCxbSRXrOOvWMNjutUXmDSymzIXeXxSYd6G5eob80pNK08urNOHnMW7tGhvxqV4gEZXT~~gmCaXVJ7W0LOsMI7weTAQ-0VjZavyJQgYgS8J2Xw__"
-              features={["Feature 1", "Feature 1", "Feature 1"]}
-              termsLink="#"
-              buttonText="Add Contract"
-              cornerBgColor="#FDB742"
-            />
-            <CarrierCard
-              carrierName="Blue Dart"
-              logoUrl="https://s3-alpha-sig.figma.com/img/3d4e/afc9/499ef390aeefb917ee0f201ef18ca0ab?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=haRqbFAx-Lhl~18In4ZFlC9y5-T-RpNpnyuyIDbeF-1bm4p9kYJ8A6wYBg5P7eUZAw6GTfqSMIUjV3T4l-lyEvsAlKfQe1cuqiYtwx7tjvK6nuPBxT4G6FFEcAoAT5f6lxwz9NnKmd6fiDUNsTIugsgUDDyTj721hN3Szph22rkieyw0E~y5iAQTteDHXU-dXF-~cz6tj4JILUi1LsrMGQbjPk6aW5pXfiavrYFYvCxbSRXrOOvWMNjutUXmDSymzIXeXxSYd6G5eob80pNK08urNOHnMW7tGhvxqV4gEZXT~~gmCaXVJ7W0LOsMI7weTAQ-0VjZavyJQgYgS8J2Xw__"
-              features={["Feature 1", "Feature 1", "Feature 1"]}
-              termsLink="#"
-              buttonText="Add Contract"
-              cornerBgColor="#FDB742"
-            />
-            <CarrierCard
-              carrierName="Blue Dart"
-              logoUrl="https://s3-alpha-sig.figma.com/img/3d4e/afc9/499ef390aeefb917ee0f201ef18ca0ab?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=haRqbFAx-Lhl~18In4ZFlC9y5-T-RpNpnyuyIDbeF-1bm4p9kYJ8A6wYBg5P7eUZAw6GTfqSMIUjV3T4l-lyEvsAlKfQe1cuqiYtwx7tjvK6nuPBxT4G6FFEcAoAT5f6lxwz9NnKmd6fiDUNsTIugsgUDDyTj721hN3Szph22rkieyw0E~y5iAQTteDHXU-dXF-~cz6tj4JILUi1LsrMGQbjPk6aW5pXfiavrYFYvCxbSRXrOOvWMNjutUXmDSymzIXeXxSYd6G5eob80pNK08urNOHnMW7tGhvxqV4gEZXT~~gmCaXVJ7W0LOsMI7weTAQ-0VjZavyJQgYgS8J2Xw__"
-              features={["Feature 1", "Feature 1", "Feature 1"]}
-              termsLink="#"
-              buttonText="Add Contract"
-              cornerBgColor="#FDB742"
-            />
           </Row>
         </div>
       </div>

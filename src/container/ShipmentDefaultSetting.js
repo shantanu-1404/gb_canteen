@@ -16,8 +16,6 @@ const ShipmentDefaultSetting = () => {
   const [selectedSingle, setSelectedSingle] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
 
-  
-
   const handleOptionChange = (selectedValue) => {
     console.log("Selected:", selectedValue);
   };
@@ -29,8 +27,6 @@ const ShipmentDefaultSetting = () => {
   const handleAgreementChange = (isChecked) => {
     console.log("User agreed:", isChecked);
   };
-
- 
 
   const preferred_shipping_methods = [
     { value: "standard", label: "Standard Shipping" },
@@ -189,7 +185,7 @@ const ShipmentDefaultSetting = () => {
           <Button label="Update Settings" />
         </div>
       </div>
-      <div className="form-group row p-3 gap-2 text-center">
+      <div className="form-group row p-3 gap-2 d-flex justify-content-end">
         <a type="submit" className="btn col-4 a-btn-primary">
           Save
         </a>

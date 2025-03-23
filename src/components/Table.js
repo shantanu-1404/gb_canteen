@@ -277,10 +277,9 @@ const Table = ({
     if (type === "editable") {
       return (
         <div className="editable-cell">
-          <span>{value}</span>
+          <span> {value} </span>
           <i
             className="bi bi-pencil-square edit-icon"
-           
             onClick={() => handleEditClick(rowData, column.dbcol)}
             title="Edit"
           ></i>
@@ -474,7 +473,6 @@ const Table = ({
       );
     }
 
-    
     // If the column type is "progress" and the value represents progress (e.g., "Ordered", "Completed", etc.)
     if (type === "progress") {
       const progressValue = value; // This should represent the current progress as a fraction (e.g., "2/10", "5/10")

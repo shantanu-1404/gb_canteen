@@ -65,6 +65,11 @@ const AddNewContract = () => {
 
           <div className="form_section">
             <h6 className="card-title">Contract Prices</h6>
+            <div className="form-group p-3 gap-2 d-flex justify-content-end">
+              <a type="submit" className="btn col-4 a-btn-primary">
+                Download CSV
+              </a>
+            </div>
             <FileUploadComponent
               label="Recommended Size - 1350px X 1080px"
               name="imageUpload"
@@ -76,6 +81,11 @@ const AddNewContract = () => {
             <div className="btn-sack">
               <Button label="Save This Prices" />
             </div>
+          </div>
+          <div className="form-group row p-3 gap-2 d-flex justify-content-end">
+            <a type="submit" className="btn col-4 a-btn-primary">
+              Save
+            </a>
           </div>
         </Col>
       </Row>

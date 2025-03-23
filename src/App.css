@@ -4401,12 +4401,20 @@ canvas {
 .green-banner,
 .green-tracking,
 .green-message,
-.green-referral,
+
 .green-footer {
   border: 1px solid #67b31b;
   border-radius: 12px;
   padding: 10px;
   margin-bottom: 15px;
+  text-align: center;
+}
+
+.green-referral{
+  border: 1px solid #67b31b;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 55px;
   text-align: center;
 }
 
@@ -4593,12 +4601,8 @@ text-align: center;
   margin-top: 10px;
 }
 
-
-
-
-
 .enable-card-container {
-  padding: 30px;
+  padding: 12px 12px 21px 12px;
   width: 350px;
   position: relative;
 }
@@ -4618,7 +4622,7 @@ text-align: center;
   align-items: center;
 }
 .carrier-name {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: #0e032f;
 }
@@ -4679,7 +4683,7 @@ text-align: center;
   background-color: #0e032f;
   color: #fff;
   border: none;
-  padding: 16px 32px;
+  padding: 11px 21px;
   font-size: 18px;
   font-weight: 300;
   border-radius: 20px;
@@ -4692,6 +4696,25 @@ text-align: center;
 }
 
 
+.carrier-logo-wrapper {
+  text-align: right;
+}
+
+.carrier-logo {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+}
+.info-text {
+  font-size: 15px;
+  color:#868686;
+  margin-top: 10px;
+}
+
+
+.info-link:hover {
+  color: #007bff;
+}
 
 
 

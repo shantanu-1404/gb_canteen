@@ -206,16 +206,16 @@ const OriginDropdown = ({
                       />
                     </div>
                   </div>
-                  <br/>
-                  <br/>
+                  <br />
+                  <br />
                   <div className="btn-sack">
-                  <Button label="Save" type="submit" />
-                  <Button
-                    label="Cancel"
-                    type="button"
-                    onClick={() => setModalOpen(false)}
-                  />
-                </div>
+                    <Button label="Save" type="submit" />
+                    <Button
+                      label="Cancel"
+                      type="button"
+                      onClick={() => setModalOpen(false)}
+                    />
+                  </div>
                 </form>
               </Modal>
             </div>

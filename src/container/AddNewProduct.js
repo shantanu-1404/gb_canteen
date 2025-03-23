@@ -129,7 +129,6 @@ const AddNewProduct = () => {
               isMulti={false}
               onChange={setSelectedSingle}
             />
-
             <DateInput label="Publish Date" includeTime={true} />
             <DateInput label="End Date" includeTime={true} type="future" />
             <SelectComponent

@@ -102,7 +102,6 @@ const App= () => {
               </Row>
             </div>
           )}
-
           {/* ✅ Step 2: More Details */}
           {currentStep === 2 && (
             <div className="form_section">

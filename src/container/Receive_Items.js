@@ -17,9 +17,9 @@ const App = () => {
     category: product.col4,
     p1: product.col4,
     p2: product.col6,
-    total: 10, // ✅ Set default total value
+    total: 10, // ✅ Set default total value 
     accept: 0, // ✅ Default accept value
-    cancel: 10, // ✅ Default cancel value (total - accept)// ✅ Ensure previously selected items stay checked
+    cancel: 10, // ✅ Default cancel value (total - accept)// ✅ Ensure previously selected items stay checked 
   }));
 
   const columns = [

@@ -1,0 +1,63 @@
+[
+    {
+      "col1": "Loyal Customers",
+      "col2": "1200",
+      "col3": "2025-03-20T14:30:00Z",
+      "col4": "Admin"
+    },
+    {
+      "col1": "High Spend",
+      "col2": "870",
+      "col3": "2025-03-18T11:45:00Z",
+      "col4": "Marketing Team"
+    },
+    {
+      "col1": "Churn Risk",
+      "col2": "640",
+      "col3": "2025-03-16T09:15:00Z",
+      "col4": "Support"
+    },
+    {
+      "col1": "Frequent Buyers",
+      "col2": "1023",
+      "col3": "2025-03-22T16:05:00Z",
+      "col4": "Sales Manager"
+    },
+    {
+      "col1": "New Users",
+      "col2": "200",
+      "col3": "2025-03-21T12:10:00Z",
+      "col4": "CRM Bot"
+    },
+    {
+      "col1": "One-Time Buyers",
+      "col2": "340",
+      "col3": "2025-03-19T10:00:00Z",
+      "col4": "Analytics"
+    },
+    {
+      "col1": "Newsletter Subscribers",
+      "col2": "1450",
+      "col3": "2025-03-17T08:00:00Z",
+      "col4": "Content Team"
+    },
+    {
+      "col1": "Inactive Users",
+      "col2": "500",
+      "col3": "2025-03-15T15:30:00Z",
+      "col4": "Retention Team"
+    },
+    {
+      "col1": "Top Referrers",
+      "col2": "120",
+      "col3": "2025-03-14T13:45:00Z",
+      "col4": "Affiliate Manager"
+    },
+    {
+      "col1": "Cart Abandoners",
+      "col2": "760",
+      "col3": "2025-03-13T09:20:00Z",
+      "col4": "Conversion Team"
+    }
+  ]
+  

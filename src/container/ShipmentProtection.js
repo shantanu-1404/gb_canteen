@@ -63,11 +63,10 @@ const ShipmentProtection = () => {
                       "Automatically insures shipments based on a fixed percentage of the order value",
                     value: "option2",
                   },
-                  { label: "Custom   ", value: "option1" },
+                  { label: "Custom   ", value: "option3" },
                   {
-                    label:
-                      "Automatically percentage of the order value",
-                    value: "option2",
+                    label: "Automatically percentage of the order value",
+                    value: "option4",
                   },
                 ]}
                 required={true}

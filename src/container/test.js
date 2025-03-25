@@ -129,7 +129,6 @@ const App= () => {
               />
             </div>
           )}
-
           {/* ✅ Step 3: Review & Submit */}
           {currentStep === 3 && (
             <div className="form_section">

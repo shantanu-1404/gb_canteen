@@ -122,7 +122,7 @@ const CarrierContract = () => {
     {
       label: "Carrier Selection",
       content: (
-        <Row>
+        <Row className="d-flex justify-content-between">
           <EnableCard
             carrierName="Blue Dart"
             carrierLogo="https://s3-alpha-sig.figma.com/img/3d4e/afc9/499ef390aeefb917ee0f201ef18ca0ab?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=haRqbFAx-Lhl~18In4ZFlC9y5-T-RpNpnyuyIDbeF-1bm4p9kYJ8A6wYBg5P7eUZAw6GTfqSMIUjV3T4l-lyEvsAlKfQe1cuqiYtwx7tjvK6nuPBxT4G6FFEcAoAT5f6lxwz9NnKmd6fiDUNsTIugsgUDDyTj721hN3Szph22rkieyw0E~y5iAQTteDHXU-dXF-~cz6tj4JILUi1LsrMGQbjPk6aW5pXfiavrYFYvCxbSRXrOOvWMNjutUXmDSymzIXeXxSYd6G5eob80pNK08urNOHnMW7tGhvxqV4gEZXT~~gmCaXVJ7W0LOsMI7weTAQ-0VjZavyJQgYgS8J2Xw__"
@@ -131,8 +131,7 @@ const CarrierContract = () => {
             buttonText="Add Contract"
             bgColor="#FDB742"
           />
-
-<EnableCard
+          <EnableCard
             carrierName="Shiprocket"
             carrierLogo="https://s3-alpha-sig.figma.com/img/4dfb/36d2/3a2bfc1be2656bfa87f69c5785f5b9ff?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=cXgYTXGpSQLUXfgJc-UqBMkDsoEy2zvashGU02p6dNhWVto5pybjL8fuT28Vw6keOkXLcvrFwbD4TiSgTEmkeJHGWfg55OkI66v0GIppNp~T3e8fGxcRbFZ88TV0HBXuWguVO8tYtZH9ew-lnZT8APZXympGwO1Uwd4WPXH~t7tRoU9Ftesh9SzGxGARYzq8u-~6kzcyhVarVB5cPKXOP7gSPL7i4JFNJ1Q82oRFHaXjX5yhukpSq1XWy3fojwQ32rG3FVp45j04zKzeuBErNVUdMPeETQj6DJDl3vFqrrqgO5fHoKM5xtDUvqGnDb~v~~q~IYNmI5PGf52lLkqy1Q__"
             features={["Fast Delivery", "Live Tracking", "Secure Handling"]}
@@ -140,7 +139,7 @@ const CarrierContract = () => {
             buttonText="Add Contract"
             bgColor="#FDB742"
           />
-             <EnableCard
+          <EnableCard
             carrierName="Blue Dart"
             carrierLogo="https://s3-alpha-sig.figma.com/img/1a63/4b3f/3547f977f8999db34d776a1729e7cdaa?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=i1DGWfWM6DXF8vC55bM4kPdxJ3r4JhlIYeNWrGmAb1h465QPl0eeUmZ7SGKIVQgYJoRMjhB3vHvFUdsci2VzGDKBmfLUORL-lztMXXVK5Tm4j9HQaELoTsMvw9KniAV4X~5gO2YNU6Pcqijywrqt1UhYjHbgVyyk73ilLDE9Pr8ppIXjXP2Ln9cf~~i3CDkYB~RKWInaGGANKRQ5GgtrJSCXW4Lr4wjTioHfS2PP4OSm6iZDNAELYubH86fQIozCumnYIUFXGdv0xILhaT5bJgNRCQaPjR~09N4Oj2inrMhiJyHbJCNpTpn~~rnBJT1ZnXgxM2Nmg9IUMV9Y~npptQ__"
             features={["Fast Delivery", "Live Tracking", "Secure Handling"]}
@@ -148,7 +147,7 @@ const CarrierContract = () => {
             buttonText="Add Contract"
             bgColor="#FDB742"
           />
-             <EnableCard
+          <EnableCard
             carrierName="Shiprocket"
             carrierLogo="https://s3-alpha-sig.figma.com/img/01fd/2702/43b701340302ab57ded4933330a36297?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=AJJGk~JVWOqjJQDNwbB7oSnOwChv-GkW4Z9NEz2OMICoZPdutKhmQiZLajyugzHthOxw~ZCKjOyKPgg28Zt1oRhH~DoB589IZCbwlGVlmI5CJEb2SPepcLeEM1ugU78mI1nca3ri8eEvt9u2dRYJtyM2FkWqeAFsoOugJuHh2yckZhGbmPAydPbskRiP0hbzHHv3qIFTJF9lP3AbssSoH58Gs22~tu~wP6wSPbco3kN3RepJF7TItpPyLof1ZQPiEtrQMi79L-kVR8q86oJ7uWUrYuNb-E0IdsuG4Hj4h5BSqEbCfITYRhz8aCXCH~B0K95uvXoS3V8AsgzcFLpbyg__"
             features={["Fast Delivery", "Live Tracking", "Secure Handling"]}
@@ -348,12 +347,12 @@ const CarrierContract = () => {
           />
         </Modal>
         {/* ✅ Tab Panel */}
-        <TabPanel tabs={tabs} setActiveTab={setActiveTab} />
+        <TabPanel
+         tabs={tabs} setActiveTab={setActiveTab} />
       </div>
-
       <div className="form_section">
         <strong>Why is it important to personalize my pricing?</strong>
-        <Row>
+        <Row className="d-flex justify-content-between">
           <ColorCard
             style={{
               backgroundColor: "#EDFEFF",
@@ -365,7 +364,6 @@ const CarrierContract = () => {
             image="https://s3-alpha-sig.figma.com/img/e127/01b7/6cf39eeea56b2033f5cbc0edae70c6c6?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Fv~4X8I~GbLf1s6JJEL8ro3T-my91JwNgEkO2F4gLCEGnFlL8bvXJLtBHVpwhFJ2Ubrkji3zlDjMvx5iqZDPwbGwPvGroIalPqRSGOdnR9k3B~cdONrCwUWodOV44VnPCUyimUt0V6I1A7qpFtiMvYs8sWSzGDuX-XfnQd13ceQVQvHOWxL~7rseOSrm5IeeSDDqotOGzEaxXNP4jxFiUMwuy3QqFr18XHxyMn0Nmn2GxCA5ksjScv2E3MSeR5ZCM1BgpUN5U2RxqCHXT745as~8xpq1PNjLMBsPQbFT49-D7F38H49JAnNZK4i6z1IvBet8sej7FR9oQYAJklbzWg__"
             title="Check your specific contract pricing."
           />
-
           <ColorCard
             style={{
               backgroundColor: "#F4FFED",

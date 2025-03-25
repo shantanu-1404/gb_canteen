@@ -198,7 +198,7 @@ const AddNewOrder = () => {
                     </div>
                     <div className="col-9 row">
                       <h3>{customer.name}</h3>
-                      <div className="col-6">
+                      <div className="col-9">
                         <div className="form-group">
                           <label className="form-label">Contact Number</label>
                           {customer.contact}
@@ -208,7 +208,7 @@ const AddNewOrder = () => {
                           {customer.email}
                         </div>
                       </div>
-                      <div className="col-6">
+                      <div className="col-3">
                         <div className="form-group">
                           <label className="form-label">Shipping Address</label>
                           {customer.shipping_address}

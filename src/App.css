@@ -4342,7 +4342,7 @@ canvas {
   flex-direction: column;
   align-items: center;
   transition: background-color 1s ease-in-out; 
-  margin-left: 10px;
+ 
 }
 /* ✅ Image Styling */
 .card-image {
@@ -4695,7 +4695,6 @@ text-align: center;
   bottom: -21px;
 }
 
-
 .carrier-logo-wrapper {
   text-align: right;
 }
@@ -4715,7 +4714,9 @@ text-align: center;
 .info-link:hover {
   color: #007bff;
 }
-
+.d-inline .tax-link {
+  color: #089CFF;
+}
 
 
 
@@ -5094,7 +5095,6 @@ text-align: center;
     gap: 0px !important;
   }
 
-
   .metrix-container .col-md-6 {
     width: 50%;
     margin-inline: -5px;
@@ -5106,13 +5106,22 @@ text-align: center;
     min-width: auto;
   }
 
-
   .timeline-right {
     font-size: 12px;
     position: absolute;
     right: 0;
     top: 0;
   }
+  .green-theme-card {
+    width: 73%;
+    max-width: 700px;
+    border: 4px solid #67b31b;
+}
+  .gray-theme-card {
+  width:  73%;
+  max-width: 700px;
+  border: 4px solid #888;
+}
 
 }
 
@@ -5440,7 +5449,6 @@ text-align: center;
     font-size: 10px;
   }
 
-
   .qty-btn {
     aspect-ratio: 1;
     min-width: 30px;
@@ -5463,7 +5471,15 @@ text-align: center;
     font-size: 12px;
   }
 
-
+  .color-card {
+   margin-left: 10px;
+}
+  .green-theme-card {
+   width: 90%;
+}
+  .gray-theme-card {
+   width: 90%;
+}
 }
 
 

@@ -68,6 +68,7 @@ import Tracking from "./container/TrackingExperience.js"
 import Segment from './container/SegmentTable.js';
 import Bundles from './container/Bundles.js';
 import AddNewBundle from './container/AddNewBundle.js';
+import CustomerService from './container/CustomerService.js';
 
 
 
@@ -149,6 +150,7 @@ const App = () => {
         <Route path="/customer/segment-table" element={<Segment/>} />
         <Route path="/bundles" element={<Bundles/>} />
         <Route path="/add-bundle" element={<AddNewBundle/>} />
+        <Route path="/customer-service" element={<CustomerService/>} />
         
 
 

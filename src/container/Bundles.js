@@ -14,9 +14,7 @@ import bundlesdata from "../assets/json/Bundles.json";
 
 const Bundles = () => {
   const tableRef = useRef();
-
   const navigate = useNavigate();
-
   const columns = [
     { headname: "ID", type: "", dbcol: "col1" },
     { headname: "Bundle Name", type: "", dbcol: "col2" },
@@ -59,7 +57,6 @@ const Bundles = () => {
           </div>
         </div>
       </div>
-
       <div className="card-container gap-4 flex-wrap">
         <Row className="metrix-container">
           <Col xs={4} md={3}>

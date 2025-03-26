@@ -113,7 +113,6 @@ const CarrierContract = () => {
     { value: "starts_with", label: "Starts With" },
     { value: "ends_with", label: "Ends With" },
   ];
-
   // ✅ Define Tabs
   const tabs = [
     {
@@ -155,7 +154,7 @@ const CarrierContract = () => {
         </Row>
       ),
     },
-    {
+      {
       label: "My Contracts",
       content: (
         <DataTable
@@ -173,7 +172,6 @@ const CarrierContract = () => {
       ),
     },
   ];
-
   return (
     <Layout>
       <div className="shipment-box-rule-container">

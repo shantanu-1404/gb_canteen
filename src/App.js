@@ -66,6 +66,8 @@ import CarrierContract from './container/CarrierContracts.js';
 import ShipmentProtection from './container/ShipmentProtection.js';
 import Tracking from "./container/TrackingExperience.js"
 import Segment from './container/SegmentTable.js';
+import Bundles from './container/Bundles.js';
+import AddNewBundle from './container/AddNewBundle.js';
 
 
 
@@ -144,7 +146,9 @@ const App = () => {
         <Route path="/carrier-contracts" element={<CarrierContract/>} />
         <Route path="/shipment-protection" element={<ShipmentProtection/>} />
         <Route path="/tracking-experience" element={<Tracking/>} />
-        <Route path="/segment-table" element={<Segment/>} />
+        <Route path="/customer/segment-table" element={<Segment/>} />
+        <Route path="/bundles" element={<Bundles/>} />
+        <Route path="/add-bundle" element={<AddNewBundle/>} />
         
 
 

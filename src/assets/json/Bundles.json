@@ -1,0 +1,59 @@
+[
+    {
+      "col1": "BND001",
+      "col2": "Summer Essentials",
+      "col3": "T-shirt, Sunglasses, Hat",
+      "col4": 1499,
+      "col5": "10%",
+      "col6": "Percentage"
+    },
+    {
+      "col1": "BND002",
+      "col2": "Winter Warmers",
+      "col3": "Jacket, Gloves, Scarf",
+      "col4": 3499,
+      "col5": "500",
+      "col6": "Flat"
+    },
+    {
+      "col1": "BND003",
+      "col2": "Back to School",
+      "col3": "Backpack, Notebooks, Pen Set",
+      "col4": 899,
+      "col5": "15%",
+      "col6": "Percentage"
+    },
+    {
+      "col1": "BND004",
+      "col2": "Fitness Pack",
+      "col3": "Yoga Mat, Dumbbells, Water Bottle",
+      "col4": 2299,
+      "col5": "300",
+      "col6": "Flat"
+    },
+    {
+      "col1": "BND005",
+      "col2": "Daily Essentials",
+      "col3": "Toothpaste, Shampoo, Soap",
+      "col4": 499,
+      "col5": "5%",
+      "col6": "Percentage"
+    },
+    {
+      "col1": "BND006",
+      "col2": "Gadget Combo",
+      "col3": "Bluetooth Speaker, Power Bank, Cable",
+      "col4": 2799,
+      "col5": "350",
+      "col6": "Flat"
+    },
+    {
+      "col1": "BND007",
+      "col2": "Home Cleaning Kit",
+      "col3": "Mop, Cleaner Spray, Sponge",
+      "col4": 799,
+      "col5": "10%",
+      "col6": "Percentage"
+    }
+  ]
+  

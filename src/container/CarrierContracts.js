@@ -25,7 +25,7 @@ const shipping_rules = [
   { headname: "Last Modification", type: "time", dbcol: "col3" },
 ];
 
-// ✅ Box Rules Table Columns
+// ✅ Box Rules Table Columns 
 const box_rule = [
   { headname: "Box", type: "", dbcol: "col1" },
   { headname: "Dimensions (L x W x H)", type: "", dbcol: "col2" },
@@ -36,13 +36,10 @@ const CarrierContract = () => {
   const tableRef = useRef(null);
   const [activeTab, setActiveTab] = useState(0);
   const [isSwitchOn, setSwitchOn] = useState(false);
-
   const [isShipmentRuleModalOpen, setShipmentRuleModalOpen] = useState(false);
   const [isBoxRuleModalOpen, setBoxRuleModalOpen] = useState(false);
   const [isProductModalOpen, setProductModalOpen] = useState(false);
   const [setSelectedSingle] = useState("");
-
-  // ✅ Selected Products State
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
 
@@ -347,8 +344,7 @@ const CarrierContract = () => {
           />
         </Modal>
         {/* ✅ Tab Panel */}
-        <TabPanel
-         tabs={tabs} setActiveTab={setActiveTab} />
+        <TabPanel tabs={tabs} setActiveTab={setActiveTab} />
       </div>
       <div className="form_section">
         <strong>Why is it important to personalize my pricing?</strong>

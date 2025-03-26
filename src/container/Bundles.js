@@ -1,5 +1,3 @@
-
-
 import React, {useRef } from "react";
 import Layout from "./layout";
 import { useNavigate } from "react-router-dom";
@@ -11,23 +9,22 @@ import Col from "react-bootstrap/Col";
 import DataTable from "../components/DataTable";
 import DateInput from "../components/DateInput";
 import Button from "../components/Button";
-import customersData from "../assets/json/CustomersData.json";
+import bundlesdata from "../assets/json/Bundles.json";
 
 
-const Customer = () => {
+const Bundles = () => {
   const tableRef = useRef();
 
   const navigate = useNavigate();
 
   const columns = [
-    { headname: "Id", type: "", dbcol: "col1" },
-    { headname: "Customer Name", type: "", dbcol: "col2" },
-    { headname: "Email Id", type: "", dbcol: "col3" },
-    { headname: "Phone Number", type: "", dbcol: "col4" },
-    { headname: "Order Placed", type: "", dbcol: "col5" },
-    { headname: "Total Spend", type: "", dbcol: "col6" },
-    { headname: "End Date", type: "time", dbcol: "col7" },
-    { headname: "Status", type: "badge", dbcol: "col8" },
+    { headname: "ID", type: "", dbcol: "col1" },
+    { headname: "Bundle Name", type: "", dbcol: "col2" },
+    { headname: "Products Name", type: "", dbcol: "col3" },
+    { headname: "Price", type: "currency", dbcol: "col4" },
+    { headname: "Discount", type: "", dbcol: "col5" },
+    { headname: "Discount Type", type: "", dbcol: "col6" },
+   
   ];
 
   // ✅ Refresh page
@@ -56,7 +53,7 @@ const Customer = () => {
           <div className="dropdown">
             <Button
               buttonType="add"
-              onClick={() => navigate("/add-customer")}
+              onClick={() => navigate("/add-bundle")}
               label="Add New"
             />
           </div>
@@ -67,7 +64,7 @@ const Customer = () => {
         <Row className="metrix-container">
           <Col xs={4} md={3}>
             <MetricCard
-              title="Total Customers"
+              title="Total Bundles Created"
               operation="count"
               column="col1"
               tableRef={tableRef}
@@ -77,7 +74,7 @@ const Customer = () => {
           </Col>
           <Col xs={4} md={3}>
             <MetricCard
-              title="Active Customers"
+              title="Total Revenue"
               operation="count"
               column="col2"
               tableRef={tableRef}
@@ -87,7 +84,7 @@ const Customer = () => {
           </Col>
           <Col xs={4} md={3}>
             <MetricCard
-              title="Churn Rate"
+              title="Average Bundle Discount"
               operation="total"
               column="col4"
               tableRef={tableRef}
@@ -97,7 +94,7 @@ const Customer = () => {
           </Col>
           <Col xs={4} md={3}>
             <MetricCard
-              title="Average Lifetime Value (LTV)"
+              title="Average Conversion Rate"
               operation="count"
               column="col2"
               tableRef={tableRef}
@@ -105,13 +102,15 @@ const Customer = () => {
               tooltipText="This shows the total of Users" // Tooltip for additional context
             />
           </Col>
+       
         </Row>
       </div>
+
       <DataTable
         id="table1"
         tableRef={tableRef}
         columns={columns}
-        data={customersData}
+        data={bundlesdata}
         defaultView="table"
         searchable={true}
         filterable={true}
@@ -122,4 +121,4 @@ const Customer = () => {
   );
 };
 
-export default Customer;
+export default Bundles;

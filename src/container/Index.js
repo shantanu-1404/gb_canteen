@@ -230,9 +230,6 @@ const Index = () => {
       </div>
 
 
-
-
-
       <DataTable
         id="table1"
         tableRef={tableRef}

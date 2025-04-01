@@ -69,6 +69,13 @@ import Segment from './container/SegmentTable.js';
 import Bundles from './container/Bundles.js';
 import AddNewBundle from './container/AddNewBundle.js';
 import CustomerService from './container/CustomerService.js';
+import SM_Admin from './container/SM_Admin.js';
+import AddNewAdmin from './container/AddNewAdmin.js';
+import WhatsappAppMessengerForward from "./container/WhatsAppMessengerForward.js";
+import WhatsAppSpamDetectionSystem from "./container/WhatsAppSpamDetectionSystem.js";
+import WhatsAppSpamManagement from "./container/WhatsAppSpamManagement.js";
+import MsgGrpManagement from "./container/WhatsAppMessagingGroupManagement.js";
+import AddNewGroup from './container/AddNewGrp&Community.js';
 
 
 
@@ -151,6 +158,14 @@ const App = () => {
         <Route path="/bundles" element={<Bundles/>} />
         <Route path="/add-bundle" element={<AddNewBundle/>} />
         <Route path="/customer-service" element={<CustomerService/>} />
+        <Route path="/social-media/admin" element={<SM_Admin/>} />
+        <Route path="/add-admin" element={<AddNewAdmin/>} />
+        <Route path="/whatsapp-messengerforward" element={<WhatsappAppMessengerForward/>} />
+        <Route path="/whatsapp-spamdetectionsystem" element={<WhatsAppSpamDetectionSystem/>} />
+        <Route path="/whatsapp-spammanagement" element={<WhatsAppSpamManagement/>} />
+        <Route path="/msggrpmanagement" element={<MsgGrpManagement/>} />
+        <Route path="/add-group-community" element={<AddNewGroup/>} />
+
         
 
 

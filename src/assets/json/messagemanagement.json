@@ -1,0 +1,35 @@
+[
+    {
+      "col1": "MSG001",
+      "col2": "Aditya Sharma",
+      "col3": "+91 9876543210",
+      "col4": "Promotion",
+      "col5": "2025-03-29T10:30:00Z",
+      "col6": "Sent"
+    },
+    {
+      "col1": "MSG002",
+      "col2": "Sneha Patel",
+      "col3": "+91 9988776655",
+      "col4": "Alert",
+      "col5": "2025-03-29T11:15:00Z",
+      "col6": "Pending"
+    },
+    {
+      "col1": "MSG003",
+      "col2": "Ravi Kumar",
+      "col3": "+91 9123456789",
+      "col4": "Notification",
+      "col5": "2025-03-28T18:45:00Z",
+      "col6": "Failed"
+    },
+    {
+      "col1": "MSG004",
+      "col2": "Pooja Joshi",
+      "col3": "+91 9011223344",
+      "col4": "Survey",
+      "col5": "2025-03-28T09:05:00Z",
+      "col6": "Sent"
+    }
+  ]
+  

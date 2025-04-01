@@ -317,7 +317,33 @@ const Table = ({
         </div>
       );
     }
-
+    if (type === "action_button") {
+      const label = column.buttonLabel || "View"; // scalable/dynamic label
+      const onClick = column.onClick || (() => console.log("No action defined"));
+    
+      return (
+        <button
+          className="btn btn-sm a-btn-primary"
+          onClick={() => onClick(rowData)}
+        >
+          {label}
+        </button>
+      );
+    }
+    // ✅ remove button
+    if (type === "remove_button") {
+      const label = column.buttonLabel || "Remove";
+      const onClick = column.onClick || (() => console.log("No remove action defined"));
+    
+      return (
+        <button
+          className="btn a-btn-danger"
+          onClick={() => onClick(rowData)}
+        >
+          {label}
+        </button>
+      );
+    }
     // ✅ Cancel Column (Separate)
     if (type === "cancel") {
       return (
@@ -466,12 +492,14 @@ const Table = ({
         <Button
           buttonType="edit"
           label="Edit"
-          onClick={() => handleEditClick(rowData)}
+          onClick={() => handleButtonClick(rowData)} // ✅ wrap inside function
           className="edit-button"
-          style={{ fontSize: "13px", width: "10px" }} // Additional inline styling
+          style={{ fontSize: "15px", width: "10px" }}
         />
       );
     }
+    
+    
 
     // If the column type is "progress" and the value represents progress (e.g., "Ordered", "Completed", etc.)
     if (type === "progress") {

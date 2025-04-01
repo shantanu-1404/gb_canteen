@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 const TabPanel = ({ tabs, setActiveTab }) => {
   const [activeTab, setTab] = useState(0); // ✅ Track active tab
 
@@ -10,9 +9,9 @@ const TabPanel = ({ tabs, setActiveTab }) => {
   };
 
   return (
-    <div className="form_section">
+    <div className="">
       {/* ✅ Tab Buttons */}
-      <div className="tab-buttons">
+      <div className="tab-buttons d-flex justify-content-between">
         {tabs.map((tab, index) => (
           <button
             key={index}

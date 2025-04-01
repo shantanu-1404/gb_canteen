@@ -1,0 +1,39 @@
+[
+    {
+      "col1": "Aditya Sharma",
+      "col2": "+91 9876543210",
+      "col3": "Super Admin",
+      "col4": "Marketing Team",
+      "col5": "Active"
+    },
+    {
+      "col1": "Neha Patel",
+      "col2": "+91 9123456780",
+      "col3": "Manager",
+      "col4": "Sales Squad",
+      "col5": "Inactive"
+    },
+    {
+      "col1": "Ravi Mehta",
+      "col2": "+91 9988776655",
+      "col3": "Team Lead",
+      "col4": "Product Dev Group",
+      "col5": "Active"
+    },
+    {
+      "col1": "Sanya Iyer",
+      "col2": "+91 9876501234",
+      "col3": "Support Admin",
+      "col4": "Customer Success",
+      "col5": "Pending"
+    },
+
+    {
+      "col1": "Sneha Kapoor",
+      "col2": "+91 9090909090",
+      "col3": "Legal Admin",
+      "col4": "Legal Affairs",
+      "col5": "Inactive"
+    }
+  ]
+  

@@ -1,17 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Layout from "./layout";
-import MetricCard from "../components/MetricCard";
 import SocialMediaSelect from "../components/SocialMediaSelect";
 import DataTable from "../components/DataTable";
-import DateInput from "../components/DateInput";
-import Button from "../components/Button";
+
 import customerservicedata from "../assets/json/customerservice.json";
-
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
-import positive from "../assets/svg/positive_metrix.svg";
-import negative from "../assets/svg/negative_metrix.svg";
 
 import notificationData from "../assets/json/notifications.json";
 import campaignData from "../assets/json/campaigns.json";
@@ -25,12 +17,44 @@ const CustomerService = () => {
     setNotifications(notificationData);
   }, []);
 
+  const [filters, setFilters] = useState([
+    { field: "Status", operator: "is", value: "open" },
+    { field: "Channel", operator: "is", value: "Email" },
+    { field: "Assignee User", operator: "is", value: "John Doe" },
+  ]);
+
+  const fieldOptions = ["Status", "Channel", "Assignee User"];
+  const operatorOptions = ["is", "is not"];
+  const valueOptions = {
+    Status: ["open", "closed", "pending"],
+    Channel: ["Email", "Live Chat", "WhatsApp"],
+    "Assignee User": ["John Doe", "Jane Smith", "Support Bot"],
+  };
+
+  const updateFilter = (index, key, newValue) => {
+    const updated = [...filters];
+    updated[index][key] = newValue;
+    // If field is changed, reset value to first valid option
+    if (key === "field") {
+      updated[index].value = valueOptions[newValue][0];
+    }
+    setFilters(updated);
+  };
+
+  const handleCreateView = () => {
+    console.log("📌 Filters Applied:", filters);
+    alert("✅ View Created");
+  };
+
+  const handleCancel = () => {
+    setFilters([]);
+  };
+
   // Handle social media platform selection
   const handlePlatformChange = (selected) => {
     setSelectedPlatforms(selected);
     setCurrentPreviewIndex(0); // Reset preview index when platforms change
   };
-
   const [campaigns, setCampaigns] = useState([]);
   useEffect(() => {
     setCampaigns(campaignData);
@@ -119,6 +143,63 @@ const CustomerService = () => {
             <div className="">
               <SocialMediaSelect onSelectionChange={handlePlatformChange} />
             </div>
+          </div>
+        </div>
+        <div className="form_section">
+          {filters.map((filter, index) => (
+            <div className="filter-row" key={index}>
+              {index > 0 && <span className="and-label">And</span>}
+
+              <div
+                className={`dropdown-group ${
+                  index === 0 ? "primary-filter" : ""
+                }`}
+              >
+                <select
+                  className="dropdown-field"
+                  value={filter.field}
+                  onChange={(e) => updateFilter(index, "field", e.target.value)}
+                >
+                  {fieldOptions.map((f) => (
+                    <option key={f} value={f}>
+                      {f}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  className="condition-dropdown operator"
+                  value={filter.operator}
+                  onChange={(e) =>
+                    updateFilter(index, "operator", e.target.value)
+                  }
+                >
+                  {operatorOptions.map((op) => (
+                    <option key={op} value={op}>
+                      {op}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  className="condition-dropdown value "
+                  value={filter.value}
+                  onChange={(e) => updateFilter(index, "value", e.target.value)}
+                >
+                  {valueOptions[filter.field].map((v) => (
+                    <option key={v} value={v}>
+                      {v}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          ))}
+          <div className="d-flex justify-content-end gap-2">
+            <button className="a-btn-primary" onClick={handleCancel}>
+              Cancel
+            </button>
+            <button className="a-btn-primary" onClick={handleCreateView}>
+              Create View
+            </button>
           </div>
         </div>
 

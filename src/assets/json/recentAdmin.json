@@ -1,0 +1,43 @@
+[
+    {
+      "col1": "Rohit Verma",
+      "col2": "HR Admin",
+      "col3": "View",
+      "col4": "Handles recruitment and employee policies.",
+      "col5": "HR Management",
+      "col6": "2025-03-26T18:50:00Z"
+    },
+    {
+      "col1": "Ayesha Khan",
+      "col2": "Support Admin",
+      "col3": "Edit",
+      "col4": "Manages user tickets and spam reports.",
+      "col5": "Customer Success",
+      "col6": "2025-03-25T16:30:00Z"
+    },
+    {
+      "col1": "Manish Gupta",
+      "col2": "Finance Admin",
+      "col3": "Remove",
+      "col4": "Controls budget and finance records.",
+      "col5": "Finance Department",
+      "col6": "2025-03-24T14:15:00Z"
+    },
+    {
+      "col1": "Sneha Patel",
+      "col2": "Team Lead",
+      "col3": "View",
+      "col4": "Leads engineering team and sets daily goals.",
+      "col5": "Engineering Core",
+      "col6": "2025-03-24T11:00:00Z"
+    },
+    {
+      "col1": "Arjun Nair",
+      "col2": "Ops Admin",
+      "col3": "Edit",
+      "col4": "Oversees logistics and operations.",
+      "col5": "Operations Hub",
+      "col6": "2025-03-23T09:45:00Z"
+    }
+  ]
+  

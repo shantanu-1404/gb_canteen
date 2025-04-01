@@ -54,7 +54,6 @@ const SocialMedia = () => {
   return (
     <Layout>
       <div className="d-flex align-items-center justify-content-between">
-
         <div className="mt-3 d-flex align-items-center">
           <div className="d-flex gap-5 md-date">
             <DateInput label="" type="range" includeTime={false} />

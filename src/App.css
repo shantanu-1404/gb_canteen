@@ -2027,9 +2027,11 @@ select.form-control {
   color: white;
 }
 
+
+
 .form-check-input[type=checkbox] {
-  border-radius: -23.75em;
-  height: 18px;
+  border-radius: 2px;
+  height: 16px;
   width: 16px;
 }
 
@@ -2534,7 +2536,7 @@ li.active a {
 
 .badge {
   padding: 8px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
 }
@@ -4818,26 +4820,196 @@ text-align: center;
   margin: 8px
 }
 
+.filter-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
+.dropdown-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
+.primary-filter .field {
+  font-weight: 600;
+  border: 2px solid orange;
+  background: #fffaf0;
+}
 
+.primary-filter .operator,
+.primary-filter .value {
+  font-weight: 500;
+  border: 1.5px solid #aaa;
+  background-color: #fdfdfd;
+}
 
+.condition-dropdown {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  min-width: 160px;
+  outline: none;
+  color: #1b1b33;
+}
 
+.dropdown:focus {
+  border-color: #5b4fff;
+  box-shadow: 0 0 0 2px rgba(91, 79, 255, 0.1);
+}
 
+.dropdown-field{
+  font-weight: 600;
+  border: 2px solid orange;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  min-width: 160px;
+  outline: none;
+  color: #1b1b33;
+}
 
+.a-btn-danger {
+  margin-top: 13px;
+  border-radius: 12px;
+  height: 47px;
+  background-color: #880D09;
+  color: white;
+}
 
+.a-btn-danger:active,
+.a-btn-danger:hover,
+.a-btn-danger:focus {
+  color: #dcc7f7 !important;
+  background-color: #5c033e;
+  box-shadow: none;
+}
+.batch{
+  border: 2px solid rgb(139, 195, 74);
+  border-radius: 10px;
+  background-color: rgb(247, 255, 242);
+}
+.scrollable-table-wrapper {
+  max-height: 400px;         /* Limit vertical height */
+  overflow-y: auto;          /* Enable vertical scrolling */
+  overflow-x: hidden;        /* ❌ Disable horizontal scrolling */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+.section-header {
+  background-color: #0c002b; /* Deep purple background */
+  color: white;              /* White text */
+  font-weight: 600;          /* Bold */
+  font-size: 16px;           /* Adjust size as needed */
+  padding: 10px 20px;        /* Space inside */
+  border-radius: 10px;       /* Rounded corners */
+  width: 100%;               /* Full width */
+  margin-bottom: 15px;       /* Space below if needed */
+}
 
+.nav-underline .nav-link.active {
+  color: #0c0032;
+  border-bottom: 2px solid #0c0032;
+  font-weight: 600;
+}
+.severity-label {
+  margin-bottom: 8px;
+}
+.a-bg-danger{
+  background-color: #FFF1F1;
+  color:red;
+}
+.a-bg-warning{
+  color: #FAB446;
+  background-color: #FFFBE3;
+  
+}
 
+.a-bg-info{
+  color: #089CFF;
+  background-color:#ECF7FF;
+}
+.api-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #e3f9dd;
+  color: #2ca312;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 15px;
+  width: 32%;
+    height: 60%;
+    border: 2px solid rgb(139, 195, 74);
+    margin-top: 17px;
+}
 
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #2ca312;
+  border-radius: 50%;
+  
+}
+.multi-checkbox-dropdown {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  padding: 10px;
+  background-color: #fff;
+}
+.headerclass h5 {
+  font-size: 1.25rem; /* Adjust font size */
+  font-weight: 600;   /* Semi-bold */
+  color:#000000;     /* Dark text */
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+  margin-top: 30px;
+}
 
+/* SmartTextEditor.css */
+.editor-wrapper {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  max-width: 100%;
+}
 
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
 
+.editor-toolbar button {
+  padding: 6px 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
 
+.editor-toolbar button:hover {
+  background: #eee;
+}
 
-
-
-
-
+.editor-content {
+  min-height: 150px;
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  outline: none;
+}
 
 
 

@@ -1,0 +1,38 @@
+[
+    {
+      "col1": "+91 98765 43210",
+      "col2": "Marketing Group",
+      "col3": "Text Message",
+      "col4": "Unwanted Advertisement",
+      "col5": "87%"
+    },
+    {
+      "col1": "Ravi Kumar",
+      "col2": "+91 99887 77665",
+      "col3": "Image Message",
+      "col4": "Offensive Content",
+      "col5": "92%"
+    },
+    {
+      "col1": "Anonymous",
+      "col2": "Family Group",
+      "col3": "Video Message",
+      "col4": "Phishing Attempt",
+      "col5": "78%"
+    },
+    {
+      "col1": "Sneha Singh",
+      "col2": "+91 91111 22333",
+      "col3": "Document File",
+      "col4": "Scam or Fraud",
+      "col5": "95%"
+    },
+    {
+      "col1": "+91 90000 11122",
+      "col2": "Work Team",
+      "col3": "Text Message",
+      "col4": "Repeated Messages",
+      "col5": "66%"
+    }
+  ]
+  

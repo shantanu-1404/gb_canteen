@@ -19,6 +19,7 @@ const DataTable = ({
   showCheckbox = true,
   grid = true,
   children,
+  handleButtonClick, // ✅ Add here
 }) => {
   const [filteredData, setFilteredData] = useState(data); // Store filtered data
   const [view, setView] = useState(defaultView); // Toggle between table/grid views
@@ -102,7 +103,6 @@ const DataTable = ({
                 gridviewId={id}
               />
             )}
-
             {/* View Toggle Button */}
             {grid && (
               <div className="table-btn">
@@ -137,6 +137,7 @@ const DataTable = ({
           showCheckbox={showCheckbox}
           setFilteredData={setFilteredData}
           paginated={paginated}
+          handleButtonClick={handleButtonClick} // ✅ forward it here
         />
       ) : (
         <>
